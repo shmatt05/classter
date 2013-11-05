@@ -1,4 +1,4 @@
 *.iws
 workspace.xml
 tasks.xml
-classter.iml
+*.iml
