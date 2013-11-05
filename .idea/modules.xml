@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/google-workshop.iml" filepath="$PROJECT_DIR$/.idea/google-workshop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/classter.iml" filepath="$PROJECT_DIR$/.idea/classter.iml" />
     </modules>
   </component>
 </project>
