@@ -18,7 +18,7 @@ import webapp2
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello everyone!! FUCKING!')
+        self.response.write('Hello everyone!! PUSHPUSH!')
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
