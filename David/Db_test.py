@@ -29,7 +29,8 @@ class Course(ndb.Model):
 
 
 class GymCourse(Course):
-    def __init__(self, hour, duration, max_capacity, instructor, studio):
+    def __init__(self, name, description, hour, duration, max_capacity, instructor, studio):
+        super(GymCourse, self).__init__(name, description)
         self.hour = hour
         self.duration = duration
         self.max_capacity = max_capacity
