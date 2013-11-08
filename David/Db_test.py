@@ -37,7 +37,7 @@ class GymCourse(Course):
         self.studio = studio
 
     # TODO add functions: register_user, unregister_user, isBooked, add_to_waiting_list ...
-    #111
+
 
 class User():
     def __init__(self, user_id, level, google_fb, name):
