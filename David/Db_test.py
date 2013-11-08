@@ -28,9 +28,8 @@ class Course(ndb.Model):
     description = ndb.TextProperty()
 
 
-class GymCourse():
-    def __init__(self, course, hour, duration, max_capacity, instructor, studio):
-        self.course = course
+class GymCourse(Course):
+    def __init__(self, hour, duration, max_capacity, instructor, studio):
         self.hour = hour
         self.duration = duration
         self.max_capacity = max_capacity
