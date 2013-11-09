@@ -15,12 +15,27 @@
 # limitations under the License.
 #
 import webapp2
-
+from Roy.db_json_linker import gym_linker
+from Roy.python_objects import python_objects
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        res = 3 + 4
-        self.response.write(str(res) + 'Hello Fuckers!!!<br/>Die now!<br/>Pucky and Robin!kaki')
+
+        json_classes = {"Yoga":  "stupid class", "Zumba" : "crazy class" , "Pilates" : "lazy class"}
+        yoga = python_objects.GymClassTemplate("Yoga", "stupid class")
+        zumba = python_objects.GymClassTemplate("Zumba", "crazy class")
+        pilates = python_objects.GymClassTemplate("Pilates", "lazy class")
+
+        py_objects = [yoga, zumba, pilates]
+
+        gym_from_py = gym_linker.GymLinker.from_python_obj(py_objects)
+      #  gym = gym_linker.GymLinker.from_db_json(json_classes)
+
+      #  for i in gym.gym_classes_template_list:
+      #      self.response.write("name= " + i.name + ", description= " + i.description + "<br/>")
+
+        for key, val in gym_from_py.json_gym_classes_template.items():
+            self.response.write("key= "+ key + ", value= " + val + "<br/>")
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
