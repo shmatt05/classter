@@ -14,7 +14,7 @@ class Gym(ndb.Model):
     def get_gym_by_name(cls, name):
         gym_query = cls.get_gym_query(name)
         if gym_query.count() == 1:
-            return gym_query.fetch(1)
+            return gym_query.fetch()[0]
         elif gym_query.count() == 0:
             return None
         else:
@@ -35,12 +35,12 @@ class MonthSchedule(ndb.Model):
 
 
 
-peer_cinema = Gym(name="Peer Cinema", gym_network="Peer Cinema", address="TLV", courses={
-    "yoga": {"description": "hey"},
-    "spinning": {"description": "hello"}
-    })
-
-peer_cinema.put()
+#peer_cinema = Gym(name="Peer Cinema", gym_network="Peer Cinema", address="TLV", courses={
+#    "yoga":  "hey",
+#    "spinning": "hello"
+#    })
+#
+#peer_cinema.put()
 
 
 

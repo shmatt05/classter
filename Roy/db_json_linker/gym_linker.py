@@ -1,7 +1,7 @@
 
 from Roy.python_objects.python_objects import GymClassTemplate
 
-class GymLinker():
+class GymClassesTemplate():
     def __init__(self, gym_classes_template_list, json_gym_classes_template ):
         self.gym_classes_template_list = gym_classes_template_list
         self.json_gym_classes_template = json_gym_classes_template

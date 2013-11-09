@@ -14,28 +14,44 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 import webapp2
 from Roy.db_json_linker import gym_linker
 from Roy.python_objects import python_objects
+from Roy.db import db_entities
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
 
-        json_classes = {"Yoga":  "stupid class", "Zumba" : "crazy class" , "Pilates" : "lazy class"}
+        #json_classes = {"Yoga":  "stupid class", "Zumba" : "crazy class" , "Pilates" : "lazy class"}
         yoga = python_objects.GymClassTemplate("Yoga", "stupid class")
         zumba = python_objects.GymClassTemplate("Zumba", "crazy class")
         pilates = python_objects.GymClassTemplate("Pilates", "lazy class")
 
+
         py_objects = [yoga, zumba, pilates]
 
-        gym_from_py = gym_linker.GymLinker.from_python_obj(py_objects)
+        gym_from_py = gym_linker.GymClassesTemplate.from_python_obj(py_objects)
+
+        peer_cinema = db_entities.Gym(name="Peer Cinema", gym_network="Peer Cinema", address="TLV", courses=gym_from_py.json_gym_classes_template)
+
+        self.response.write(peer_cinema)
+
+        peer_cinema.put()
+
+        obj = db_entities.Gym.get_gym_by_name("Peer Cinema")
+
+        self.response.write(obj)
+
+        gym = gym_linker.GymClassesTemplate.from_db_json(obj.courses)
+
       #  gym = gym_linker.GymLinker.from_db_json(json_classes)
 
-      #  for i in gym.gym_classes_template_list:
-      #      self.response.write("name= " + i.name + ", description= " + i.description + "<br/>")
+        for i in gym.gym_classes_template_list:
+                self.response.write("name= " + i.name + ", description= " + i.description + "<br/>")
 
-        for key, val in gym_from_py.json_gym_classes_template.items():
-            self.response.write("key= "+ key + ", value= " + val + "<br/>")
+        #for key, val in gym_from_py.json_gym_classes_template.items():
+        #    self.response.write("key= "+ key + ", value= " + val + "<br/>")
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
