@@ -26,15 +26,16 @@ from David.db import entities
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         zumba = objects.CourseTemplate("Zumba", "Funny course")
+        yoga = objects.CourseTemplate("Yoga", "Stupid course")
         self.response.write(zumba.name +" " + zumba.description +  "<br/>")
-        peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses=[zumba])
+        peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses=[zumba, yoga])
 
         #self.response.write(peer + "<br/>")
         peer.put()
 
         results = entities.Gym.query(entities.Gym.name == "peer").fetch()
 
-        self.response.write(results[0].courses[0].description + "<br/>")
+        self.response.write(results[0].courses[1].description + "<br/>")
 
 
         #json_classes = {"Yoga":  "stupid class", "Zumba" : "crazy class" , "Pilates" : "lazy class"}
