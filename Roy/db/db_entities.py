@@ -13,12 +13,12 @@ class Gym(ndb.Model):
     @classmethod
     def get_gym_by_name(cls, name):
         gym_query = cls.get_gym_query(name)
-        if gym_query.count() == 1:
-            return gym_query.fetch()[0]
-        elif gym_query.count() == 0:
-            return None
-        else:
-            return Exception
+        #if gym_query.count() == 1:
+        return gym_query.fetch()[1]
+        #elif gym_query.count() == 0:
+        #    return None
+        #else:
+        #    return Exception
 
 
 
