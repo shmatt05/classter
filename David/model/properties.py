@@ -14,3 +14,4 @@ class CourseTemplateProperty(ndb.StructuredProperty):
 
     def _from_base_type(self, value):
         return CourseTemplate(value.name, value.description)
+

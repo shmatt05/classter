@@ -16,6 +16,7 @@
 #
 
 import webapp2
+from json import *
 
 from David.python_objects  import objects
 from David.db import entities
@@ -30,12 +31,15 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(zumba.name +" " + zumba.description +  "<br/>")
         peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses=[zumba, yoga])
 
-        #self.response.write(peer + "<br/>")
+        som = dumps(zumba.__dict__)
+        py_obj = loads(som)
+
+        self.response.write(py_obj.name)
         peer.put()
 
-        results = entities.Gym.query(entities.Gym.name == "peer").fetch()
+        #results = entities.Gym.query(entities.Gym.name == "peer").fetch()
 
-        self.response.write(results[0].courses[1].description + "<br/>")
+       # self.response.write(results[0].courses[1].description + "<br/>")
 
 
         #json_classes = {"Yoga":  "stupid class", "Zumba" : "crazy class" , "Pilates" : "lazy class"}
