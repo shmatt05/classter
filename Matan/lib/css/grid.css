@@ -1,0 +1,12 @@
+tbody tr{
+    height:75px;
+}
+table, th, td
+{
+    border: 1px solid black;
+}
+
+#class1{
+    position: absolute;
+    background-color: cornflowerblue;
+}
