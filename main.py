@@ -16,30 +16,39 @@
 #
 
 import webapp2
-from json import *
+import David
 
-from David.python_objects  import objects
+from David.python_objects import objects
 from David.db import entities
-#from Roy.db_json_linker import gym_linker
-#from Roy.python_objects import python_objects
-#from Roy.db import db_entities
+import jsonpickle
+
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+
         zumba = objects.CourseTemplate("Zumba", "Funny course")
         yoga = objects.CourseTemplate("Yoga", "Stupid course")
-        self.response.write(zumba.name +" " + zumba.description +  "<br/>")
         peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses=[zumba, yoga])
 
-        som = dumps(zumba.__dict__)
-        py_obj = loads(som)
 
-        self.response.write(py_obj.name)
+        #to_json = jsonpickle.encode(zumba)
+        #self.response.write(to_json +"<br/>")
+        #
+        #back_to_py = jsonpickle.decode(to_json)
+        #if (type(back_to_py) == objects.CourseTemplate):
+        #    self.response.write("WOOWOWO!!")
         peer.put()
 
-        #results = entities.Gym.query(entities.Gym.name == "peer").fetch()
+        results = entities.Gym.query(entities.Gym.name == "peer").fetch()
 
-       # self.response.write(results[0].courses[1].description + "<br/>")
+        self.response.write(str(type(results[0])) + "<br/>")
+
+        if type(results[0].courses[0]) == type(results[0].courses[1]):
+            self.response.write("WWWWWOOOOOWWWW")
+
+        self.response.write(str(type(results[0].courses[0].name)) + "<br/>")
+
+        self.response.write(results[0].courses[1].name + "<br/>")
 
 
         #json_classes = {"Yoga":  "stupid class", "Zumba" : "crazy class" , "Pilates" : "lazy class"}
