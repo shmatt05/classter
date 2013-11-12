@@ -1,5 +1,6 @@
 from google.appengine.ext import ndb
 from David.db import properties
+from David.python_objects import objects
 
 DEFAULT_GYM_KEY = "network_branch"
 DEFAULT_MONTH_YEAR = "mm-yyyy"
@@ -18,7 +19,6 @@ class Gym(ndb.Model):
     def get_key(cls,gym_network_and_name=DEFAULT_GYM_KEY):
         return ndb.Key(Gym, gym_network_and_name)
 
-
 """ Month Schedule Entity. It's parent key is Gym """
 class MonthSchedule(ndb.Model):
     year = ndb.IntegerProperty(required=True)
@@ -36,8 +36,15 @@ class MonthSchedule(ndb.Model):
 class Users(ndb.Model):
     users_table = properties.OurJsonProperty()
 
-""" functions: """
+    def create_users_table(self, *users):
+        users_table = {}
+        for user in users:
+            assert (type(user)==objects.User)
+            users_table[user.id] = user
+        return users_table
 
+    def set_key(self, gym_network_and_name=DEFAULT_GYM_KEY):
+        self.key = ndb.Key(Gym, gym_network_and_name, Users, "Users")
 
 #def get_gym_key(gym_name=DEFAULT_GYM_KEY):
 #    return ndb.Key(Gym, gym_name)

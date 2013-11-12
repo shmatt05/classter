@@ -44,7 +44,7 @@ class MainHandler(webapp2.RequestHandler):
         peer.set_key()
         goactive.set_key()
 
-        # uploadin gyms to DB
+        # uploading gyms to DB
         goactive.put()
         peer.put()
 
@@ -54,7 +54,6 @@ class MainHandler(webapp2.RequestHandler):
 
         # creating schedule
         schedule_peer = entities.MonthSchedule()
-        #schedule_peer.key = get_month_schedule_key("01-2013", "peer")
         schedule_peer.set_key("01-2013", "peer_peer")
         schedule_peer.month = 1
         schedule_peer.year = 2013
@@ -70,12 +69,24 @@ class MainHandler(webapp2.RequestHandler):
         schedule_sav.put()
         schedule_peer.put()
 
+        #create users
+        david = objects.User(12342156, 3, 144221, "david")
+        matan = objects.User(12323126, 2, 1321, "matan")
+        omri = objects.User(123756456, 1, 1321, "omri")
+        roy = objects.User(123432356, 4, 1321, "roy")
 
-        #result = get_month_schedule_key("01-2013", "peer").get()
-        #if type(result.schedule_table[0]) == objects.DailySchedule:
-        #    self.response.write("I'm Daily Sche........!!" + "<br/>")
-        #self.response.write(str(result.schedule_table[0].courses_list[0].name) + "<br/>")
+        users = entities.Users()
+        users.set_key("peer_peer")
+        users.users_table = users.create_users_table(david,matan,omri,roy)
+        users.put()
 
+        result = entities.MonthSchedule.get_key("01-2013", "peer_peer").get()
+        if type(result.schedule_table[0]) == objects.DailySchedule:
+            self.response.write("I'm Daily Sche........!!" + "<br/>")
+        self.response.write(str(result.schedule_table[0].courses_list[0].name) + "<br/>")
+
+#todo consider make users a property in gym
+#todo consider make each user an entity instead of users_table
 
 
 

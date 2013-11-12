@@ -12,7 +12,7 @@ class Course(CourseTemplate):
         self.instructor = instructor
         self.studio = studio
         self.users_list = users_list
-        self.waiting_list =  waiting_list
+        self.waiting_list = waiting_list
     # TODO add functions: register_user, unregister_user, isBooked, add_to_waiting_list ...
 
 class DailySchedule(object):
@@ -21,8 +21,8 @@ class DailySchedule(object):
         self.courses_list = courses_list
 
 class User(object):
-    def __init__(self, user_id, level, google_fb, name):
-        self.user_id = user_id
+    def __init__(self, id, level, google_fb, name):
+        self.id = id
         self.level = level
         self.google_fb = google_fb
         self.name = name
