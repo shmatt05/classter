@@ -14,43 +14,78 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from datetime import date, datetime
 
 import webapp2
 import David
 
 from David.python_objects import objects
 from David.db import entities
+from google.appengine.ext import ndb
 import jsonpickle
+
+DEFAULT_GYM_NAME = "default_gym"
+DEFAULT_MONTH_YEAR = "01-2001"
+
+def gym_key(gym_name=DEFAULT_GYM_NAME):
+    return ndb.Key(entities.Gym, gym_name)
+
+def month_schedule_key(month_year=DEFAULT_MONTH_YEAR, gym_name = DEFAULT_GYM_NAME):
+    return ndb.Key(entities.Gym, gym_name, entities.MonthSchedulel, month_year)
+
 
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
 
-        # creating course templates
+        #creating course templates
         zumba = objects.CourseTemplate("Zumba", "Funny course")
         yoga = objects.CourseTemplate("Yoga", "Stupid course")
 
-        # creating a gym
-        peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses=[zumba, yoga])
-        parent_key = peer.put()
+        # creating a gym)
+        peer = entities.Gym(name="peer", gym_network="peer_another_one", address="TLV", courses=[zumba, yoga])
+        peer.key = gym_key(peer.name)
+        key = peer.put()
+        if peer.key == key:
+            self.response.write("WE ARE THE SAME!!!" +"<br/>")
 
-        # creating real courses
-        zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 1, 20, "yaron", "katom", [])
-        yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 1, 20, "yaron", "katom", [])
+        goactive = entities.Gym(gym_network="Go Active")
+        goactive.key = gym_key("savyonim_goactive")
 
-        # creating daily schedule
-        sunday = objects.DailySchedule(1, [zumba_yaron, yoga_bar])
+        goactive.put()
 
-        # craeting Month Schedule
-        november = entities.MonthSchedule(parent=parent_key)
-        november.year = 2013
-        november.month = 11
-        november.schedule_table = [sunday]
-        november.put()
+        schedule_peer = entities.MonthSchedule()#(parent=gym_key("peer"))
+        schedule_peer.key = ndb.Key(Gym, "peer", MonthSchedulel, "01-2013")
+
+        #schedule_sav = entities.MonthSchedule(parent=gym_key("savyonim_goactive"))
+        #schedule_sav.key = month_schedule_key("03_2013")
+
+
+
+        schedule_peer.put()
+
+
+
+        #schedule = entities.MonthSchedule(parent=gym_key("peer"))
+
+
+        ## creating real courses
+        #zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 1, 20, "yaron", "katom", [])
+        #yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 1, 20, "yaron", "katom", [])
+        #
+        ## creating daily schedule
+        #sunday = objects.DailySchedule(1, [zumba_yaron, yoga_bar])
+        #
+        ## craeting Month Schedule
+        #november = entities.MonthSchedule(parent=parent_key)
+        #november.year = 2013
+        #november.month = 11
+        #november.schedule_table = [sunday]
+        #november.put()
 
 
         # get from the db the all the month schedules of peer's gym
-        schedules = entities.MonthSchedule(parent=entities.Gym.query(entities.Gym.name == "peer"))
+        #schedules = entities.MonthSchedule(parent=entities.Gym.query(entities.Gym.name == "peer").fetch(1))
 
         #to_json = jsonpickle.encode(zumba)
         #self.response.write(to_json +"<br/>")

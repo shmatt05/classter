@@ -6,7 +6,7 @@ class CourseTemplate(object):
         self.description = description
 
 class Course(CourseTemplate):
-    def __init__(self, name, description, hour, duration, max_capacity, instructor, studio, users_list):
+    def __init__(self, name, description, hour, duration, max_capacity, instructor, studio, users_list, waiting_list):
         super(Course, self).__init__(name, description)
         self.hour = hour
         self.duration = duration
@@ -14,6 +14,7 @@ class Course(CourseTemplate):
         self.instructor = instructor
         self.studio = studio
         self.users_list = users_list
+        self.waiting_list =  waiting_list
     # TODO add functions: register_user, unregister_user, isBooked, add_to_waiting_list ...
 
 class DailySchedule():
