@@ -15,3 +15,8 @@ class MonthSchedule(ndb.Model):
     month = ndb.IntegerProperty()
     schedule_table = properties.OurJsonProperty()
 
+
+# their parent is Gym
+class Users(ndb.Model):
+    users_table = properties.OurJsonProperty()
+

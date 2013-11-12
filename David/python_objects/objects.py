@@ -17,7 +17,16 @@ class Course(CourseTemplate):
         self.waiting_list =  waiting_list
     # TODO add functions: register_user, unregister_user, isBooked, add_to_waiting_list ...
 
-class DailySchedule():
+class DailySchedule(object):
     def __init__(self, day, courses_list):
         self.day = day
         self.courses_list = courses_list
+
+class User(object):
+    def __init__(self, user_id, level, google_fb, name):
+        self.user_id = user_id
+        self.level = level
+        self.google_fb = google_fb
+        self.name = name
+
+        # TODO: add user's history.
