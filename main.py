@@ -26,10 +26,31 @@ import jsonpickle
 class MainHandler(webapp2.RequestHandler):
     def get(self):
 
+        # creating course templates
         zumba = objects.CourseTemplate("Zumba", "Funny course")
         yoga = objects.CourseTemplate("Yoga", "Stupid course")
-        peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses=[zumba, yoga])
 
+        # creating a gym
+        peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses=[zumba, yoga])
+        parent_key = peer.put()
+
+        # creating real courses
+        zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 1, 20, "yaron", "katom", [])
+        yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 1, 20, "yaron", "katom", [])
+
+        # creating daily schedule
+        sunday = objects.DailySchedule(1, [zumba_yaron, yoga_bar])
+
+        # craeting Month Schedule
+        november = entities.MonthSchedule(parent=parent_key)
+        november.year = 2013
+        november.month = 11
+        november.schedule_table = [sunday]
+        november.put()
+
+
+        # get from the db the all the month schedules of peer's gym
+        schedules = entities.MonthSchedule(parent=entities.Gym.query(entities.Gym.name == "peer"))
 
         #to_json = jsonpickle.encode(zumba)
         #self.response.write(to_json +"<br/>")
@@ -37,37 +58,23 @@ class MainHandler(webapp2.RequestHandler):
         #back_to_py = jsonpickle.decode(to_json)
         #if (type(back_to_py) == objects.CourseTemplate):
         #    self.response.write("WOOWOWO!!")
-        peer.put()
-
-        results = entities.Gym.query(entities.Gym.name == "peer").fetch()
-
-        self.response.write(str(type(results[0])) + "<br/>")
-
-        if type(results[0].courses[0]) == type(results[0].courses[1]):
-            self.response.write("WWWWWOOOOOWWWW")
-
-        self.response.write(str(type(results[0].courses[0].name)) + "<br/>")
-
-        self.response.write(results[0].courses[1].name + "<br/>")
 
 
-        #json_classes = {"Yoga":  "stupid class", "Zumba" : "crazy class" , "Pilates" : "lazy class"}
-      #  yoga = python_objects.GymClassTemplate("Yoga", "stupid class")
-      #  zumba = python_objects.GymClassTemplate("Zumba", "crazy class")
-      #  pilates = python_objects.GymClassTemplate("Pilates", "lazy class")
-      #  py_objects = [yoga, zumba, pilates]
-      #  gym_from_py = gym_linker.GymClassesTemplate.from_python_obj(py_objects)
-      #  peer_cinema = db_entities.Gym(name="Peer Cinema", gym_network="Peer Cinema", address="TLV", courses=gym_from_py.json_gym_classes_template)
-      #  self.response.write(peer_cinema)
-      #  peer_cinema.put()
-      #  obj = db_entities.Gym.get_gym_by_name("Peer Cinema")
-      #  self.response.write(obj)
-      #  gym = gym_linker.GymClassesTemplate.from_db_json(obj.courses)
-      ##  gym = gym_linker.GymLinker.from_db_json(json_classes)
-      #  for i in gym.gym_classes_template_list:
-      #          self.response.write("name= " + i.name + ", description= " + i.description + "<br/>")
-        #for key, val in gym_from_py.json_gym_classes_template.items():
-        #    self.response.write("key= "+ key + ", value= " + val + "<br/>")
+
+
+        #results = entities.Gym.query(entities.Gym.name == "peer").fetch()
+        #
+        #self.response.write(str(type(results[0])) + "<br/>")
+        #
+        #if type(results[0].courses[0]) == type(results[0].courses[1]):
+        #    self.response.write("WWWWWOOOOOWWWW")
+        #
+        #self.response.write(str(type(results[0].courses[0].name)) + "<br/>")
+        #
+        #self.response.write(results[0].courses[1].name + "<br/>")
+
+
+
 
 
 

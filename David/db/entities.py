@@ -5,7 +5,7 @@ class Gym(ndb.Model):
     name = ndb.StringProperty()
     gym_network = ndb.StringProperty()
     address = ndb.StringProperty()
-    #courses = properties.CourseTemplateProperty(repeated=True)
+    #courses = properties.CourseTemplateProperty(repeated=True) @deprecated
     courses = properties.OurJsonProperty()
 
 
@@ -13,5 +13,5 @@ class Gym(ndb.Model):
 class MonthSchedule(ndb.Model):
     year = ndb.IntegerProperty()
     month = ndb.IntegerProperty()
-    schedule_table = ndb.JsonProperty()
+    schedule_table = properties.OurJsonProperty()
 
