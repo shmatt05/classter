@@ -55,7 +55,7 @@ class MainHandler(webapp2.RequestHandler):
         goactive.put()
 
         schedule_peer = entities.MonthSchedule()#(parent=gym_key("peer"))
-        schedule_peer.key = ndb.Key(Gym, "peer", MonthSchedulel, "01-2013")
+        schedule_peer.key = month_schedule_key("01-2013", "peer")
 
         #schedule_sav = entities.MonthSchedule(parent=gym_key("savyonim_goactive"))
         #schedule_sav.key = month_schedule_key("03_2013")
