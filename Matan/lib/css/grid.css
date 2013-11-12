@@ -4,9 +4,20 @@ tbody tr{
 table, th, td
 {
     border: 1px solid black;
+     clear:both;
 }
 
-#class1{
-    position: absolute;
-    background-color: cornflowerblue;
+.classBox {
+
+    float:left;
+    clear:both;
+
+}
+
+.clearfix:after {
+ content: ".";
+ display: block;
+ height: 0;
+ clear: both;
+ visibility: hidden;
 }
