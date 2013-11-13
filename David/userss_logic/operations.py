@@ -10,7 +10,7 @@ class DailyScheduleManager:
     """ get a list of DailySchedule from today up to num_days """
     def get_daily_schedule_list_from_today(self, num_days):
         time = time = Time('Israel') #from pytz.all_timezones
-        return self.get_daily_schedule_list(time.now(), time.get_date_with_delta(num_days-1))
+        return self.get_daily_schedule_list(time.now().date(), time.get_date_with_delta(num_days-1).date())
 
     """get a list of this week DailySchedule starting from today"""
     def get_week_daily_schedule_list(self):
