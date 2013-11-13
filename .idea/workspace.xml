@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d37152e-1487-46af-9b4d-41c4c5277bde" name="Default" comment="omri">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/David/db/entities.py" afterPath="$PROJECT_DIR$/David/db/entities.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/David/python_objects/objects.py" afterPath="$PROJECT_DIR$/David/python_objects/objects.py" />
+    <list default="true" id="6d37152e-1487-46af-9b4d-41c4c5277bde" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/David/userss_logic/operations.py" afterPath="$PROJECT_DIR$/David/userss_logic/operations.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="classter.iws" />
@@ -20,8 +18,10 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/classter$classter.coverage" NAME="classter Coverage Results" MODIFIED="1383662621913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/classter$DataEntities.coverage" NAME="DataEntities Coverage Results" MODIFIED="1383996561924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roy Testing/DB" />
-    <SUITE FILE_PATH="coverage/classter$google_workshop.coverage" NAME="google-workshop Coverage Results" MODIFIED="1384268296964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/classter$google_workshop.coverage" NAME="google-workshop Coverage Results" MODIFIED="1384290670854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/classter$operations.coverage" NAME="operations Coverage Results" MODIFIED="1384377933724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/userss_logic" />
     <SUITE FILE_PATH="coverage/classter$main.coverage" NAME="main Coverage Results" MODIFIED="1383996596923" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/classter$objects.coverage" NAME="objects Coverage Results" MODIFIED="1384366763706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/python_objects" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -38,7 +38,7 @@
       <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="0" selection-start="1107" selection-end="1107" vertical-scroll-proportion="-12.24" vertical-offset="289" max-vertical-offset="1683">
+            <state line="41" column="25" selection-start="1138" selection-end="1138" vertical-scroll-proportion="-5.44" vertical-offset="561" max-vertical-offset="1717">
               <folding>
                 <element signature="e#601#636#0" expanded="true" />
               </folding>
@@ -46,56 +46,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db_entities.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Roy/db/db_entities.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="598" selection-end="681" vertical-scroll-proportion="0.0" vertical-offset="254" max-vertical-offset="918">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Db_test.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/David/Db_test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="0" selection-start="437" selection-end="498" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="1020">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="entities.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="entities.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/David/db/entities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="0" selection-start="588" selection-end="588" vertical-scroll-proportion="0.779476" vertical-offset="0" max-vertical-offset="459">
+            <state line="8" column="6" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="986">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="python_objects.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Roy/python_objects/python_objects.py">
+      <file leaf-file-name="operations.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/David/userss_logic/operations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="583" selection-end="808" vertical-scroll-proportion="0.0" vertical-offset="16" max-vertical-offset="527">
-              <folding />
+            <state line="27" column="0" selection-start="881" selection-end="881" vertical-scroll-proportion="0.79826087" vertical-offset="0" max-vertical-offset="575">
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="properties.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/David/model/properties.py">
+      <file leaf-file-name="timezone.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/David/userss_logic/timezone.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="41" selection-start="975" selection-end="975" vertical-scroll-proportion="0.0" vertical-offset="62" max-vertical-offset="578">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="model.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/ext/ndb/model.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1703" column="6" selection-start="58736" selection-end="58736" vertical-scroll-proportion="0.0" vertical-offset="28951" max-vertical-offset="64498">
-              <folding />
+            <state line="6" column="4" selection-start="117" selection-end="117" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+              <folding>
+                <element signature="e#25#36#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -103,16 +80,7 @@
       <file leaf-file-name="objects.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/David/python_objects/objects.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="899" selection-end="899" vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="629">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/David/model/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="34" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="255">
+            <state line="22" column="0" selection-start="816" selection-end="816" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
               <folding />
             </state>
           </provider>
@@ -142,11 +110,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Roy Testing/Logic/json_objects.py" />
-        <option value="$PROJECT_DIR$/Roy Testing/db/db_queries.py" />
-        <option value="$PROJECT_DIR$/Roy Testing/db/db_entities.py" />
-        <option value="$PROJECT_DIR$/Roy Testing/logic/json_objects.py" />
-        <option value="$PROJECT_DIR$/Roy Testing/db_json_linker/gym_linker.py" />
         <option value="$PROJECT_DIR$/Roy/__init__.py" />
         <option value="$PROJECT_DIR$/Roy/db_json_linker/gym_linker.py" />
         <option value="$PROJECT_DIR$/app.yaml" />
@@ -155,17 +118,22 @@
         <option value="$PROJECT_DIR$/David/__init__.py" />
         <option value="$PROJECT_DIR$/David/model/models.py" />
         <option value="$PROJECT_DIR$/David/model/properties.py" />
-        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/David/Db_test.py" />
+        <option value="$PROJECT_DIR$/David/db/properties.py" />
         <option value="$PROJECT_DIR$/David/python_objects/objects.py" />
         <option value="$PROJECT_DIR$/David/db/entities.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/David/userss_logic/TimeZone.py" />
+        <option value="$PROJECT_DIR$/David/userss_logic/timezone.py" />
+        <option value="$PROJECT_DIR$/David/userss_logic/operations.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1040" />
-    <option name="height" value="744" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -227,6 +195,74 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="google-workshop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="David" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="google-workshop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="David" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="userss_logic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="google-workshop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="David" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="python_objects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="google-workshop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="David" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -250,11 +286,12 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Projects\google-workshop\David\db" />
       <recent name="C:\Projects\google-workshop\Roy Testing\json_objects" />
       <recent name="C:\Projects\google-workshop\Roy Testing\db_json_linker" />
     </key>
   </component>
-  <component name="RunManager" selected="App Engine server.google-workshop">
+  <component name="RunManager" selected="Python.operations">
     <configuration default="false" name="DataEntities" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -290,6 +327,46 @@
       <module name="classter" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="objects" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/David/python_objects" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="classter" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/David/python_objects/objects.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="operations" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/David/userss_logic" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="classter" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/David/userss_logic/operations.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
@@ -504,15 +581,19 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="App Engine server.google-workshop" />
       <item index="1" class="java.lang.String" itemvalue="Python.DataEntities" />
       <item index="2" class="java.lang.String" itemvalue="Python.main" />
+      <item index="3" class="java.lang.String" itemvalue="Python.objects" />
+      <item index="4" class="java.lang.String" itemvalue="Python.operations" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.main" />
-        <item index="1" class="java.lang.String" itemvalue="Python.DataEntities" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.operations" />
+        <item index="1" class="java.lang.String" itemvalue="Python.objects" />
+        <item index="2" class="java.lang.String" itemvalue="Python.main" />
+        <item index="3" class="java.lang.String" itemvalue="Python.DataEntities" />
       </list>
     </recent_temporary>
   </component>
@@ -609,29 +690,49 @@
       <created>1384268078616</created>
       <updated>1384268078616</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Fixed jsonpickle bug. remember to implement object!!!">
+      <created>1384279415663</created>
+      <updated>1384279415663</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Cleaning code">
+      <created>1384280350866</created>
+      <updated>1384280350866</updated>
+    </task>
+    <task id="LOCAL-00020" summary="additional cleanup">
+      <created>1384283875939</created>
+      <updated>1384283875939</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Users are now in the game too">
+      <created>1384291836318</created>
+      <updated>1384291836318</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Added Time class">
+      <created>1384377226454</created>
+      <updated>1384377226454</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1040" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32761312" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13867188" sideWeight="0.8292282" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.58970356" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.58740497" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2416" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17077176" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22478387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.07395833" sideWeight="0.6525516" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34744844" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -656,7 +757,12 @@
     <MESSAGE value="tested the program flow" />
     <MESSAGE value="tested month schedule and gym database put" />
     <MESSAGE value="bla" />
-    <option name="LAST_COMMIT_MESSAGE" value="bla" />
+    <MESSAGE value="Fixed jsonpickle bug. remember to implement object!!!" />
+    <MESSAGE value="Cleaning code" />
+    <MESSAGE value="additional cleanup" />
+    <MESSAGE value="Users are now in the game too" />
+    <MESSAGE value="Added Time class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Time class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -673,29 +779,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>43</line>
+          <line>37</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/David/python_objects/objects.py</url>
-          <line>1</line>
-          <option name="timeStamp" value="16" />
+          <url>file://$PROJECT_DIR$/David/db/entities.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="18" />
+      <option name="time" value="23" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Roy/db_json_linker/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Roy/db_json_linker/gym_linker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="25" selection-start="640" selection-end="640" vertical-scroll-proportion="0.0" vertical-offset="112" max-vertical-offset="442" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="9" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="32" max-vertical-offset="391">
@@ -720,26 +816,7 @@
     </entry>
     <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/runtime/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="265" column="0" selection-start="8284" selection-end="8284" vertical-scroll-proportion="0.0" vertical-offset="4348" max-vertical-offset="5661" />
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/ext/ndb/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1703" column="6" selection-start="58736" selection-end="58736" vertical-scroll-proportion="0.0" vertical-offset="28436" max-vertical-offset="64243">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David/model/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="34" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David/model/properties.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="41" selection-start="975" selection-end="975" vertical-scroll-proportion="0.0" vertical-offset="62" max-vertical-offset="578">
+        <state line="265" column="0" selection-start="8284" selection-end="8284" vertical-scroll-proportion="0.0" vertical-offset="4348" max-vertical-offset="5661">
           <folding />
         </state>
       </provider>
@@ -751,40 +828,81 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David/Db_test.py">
+    <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/ext/ndb/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="437" selection-end="498" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="1020">
+        <state line="3232" column="2" selection-start="114943" selection-end="114943" vertical-scroll-proportion="0.33333334" vertical-offset="54526" max-vertical-offset="64243">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm30/system/python_stubs/-762174762/datetime.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="162" column="6" selection-start="5105" selection-end="5105" vertical-scroll-proportion="0.5982609" vertical-offset="2410" max-vertical-offset="10761">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David/db/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="344">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Roy/python_objects/python_objects.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="583" selection-end="808" vertical-scroll-proportion="0.5026087" vertical-offset="0" max-vertical-offset="575">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David/db/properties.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="40" selection-start="145" selection-end="145" vertical-scroll-proportion="0.11826087" vertical-offset="0" max-vertical-offset="575">
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="1107" selection-end="1107" vertical-scroll-proportion="-12.24" vertical-offset="289" max-vertical-offset="1683">
+        <state line="41" column="25" selection-start="1138" selection-end="1138" vertical-scroll-proportion="-5.44" vertical-offset="561" max-vertical-offset="1717">
           <folding>
             <element signature="e#601#636#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Roy/python_objects/python_objects.py">
+    <entry file="file://$PROJECT_DIR$/David/python_objects/objects.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="583" selection-end="808" vertical-scroll-proportion="0.0" vertical-offset="16" max-vertical-offset="527">
+        <state line="22" column="0" selection-start="816" selection-end="816" vertical-scroll-proportion="0.0" vertical-offset="241" max-vertical-offset="595">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David/python_objects/objects.py">
+    <entry file="file://$PROJECT_DIR$/David/userss_logic/timezone.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="899" selection-end="899" vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="629">
-          <folding />
+        <state line="6" column="4" selection-start="117" selection-end="117" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+          <folding>
+            <element signature="e#25#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/David/db/entities.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="588" selection-end="588" vertical-scroll-proportion="0.779476" vertical-offset="0" max-vertical-offset="459">
+        <state line="8" column="6" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="217" max-vertical-offset="986">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David/userss_logic/operations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="881" selection-end="881" vertical-scroll-proportion="0.79826087" vertical-offset="0" max-vertical-offset="575">
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

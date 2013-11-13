@@ -5,20 +5,23 @@ from David.userss_logic.timezone import Time
 
 __author__ = 'rokli_000'
 
-""" get a list of DailySchedule from today up to num_days """
-def get_daily_schedule_list_from_today(num_days):
-    time = Time('Israel') #from pytz.all_timezones
-    print time.get_date_with_delta(19)
-    return
+class DailyScheduleManager:
 
-"""get a list of this week DailySchedule starting from today"""
-def get_week_daily_schedule_list():
-    return get_daily_schedule_list(7)
+    """ get a list of DailySchedule from today up to num_days """
+    def get_daily_schedule_list_from_today(self, num_days):
+        time = time = Time('Israel') #from pytz.all_timezones
+        return self.get_daily_schedule_list(time.now(), time.get_date_with_delta(num_days-1))
 
-""" get a list of DailySchedule from start date up to end_date """
-def get_daily_schedule_list(start_date, end_date):
-    pass
+    """get a list of this week DailySchedule starting from today"""
+    def get_week_daily_schedule_list(self):
+        return self.get_daily_schedule_list_from_today(7)
+
+    """ get a list of DailySchedule from start date up to end_date """
+    def get_daily_schedule_list(self, start_date, end_date):
+        pass
 
 
 
-get_daily_schedule_list_from_today(7)
+time = time = Time('Israel') #from pytz.all_timezones
+print time.now()
+print time.get_date_with_delta(7)
