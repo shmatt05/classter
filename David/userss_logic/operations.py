@@ -7,6 +7,9 @@ __author__ = 'rokli_000'
 
 class DailyScheduleManager:
 
+    def __init__(self, gym_key):
+        self.gym_key = gym_key
+
     """ get a list of DailySchedule from today up to num_days """
     def get_daily_schedule_list_from_today(self, num_days):
         time = time = Time('Israel') #from pytz.all_timezones
