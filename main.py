@@ -21,8 +21,10 @@ import David
 
 from David.python_objects import objects
 from David.db import entities
+from David.users_logic import operations
 from google.appengine.ext import ndb
 import jsonpickle
+from David.users_logic.timezone import Time
 
 DEFAULT_GYM_NAME = "default_gym"
 DEFAULT_MONTH_YEAR = "01-2001"
@@ -54,8 +56,8 @@ class MainHandler(webapp2.RequestHandler):
 
         # creating schedule
         schedule_peer = entities.MonthSchedule()
-        schedule_peer.set_key("01-2013", "peer_peer")
-        schedule_peer.month = 1
+        schedule_peer.set_key("11-2013", "peer_peer")
+        schedule_peer.month = 11
         schedule_peer.year = 2013
         first_day = objects.DailySchedule(1, [zumba_yaron, yoga_bar])
         second_day = objects.DailySchedule(2, [zumba_yaron, yoga_bar])
@@ -80,10 +82,17 @@ class MainHandler(webapp2.RequestHandler):
         users.users_table = users.create_users_table(david,matan,omri,roy)
         users.put()
 
-        result = entities.MonthSchedule.get_key("01-2013", "peer_peer").get()
+        result = entities.MonthSchedule.get_key("11-2013", "peer_peer").get()
         if type(result.schedule_table[str(first_day.day)]) == objects.DailySchedule:
             self.response.write("I'm Daily Sche........!!" + "<br/>")
         self.response.write(str(result.schedule_table[str(first_day.day)].day) + "<br/>")
+
+        users_manager = operations.DailyScheduleManager("peer_peer")
+        start_date = datetime(day=1, month=11, year = 2103)
+        end_date = datetime(day=2, month=11, year = 2103)
+        self.response.write(str(users_manager.get_daily_schedule_list(start_date, end_date)))
+
+
 
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table

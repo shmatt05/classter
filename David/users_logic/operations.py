@@ -1,7 +1,7 @@
 import pytz
 from datetime import datetime
 from datetime import timedelta
-from David.userss_logic.timezone import Time
+from David.users_logic.timezone import Time
 from David.python_objects import objects
 from David.db import entities
 __author__ = 'rokli_000'
@@ -27,23 +27,22 @@ class DailyScheduleManager:
         days = end_date.day - start_date.day
         year = start_date.year
         month = start_date.month
-        scheduale = entities.MonthSchedule.get_key(month +"-" +year, self.gym_key).get()
-        today = time.now()
-        for day in range(days):
+        schedule = entities.MonthSchedule.get_key(str(month)+ "-" + str(year), self.gym_key).get()
+        for day in range(days+1):
+            curr_date = start_date + timedelta(day)
             if(curr_date.month == month):
-                curr_date = today + timedelta(day)
-                result.append(self, scheduale.schedule_table[str(curr_date.day)])
+                result.append(self, schedule.schedule_table[str(curr_date.day)])
             else:
                 year = start_date.year
                 month = start_date.month
-                scheduale = entities.MonthSchedule.get_key(month +"-" +year, self.gym_key).get()
-                result.append(self, scheduale.schedule_table[str(curr_date.day)])
+                schedule = entities.MonthSchedule.get_key(str(month) +"-" +str(year), self.gym_key).get()
+                result.append(self, schedule.schedule_table[str(curr_date.day)])
 
 
 
 
 
-
+print str(11)+ "-" + str(2013)
 time = Time('Israel')
 today = time.now()
 for day in range(7):
