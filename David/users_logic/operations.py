@@ -8,8 +8,9 @@ __author__ = 'rokli_000'
 
 class DailyScheduleManager:
 
-    def __init__(self, gym_key):
-        self.gym_key = gym_key
+    def __init__(self, gym_network,gym_branch):
+        self.gym_network = gym_network
+        self.gym_branch = gym_branch
 
     """ get a list of DailySchedule from today up to num_days """
     def get_daily_schedule_list_from_today(self, num_days):
@@ -23,21 +24,20 @@ class DailyScheduleManager:
     """ get a list of DailySchedule from start date up to end_date """
     def get_daily_schedule_list(self, start_date, end_date):
         result = []
-        time= Time('Israel')
         days = end_date.day - start_date.day
         year = start_date.year
         month = start_date.month
-        schedule = entities.MonthSchedule.get_key(str(month)+ "-" + str(year), self.gym_key).get()
+        schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
         for day in range(days+1):
             curr_date = start_date + timedelta(day)
-            if(curr_date.month == month):
-                result.append(self, schedule.schedule_table[str(curr_date.day)])
+            if curr_date.month == month:
+                result.append(schedule.schedule_table[str(curr_date.day)])
             else:
                 year = start_date.year
                 month = start_date.month
-                schedule = entities.MonthSchedule.get_key(str(month) +"-" +str(year), self.gym_key).get()
-                result.append(self, schedule.schedule_table[str(curr_date.day)])
-
+                schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
+                result.append(schedule.schedule_table[str(curr_date.day)])
+        return result
 
 
 

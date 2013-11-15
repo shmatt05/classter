@@ -2,8 +2,10 @@ from google.appengine.ext import ndb
 from David.db import properties
 from David.python_objects import objects
 
-DEFAULT_GYM_KEY = "network_branch"
-DEFAULT_MONTH_YEAR = "mm-yyyy"
+DEFAULT_NETWORK = "network"
+DEFAULT_BRANCH = "branch"
+DEFAULT_MONTH = "mm"
+DEFAULT_YEAR = "yyyy"
 
 """ represent Gym entity """
 class Gym(ndb.Model):
@@ -16,8 +18,8 @@ class Gym(ndb.Model):
         self.key = ndb.Key(Gym, self.gym_network + '_' +self.name)
 
     @classmethod
-    def get_key(cls,gym_network_and_name=DEFAULT_GYM_KEY):
-        return ndb.Key(Gym, gym_network_and_name)
+    def get_key(cls, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
+        return ndb.Key(Gym, gym_network +'_' +gym_branch)
 
 """ Month Schedule Entity. It's parent key is Gym """
 class MonthSchedule(ndb.Model):
@@ -25,12 +27,13 @@ class MonthSchedule(ndb.Model):
     month = ndb.IntegerProperty(required=True)
     schedule_table = properties.OurJsonProperty() #schedule_table = {day_one.day : day_one,  day_two.day : day_two }
 
-    def set_key(self, month_year=DEFAULT_MONTH_YEAR, gym_network_and_name=DEFAULT_GYM_KEY):
-        self.key = ndb.Key(Gym, gym_network_and_name, MonthSchedule, month_year)
+    """ must set year and month prior calling the functioin"""
+    def set_key(self, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
+         self.key = ndb.Key(Gym, gym_network +'_' + gym_branch, MonthSchedule, str(self.month) + '-' + str(self.year))
 
     @classmethod
-    def get_key(cls, month_year=DEFAULT_MONTH_YEAR, gym_network_and_name=DEFAULT_GYM_KEY):
-        return ndb.Key(Gym, gym_network_and_name, MonthSchedule, month_year)
+    def get_key(cls, month=DEFAULT_MONTH, year= DEFAULT_YEAR, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
+        return ndb.Key(Gym, gym_network +'_' + gym_branch, MonthSchedule, month + '-' + year)
 
 """ Users Entity. It's parent key is Gym """
 class Users(ndb.Model):
@@ -43,12 +46,6 @@ class Users(ndb.Model):
             users_table[user.id] = user
         return users_table
 
-    def set_key(self, gym_network_and_name=DEFAULT_GYM_KEY):
-        self.key = ndb.Key(Gym, gym_network_and_name, Users, "Users")
-
-#def get_gym_key(gym_name=DEFAULT_GYM_KEY):
-#    return ndb.Key(Gym, gym_name)
-
-#def get_month_schedule_key(month_year=DEFAULT_MONTH_YEAR, gym_name = DEFAULT_GYM_KEY):
-#    return ndb.Key(Gym, gym_name, MonthSchedule, month_year)
+    def set_key(self, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
+        self.key = ndb.Key(Gym, gym_network +'_' + gym_branch, Users, "Users")
 
