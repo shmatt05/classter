@@ -59,7 +59,7 @@ class MainHandler(webapp2.RequestHandler):
         schedule_peer.year = 2013
         first_day = objects.DailySchedule(1, [zumba_yaron, yoga_bar])
         second_day = objects.DailySchedule(2, [zumba_yaron, yoga_bar])
-        schedule_peer.schedule_table = {first_day.day : first_day, second_day.day : second_day}
+        schedule_peer.schedule_table = {int(first_day.day): first_day, int(second_day.day): second_day}
 
         schedule_sav = entities.MonthSchedule()
         schedule_sav.month = 7
@@ -81,9 +81,9 @@ class MainHandler(webapp2.RequestHandler):
         users.put()
 
         result = entities.MonthSchedule.get_key("01-2013", "peer_peer").get()
-        if type(result.schedule_table[0]) == objects.DailySchedule:
+        if type(result.schedule_table[str(first_day.day)]) == objects.DailySchedule:
             self.response.write("I'm Daily Sche........!!" + "<br/>")
-        self.response.write(str(result.schedule_table[0].courses_list[0].name) + "<br/>")
+        self.response.write(str(result.schedule_table[str(first_day.day)].day) + "<br/>")
 
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table

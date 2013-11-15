@@ -32,12 +32,12 @@ class DailyScheduleManager:
         for day in range(days):
             if(curr_date.month == month):
                 curr_date = today + timedelta(day)
-                result.append(self, scheduale.schedule_table[curr_date.day])
+                result.append(self, scheduale.schedule_table[str(curr_date.day)])
             else:
                 year = start_date.year
                 month = start_date.month
                 scheduale = entities.MonthSchedule.get_key(month +"-" +year, self.gym_key).get()
-                result.append(self, scheduale.schedule_table[curr_date.day])
+                result.append(self, scheduale.schedule_table[str(curr_date.day)])
 
 
 
