@@ -15,10 +15,16 @@ class Gym(ndb.Model):
     courses = properties.OurJsonProperty()
 
     def set_key(self):
-        self.key = ndb.Key(Gym, self.gym_network + '_' +self.name)
+        #self.key = ndb.Key(Gym, self.gym_network + '_' +self.name)
+        self.key = Gym.__generate_key(self.gym_network, self.name)
 
     @classmethod
     def get_key(cls, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
+        #return ndb.Key(Gym, gym_network +'_' +gym_branch)
+        return cls.__generate_key(gym_network, gym_branch)
+
+    @classmethod
+    def __generate_key(cls, gym_network, gym_branch):
         return ndb.Key(Gym, gym_network +'_' +gym_branch)
 
 """ Month Schedule Entity. It's parent key is Gym """
@@ -29,11 +35,17 @@ class MonthSchedule(ndb.Model):
 
     """ must set year and month prior calling the functioin"""
     def set_key(self, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
-         self.key = ndb.Key(Gym, gym_network +'_' + gym_branch, MonthSchedule, str(self.month) + '-' + str(self.year))
+         #self.key = ndb.Key(Gym, gym_network +'_' + gym_branch, MonthSchedule, str(self.month) + '-' + str(self.year))
+          self.key = MonthSchedule.__generate_key(self.month, self.year, gym_network, gym_branch)
 
     @classmethod
     def get_key(cls, month=DEFAULT_MONTH, year= DEFAULT_YEAR, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
-        return ndb.Key(Gym, gym_network +'_' + gym_branch, MonthSchedule, month + '-' + year)
+        #return ndb.Key(Gym, gym_network +'_' + gym_branch, MonthSchedule, month + '-' + year)
+        return cls.__generate_key(month, year, gym_network, gym_branch)
+
+    @classmethod
+    def __generate_key(cls, month=DEFAULT_MONTH, year= DEFAULT_YEAR, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
+         return ndb.Key(Gym, gym_network +'_' + gym_branch, MonthSchedule, str(month) + '-' + str(year))
 
 """ Users Entity. It's parent key is Gym """
 class Users(ndb.Model):
