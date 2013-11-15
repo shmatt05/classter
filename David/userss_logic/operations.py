@@ -23,22 +23,35 @@ class DailyScheduleManager:
     """ get a list of DailySchedule from start date up to end_date """
     def get_daily_schedule_list(self, start_date, end_date):
         result = []
+        time= Time('Israel')
         days = end_date.day - start_date.day
         year = start_date.year
         month = start_date.month
         scheduale = entities.MonthSchedule.get_key(month +"-" +year, self.gym_key).get()
+        today = time.now()
         for day in range(days):
-            result.append(self, scheduale.schedule_table[day])
+            if(curr_date.month == month):
+                curr_date = today + timedelta(day)
+                result.append(self, scheduale.schedule_table[curr_date.day])
+            else:
+                year = start_date.year
+                month = start_date.month
+                scheduale = entities.MonthSchedule.get_key(month +"-" +year, self.gym_key).get()
+                result.append(self, scheduale.schedule_table[curr_date.day])
 
 
-            start_date
 
 
 
 
-
+time = Time('Israel')
+today = time.now()
+for day in range(7):
+    curr_date = today + timedelta(day)
+    print curr_date
+print timedelta(3)
 print range(7)
-time = Time('Israel') #from pytz.all_timezones
+ #from pytz.all_timezones
 print time.now().day - time.get_date_with_delta(-7).day
 print time.now()
 print time.get_date_with_delta(20)
