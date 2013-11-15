@@ -23,7 +23,7 @@ class Gym(ndb.Model):
 class MonthSchedule(ndb.Model):
     year = ndb.IntegerProperty(required=True)
     month = ndb.IntegerProperty(required=True)
-    schedule_table = properties.OurJsonProperty()
+    schedule_table = properties.OurJsonProperty() #schedule_table = {day_one.day : day_one,  day_two.day : day_two }
 
     def set_key(self, month_year=DEFAULT_MONTH_YEAR, gym_network_and_name=DEFAULT_GYM_KEY):
         self.key = ndb.Key(Gym, gym_network_and_name, MonthSchedule, month_year)
