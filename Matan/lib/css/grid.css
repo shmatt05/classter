@@ -5,19 +5,29 @@ table, th, td
 {
     border: 1px solid black;
      clear:both;
+    position:relative;
 }
 
 .classBox {
 
-    float:left;
-    clear:both;
+    float:left !important;
+
 
 }
 
-.clearfix:after {
- content: ".";
- display: block;
- height: 0;
- clear: both;
- visibility: hidden;
+.clearfix:after  {
+   content: " " !important; /* Older browser do not support empty content */
+   visibility: hidden !important;
+   display: block !important;
+   height: 0 !important;
+   clear: both !important;
+}
+
+.white-popup {
+  position: relative;
+  background: #FFF;
+  padding: 20px;
+  width: auto;
+  max-width: 500px;
+  margin: 20px auto;
 }

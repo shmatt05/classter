@@ -29,15 +29,20 @@ var classArr;
 var hourHeight = 75; // Macro for row height
 
 $(document).ready(function() {
+
    initDepthArr();
     setClassesOnGrid(classList);
     setClassClashes();
     $('.classBox').click(function() {
-        alert($(this).attr('id'));
+        $.magnificPopup.open({
+  items: {
+    src: '#test-popup',
+    type: 'inline'
+  }
+});
     });
 
  });
-
 
 
 function setClassesOnGrid(classList) {
@@ -78,21 +83,22 @@ function setClassesOnGrid(classList) {
         document.body.appendChild(d);
         $(d).addClass('classBox');
         $(d).addClass('clearfix');
+        $(d).addClass('open-popup-link');
         var $divOverlay= $(d);
         $divOverlay.css('position','absolute');
         $divOverlay.css('background-color',oneClass.colorCode);
-        var rowPos = $divToSet.position();
-        var bottomTop = rowPos.top;
+       var rowPos = $divToSet.offset();
+       var bottomTop = rowPos.top;
         bottomTop = bottomTop + (startMinutes/60)*hourHeight;
-        var bottomLeft = rowPos.left;
+       var bottomLeft = rowPos.left;
         var bottomWidth =  $divToSet.css('width');
         console.log (bottomWidth + " " + (bottomWidth / 2))
 
-        $divOverlay.css('top', bottomTop);
-        $divOverlay.css('left', bottomLeft);
-        $divOverlay.css('width', function() {
-            return (parseFloat(bottomWidth) / oneClass.shareWidth);
-        });
+       $divOverlay.css('top', bottomTop);
+       $divOverlay.css('left', bottomLeft);
+       $divOverlay.css('width', function() {
+           return (parseFloat(bottomWidth) / oneClass.shareWidth);
+       });
         $divOverlay.css('height', classLength);
         $divOverlay.append("<p>Testing 1 2 3 "+ oneClass.classID +"</p>");
     }
