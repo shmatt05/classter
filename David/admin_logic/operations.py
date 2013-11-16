@@ -1,45 +1,57 @@
 __author__ = 'rokli_000'
 
+import calendar
+from datetime import datetime
+from David.db import entities
+from David.python_objects import objects
+
 class AdminManager:
     ' show in doc'
     def __init__(self, gym_network, gym_branch): #gym_key is <network>_<branch>
         self.gym_network = gym_network
         self.gym_branch = gym_branch
 
+    """ adds a new course_template object to the courses list of the specified Gym entity
+        the method does nothing in case the course_template already exists
+    """
     def add_course_template(self, name, description):
-        #TODO implement
+        gym = entities.Gym.get_key(self.gym_network, self.gym_branch).get()
+        for template in gym.courses:
+            if name == template.name:
+                return
+        new_template = objects.CourseTemplate(name, description)
+        gym.courses.append(new_template)
+        gym.put()
 
-        #check if not already exists
-
-        #update it by putting in the db the updated Gym entity
-
-        pass
-
+    """ creates a new MonthSchedule entity for the given month and year with the current gym as its parent
+        doesn't change the DB if the MonthSchedule already exists
+    """
     def create_month_schedule(self, year, month):
-        #TODO implement
+        days_in_month = calendar.monthrange(year,month)[1]+1
+        schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
+        if schedule is None:
+            schedule = entities.MonthSchedule(year=year, month=month)
+            schedule.set_key(self.gym_network, self.gym_branch)
+            for day in range(1, days_in_month):
+                new_day = objects.DailySchedule(day, [])
+                schedule.schedule_table[day] = new_day
+            schedule.put()
 
-        #check if not already exists
-
-        #craete a new month_schedule for the month and year specified above for that specific gym
-
-        #craete empty daily_schedules according to the number of days in that month
-
-        #update the data base
-
-        pass
-
-    def create_course_for_month(self, name, description, hour, duration, max_capacity, instructor, studio, users_list, waiting_list, day):
-        #TODO implement
-
-        #create course object
-
-        #get the right daily schedule
-
-        #add the course created to the daily schedule courses_list
-
-        #add the courese to the other daily_schedules of next week, 2 weeks from now and so on
-
-        #updaete the data base by putting the month schedule containing the daily schedules above
-
-        pass
-
+    """ creates a new course object and updates the day that matches the given day in each week of the current month
+        day should be in range(1,7)
+    """
+    def create_course_for_month(self, name, description, hour, duration, max_capacity, instructor, studio, users_list,
+                                waiting_list, day):
+        new_course = objects.Course(name, description, hour, duration, max_capacity, instructor, studio, users_list,
+                                    waiting_list)
+        month = datetime.now().month
+        year = datetime.now().year
+        days_in_month = calendar.monthrange(year,month)[1]+1
+        #calculte all the matching days of the current month
+        days_to_update = [x for x in range(day, days_in_month) if (x-day) % 7 == 0]
+        schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
+        for i in days_to_update:
+            daily_schedule = schedule.schedule_table[i]
+            assert (type(daily_schedule) == objects.DailySchedule)
+            daily_schedule.courses_list.append(new_course)
+        schedule.put()
