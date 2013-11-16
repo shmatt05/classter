@@ -32,7 +32,6 @@ $(document).ready(function() {
 
    initDepthArr();
     setClassesOnGrid(classList);
-    setClassClashes();
     $('.classBox').click(function() {
         $.magnificPopup.open({
   items: {
@@ -61,18 +60,19 @@ function setClassesOnGrid(classList) {
         var startDay = parseInt(oneClass.dayOfWeek);
         var clashLength = 60*parseFloat(oneClass.classLength) + startMinutes;
         clashLength = Math.ceil(clashLength/60);
-        // Fill array with "clash map"
-        // tempMax saves the number of maximum clashes for this clash
 
+        // Fill array with "clash map"
         for (var j=fixedHour; j<(fixedHour+parseInt(clashLength)); j++) {
-            //console.log(fixedHour+" "+(fixedHour+parseInt(clashLength))+ " "+ depthArr[startDay][j]);
 
             depthArr[startDay][j]++;
-
         }
 
+        //classArrStr saves day of week, starting and end time for each course, for future reference of clashes
+        var classArrStr = oneClass.dayOfWeek.toString() + "," + startHour.toString() + "," + (startHour + clashLength).toString();
+        classArr.push(classArrStr);
+        console.log(classArrStr);
 
-
+        //Start positioning new class on grid
         selectorStr+="00";
         var $divToSet=$('#'+selectorStr);
 
@@ -92,17 +92,16 @@ function setClassesOnGrid(classList) {
         bottomTop = bottomTop + (startMinutes/60)*hourHeight;
        var bottomLeft = rowPos.left;
         var bottomWidth =  $divToSet.css('width');
-        console.log (bottomWidth + " " + (bottomWidth / 2))
 
        $divOverlay.css('top', bottomTop);
        $divOverlay.css('left', bottomLeft);
-       $divOverlay.css('width', function() {
-           return (parseFloat(bottomWidth) / oneClass.shareWidth);
-       });
+       $divOverlay.css('width', bottomWidth);
+
+
         $divOverlay.css('height', classLength);
         $divOverlay.append("<p>Testing 1 2 3 "+ oneClass.classID +"</p>");
     }
-
+    setClassClashes();
 }
 
 function initDepthArr() {
@@ -122,8 +121,22 @@ function initDepthArr() {
 }
 
 function setClassClashes(){
-    console.log('now starting..');
+    var classInfo; // string built while class was added to grid
+    var tempMax; // keep max clash for one class
     $(".classBox").each(function( index ) {
-        console.log( index + ": " + $( this ).attr('id') );
+
+        tempMax = 0;
+        classInfo = classArr[index].split(","); // split into arr
+        var classDay = parseInt(classInfo[0]);
+        var classStartHour = parseInt(classInfo[1]) -6;
+        var classEndHour = classStartHour + parseInt(classInfo[2]) -6;
+        for (var i=classStartHour; i<classEndHour; i++) {
+            if (tempMax < depthArr[classDay][i]) {
+                tempMax = depthArr[classDay][i];
+            }
+        }
+        $(this).css('width', function() {
+            return parseFloat(parseFloat($(this).css('width')) / tempMax);
+        });
     });
 }
