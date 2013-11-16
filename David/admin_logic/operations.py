@@ -27,12 +27,12 @@ class AdminManager:
         doesn't change the DB if the MonthSchedule already exists
     """
     def create_month_schedule(self, year, month):
-        days_in_month = calendar.monthrange(year,month)[1]+1
+        days_in_month = calendar.monthrange(year, month)[1]
         schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
         if schedule is None:
             schedule = entities.MonthSchedule(year=year, month=month)
             schedule.set_key(self.gym_network, self.gym_branch)
-            for day in range(1, days_in_month):
+            for day in range(1, days_in_month+1):
                 new_day = objects.DailySchedule(day, [])
                 schedule.schedule_table[day] = new_day
             schedule.put()
@@ -46,12 +46,10 @@ class AdminManager:
                                     waiting_list)
         month = datetime.now().month
         year = datetime.now().year
-        days_in_month = calendar.monthrange(year,month)[1]+1
+        days_in_month = calendar.monthrange(year, month)[1]
         #calculte all the matching days of the current month
-        days_to_update = [x for x in range(day, days_in_month) if (x-day) % 7 == 0]
+        days_to_update = [x for x in range(day, days_in_month+1) if (x-day) % 7 == 0]
         schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
         for i in days_to_update:
-            daily_schedule = schedule.schedule_table[i]
-            assert (type(daily_schedule) == objects.DailySchedule)
-            daily_schedule.courses_list.append(new_course)
+            schedule.schedule_table[i].courses_list.append(new_course)
         schedule.put()
