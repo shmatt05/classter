@@ -94,3 +94,7 @@ class AdminManager:
                 course.users_list = users_list
                 course.waiting_list = waiting_list
                 month_schedule.put()
+
+    """ returns the number of the day in range (1,7) by the given date """
+    def get_day_by_date(self, year, month, day):
+        return (calendar.weekday(year, month, day)+2) % 7

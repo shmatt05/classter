@@ -65,6 +65,7 @@ class MainHandler(webapp2.RequestHandler):
         admin.edit_course_template("yoga","yoga11","Kaki batachton!")
         admin.create_course_for_month("ZumbaLatis", "Latis the Zumbot", hour, 2, 10,
                                       "Moished", "Park", [], [], 2014, 2, 3)
+        day_number = admin.get_day_by_date(2013, 11, 7)
 
         peer_gym_after = entities.Gym.get_key("peer", "peer").get()
         course_templates = peer_gym_after.courses
@@ -72,6 +73,7 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(str(course_templates) + "<br/>")
         self.response.write(str(schedule.schedule_table.keys()) + "<br/>")
         self.response.write(str(schedule.schedule_table['3'].courses_list) + "<br/>")
+        self.response.write(str(day_number) + "<br/>")
 
         # creating real courses
         zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 1, 20, "yaron","Katom", [],[])
@@ -113,8 +115,6 @@ class MainHandler(webapp2.RequestHandler):
         if type(result.schedule_table[str(first_day.day)]) == objects.DailySchedule:
             self.response.write("I'm Daily Sche........!!" + "<br/>")
         self.response.write(str(result.schedule_table[str(first_day.day)].day) + "<br/>")
-
-
         self.response.write(str(users_manager.get_daily_schedule_list(start_date, end_date)[0].courses_list[0].studio))
 
 class TestHandler(webapp2.RequestHandler):
