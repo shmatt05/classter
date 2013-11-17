@@ -22,6 +22,7 @@ import David
 from David.python_objects import objects
 from David.db import entities
 from David.users_logic import operations
+from David.admin_logic.operations import AdminManager
 from google.appengine.ext import ndb
 import jsonpickle
 from David.users_logic.timezone import Time
@@ -45,6 +46,20 @@ class MainHandler(webapp2.RequestHandler):
         # uploading gyms to DB
         goactive.put()
         peer.put()
+
+        peer_gym_before = entities.Gym.get_key("peer", "peer").get()
+        course_templates = peer_gym_before.courses
+        self.response.write(str(course_templates) + "<br/>")
+
+        admin = AdminManager("peer", "peer")
+        admin.add_course_template("yoga", "Zubin Meta")
+        admin.create_month_schedule(2014, 2)
+
+        peer_gym_after = entities.Gym.get_key("peer", "peer").get()
+        course_templates = peer_gym_after.courses
+        schedule = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get()
+        self.response.write(str(course_templates) + "<br/>")
+        self.response.write(str(schedule.schedule_table.keys()) + "<br/>")
 
         # creating real courses
         zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 1, 20, "yaron","Katom", [],[])

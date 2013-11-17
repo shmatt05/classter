@@ -3,6 +3,12 @@ class CourseTemplate(object):
         self.name = name
         self.description = description
 
+    def __str__(self):
+        return self.name + "; " + self.description
+
+    def __repr__(self):
+        return self.__str__()
+
 class Course(CourseTemplate):
     def __init__(self, name, description, hour, duration, max_capacity, instructor, studio, users_list, waiting_list):
         super(Course, self).__init__(name, description)

@@ -17,11 +17,18 @@ class AdminManager:
     def add_course_template(self, name, description):
         gym = entities.Gym.get_key(self.gym_network, self.gym_branch).get()
         for template in gym.courses:
-            if name == template.name:
+            if name.lower() == template.name.lower():
                 return
         new_template = objects.CourseTemplate(name, description)
         gym.courses.append(new_template)
         gym.put()
+
+    def edit_course_template(self, previous_name, new_name, description):
+        #check if exists
+        #if previos_name == new_name then just update the description
+        #check with the DB that description has been changed - if not, do nothing
+        #in general, if the admin didn't changed anything the do nothing
+        pass
 
     """ creates a new MonthSchedule entity for the given month and year with the current gym as its parent
         doesn't change the DB if the MonthSchedule already exists
@@ -30,7 +37,7 @@ class AdminManager:
         days_in_month = calendar.monthrange(year, month)[1]
         schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
         if schedule is None:
-            schedule = entities.MonthSchedule(year=year, month=month)
+            schedule = entities.MonthSchedule(year=year, month=month, schedule_table={})
             schedule.set_key(self.gym_network, self.gym_branch)
             for day in range(1, days_in_month+1):
                 new_day = objects.DailySchedule(day, [])
