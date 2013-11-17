@@ -72,6 +72,9 @@ class AdminManager:
         if schedule is None:
             raise Exception("No Month Schedule!") #may be changed in the future
         for i in days_to_update:
+            for course in schedule.schedule_table[str(i)].courses_list:
+                if course.name == name and course.hour == hour:
+                    return
             schedule.schedule_table[str(i)].courses_list.append(new_course)
         schedule.put()
 
