@@ -62,11 +62,9 @@ class AdminManager:
         day should be in range(1,7)
     """
     def create_course_for_month(self, name, description, hour, duration, max_capacity, instructor, studio, users_list,
-                                waiting_list, day):
+                                waiting_list, year, month, day):
         new_course = objects.Course(name, description, hour, duration, max_capacity, instructor, studio, users_list,
                                     waiting_list)
-        month = datetime.now().month
-        year = datetime.now().year
         days_in_month = calendar.monthrange(year, month)[1]
         #calculte all the matching days of the current month
         days_to_update = [x for x in range(day, days_in_month+1) if (x-day) % 7 == 0]
@@ -74,16 +72,15 @@ class AdminManager:
         if schedule is None:
             raise Exception("No Month Schedule!") #may be changed in the future
         for i in days_to_update:
-            schedule.schedule_table[i].courses_list.append(new_course)
+            schedule.schedule_table[str(i)].courses_list.append(new_course)
         schedule.put()
 
-def edit_course(self, old_name, new_name,  old_hour, new_hour, description, duration, max_capacity, instructor, studio, users_list,
-                                waiting_list,year ,month, day):
-
-        month_schedule = self.__get_month_schedule(month ,year)
+    def edit_course(self, old_name, new_name,  old_hour, new_hour, description, duration, max_capacity, instructor,
+                    studio, users_list, waiting_list, year, month, day):
+        month_schedule = self.__get_month_schedule(month, year)
         day_schedule = month_schedule.schedule_table[day].courses_list
         for course in day_schedule:
-            if (course.name.lower() == old_name.lower() and course.hour == old_hour):
+            if course.name.lower() == old_name.lower() and course.hour == old_hour:
                 course.name = new_name
                 course.description = description
                 course.hour = new_hour
