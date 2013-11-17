@@ -5,17 +5,26 @@ from datetime import datetime
 from David.db import entities
 from David.python_objects import objects
 
+
 class AdminManager:
     ' show in doc'
     def __init__(self, gym_network, gym_branch): #gym_key is <network>_<branch>
         self.gym_network = gym_network
         self.gym_branch = gym_branch
 
+    def __get_gym(self):
+        return entities.Gym.get_key(self.gym_network, self.gym_branch).get()
+
+    def __get_month_schedule(self, month, year):
+        return entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
+
     """ adds a new course_template object to the courses list of the specified Gym entity
         the method does nothing in case the course_template already exists
     """
     def add_course_template(self, name, description):
-        gym = entities.Gym.get_key(self.gym_network, self.gym_branch).get()
+        gym = self.__get_gym()
+        if gym is None:
+            raise Exception("No such Gym!")
         for template in gym.courses:
             if name.lower() == template.name.lower():
                 return
@@ -35,7 +44,7 @@ class AdminManager:
     """
     def create_month_schedule(self, year, month):
         days_in_month = calendar.monthrange(year, month)[1]
-        schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
+        schedule = self.__get_month_schedule(month, year)
         if schedule is None:
             schedule = entities.MonthSchedule(year=year, month=month, schedule_table={})
             schedule.set_key(self.gym_network, self.gym_branch)
@@ -56,7 +65,9 @@ class AdminManager:
         days_in_month = calendar.monthrange(year, month)[1]
         #calculte all the matching days of the current month
         days_to_update = [x for x in range(day, days_in_month+1) if (x-day) % 7 == 0]
-        schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
+        schedule = self.__get_month_schedule(month, year)
+        if schedule is None:
+            raise Exception("No Month Schedule!") #may be changed in the future
         for i in days_to_update:
             schedule.schedule_table[i].courses_list.append(new_course)
         schedule.put()
