@@ -1,4 +1,3 @@
-import pytz
 from datetime import datetime
 from datetime import timedelta
 from David.users_logic.timezone import Time
