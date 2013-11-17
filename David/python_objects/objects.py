@@ -21,6 +21,13 @@ class Course(CourseTemplate):
         self.waiting_list = waiting_list
     # TODO add functions: register_user, unregister_user, isBooked, add_to_waiting_list ...
 
+    def __str__(self):
+        return super(Course, self).__str__() + \
+            ", " + str(self.hour) + ", " + self.studio + ", " + str(self.max_capacity)
+
+    def __repr__(self):
+        return self.__str__()
+
 class DailySchedule(object):
     def __init__(self, day, courses_list):
         self.day = day
