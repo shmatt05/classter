@@ -102,8 +102,8 @@ class MainHandler(webapp2.RequestHandler):
         users.put()
 
         users_manager = operations.DailyScheduleManager("peer", "peer")
-        start_date = datetime(day=1, month=11, year = 2013)
-        end_date = datetime(day=2, month=11, year = 2013)
+        start_date = datetime(day=1, month=11, year=2013)
+        end_date = datetime(day=2, month=11, year=2013)
 
         result = entities.MonthSchedule.get_key("11","2013","peer","peer").get()
         if type(result.schedule_table[str(first_day.day)]) == objects.DailySchedule:
