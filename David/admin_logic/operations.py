@@ -74,7 +74,7 @@ class AdminManager:
         for i in days_to_update:
             for course in schedule.schedule_table[str(i)].courses_list:
                 if course.name == name and course.hour == hour:
-                    return
+                    break
             schedule.schedule_table[str(i)].courses_list.append(new_course)
         schedule.put()
 
