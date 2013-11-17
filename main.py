@@ -18,6 +18,8 @@ from datetime import date, datetime
 
 import webapp2
 import David
+import jinja2
+import os
 
 from David.python_objects import objects
 from David.db import entities
@@ -26,6 +28,11 @@ from David.admin_logic.operations import AdminManager
 from google.appengine.ext import ndb
 import jsonpickle
 from David.users_logic.timezone import Time
+
+JINJA_ENVIRONMENT = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
 
 DEFAULT_GYM_NAME = "default_gym"
 DEFAULT_MONTH_YEAR = "01-2001"
@@ -105,6 +112,15 @@ class MainHandler(webapp2.RequestHandler):
 
         self.response.write(str(users_manager.get_daily_schedule_list(start_date, end_date)[0].courses_list[0].studio))
 
+class TestHandler(webapp2.RequestHandler):
+    def get(self):
+        template_values = {
+
+        }
+
+        template = JINJA_ENVIRONMENT.get_template('Matan/grid.html')
+        self.response.write(template.render(template_values))
+
 
 
 #todo consider make users a property in gym
@@ -113,5 +129,6 @@ class MainHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/test', TestHandler)
 ], debug=True)
