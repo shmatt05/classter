@@ -32,12 +32,17 @@ class AdminManager:
         gym.courses.append(new_template)
         gym.put()
 
-    def edit_course_template(self, previous_name, new_name, description):
-        #check if exists
-        #if previos_name == new_name then just update the description
-        #check with the DB that description has been changed - if not, do nothing
-        #in general, if the admin didn't changed anything the do nothing
-        pass
+    """ edits an existing course_template object in the courses list of the specified Gym entity """
+    def edit_course_template(self, previous_name, new_name, new_description):
+        gym = self.__get_gym()
+        if gym is None:
+            raise Exception("No such Gym!")
+        for template in gym.courses:
+            if previous_name.lower() == template.name.lower():
+                if template.name != new_name or template.description != new_description:
+                    template.name = new_name
+                    template.description = new_description
+                    gym.put()
 
     """ creates a new MonthSchedule entity for the given month and year with the current gym as its parent
         doesn't change the DB if the MonthSchedule already exists
