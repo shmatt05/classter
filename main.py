@@ -67,6 +67,15 @@ class MainHandler(webapp2.RequestHandler):
                                       "Moished", "Park", [], [], 2014, 2, 3)
         day_number = admin.get_day_by_date(2013, 11, 7)
 
+        # add user to zumbalatis
+        daily_sched_man = operations.DailyScheduleManager("peer", "peer")
+        daily_sched_man.add_user_to_course("Roy Klinger", 2014,2,3,hour,"ZumbaLatis")
+
+        daily = entities.MonthSchedule.get_key(2,2014,"peer","peer").get().schedule_table[str(3)]
+        for course in daily.courses_list:
+            if course.name == "ZumbaLatis":
+                self.response.write("his name is: " + course.users_list[0].name + "<br/>")
+
         peer_gym_after = entities.Gym.get_key("peer", "peer").get()
         course_templates = peer_gym_after.courses
         schedule = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get()

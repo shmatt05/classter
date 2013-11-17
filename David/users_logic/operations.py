@@ -38,6 +38,22 @@ class DailyScheduleManager:
                 result.append(schedule.schedule_table[str(curr_date.day)])
         return result
 
+    def add_user_to_course(self, username, year, month, day, start_hour, course_name):
+            #get the course
+            month_schedule = entities.MonthSchedule.get_key(month,year,self.gym_network, self.gym_branch).get()
+            day_schedule = month_schedule.schedule_table[str(day)]
+            courses = day_schedule.courses_list
+            for course in courses:
+                if course.name.lower() == course_name.lower() and course.hour == start_hour:
+                    user = objects.User(username,0,None,username)
+                    if len(course.users_list) <course.max_capacity:
+                        course.users_list.append(user)
+                    else:
+                        course.waiting_list.append(user)
+                    month_schedule.put()
+                    break
+
+
 
 
 
