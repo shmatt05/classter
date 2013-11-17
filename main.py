@@ -40,6 +40,7 @@ DEFAULT_MONTH_YEAR = "01-2001"
 class MainHandler(webapp2.RequestHandler):
     def get(self):
 
+        hour = datetime.now().hour
         #creating course templates
         zumba = objects.CourseTemplate("Zumba", "Funny course")
         yoga = objects.CourseTemplate("Yoga", "Stupid course")
@@ -61,12 +62,15 @@ class MainHandler(webapp2.RequestHandler):
         admin = AdminManager("peer", "peer")
         admin.add_course_template("yoga", "Zubin Meta")
         admin.create_month_schedule(2014, 2)
+        admin.create_course_for_month("ZumbaLatis", "latis the zumbut", hour, 2, 10, "Moished", "park", [], [], 3, 2, 2014)
+
 
         peer_gym_after = entities.Gym.get_key("peer", "peer").get()
         course_templates = peer_gym_after.courses
         schedule = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get()
         self.response.write(str(course_templates) + "<br/>")
         self.response.write(str(schedule.schedule_table.keys()) + "<br/>")
+        self.response.write(str(schedule.schedule_table['3'].courses_list) + "<br/>")
 
         # creating real courses
         zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 1, 20, "yaron","Katom", [],[])
@@ -80,6 +84,7 @@ class MainHandler(webapp2.RequestHandler):
         first_day = objects.DailySchedule(1, [zumba_yaron, yoga_bar])
         second_day = objects.DailySchedule(2, [zumba_yaron, yoga_bar])
         schedule_peer.schedule_table = {int(first_day.day): first_day, int(second_day.day): second_day}
+
 
         schedule_sav = entities.MonthSchedule()
         schedule_sav.month = 7
