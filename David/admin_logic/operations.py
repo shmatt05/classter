@@ -54,7 +54,7 @@ class AdminManager:
             schedule = entities.MonthSchedule(year=year, month=month, schedule_table={})
             schedule.set_key(self.gym_network, self.gym_branch)
             for day in range(1, days_in_month+1):
-                new_day = objects.DailySchedule(day, [])
+                new_day = objects.DailySchedule(day, self.get_day_by_date(year, month, day), [])
                 schedule.schedule_table[day] = new_day
             schedule.put()
 
