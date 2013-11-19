@@ -17,7 +17,7 @@
 from datetime import date, datetime
 
 import webapp2
-import David
+import cgi
 import jinja2
 import os
 
@@ -158,6 +158,27 @@ class TestHandler(webapp2.RequestHandler):
         self.response.write(template.render(template_values))
 
 
+class CreateMonthSched(webapp2.RequestHandler):
+    def post(self):
+        full_date = cgi.escape(self.request.get('month'))
+        date_arr = full_date.split('-')
+        year = date_arr[0]
+        month = date_arr[1]
+        #self.response.write(date_arr)
+        admin_man = AdminManager("peer","peer")
+        admin_man.create_month_schedule(int(year), int(month))
+
+        self.response.write("year = " + year + ", month = " + month)
+
+
+class CreateMonthYear(webapp2.RequestHandler):
+
+    def get(self):
+        template_values = {
+
+        }
+        template = JINJA_ENVIRONMENT.get_template('Matan/choose_month_year.html')
+        self.response.write(template.render(template_values))
 
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table
@@ -167,5 +188,7 @@ class TestHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/test', TestHandler)
+    ('/test', TestHandler),
+    ('/craete_monthly_schedule', CreateMonthSched),
+    ('/create_month_year', CreateMonthYear )
 ], debug=True)
