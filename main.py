@@ -139,6 +139,15 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(str(result.schedule_table[str(first_day.day_in_month)].day_in_month) + "<br/>")
         self.response.write(str(users_manager.get_daily_schedule_list(start_date, end_date)[0].courses_list[0].studio))
 
+#input: str == year#month#day#course_name#hour#studio
+#output: list of [year, month, day, course_name, hour, studio]
+
+def parse_course(str):
+    return  str.split('#')
+
+
+
+
 class TestHandler(webapp2.RequestHandler):
     def get(self):
         template_values = {
@@ -152,6 +161,7 @@ class TestHandler(webapp2.RequestHandler):
 
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table
+
 
 
 
