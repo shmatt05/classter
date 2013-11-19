@@ -64,7 +64,7 @@ class MainHandler(webapp2.RequestHandler):
         admin.create_month_schedule(2014, 2)
         admin.edit_course_template("yoga","yoga11","Kaki batachton!")
         admin.create_course_for_month("ZumbaLatis", "Latis the Zumbot", hour, 2, 10,
-                                      "Moished", "Park", [], [], 2014, 2, 3)
+                                      "Moished", "Park","blue", [], [], 2014, 2, 3)
         day_number = admin.get_day_by_date(2013, 11, 7)
 
         # add user to zumbalatis
@@ -123,7 +123,7 @@ class MainHandler(webapp2.RequestHandler):
         result = entities.MonthSchedule.get_key("11","2013","peer","peer").get()
         if type(result.schedule_table[str(first_day.day_in_month)]) == objects.DailySchedule:
             self.response.write("I'm Daily Sche........!!" + "<br/>")
-        self.response.write(str(result.schedule_table[str(first_day.day_in_month)].day) + "<br/>")
+        self.response.write(str(result.schedule_table[str(first_day.day_in_month)].day_in_month) + "<br/>")
         self.response.write(str(users_manager.get_daily_schedule_list(start_date, end_date)[0].courses_list[0].studio))
 
 class TestHandler(webapp2.RequestHandler):

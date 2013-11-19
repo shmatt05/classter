@@ -1,5 +1,3 @@
-from David.admin_logic import operations
-
 class CourseTemplate(object):
     def __init__(self, name, description):
         self.name = name
