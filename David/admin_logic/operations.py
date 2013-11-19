@@ -61,10 +61,10 @@ class AdminManager:
     """ creates a new course object and updates the day that matches the given day in each week of the current month
         day should be in range(1,7)
     """
-    def create_course_for_month(self, name, description, hour, duration, max_capacity, instructor, studio, users_list,
-                                waiting_list, year, month, day):
-        new_course = objects.Course(name, description, hour, duration, max_capacity, instructor, studio, users_list,
-                                    waiting_list)
+    def create_course_for_month(self, name, description, hour, duration, max_capacity, instructor, studio, color,
+                                users_list, waiting_list, year, month, day):
+        new_course = objects.Course(name, description, hour, duration, max_capacity, instructor, studio, color,
+                                    users_list, waiting_list)
         days_in_month = calendar.monthrange(year, month)[1]
         #calculte all the matching days of the current month
         days_to_update = [x for x in range(day, days_in_month+1) if (x-day) % 7 == 0]
@@ -79,7 +79,7 @@ class AdminManager:
         schedule.put()
 
     def edit_course(self, old_name, new_name,  old_hour, new_hour, description, duration, max_capacity, instructor,
-                    studio, users_list, waiting_list, year, month, day):
+                    studio, color, users_list, waiting_list, year, month, day):
         month_schedule = self.__get_month_schedule(month, year)
         day_schedule = month_schedule.schedule_table[day].courses_list
         for course in day_schedule:
@@ -91,6 +91,7 @@ class AdminManager:
                 course.max_capacity = max_capacity
                 course.instructor = instructor
                 course.studio = studio
+                course.color = color
                 course.users_list = users_list
                 course.waiting_list = waiting_list
                 month_schedule.put()
