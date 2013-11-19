@@ -63,7 +63,7 @@ class MainHandler(webapp2.RequestHandler):
         admin.add_course_template("yoga", "Zubin Meta")
         admin.create_month_schedule(2014, 2)
         admin.edit_course_template("yoga","yoga11","Kaki batachton!")
-        admin.create_course_for_month("ZumbaLatis", "Latis the Zumbot", hour, 2, 10,
+        admin.create_course_for_month("ZumbaLatis", "Latis the Zumbot", hour, 120, 10,
                                       "Moished", "Park","blue", [], [], 2014, 2, 3)
         day_number = admin.get_day_by_date(2013, 11, 7)
 
@@ -85,8 +85,10 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(str(day_number) + "<br/>")
 
         # creating real courses
-        zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 1, 20, "yaron","Katom", "Katom", [],[])
-        yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 1, 20, "yaron", "blue", "Blue",[], [])
+        zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 60, 20, "yaron","Katom", "blue", [],[])
+        yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 1, 90, "yaron", "blue", "green",[], [])
+
+        self.response.write(str(yoga_bar.id) + "<br/>")
 
         # creating schedule
         schedule_peer = entities.MonthSchedule()
