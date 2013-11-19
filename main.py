@@ -88,7 +88,6 @@ class MainHandler(webapp2.RequestHandler):
         zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 60, 20, "yaron","Katom", "blue", [],[])
         yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 1, 90, "yaron", "blue", "green",[], [])
 
-        self.response.write(str(yoga_bar.id) + "<br/>")
 
         # creating schedule
         schedule_peer = entities.MonthSchedule()
