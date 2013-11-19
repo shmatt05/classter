@@ -1,3 +1,5 @@
+from David.admin_logic import operations
+
 class CourseTemplate(object):
     def __init__(self, name, description):
         self.name = name
@@ -29,8 +31,9 @@ class Course(CourseTemplate):
         return self.__str__()
 
 class DailySchedule(object):
-    def __init__(self, day, courses_list):
-        self.day = day
+    def __init__(self, day_in_month,day_in_week, courses_list):
+        self.day_in_month = day_in_month
+        self.day_in_week = day_in_week
         self.courses_list = courses_list
 
 class User(object):

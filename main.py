@@ -95,7 +95,7 @@ class MainHandler(webapp2.RequestHandler):
         schedule_peer.set_key("peer", "peer")
         first_day = objects.DailySchedule(1, [zumba_yaron, yoga_bar])
         second_day = objects.DailySchedule(2, [zumba_yaron, yoga_bar])
-        schedule_peer.schedule_table = {int(first_day.day): first_day, int(second_day.day): second_day}
+        schedule_peer.schedule_table = {int(first_day.day_in_month): first_day, int(second_day.day_in_month): second_day}
 
         schedule_sav = entities.MonthSchedule()
         schedule_sav.month = 7
@@ -121,9 +121,9 @@ class MainHandler(webapp2.RequestHandler):
         end_date = datetime(day=2, month=11, year=2013)
 
         result = entities.MonthSchedule.get_key("11","2013","peer","peer").get()
-        if type(result.schedule_table[str(first_day.day)]) == objects.DailySchedule:
+        if type(result.schedule_table[str(first_day.day_in_month)]) == objects.DailySchedule:
             self.response.write("I'm Daily Sche........!!" + "<br/>")
-        self.response.write(str(result.schedule_table[str(first_day.day)].day) + "<br/>")
+        self.response.write(str(result.schedule_table[str(first_day.day_in_month)].day) + "<br/>")
         self.response.write(str(users_manager.get_daily_schedule_list(start_date, end_date)[0].courses_list[0].studio))
 
 class TestHandler(webapp2.RequestHandler):
