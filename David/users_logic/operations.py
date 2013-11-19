@@ -27,6 +27,7 @@ class DailyScheduleManager:
                 return True
         return False
 
+    """ removes the user corresponds to username from the course's users_list """
     @classmethod
     def remove_user_from_class(cls, username, course):
         for user in course.users_list:
