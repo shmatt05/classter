@@ -32,7 +32,9 @@ class Course(CourseTemplate):
 
 
 class DailySchedule(object):
-    def __init__(self, day_in_month,day_in_week, courses_list):
+    def __init__(self, year, month, day_in_month,day_in_week, courses_list):
+        self.year = year
+        self.month = month
         self.day_in_month = day_in_month
         self.day_in_week = day_in_week
         self.courses_list = courses_list

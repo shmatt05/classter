@@ -106,8 +106,8 @@ class MainHandler(webapp2.RequestHandler):
         schedule_peer.month = 11
         schedule_peer.year = 2013
         schedule_peer.set_key("peer", "peer")
-        first_day = objects.DailySchedule(1, 3, [zumba_yaron, yoga_bar])
-        second_day = objects.DailySchedule(2, 5, [zumba_yaron, yoga_bar])
+        first_day = objects.DailySchedule(2013, 11, 1, 3, [zumba_yaron, yoga_bar])
+        second_day = objects.DailySchedule(2013, 11, 2, 5, [zumba_yaron, yoga_bar])
         schedule_peer.schedule_table = {int(first_day.day_in_month): first_day, int(second_day.day_in_month): second_day}
 
         schedule_sav = entities.MonthSchedule()
