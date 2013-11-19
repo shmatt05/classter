@@ -9,6 +9,7 @@ class CourseTemplate(object):
     def __repr__(self):
         return self.__str__()
 
+
 class Course(CourseTemplate):
     def __init__(self, name, description, hour, duration, max_capacity, instructor, studio, color, users_list, waiting_list):
         super(Course, self).__init__(name, description)
@@ -29,11 +30,13 @@ class Course(CourseTemplate):
     def __repr__(self):
         return self.__str__()
 
+
 class DailySchedule(object):
     def __init__(self, day_in_month,day_in_week, courses_list):
         self.day_in_month = day_in_month
         self.day_in_week = day_in_week
         self.courses_list = courses_list
+
 
 class User(object):
     def __init__(self, id, level, google_fb, name):

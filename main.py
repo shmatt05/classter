@@ -69,12 +69,24 @@ class MainHandler(webapp2.RequestHandler):
 
         # add user to zumbalatis
         daily_sched_man = operations.DailyScheduleManager("peer", "peer")
-        daily_sched_man.add_user_to_course("Roy Klinger", 2014,2,3,hour,"ZumbaLatis")
+        daily_sched_man.add_user_to_course("Roy Klinger", 2014, 2, 3, hour, "ZumbaLatis")
+        daily_sched_man.add_user_to_course("Moshico Movshi", 2014, 2, 3, hour, "ZumbaLatis")
 
-        daily = entities.MonthSchedule.get_key(2,2014,"peer","peer").get().schedule_table[str(3)]
+        daily = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get().schedule_table[str(3)]
         for course in daily.courses_list:
             if course.name == "ZumbaLatis":
-                self.response.write("his name is: " + course.users_list[0].name + "<br/>")
+                self.response.write("before deletion: <br/>")
+                for user in course.users_list:
+                    self.response.write("his name is: " + user.name + "<br/>")
+
+        daily_sched_man.delete_user_from_course("Moshico Movshi", 2014, 2, 3, hour, "ZumbaLatis")
+
+        daily1 = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get().schedule_table[str(3)]
+        for course in daily1.courses_list:
+            if course.name == "ZumbaLatis":
+                self.response.write("after deletion: <br/>")
+                for user in course.users_list:
+                    self.response.write("his name is: " + user.name + "<br/>")
 
         peer_gym_after = entities.Gym.get_key("peer", "peer").get()
         course_templates = peer_gym_after.courses
@@ -114,7 +126,7 @@ class MainHandler(webapp2.RequestHandler):
 
         users = entities.Users()
         users.set_key("peer", "peer")
-        users.users_table = users.create_users_table(david,matan,omri,roy)
+        users.users_table = users.create_users_table(david, matan, omri, roy)
         users.put()
 
         users_manager = operations.DailyScheduleManager("peer", "peer")
