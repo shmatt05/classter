@@ -85,16 +85,16 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(str(day_number) + "<br/>")
 
         # creating real courses
-        zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 1, 20, "yaron","Katom", [],[])
-        yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 1, 20, "yaron", "blue",[], [])
+        zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 1, 20, "yaron","Katom", "Katom", [],[])
+        yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 1, 20, "yaron", "blue", "Blue",[], [])
 
         # creating schedule
         schedule_peer = entities.MonthSchedule()
         schedule_peer.month = 11
         schedule_peer.year = 2013
         schedule_peer.set_key("peer", "peer")
-        first_day = objects.DailySchedule(1, [zumba_yaron, yoga_bar])
-        second_day = objects.DailySchedule(2, [zumba_yaron, yoga_bar])
+        first_day = objects.DailySchedule(1, 3, [zumba_yaron, yoga_bar])
+        second_day = objects.DailySchedule(2, 5, [zumba_yaron, yoga_bar])
         schedule_peer.schedule_table = {int(first_day.day_in_month): first_day, int(second_day.day_in_month): second_day}
 
         schedule_sav = entities.MonthSchedule()
