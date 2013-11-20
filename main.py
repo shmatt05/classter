@@ -62,7 +62,7 @@ class MainHandler(webapp2.RequestHandler):
         admin = AdminManager("peer", "peer")
         admin.add_course_template("yoga", "Zubin Meta")
         admin.create_month_schedule(2014, 2)
-        admin.edit_course_template("yoga","yoga11","Kaki batachton!")
+        #admin.edit_course_template("yoga","yoga11","Kaki batachton!")
         admin.create_course_for_month("ZumbaLatis", "Latis the Zumbot", hour, 120, 10,
                                       "Moished", "Park","blue", [], [], 2014, 2, 3)
         day_number = admin.get_day_by_date(2013, 11, 7)
@@ -168,7 +168,15 @@ class CreateMonthSched(webapp2.RequestHandler):
         admin_man = AdminManager("peer","peer")
         admin_man.create_month_schedule(int(year), int(month))
 
-        self.response.write("year = " + year + ", month = " + month)
+        template_values = {
+            'year': year,
+            'month': month,
+            'courses': admin_man.get_courses_templates()
+        }
+        template = JINJA_ENVIRONMENT.get_template('Matan/create_monthly_schedule.html')
+        self.response.write(template.render(template_values))
+
+
 
 
 class CreateMonthYear(webapp2.RequestHandler):
@@ -180,6 +188,28 @@ class CreateMonthYear(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('Matan/choose_month_year.html')
         self.response.write(template.render(template_values))
 
+
+class AddCourse(webapp2.RequestHandler):
+
+    def post(self):
+        course_name = cgi.escape(self.request.get('course_name'))
+        description = cgi.escape(self.request.get('description'))
+
+        admin_man = AdminManager("peer", "peer")
+        admin_man.add_course_template(course_name, description)
+
+
+        template_values = {
+            'year': self.request.get('year'),
+            'month': self.request.get('month'),
+            'courses': admin_man.get_courses_templates()
+        }
+
+        template = JINJA_ENVIRONMENT.get_template('Matan/create_monthly_schedule.html')
+        self.response.write(template.render(template_values))
+
+
+
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table
 
@@ -190,5 +220,6 @@ app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/test', TestHandler),
     ('/craete_monthly_schedule', CreateMonthSched),
-    ('/create_month_year', CreateMonthYear )
+    ('/create_month_year', CreateMonthYear ),
+    ('/add_course', AddCourse),
 ], debug=True)

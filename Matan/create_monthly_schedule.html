@@ -3,28 +3,31 @@
 <head>
     <title>Create new Schedule</title>
     <meta lang="he" http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
-    <h1>צור מערכת לחודש X</h1>
+    <h1>צור מערכת עבור {{month}}-{{year}}</h1>
 
-    <form action="/create_month_sched" method="post">
+    <form action="create_month_sched" method="post">
        <table>
           <tr>
               <td>
                   <label name="class_name">שם השיעור:</label>
               </td>
               <td>
-                  <select name="carlist" form="carform">
-                      <option value="volvo">סספינינג</option>
-                      <option value="saab">זומבה</option>
-                      <option value="opel">פילאטיס</option>
-                      <option value="audi">יוגה</option>
+                  <select name="classes" form="classes">
+                      {% for course in courses %}
+                      <option value="{{course.name}}">{{course.name}}</option>
+                      {% endfor %}
                    </select>
+              </td>
               <td>
+                 <button type="button" id="add_course">add new course</button>
+              </td>
           </tr>
            <tr>
                <td>
-                   <label name="studio">סטודיו </label>
+                   <label name="studio">סטודיו</label>
                </td>
                <td>
                    <input id="studio">
@@ -90,6 +93,44 @@
               </td>
            </tr>
         </table>
+        <input type="text" name="year" value="{{year}}" style="display: none">
+        <input type="text" name="month" value="{{month}}" style="display: none">
     </form>
+
+    <br>
+   <h2>הוסף קורס חדש</h2>
+    <form id="course_form" action="add_course" method="post">
+        <table>
+            <tbody>
+            <tr>
+                <td>
+                   <label>שם השיעור:</label>
+                </td>
+                <td>
+                    <input name="course_name"> </input>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>תיאור</label>
+                </td>
+                <td>
+                  <input name="description" type="text"> </input>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit"> </input>
+                </td>
+            </tr>
+
+
+            </tbody>
+         </table>
+        <input type="text" name="year" value="{{year}}" style="display: none">
+        <input type="text" name="month" value="{{month}}" style="display: none">
+    </form>
+
+
 </body>
 </html>
