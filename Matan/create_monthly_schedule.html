@@ -8,7 +8,7 @@
 <body>
     <h1>צור מערכת עבור {{month}}-{{year}}</h1>
 
-    <form action="create_month_sched" method="post">
+    <form action="create_course" method="post">
        <table>
           <tr>
               <td>
@@ -21,16 +21,13 @@
                       {% endfor %}
                    </select>
               </td>
-              <td>
-                 <button type="button" id="add_course">add new course</button>
-              </td>
           </tr>
            <tr>
                <td>
                    <label name="studio">סטודיו</label>
                </td>
                <td>
-                   <input id="studio">
+                   <input name="studio">
                </td>
            </tr>
            <tr>
@@ -38,7 +35,7 @@
                    <label name="instructor">מדריך: </label>
                </td>
                <td>
-                   <input id="instructor">
+                   <input name="instructor">
                </td>
            </tr>
             <tr>
@@ -46,7 +43,7 @@
                    <label name="start_hour">שעת התחלה: </label>
                </td>
                <td>
-                   <input id="start_hour" type="time">
+                   <input name="start_hour" type="time">
                </td>
            </tr>
             <tr>
@@ -54,7 +51,7 @@
                    <label name="end_hour">שעת סיום: </label>
                </td>
                <td>
-                   <input id="end_hour" type="time">
+                   <input name="end_hour" type="time">
                </td>
            </tr>
            <tr>
@@ -62,7 +59,7 @@
                    <label name="capacity">כמות משתתפים:</label>
                </td>
                <td>
-                   <input id="capacity" type="number">
+                   <input name="capacity" type="number">
                </td>
            </tr>
             <tr>

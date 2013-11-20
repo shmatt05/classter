@@ -177,8 +177,6 @@ class CreateMonthSched(webapp2.RequestHandler):
         self.response.write(template.render(template_values))
 
 
-
-
 class CreateMonthYear(webapp2.RequestHandler):
 
     def get(self):
@@ -198,7 +196,6 @@ class AddCourse(webapp2.RequestHandler):
         admin_man = AdminManager("peer", "peer")
         admin_man.add_course_template(course_name, description)
 
-
         template_values = {
             'year': self.request.get('year'),
             'month': self.request.get('month'),
@@ -208,18 +205,29 @@ class AddCourse(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('Matan/create_monthly_schedule.html')
         self.response.write(template.render(template_values))
 
+class CreateCourse(webapp2.RequestHandler):
+    def post(self):
+        year = cgi.escape(self.request.get('year'))
+        month = cgi.escape(self.request.get('month'))
+        class_name = cgi.escape(self.request.get('classes'))
+        studio = cgi.escape(self.request.get('studio'))
+        instructor = cgi.escape(self.request.get('instructor'))
+        start_hour = cgi.escape(self.request.get('start_hour'))
+        end_hour = cgi.escape(self.request.get('end_hour'))
+        capacity = cgi.escape(self.request.get('capacity'))
 
+        self.response.write("year = "+year + " month= "+ month+ " class= " + class_name + " studio= "+
+                             studio + "instructor= " + instructor + " start= " + start_hour +
+                                 " end= " + end_hour + " capacity= " + capacity)
 
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table
-
-
-
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/test', TestHandler),
     ('/craete_monthly_schedule', CreateMonthSched),
-    ('/create_month_year', CreateMonthYear ),
+    ('/create_month_year', CreateMonthYear),
     ('/add_course', AddCourse),
+    ('/create_course', CreateCourse),
 ], debug=True)
