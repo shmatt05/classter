@@ -1,28 +1,28 @@
 var classList = [
     {
-    "classID": "6473",
-    "classLength": "1.5",
-    "dayOfWeek": "0",
-    "timeOfDay": "0910",
-    "colorCode": "#FFCC66",
-    "shareWidth":2
-},
+        "classID": "6473",
+        "classLength": "1.5",
+        "dayOfWeek": "0",
+        "timeOfDay": "0910",
+        "colorCode": "#FFCC66",
+        "shareWidth":2
+    },
     {
-    "classID": "4345",
-    "classLength": "0.7",
-    "dayOfWeek": "0",
-    "timeOfDay": "0950",
-    "colorCode": "#33FFAD",
-    "shareWidth":2
-},
+        "classID": "4345",
+        "classLength": "0.7",
+        "dayOfWeek": "0",
+        "timeOfDay": "0950",
+        "colorCode": "#33FFAD",
+        "shareWidth":2
+    },
     {
-    "classID": "1122",
-    "classLength": "3",
-    "dayOfWeek": "5",
-    "timeOfDay": "1743",
-    "colorCode": "#FF6699",
-    "shareWidth":1
-}];
+        "classID": "1122",
+        "classLength": "3",
+        "dayOfWeek": "5",
+        "timeOfDay": "1743",
+        "colorCode": "#FF6699",
+        "shareWidth":1
+    }];
 
 var depthArr;
 var classArr;
@@ -30,78 +30,83 @@ var hourHeight = 75; // Macro for row height
 
 $(document).ready(function() {
 
-   initDepthArr();
-    setClassesOnGrid(classList);
+
+    //setClassesOnGrid(classList);
     $('.classBox').click(function() {
+        var classKey = $(this).attr('id');
+        document.getElementById('classkey').value = classKey;
         $.magnificPopup.open({
-  items: {
-    src: '#test-popup',
-    type: 'inline'
-  }
-});
+            items: {
+                src: '#test-popup',
+                type: 'inline'
+            },
+
+            closeOnContentClick: false
+
+        });
+
     });
+});
 
- });
+function setClassesOnGrid(oneClass) {
+    console.log(oneClass);
+    var selectorStr = "" ;
+    selectorStr+=oneClass.dayOfWeek;
+    selectorStr+=oneClass.timeOfDay.substr(0,2);
+    var startMinutes = parseInt(oneClass.timeOfDay.substr(2));
 
+    // Take care of potential clashing between classes visually (overlap fix)
+    var startHour = parseInt(oneClass.timeOfDay.substr(0,2));
 
-function setClassesOnGrid(classList) {
-    for (var i=0; i<classList.length; i++) {
-        oneClass=classList[i];
-        var selectorStr = "" ;
-        selectorStr+=oneClass.dayOfWeek;
-        selectorStr+=oneClass.timeOfDay.substr(0,2);
-        var startMinutes = parseInt(oneClass.timeOfDay.substr(2));
+    var fixedHour = startHour-6; // Clash Array only holds 18 out of 24 hours
 
-        // Take care of potential clashing between classes visually (overlap fix)
-        var startHour = parseInt(oneClass.timeOfDay.substr(0,2));
+    var startDay = parseInt(oneClass.dayOfWeek);
+    var clashLength = 60*parseFloat(oneClass.classLength) + startMinutes;
+    clashLength = Math.ceil(clashLength/60);
 
-        var fixedHour = startHour-6; // Clash Array only holds 18 out of 24 hours
+    // Fill array with "clash map"
+    for (var j=fixedHour; j<(fixedHour+parseInt(clashLength)); j++) {
 
-        var startDay = parseInt(oneClass.dayOfWeek);
-        var clashLength = 60*parseFloat(oneClass.classLength) + startMinutes;
-        clashLength = Math.ceil(clashLength/60);
-
-        // Fill array with "clash map"
-        for (var j=fixedHour; j<(fixedHour+parseInt(clashLength)); j++) {
-
-            depthArr[startDay][j]++;
-        }
-
-        //classArrStr saves day of week, starting and end time for each course, for future reference of clashes
-        var classArrStr = oneClass.dayOfWeek.toString() + "," + startHour.toString() + "," + (startHour + clashLength).toString();
-        classArr.push(classArrStr);
-        console.log(classArrStr);
-
-        //Start positioning new class on grid
-        selectorStr+="00";
-        var $divToSet=$('#'+selectorStr);
-
-        var classLength = hourHeight*parseFloat(oneClass.classLength);
-
-        d=document.createElement('div');
-        $(d).attr('id', oneClass.classID);
-        document.body.appendChild(d);
-        $(d).addClass('classBox');
-        $(d).addClass('clearfix');
-        $(d).addClass('open-popup-link');
-        var $divOverlay= $(d);
-        $divOverlay.css('position','absolute');
-        $divOverlay.css('background-color',oneClass.colorCode);
-       var rowPos = $divToSet.offset();
-       var bottomTop = rowPos.top;
-        bottomTop = bottomTop + (startMinutes/60)*hourHeight;
-       var bottomLeft = rowPos.left;
-        var bottomWidth =  $divToSet.css('width');
-
-       $divOverlay.css('top', bottomTop);
-       $divOverlay.css('left', bottomLeft);
-       $divOverlay.css('width', bottomWidth);
-
-
-        $divOverlay.css('height', classLength);
-        $divOverlay.append("<p>Testing 1 2 3 "+ oneClass.classID +"</p>");
+        depthArr[startDay][j]++;
     }
-    setClassClashes();
+
+    //classArrStr saves day of week, starting and end time for each course, for future reference of clashes
+    var classArrStr = oneClass.dayOfWeek.toString() + "," + startHour.toString() + "," + (startHour + clashLength).toString();
+    classArr.push(classArrStr);
+    console.log(classArrStr);
+
+    //Start positioning new class on grid
+    selectorStr+="00";
+    var $divToSet=$('#'+selectorStr);
+
+    var classLength = hourHeight*parseFloat(oneClass.classLength);
+
+    d=document.createElement('div');
+    $(d).attr('id', oneClass.classID);
+    document.body.appendChild(d);
+    $(d).addClass('classBox');
+    $(d).addClass('clearfix');
+    $(d).addClass('open-popup-link');
+    var $divOverlay= $(d);
+    $divOverlay.css('position','absolute');
+    $divOverlay.css('background-color',oneClass.colorCode);
+    var rowPos = $divToSet.offset();
+    var bottomTop = rowPos.top;
+    bottomTop = bottomTop + (startMinutes/60)*hourHeight;
+    var bottomLeft = rowPos.left;
+    var bottomWidth =  $divToSet.css('width');
+
+    $divOverlay.css('top', bottomTop);
+    $divOverlay.css('left', bottomLeft);
+    $divOverlay.css('width', bottomWidth);
+
+
+    $divOverlay.css('height', classLength);
+    $divOverlay.append("<p>" + oneClass.className + "<br>" +  oneClass.instructor + "<br>" + oneClass.studioID +"</p>");
+
+
+
+
 }
 
 function initDepthArr() {

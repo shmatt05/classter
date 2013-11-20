@@ -11,6 +11,7 @@
     <script type='text/javascript' src='lib/js/classter-grid.js'></script>
     <script type='text/javascript' src='lib/js/grid-jq.js'></script>
      <script type="text/javascript" src="lib/js/jquery.magnific-popup.js"></script>
+
 </head>
 <body>
         <div id="timesTable" class="span12 pull-right">
@@ -228,7 +229,34 @@
 
    </div>
    <div id="test-popup" class="white-popup mfp-hide">
- Testing 1 2 3 <br> This Is Just A Test
-</div>
+     <form action="register_to_class" method="post">
+        Please Enter Your Name To Sign Up:<br>
+        <input type="text" name="firstname" /><br>
+        <input type="hidden" id="classkey" name="classkey" value="" />
+        <input type="submit" value="Submit">
+
+    </form>
+    </div>
+<script>
+    initDepthArr();
+</script>
+{% for day in days %}
+    {% for course in day.courses_list %}
+        <script>
+             var oneClass ={};
+            oneClass.dayOfWeek =(parseInt("{{ day.day_in_week }}")-1).toString();
+            oneClass.timeOfDay = "{{ course.hour }}";
+            oneClass.classLength = parseFloat(parseInt("{{ course.duration }}") / 60);
+            oneClass.classID = "{{ course.name }}" + "{{ day.day_in_month }}" + "{{ course.hour }}";
+            oneClass.colorCode = "{{ course.color }}" ;
+            oneClass.studioID = "{{ course.studio }}";
+            oneClass.className = "{{ course.name }}";
+            oneClass.instructor = "{{ course.instructor }}";
+            setClassesOnGrid(oneClass);
+        </script>
+    {% endfor %}
+{% endfor %}
+
+
 </body>
 </html>

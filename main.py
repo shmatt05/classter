@@ -62,7 +62,7 @@ class MainHandler(webapp2.RequestHandler):
         admin = AdminManager("peer", "peer")
         admin.add_course_template("yoga", "Zubin Meta")
         admin.create_month_schedule(2014, 2)
-        #admin.edit_course_template("yoga","yoga11","Kaki batachton!")
+        admin.edit_course_template("yoga","yoga11","Kaki batachton!")
         admin.create_course_for_month("ZumbaLatis", "Latis the Zumbot", hour, 120, 10,
                                       "Moished", "Park","blue", [], [], 2014, 2, 3)
         day_number = admin.get_day_by_date(2013, 11, 7)
@@ -97,8 +97,8 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(str(day_number) + "<br/>")
 
         # creating real courses
-        zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 60, 20, "yaron","Katom", "blue", [],[])
-        yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 1, 90, "yaron", "blue", "green",[], [])
+        zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 60, 20, "yaron","Katom", "#CCCCFF", [],[])
+        yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 90, 90, "yaron", "blue", "#99FF66",[], [])
 
 
         # creating schedule
@@ -150,8 +150,13 @@ def parse_course(str):
 
 class TestHandler(webapp2.RequestHandler):
     def get(self):
-        template_values = {
+        users_manager = operations.DailyScheduleManager("peer", "peer")
+        start_date = datetime(day=1, month=11, year=2013)
+        end_date = datetime(day=2, month=11, year=2013)
+        sched = users_manager.get_daily_schedule_list(start_date, end_date)
 
+        template_values = {
+            'days': sched
         }
 
         template = JINJA_ENVIRONMENT.get_template('Matan/grid.html')
@@ -168,13 +173,7 @@ class CreateMonthSched(webapp2.RequestHandler):
         admin_man = AdminManager("peer","peer")
         admin_man.create_month_schedule(int(year), int(month))
 
-        template_values = {
-            'year': year,
-            'month': month,
-            'courses': admin_man.get_courses_templates()
-        }
-        template = JINJA_ENVIRONMENT.get_template('Matan/create_monthly_schedule.html')
-        self.response.write(template.render(template_values))
+        self.response.write("year = " + year + ", month = " + month)
 
 
 class CreateMonthYear(webapp2.RequestHandler):
@@ -186,48 +185,26 @@ class CreateMonthYear(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('Matan/choose_month_year.html')
         self.response.write(template.render(template_values))
 
-
-class AddCourse(webapp2.RequestHandler):
+class RegisterToClass(webapp2.RequestHandler):
 
     def post(self):
-        course_name = cgi.escape(self.request.get('course_name'))
-        description = cgi.escape(self.request.get('description'))
-
-        admin_man = AdminManager("peer", "peer")
-        admin_man.add_course_template(course_name, description)
-
         template_values = {
-            'year': self.request.get('year'),
-            'month': self.request.get('month'),
-            'courses': admin_man.get_courses_templates()
+
         }
-
-        template = JINJA_ENVIRONMENT.get_template('Matan/create_monthly_schedule.html')
-        self.response.write(template.render(template_values))
-
-class CreateCourse(webapp2.RequestHandler):
-    def post(self):
-        year = cgi.escape(self.request.get('year'))
-        month = cgi.escape(self.request.get('month'))
-        class_name = cgi.escape(self.request.get('classes'))
-        studio = cgi.escape(self.request.get('studio'))
-        instructor = cgi.escape(self.request.get('instructor'))
-        start_hour = cgi.escape(self.request.get('start_hour'))
-        end_hour = cgi.escape(self.request.get('end_hour'))
-        capacity = cgi.escape(self.request.get('capacity'))
-
-        self.response.write("year = "+year + " month= "+ month+ " class= " + class_name + " studio= "+
-                             studio + "instructor= " + instructor + " start= " + start_hour +
-                                 " end= " + end_hour + " capacity= " + capacity)
+        full_name=cgi.escape(self.request.get('firstname'))
+        class_key=cgi.escape(self.request.get('classkey'))
+        self.response.write("name = " + full_name + "   class key = " + class_key)
 
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table
+
+
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/test', TestHandler),
     ('/craete_monthly_schedule', CreateMonthSched),
-    ('/create_month_year', CreateMonthYear),
-    ('/add_course', AddCourse),
-    ('/create_course', CreateCourse),
+    ('/create_month_year', CreateMonthYear ),
+    ('/register_to_class', RegisterToClass )
 ], debug=True)
