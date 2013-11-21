@@ -7,12 +7,15 @@ DEFAULT_BRANCH = "branch"
 DEFAULT_MONTH = "mm"
 DEFAULT_YEAR = "yyyy"
 
-""" represent Gym entity """
+
 class Gym(ndb.Model):
+    """ represent Gym entity """
     name = ndb.StringProperty(required=True)
     gym_network = ndb.StringProperty(required=True)
     address = ndb.StringProperty()
     courses = properties.OurJsonProperty()
+    instructors = properties.OurJsonProperty()
+    studios = properties.OurJsonProperty()
 
     def set_key(self):
         #self.key = ndb.Key(Gym, self.gym_network + '_' +self.name)
@@ -25,15 +28,16 @@ class Gym(ndb.Model):
 
     @classmethod
     def __generate_key(cls, gym_network, gym_branch):
-        return ndb.Key(Gym, gym_network +'_' +gym_branch)
+        return ndb.Key(Gym, gym_network + '_' + gym_branch)
 
-""" Month Schedule Entity. It's parent key is Gym """
+
 class MonthSchedule(ndb.Model):
+    """ Month Schedule Entity. It's parent key is Gym """
     year = ndb.IntegerProperty(required=True)
     month = ndb.IntegerProperty(required=True)
     schedule_table = properties.OurJsonProperty() #schedule_table = {day_one.day : day_one,  day_two.day : day_two }
 
-    """ must set year and month prior calling the functioin"""
+    """ must set year and month prior calling the function! """
     def set_key(self, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
          #self.key = ndb.Key(Gym, gym_network +'_' + gym_branch, MonthSchedule, str(self.month) + '-' + str(self.year))
           self.key = MonthSchedule.__generate_key(self.month, self.year, gym_network, gym_branch)
@@ -47,8 +51,9 @@ class MonthSchedule(ndb.Model):
     def __generate_key(cls, month=DEFAULT_MONTH, year= DEFAULT_YEAR, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
          return ndb.Key(Gym, gym_network +'_' + gym_branch, MonthSchedule, str(month) + '-' + str(year))
 
-""" Users Entity. It's parent key is Gym """
+
 class Users(ndb.Model):
+    """ Users Entity. It's parent key is Gym """
     users_table = properties.OurJsonProperty()
 
     def create_users_table(self, *users):
@@ -59,5 +64,5 @@ class Users(ndb.Model):
         return users_table
 
     def set_key(self, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
-        self.key = ndb.Key(Gym, gym_network +'_' + gym_branch, Users, "Users")
+        self.key = ndb.Key(Gym, gym_network + '_' + gym_branch, Users, "Users")
 
