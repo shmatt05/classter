@@ -196,10 +196,7 @@ class RegisterToClass(webapp2.RequestHandler):
         self.response.write("name = " + full_name + "   class key = " + class_key)
 
 #todo consider make users a property in gym
-#todo consider make each user an entity instead of users_table
-
-
-
+#todo consider make each user an entity instead of users_tabl
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
