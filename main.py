@@ -97,8 +97,8 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(str(day_number) + "<br/>")
 
         # creating real courses
-        zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 60, 20, "yaron","Katom", "blue", [],[])
-        yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 1, 90, "yaron", "blue", "green",[], [])
+        zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 60, 20, "yaron","Katom", "#FF99FF", [],[])
+        yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 90, 90, "yaron", "blue", "#3399FF",[], [])
 
 
         # creating schedule
@@ -150,8 +150,13 @@ def parse_course(str):
 
 class TestHandler(webapp2.RequestHandler):
     def get(self):
-        template_values = {
+        users_manager = operations.DailyScheduleManager("peer", "peer")
+        start_date = datetime(day=1, month=11, year=2013)
+        end_date = datetime(day=2, month=11, year=2013)
+        sched = users_manager.get_daily_schedule_list(start_date, end_date)
 
+        template_values = {
+            'days': sched
         }
 
         template = JINJA_ENVIRONMENT.get_template('Matan/grid.html')
