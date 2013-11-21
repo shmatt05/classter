@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    $("#signup").submit(function(e) {
+    $('div').on('submit','#signup',  function(e) {
 
         var postData = $(this).serializeArray();
         var formURL = $(this).attr("action");

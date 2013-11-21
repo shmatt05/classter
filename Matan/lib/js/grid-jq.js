@@ -31,7 +31,7 @@ var hourHeight = 75; // Macro for row height
 
 
 $(document).ready(function() {
-
+    var mfp = $.magnificPopup.instance;
 
     //setClassesOnGrid(classList);
     $('.classBox').click(function() {
