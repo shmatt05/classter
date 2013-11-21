@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d37152e-1487-46af-9b4d-41c4c5277bde" name="Default" comment="Adding Popup Libraries (oops)">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.yaml" afterPath="$PROJECT_DIR$/app.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Matan/lib/js/grid-jq.js" afterPath="$PROJECT_DIR$/Matan/lib/js/grid-jq.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Matan/grid.html" afterPath="$PROJECT_DIR$/Matan/grid.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Matan/popup.html" afterPath="$PROJECT_DIR$/Matan/popup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="6d37152e-1487-46af-9b4d-41c4c5277bde" name="Default" comment="schedule_table key returns from db as str and not int">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/classter.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Google_App_Engine_SDK.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vagrant.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <ignored path="classter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -21,9 +26,15 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/classter$classter.coverage" NAME="classter Coverage Results" MODIFIED="1383662621913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/classter$Google.coverage" NAME="Google Coverage Results" MODIFIED="1384991400285" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/classter$operations.coverage" NAME="operations Coverage Results" MODIFIED="1384503656478" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/userss_logic" />
-    <SUITE FILE_PATH="coverage/classter$google_workshop.coverage" NAME="google-workshop Coverage Results" MODIFIED="1383662904285" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/classter$DataEntities.coverage" NAME="DataEntities Coverage Results" MODIFIED="1383996561924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roy Testing/DB" />
+    <SUITE FILE_PATH="coverage/classter$operations__1_.coverage" NAME="operations (1) Coverage Results" MODIFIED="1384583640954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/admin_logic" />
+    <SUITE FILE_PATH="coverage/classter$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1385058284373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/db" />
+    <SUITE FILE_PATH="coverage/classter$google_workshop.coverage" NAME="google-workshop Coverage Results" MODIFIED="1385063121935" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/classter$__init____1_.coverage" NAME="__init__ (1) Coverage Results" MODIFIED="1385062606975" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/admin_logic" />
+    <SUITE FILE_PATH="coverage/classter$operations.coverage" NAME="operations Coverage Results" MODIFIED="1384504049979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/userss_logic" />
+    <SUITE FILE_PATH="coverage/classter$operations__2_.coverage" NAME="operations (2) Coverage Results" MODIFIED="1385057523222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/users_logic" />
+    <SUITE FILE_PATH="coverage/classter$main.coverage" NAME="main Coverage Results" MODIFIED="1383996596923" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/classter$objects.coverage" NAME="objects Coverage Results" MODIFIED="1384366763706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/python_objects" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -37,10 +48,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="grid.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Matan/grid.html">
+      <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="243" column="23" selection-start="7656" selection-end="7656" vertical-scroll-proportion="-11.230769" vertical-offset="3839" max-vertical-offset="4539">
+            <state line="228" column="0" selection-start="9146" selection-end="9146" vertical-scroll-proportion="-43.310345" vertical-offset="1515" max-vertical-offset="3196">
+              <folding>
+                <element signature="e#601#636#0" expanded="true" />
+                <element signature="e#6199#6221#0" expanded="false" />
+                <element signature="e#6273#6746#0" expanded="false" />
+                <element signature="e#6801#7419#0" expanded="false" />
+                <element signature="e#7474#7671#0" expanded="false" />
+                <element signature="e#7720#8322#0" expanded="false" />
+                <element signature="e#8373#9144#0" expanded="false" />
+                <element signature="e#9199#9459#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="5" selection-start="55" selection-end="55" vertical-scroll-proportion="0.13492064" vertical-offset="0" max-vertical-offset="630">
               <folding />
             </state>
           </provider>
@@ -49,61 +78,35 @@
       <file leaf-file-name="create_monthly_schedule.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Matan/create_monthly_schedule.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="15" selection-start="915" selection-end="915" vertical-scroll-proportion="-0.0" vertical-offset="442" max-vertical-offset="2397">
-              <folding />
+            <state line="93" column="65" selection-start="3022" selection-end="3022" vertical-scroll-proportion="-31.384615" vertical-offset="765" max-vertical-offset="2346">
+              <folding>
+                <element signature="n#style#0;n#input#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="objects.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/David/python_objects/objects.py">
+      <file leaf-file-name="operations.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/David/admin_logic/operations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="1" selection-start="1166" selection-end="1299" vertical-scroll-proportion="0.0" vertical-offset="663" max-vertical-offset="935">
-              <folding />
+            <state line="17" column="0" selection-start="444" selection-end="444" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="986">
+              <folding>
+                <element signature="e#579#680#0" expanded="false" />
+                <element signature="e#917#1245#0" expanded="false" />
+                <element signature="e#1434#1847#0" expanded="false" />
+                <element signature="e#2983#3817#0" expanded="false" />
+                <element signature="e#4023#4748#0" expanded="false" />
+                <element signature="e#4882#4931#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="grid-jq.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Matan/lib/js/grid-jq.js">
+      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/David/admin_logic/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="0" selection-start="977" selection-end="977" vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="2584">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.yaml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="19" selection-start="238" selection-end="238" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="544">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="popup.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Matan/popup.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="0" selection-start="91" selection-end="446" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="391">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="196" column="0" selection-start="7751" selection-end="7751" vertical-scroll-proportion="0.87589926" vertical-offset="2624" max-vertical-offset="3451">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="choose_month_year.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Matan/choose_month_year.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="57" selection-start="174" selection-end="227" vertical-scroll-proportion="-2.0769231" vertical-offset="82" max-vertical-offset="612">
+            <state line="1" column="0" selection-start="25" selection-end="25" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
               <folding />
             </state>
           </provider>
@@ -112,7 +115,52 @@
       <file leaf-file-name="operations.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/David/users_logic/operations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="8" selection-start="809" selection-end="809" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1836">
+            <state line="46" column="0" selection-start="1616" selection-end="1790" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1020">
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+                <element signature="e#546#692#0" expanded="false" />
+                <element signature="e#860#977#0" expanded="false" />
+                <element signature="e#1141#1256#0" expanded="false" />
+                <element signature="e#1392#1546#0" expanded="false" />
+                <element signature="e#1859#2612#0" expanded="false" />
+                <element signature="e#2709#3442#0" expanded="false" />
+                <element signature="e#3544#3990#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/David/db/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="0" selection-start="25" selection-end="25" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="entities.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/David/db/entities.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="0" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="timezone.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/David/users_logic/timezone.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="objects.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/David/python_objects/objects.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="24" selection-start="1190" selection-end="1190" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="935">
               <folding />
             </state>
           </provider>
@@ -126,6 +174,11 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="r" />
+      </list>
+    </option>
     <option name="UPDATE_TYPE" value="REBASE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -137,16 +190,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/../Calendar Demos/jquery-week-calendar-master/weekcalendar_demo_4.html" />
+        <option value="$PROJECT_DIR$/David/db/properties.py" />
+        <option value="$PROJECT_DIR$/David/userss_logic/TimeZone.py" />
+        <option value="$PROJECT_DIR$/David/userss_logic/timezone.py" />
         <option value="$PROJECT_DIR$/David/userss_logic/operations.py" />
-        <option value="$PROJECT_DIR$/Matan/lib/css/grid.css" />
+        <option value="$PROJECT_DIR$/David/db/entities.py" />
+        <option value="$PROJECT_DIR$/Matan/admin_create_new_schedule.html" />
+        <option value="$PROJECT_DIR$/David/python_objects/objects.py" />
+        <option value="$PROJECT_DIR$/Matan/choose_mont_year.html" />
+        <option value="$PROJECT_DIR$/Matan/choose_month_year.html" />
         <option value="$PROJECT_DIR$/David/admin_logic/operations.py" />
-        <option value="$PROJECT_DIR$/app.yaml" />
-        <option value="$PROJECT_DIR$/Matan/popup.html" />
-        <option value="$PROJECT_DIR$/Matan/lib/js/grid-jq.js" />
-        <option value="$PROJECT_DIR$/Matan/grid.html" />
+        <option value="$PROJECT_DIR$/Matan/create_monthly_schedule.html" />
+        <option value="$PROJECT_DIR$/David/users_logic/operations.py" />
+        <option value="$PROJECT_DIR$/David/db/__init__.py" />
+        <option value="$PROJECT_DIR$/David/admin_logic/__init__.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -163,10 +222,13 @@
           <State>
             <id />
           </State>
+          <State>
+            <id>Python</id>
+          </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>Buildout</id>
+            <id>PyPep8Inspection</id>
           </State>
         </selected-state>
       </profile-state>
@@ -176,7 +238,7 @@
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="false" id="Update" />
+    <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
     <ConfirmationsSetting value="0" id="Add" />
@@ -230,107 +292,37 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="google-workshop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Matan" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="google-workshop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="David" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="google-workshop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="David" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="users_logic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="google-workshop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="David" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="python_objects" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="google-workshop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="David" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin_logic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="218" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="250" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="restartRequiresConfirmation" value="true" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="230" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.idea/classter.iml" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="251" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1154" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="1158" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="247" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="246" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="FullScreen" value="false" />
-    <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Ignored.Files" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -338,7 +330,126 @@
       <PyConsoleSettings />
     </option>
   </component>
-  <component name="RunManager" selected="App Engine server.Google">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Projects\google-workshop\David\db" />
+      <recent name="C:\Projects\google-workshop\Roy Testing\json_objects" />
+      <recent name="C:\Projects\google-workshop\Roy Testing\db_json_linker" />
+    </key>
+  </component>
+  <component name="RestoreUpdateTree">
+    <UpdateInfo date="Moments ago" ActionInfo="_Update">
+      <UpdatedFiles>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated from server" />
+          <option name="myStatusName" value="Changed on server" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CHANGED_ON_SERVER" />
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Updated" />
+            <option name="myStatusName" value="Changed" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="UPDATED" />
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/David/db/entities.py</PATH>
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Created" />
+            <option name="myStatusName" value="Created" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="CREATED" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Deleted" />
+            <option name="myStatusName" value="Deleted" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="true" />
+            <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Restored" />
+            <option name="myStatusName" value="Will be restored" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="RESTORED" />
+          </FILE-GROUP>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Modified" />
+          <option name="myStatusName" value="Modified" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MODIFIED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Skipped" />
+          <option name="myStatusName" value="Skipped" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="SKIPPED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with conflicts" />
+          <option name="myStatusName" value="Will be merged with conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_CONFLICTS" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with tree conflicts" />
+          <option name="myStatusName" value="Merged with tree conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with property conflicts" />
+          <option name="myStatusName" value="Will be merged with property conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged" />
+          <option name="myStatusName" value="Will be merged" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Not in repository" />
+          <option name="myStatusName" value="Not in repository" />
+          <option name="mySupportsDeletion" value="true" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UNKNOWN" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Locally added" />
+          <option name="myStatusName" value="Locally added" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="LOCALLY_ADDED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Locally removed" />
+          <option name="myStatusName" value="Locally removed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="LOCALLY_REMOVED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Switched" />
+          <option name="myStatusName" value="Switched" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="SWITCHED" />
+        </FILE-GROUP>
+      </UpdatedFiles>
+    </UpdateInfo>
+  </component>
+  <component name="RunManager" selected="App Engine server.google-workshop">
     <configuration default="false" name="operations" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -353,6 +464,82 @@
       <module name="classter" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/David/userss_logic/operations.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="operations (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/David/admin_logic" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="classter" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/David/admin_logic/operations.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="operations (2)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/David/users_logic" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="classter" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/David/users_logic/operations.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/David/db" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="classter" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/David/db/__init__.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="__init__ (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/David/admin_logic" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="classter" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/David/admin_logic/__init__.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
@@ -551,24 +738,6 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="classter" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="browserUrl" value="" />
-      <option name="additionalOptions" value="" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Google" type="Python.AppEngineServer" factoryName="App Engine server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
       <option name="SDK_HOME" value="C:/Python27/python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -579,18 +748,27 @@
       <option name="launchJavascriptDebuger" value="false" />
       <option name="browserUrl" value="" />
       <option name="additionalOptions" value="" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="App Engine server.google-workshop" />
-      <item index="1" class="java.lang.String" itemvalue="App Engine server.Google" />
-      <item index="2" class="java.lang.String" itemvalue="Python.operations" />
+      <item index="1" class="java.lang.String" itemvalue="Python.operations" />
+      <item index="2" class="java.lang.String" itemvalue="Python.operations (1)" />
+      <item index="3" class="java.lang.String" itemvalue="Python.operations (2)" />
+      <item index="4" class="java.lang.String" itemvalue="Python.__init__" />
+      <item index="5" class="java.lang.String" itemvalue="Python.__init__ (1)" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python.operations" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.__init__ (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Python.__init__" />
+        <item index="2" class="java.lang.String" itemvalue="Python.operations (2)" />
+        <item index="3" class="java.lang.String" itemvalue="Python.operations (1)" />
+        <item index="4" class="java.lang.String" itemvalue="Python.operations" />
       </list>
     </recent_temporary>
   </component>
@@ -610,7 +788,7 @@
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
     <option name="FORCE_UPDATE" value="false" />
     <option name="IGNORE_EXTERNALS" value="false" />
-    <configuration useDefault="true">C:\Users\Matan\AppData\Roaming\Subversion</configuration>
+    <configuration useDefault="true">C:\Users\rokli_000\AppData\Roaming\Subversion</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
   </component>
   <component name="TaskManager">
@@ -631,81 +809,205 @@
       <created>1383663559199</created>
       <updated>1383663559199</updated>
     </task>
-    <task id="LOCAL-00004" summary="matan">
-      <created>1383664629921</created>
-      <updated>1383664629921</updated>
+    <task id="LOCAL-00004" summary="only main changed">
+      <created>1383664835467</created>
+      <updated>1383664835467</updated>
     </task>
-    <task id="LOCAL-00005" summary="Automatic Class Placement On Grid">
-      <created>1384166115440</created>
-      <updated>1384166115440</updated>
+    <task id="LOCAL-00005" summary="omri">
+      <created>1383665443176</created>
+      <updated>1383665443176</updated>
     </task>
-    <task id="LOCAL-00006" summary="More jQuery updates">
-      <created>1384176196787</created>
-      <updated>1384176196787</updated>
+    <task id="LOCAL-00006" summary="omri">
+      <created>1383916914359</created>
+      <updated>1383916914359</updated>
     </task>
-    <task id="LOCAL-00007" summary="More jQuery updates 2">
-      <created>1384257240999</created>
-      <updated>1384257240999</updated>
+    <task id="LOCAL-00007" summary="omri">
+      <created>1383918304970</created>
+      <updated>1383918304970</updated>
     </task>
-    <task id="LOCAL-00008" summary="Playing with Popups">
-      <created>1384553532306</created>
-      <updated>1384553532306</updated>
+    <task id="LOCAL-00008" summary="package design">
+      <created>1383995993324</created>
+      <updated>1383995993324</updated>
     </task>
-    <task id="LOCAL-00009" summary="Adding Popup Libraries (oops)">
-      <created>1384553592272</created>
-      <updated>1384553592272</updated>
+    <task id="LOCAL-00009" summary="db_json_linker and pyton_object">
+      <created>1384003645677</created>
+      <updated>1384003645677</updated>
     </task>
-    <task id="LOCAL-00010" summary="Automatic Width Sharing (working but overlapping!)">
-      <created>1384590128087</created>
-      <updated>1384590128087</updated>
+    <task id="LOCAL-00010" summary="testing">
+      <created>1384017675012</created>
+      <updated>1384017675012</updated>
     </task>
-    <task id="LOCAL-00011" summary="Jinja2 beginning implementation">
-      <created>1384684777774</created>
-      <updated>1384684777774</updated>
+    <task id="LOCAL-00011" summary="tried Gym put to datastore">
+      <created>1384079775803</created>
+      <updated>1384079775803</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="another test">
+      <created>1384083276292</created>
+      <updated>1384083276292</updated>
+    </task>
+    <task id="LOCAL-00013" summary="aonther changes">
+      <created>1384088616951</created>
+      <updated>1384088616951</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added OurJsonProperty(ndb.JsonProperty)">
+      <created>1384193908684</created>
+      <updated>1384193908684</updated>
+    </task>
+    <task id="LOCAL-00015" summary="tested the program flow">
+      <created>1384248931468</created>
+      <updated>1384248931468</updated>
+    </task>
+    <task id="LOCAL-00016" summary="tested month schedule and gym database put">
+      <created>1384267888683</created>
+      <updated>1384267888683</updated>
+    </task>
+    <task id="LOCAL-00017" summary="bla">
+      <created>1384268078616</created>
+      <updated>1384268078616</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fixed jsonpickle bug. remember to implement object!!!">
+      <created>1384279415663</created>
+      <updated>1384279415663</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Cleaning code">
+      <created>1384280350866</created>
+      <updated>1384280350866</updated>
+    </task>
+    <task id="LOCAL-00020" summary="additional cleanup">
+      <created>1384283875939</created>
+      <updated>1384283875939</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Users are now in the game too">
+      <created>1384291836318</created>
+      <updated>1384291836318</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Added Time class">
+      <created>1384377226454</created>
+      <updated>1384377226454</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Added Time class">
+      <created>1384378356031</created>
+      <updated>1384378356031</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Added Time class">
+      <created>1384503366971</created>
+      <updated>1384503366971</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Added Time class">
+      <created>1384503915807</created>
+      <updated>1384503915807</updated>
+    </task>
+    <task id="LOCAL-00026" summary="changes">
+      <created>1384507947349</created>
+      <updated>1384507947349</updated>
+    </task>
+    <task id="LOCAL-00027" summary="schedule_table key returns from db as str and not int">
+      <created>1384523728354</created>
+      <updated>1384523728354</updated>
+    </task>
+    <task id="LOCAL-00028" summary="fixes to get daily schedule">
+      <created>1384528616445</created>
+      <updated>1384528616445</updated>
+    </task>
+    <task id="LOCAL-00029" summary="finished and checked week schedule function&#10;cleaned and improved the code">
+      <created>1384544836419</created>
+      <updated>1384544836419</updated>
+    </task>
+    <task id="LOCAL-00030" summary="additional design improvements">
+      <created>1384546172602</created>
+      <updated>1384546172602</updated>
+    </task>
+    <task id="LOCAL-00031" summary="To Do- some admin functions">
+      <created>1384584545160</created>
+      <updated>1384584545160</updated>
+    </task>
+    <task id="LOCAL-00032" summary="updated admin html pages">
+      <created>1384588148729</created>
+      <updated>1384588148729</updated>
+    </task>
+    <task id="LOCAL-00033" summary="update">
+      <created>1384677330900</created>
+      <updated>1384677330900</updated>
+    </task>
+    <task id="LOCAL-00034" summary="updated create_monthly_schedule">
+      <created>1384693262762</created>
+      <updated>1384693262762</updated>
+    </task>
+    <task id="LOCAL-00035" summary="add function add_user_to_course">
+      <created>1384711010864</created>
+      <updated>1384711010864</updated>
+    </task>
+    <task id="LOCAL-00036" summary="additional updates in create_month_sched html">
+      <created>1384713842585</created>
+      <updated>1384713842585</updated>
+    </task>
+    <task id="LOCAL-00037" summary="day_by_week">
+      <created>1384864535718</created>
+      <updated>1384864535718</updated>
+    </task>
+    <task id="LOCAL-00038" summary="color in Course">
+      <created>1384866029972</created>
+      <updated>1384866029972</updated>
+    </task>
+    <task id="LOCAL-00039" summary="updated main">
+      <created>1384867240351</created>
+      <updated>1384867240351</updated>
+    </task>
+    <task id="LOCAL-00040" summary="main">
+      <created>1384871808302</created>
+      <updated>1384871808302</updated>
+    </task>
+    <task id="LOCAL-00041" summary="main">
+      <created>1384872012157</created>
+      <updated>1384872012157</updated>
+    </task>
+    <task id="LOCAL-00042" summary="changed dailyschedule">
+      <created>1384879714513</created>
+      <updated>1384879714513</updated>
+    </task>
+    <task id="LOCAL-00043" summary="started connecting admin client to server">
+      <created>1384889418389</created>
+      <updated>1384889418389</updated>
+    </task>
+    <task id="LOCAL-00044" summary="add course template">
+      <created>1384982803534</created>
+      <updated>1384982803534</updated>
+    </task>
+    <task id="LOCAL-00045" summary="create course update">
+      <created>1384985645506</created>
+      <updated>1384985645506</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Course creation updates">
+      <created>1385054364890</created>
+      <updated>1385054364890</updated>
+    </task>
+    <task id="LOCAL-00047" summary="cleaned main">
+      <created>1385068880989</created>
+      <updated>1385068880989</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
-  </component>
-  <component name="TodoView" selected-index="4">
-    <todo-panel id="selected-file">
-      <are-packages-shown value="false" />
-      <are-modules-shown value="false" />
-      <flatten-packages value="false" />
-      <is-autoscroll-to-source value="false" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="false" />
-      <are-modules-shown value="false" />
-      <flatten-packages value="false" />
-      <is-autoscroll-to-source value="false" />
-    </todo-panel>
-    <todo-panel id="default-changelist">
-      <are-packages-shown value="false" />
-      <are-modules-shown value="false" />
-      <flatten-packages value="false" />
-      <is-autoscroll-to-source value="false" />
-    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296837" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24948876" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36072573" sideWeight="0.546697" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36072573" sideWeight="0.14464693" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32603407" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30865604" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24087591" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23958333" sideWeight="0.75582683" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29522753" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2416" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31520534" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24417314" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32761312" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -715,121 +1017,213 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="testing" />
-    <MESSAGE value="testing1" />
-    <MESSAGE value="omri" />
-    <MESSAGE value="matan" />
-    <MESSAGE value="Automatic Class Placement On Grid" />
-    <MESSAGE value="More jQuery updates" />
-    <MESSAGE value="More jQuery updates 2" />
-    <MESSAGE value="Playing with Popups" />
-    <MESSAGE value="Adding Popup Libraries (oops)" />
-    <MESSAGE value="Automatic Width Sharing (working but overlapping!)" />
-    <MESSAGE value="Jinja2 beginning implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Jinja2 beginning implementation" />
+    <MESSAGE value="Cleaning code" />
+    <MESSAGE value="additional cleanup" />
+    <MESSAGE value="Users are now in the game too" />
+    <MESSAGE value="Added Time class" />
+    <MESSAGE value="changes" />
+    <MESSAGE value="schedule_table key returns from db as str and not int" />
+    <MESSAGE value="fixes to get daily schedule" />
+    <MESSAGE value="finished and checked week schedule function&#10;cleaned and improved the code" />
+    <MESSAGE value="additional design improvements" />
+    <MESSAGE value="To Do- some admin functions" />
+    <MESSAGE value="updated admin html pages" />
+    <MESSAGE value="update" />
+    <MESSAGE value="updated create_monthly_schedule" />
+    <MESSAGE value="add function add_user_to_course" />
+    <MESSAGE value="additional updates in create_month_sched html" />
+    <MESSAGE value="day_by_week" />
+    <MESSAGE value="color in Course" />
+    <MESSAGE value="updated main" />
+    <MESSAGE value="main" />
+    <MESSAGE value="changed dailyschedule" />
+    <MESSAGE value="started connecting admin client to server" />
+    <MESSAGE value="add course template" />
+    <MESSAGE value="create course update" />
+    <MESSAGE value="Course creation updates" />
+    <MESSAGE value="cleaned main" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaned main" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="python-line">
+          <url>file://$PROJECT_DIR$/Roy/db/db_entities.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint type="python-line">
+          <url>file://$PROJECT_DIR$/Roy/db/db_entities.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/David/users_logic/operations.py</url>
+          <line>67</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/David/python_objects/objects.py</url>
+          <line>12</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/David/admin_logic/operations.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>172</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="60" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/David/db/properties.py">
+    <entry file="file://$PROJECT_DIR$/Matan/lib/js/jquery.magnific-popup.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="503" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David/db/entities.py">
+    <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/runtime/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="25" selection-start="1069" selection-end="1069" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="1020" />
+        <state line="238" column="0" selection-start="7698" selection-end="7698" vertical-scroll-proportion="-0.1443124" vertical-offset="4046" max-vertical-offset="5661">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Matan/lib/js/jquery.magnific-popup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="226" column="19" selection-start="5456" selection-end="5456" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="34799" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/Magnific-Popup-master/website/site-assets/ajax/test-ajax.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="839" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Matan/lib/css/grid.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="1" selection-start="508" selection-end="508" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Matan/lib/css/magnific-popup.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6307" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David/admin_logic/operations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="30" selection-start="333" selection-end="333" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="1292" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David/users_logic/operations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="8" selection-start="809" selection-end="809" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1836">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David/python_objects/objects.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="1" selection-start="1166" selection-end="1299" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="935">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="19" selection-start="238" selection-end="238" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Matan/create_monthly_schedule.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="15" selection-start="915" selection-end="915" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="2397">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Matan/choose_month_year.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="57" selection-start="174" selection-end="227" vertical-scroll-proportion="-2.0769231" vertical-offset="82" max-vertical-offset="612">
+        <state line="137" column="32" selection-start="3621" selection-end="3621" vertical-scroll-proportion="0.0" vertical-offset="8007" max-vertical-offset="34799">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Matan/popup.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="91" selection-end="446" vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="391">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Matan/lib/js/grid-jq.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="0" selection-start="977" selection-end="977" vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="2584">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="895">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Matan/grid.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="243" column="23" selection-start="7656" selection-end="7656" vertical-scroll-proportion="-11.230769" vertical-offset="3839" max-vertical-offset="4539">
+        <state line="7" column="0" selection-start="278" selection-end="370" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="4522">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Matan/choose_month_year.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="30" selection-start="258" selection-end="258" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="612">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Matan/create_monthly_schedule.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="65" selection-start="3022" selection-end="3022" vertical-scroll-proportion="-31.384615" vertical-offset="765" max-vertical-offset="2346">
+          <folding>
+            <element signature="n#style#0;n#input#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David/users_logic/timezone.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David/db/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="25" selection-end="25" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David/admin_logic/operations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="444" selection-end="444" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="986">
+          <folding>
+            <element signature="e#579#680#0" expanded="false" />
+            <element signature="e#917#1245#0" expanded="false" />
+            <element signature="e#1434#1847#0" expanded="false" />
+            <element signature="e#2983#3817#0" expanded="false" />
+            <element signature="e#4023#4748#0" expanded="false" />
+            <element signature="e#4882#4931#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David/admin_logic/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="25" selection-end="25" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David/users_logic/operations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="0" selection-start="1616" selection-end="1790" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1020">
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#546#692#0" expanded="false" />
+            <element signature="e#860#977#0" expanded="false" />
+            <element signature="e#1141#1256#0" expanded="false" />
+            <element signature="e#1392#1546#0" expanded="false" />
+            <element signature="e#1859#2612#0" expanded="false" />
+            <element signature="e#2709#3442#0" expanded="false" />
+            <element signature="e#3544#3990#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David/python_objects/objects.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="24" selection-start="1190" selection-end="1190" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="935">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/David/db/entities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="196" column="0" selection-start="7751" selection-end="7751" vertical-scroll-proportion="0.87589926" vertical-offset="2624" max-vertical-offset="3451">
+        <state line="228" column="0" selection-start="9146" selection-end="9146" vertical-scroll-proportion="-43.310345" vertical-offset="1515" max-vertical-offset="3196">
+          <folding>
+            <element signature="e#601#636#0" expanded="true" />
+            <element signature="e#6199#6221#0" expanded="false" />
+            <element signature="e#6273#6746#0" expanded="false" />
+            <element signature="e#6801#7419#0" expanded="false" />
+            <element signature="e#7474#7671#0" expanded="false" />
+            <element signature="e#7720#8322#0" expanded="false" />
+            <element signature="e#8373#9144#0" expanded="false" />
+            <element signature="e#9199#9459#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="5" selection-start="55" selection-end="55" vertical-scroll-proportion="0.13492064" vertical-offset="0" max-vertical-offset="630">
           <folding />
         </state>
       </provider>
