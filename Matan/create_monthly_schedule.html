@@ -15,7 +15,7 @@
                   <label name="class_name">שם השיעור:</label>
               </td>
               <td>
-                  <select name="classes" form="classes">
+                  <select name="classes">
                       {% for course in courses %}
                       <option value="{{course.name}}">{{course.name}}</option>
                       {% endfor %}

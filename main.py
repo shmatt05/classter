@@ -221,8 +221,8 @@ class CreateCourse(webapp2.RequestHandler):
         end_hour = cgi.escape(self.request.get('end_hour'))
         capacity = cgi.escape(self.request.get('capacity'))
 
-        self.response.write("year = "+year + " month= "+ month+ " class= " + class_name + " studio= "+
-                             studio + "instructor= " + instructor + " start= " + start_hour +
+        self.response.write("year = "+year + " month= "+ month+ " class= " + str(class_name) + " studio= "+
+                             studio + " instructor= " + instructor + " start= " + start_hour +
                                  " end= " + end_hour + " capacity= " + capacity)
 
 class RegisterToClass(webapp2.RequestHandler):
