@@ -210,6 +210,7 @@ class AddCourse(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('Matan/create_monthly_schedule.html')
         self.response.write(template.render(template_values))
 
+
 class CreateCourse(webapp2.RequestHandler):
     def post(self):
         year = cgi.escape(self.request.get('year'))
@@ -224,6 +225,7 @@ class CreateCourse(webapp2.RequestHandler):
         self.response.write("year = "+year + " month= "+ month+ " class= " + str(class_name) + " studio= "+
                              studio + " instructor= " + instructor + " start= " + start_hour +
                                  " end= " + end_hour + " capacity= " + capacity)
+
 
 class RegisterToClass(webapp2.RequestHandler):
 
