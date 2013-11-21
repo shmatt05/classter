@@ -28,17 +28,19 @@ var depthArr;
 var classArr;
 var hourHeight = 75; // Macro for row height
 
+
+
 $(document).ready(function() {
 
 
     //setClassesOnGrid(classList);
     $('.classBox').click(function() {
-        var classKey = $(this).attr('id');
-        document.getElementById('classkey').value = classKey;
+        //var classKey = $(this).attr('id');
         $.magnificPopup.open({
+                type:'ajax',
             items: {
-                src: '#test-popup',
-                type: 'inline'
+                src: 'html/popup.html'
+
             },
 
             closeOnContentClick: false

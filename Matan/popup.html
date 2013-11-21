@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+
 <div class="white-popup">
-    <form action="register_to_class" method="post">
+           <script type='text/javascript' src='lib/js/popup-jq.js'></script>
+
+    <form id="signup" action="register_to_class" method="post">
         Please Enter Your Name To Sign Up:<br>
         <input type="text" name="firstname" /><br>
         <input type="hidden" id="classkey" name="classkey" value="" />
         <input type="submit" value="Submit">
-        <script>document.getElementById('classkey').value = classID;</script>
+
     </form>
 </div>
-
-</body>
-</html>
