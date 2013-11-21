@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d37152e-1487-46af-9b4d-41c4c5277bde" name="Default" comment="schedule_table key returns from db as str and not int">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/classter.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Google_App_Engine_SDK.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vagrant.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+    <list default="true" id="6d37152e-1487-46af-9b4d-41c4c5277bde" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <ignored path="classter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -985,7 +975,11 @@
       <created>1385068880989</created>
       <updated>1385068880989</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="schedule_table key returns from db as str and not int">
+      <created>1385071188872</created>
+      <updated>1385071188872</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1025,7 +1019,6 @@
     <MESSAGE value="Users are now in the game too" />
     <MESSAGE value="Added Time class" />
     <MESSAGE value="changes" />
-    <MESSAGE value="schedule_table key returns from db as str and not int" />
     <MESSAGE value="fixes to get daily schedule" />
     <MESSAGE value="finished and checked week schedule function&#10;cleaned and improved the code" />
     <MESSAGE value="additional design improvements" />
@@ -1045,7 +1038,8 @@
     <MESSAGE value="create course update" />
     <MESSAGE value="Course creation updates" />
     <MESSAGE value="cleaned main" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaned main" />
+    <MESSAGE value="schedule_table key returns from db as str and not int" />
+    <option name="LAST_COMMIT_MESSAGE" value="schedule_table key returns from db as str and not int" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
