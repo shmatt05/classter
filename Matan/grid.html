@@ -21,6 +21,17 @@
 
     <table id="timeTable" width="100%" height="70%" class="table table-striped  table-bordered table-condensed timeTableBorder" dir="rtl" align="right">
     <div class="ttClasses" width="100%"></div>
+    <colgroup>
+        <col id="hours">
+        <col id="colday0" class="gridCols">
+        <col id="colday1" class="gridCols">
+        <col id="colday2" class="gridCols">
+        <col id="colday3" class="gridCols">
+        <col id="colday4" class="gridCols">
+        <col id="colday5" class="gridCols">
+        <col id="colday6" class="gridCols">
+
+    </colgroup>
       <thead>
         <tr class="info" id="ttHead">
           <th width="4%"></th>
@@ -272,7 +283,8 @@
             oneClass.className = "{{ course.name }}";
             oneClass.instructor = "{{ course.instructor }}";
             oneClass.maxSlots = "{{ course.max_capacity }}";
-            oneClass.takenSlots = "{{ course.userslist }}".length;
+
+            oneClass.takenSlots = "{{ course.userslist }}".length; // watch out, might not work, make sure it does
             oneClass.classID = oneClass.year + "_" + oneClass.month + "_" + oneClass.dayOfMonth + "_" + oneClass.className + "_" + oneClass.timeOfDay + "_" + oneClass.studioID;
             setClassesOnGrid(oneClass);
         </script>

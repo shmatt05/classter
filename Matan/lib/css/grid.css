@@ -16,7 +16,9 @@ table, th, td
     font-size:small;
 
 }
-
+#colday4{
+    background-color:lavenderblush;
+}
 
 .classLabels {
     background-color:darkblue;
