@@ -27,7 +27,7 @@ from David.db import entities
 from David.users_logic.operations import DailyScheduleManager
 from David.admin_logic.operations import AdminManager
 
-from google.appengine.ext import ndb
+import google.appengine.ext
 import jsonpickle
 from David.users_logic.timezone import Time
 
