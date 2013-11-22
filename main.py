@@ -57,7 +57,7 @@ class MainHandler(webapp2.RequestHandler):
         hour = datetime.now().hour
 
         admin_manager.create_course_for_month("ZumbaLatis", "Latis the Zumbot", hour, 120, 10,
-                              "Moished", "Park","blue", [], [], 2014, 2, 3)
+                              "Moished", "Park","blue", [], [], 2018, 10, 3)
 
 
         #creating course templates
