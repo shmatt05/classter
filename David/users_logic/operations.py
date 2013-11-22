@@ -66,14 +66,17 @@ class DailyScheduleManager:
         month_schedule = entities.MonthSchedule.get_key(month, year, self.gym_network, self.gym_branch).get()
         day_schedule = month_schedule.schedule_table[str(day)]
         courses = day_schedule.courses_list
+        succeeded  = False
         for course in courses:
             if course.name.lower() == course_name.lower() and course.hour == start_hour:
                 user = objects.User(username, 0, None, username)
                 if len(course.users_list) < course.max_capacity and not DailyScheduleManager.is_user_subscribed(username, course):
                     course.users_list.append(user)
+                    succeeded = True
                 else:
                     course.waiting_list.append(user)
                 month_schedule.put()
+                return succeeded
                 break
 
     def delete_user_from_course(self, username, year, month, day, start_hour, course_name):

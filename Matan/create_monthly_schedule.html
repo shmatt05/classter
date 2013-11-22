@@ -16,8 +16,8 @@
               </td>
               <td>
                   <select name="classes">
-                      {% for course in courses %}
-                      <option value="{{course.name}}">{{course.name}}</option>
+                      {% for course in courses.keys() %}
+                      <option value="{{courses[course].name}}">{{courses[course].name}}</option>
                       {% endfor %}
                    </select>
 
