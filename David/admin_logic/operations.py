@@ -43,8 +43,17 @@ class AdminManager:
     def add_instructor(self, id_num, first_name, last_name):
         if self.gym is None:
             raise Exception("No such Gym!")
-        new_instructor = objects.Instructor(self.gym,first_name,last_name)
+        new_instructor = objects.Instructor(self.gym, first_name, last_name)
         new_instructor.add_to_gym()
+
+    """ adds a new studio object to the studios list of the specified Gym entity
+        the method does nothing in case the studio already exists
+    """
+    def add_studio(self, name):
+        if self.gym is None:
+            raise Exception("No such Gym!")
+        new_studio = objects.Studio(self.gym, name)
+        new_studio.add_to_gym()
 
     """ edits an existing course_template object in the courses list of the specified Gym entity """
     def edit_course_template(self, previous_name, new_name, new_description):
@@ -76,7 +85,7 @@ class AdminManager:
     """
     def create_course_for_month(self, name, description, hour, duration, max_capacity, instructor, studio, color,
                                 users_list, waiting_list, year, month, day):
-        new_course = objects.Course(name, description, hour, duration, max_capacity, instructor, studio, color,
+        new_course = objects.Course(self.gym, name, description, hour, duration, max_capacity, instructor, studio, color,
                                     users_list, waiting_list)
         days_in_month = calendar.monthrange(year, month)[1]
         #calculte all the matching days of the current month

@@ -19,8 +19,8 @@ class CourseTemplate(object):
 
 
 class Course(CourseTemplate):
-    def __init__(self, name, description, hour, duration, max_capacity, instructor, studio, color, users_list, waiting_list):
-        super(Course, self).__init__(name, description)
+    def __init__(self, gym, name, description, hour, duration, max_capacity, instructor, studio, color, users_list, waiting_list):
+        super(Course, self).__init__(gym, name, description)
         self.hour = hour
         self.duration = duration
         self.max_capacity = max_capacity
