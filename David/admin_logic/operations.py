@@ -84,20 +84,12 @@ class AdminManager:
     """
     def create_course_for_month(self, name, description, hour, duration, max_capacity, instructor, studio, color,
                                 users_list, waiting_list, year, month, day):
-        new_course = objects.Course(name, description, hour, duration, max_capacity, instructor, studio, color,
-                                    users_list, waiting_list)
-        days_in_month = calendar.monthrange(year, month)[1]
-        #calculte all the matching days of the current month
-        days_to_update = [x for x in range(day, days_in_month+1) if (x-day) % 7 == 0]
         schedule = self.__get_month_schedule(month, year)
         if schedule is None:
             raise Exception("No Month Schedule!") #may be changed in the future
-        for i in days_to_update:
-            for course in schedule.schedule_table[str(i)].courses_list:
-                if course.name == name and course.hour == hour:
-                    return
-            schedule.schedule_table[str(i)].courses_list.append(new_course)
-        schedule.put()
+        new_course = objects.Course(name, description, hour, duration, max_capacity, instructor, studio, color,
+                                    users_list, waiting_list)
+        new_course.add_to_month_schedule(schedule, day)
 
     def edit_course(self, old_name, new_name,  old_hour, new_hour, description, duration, max_capacity, instructor,
                     studio, color, users_list, waiting_list, year, month, day):

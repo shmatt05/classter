@@ -1,3 +1,6 @@
+from calendar import monthrange
+
+
 class CourseTemplate(object):
     def __init__(self, name, description):
         self.name = name
@@ -28,6 +31,19 @@ class Course(CourseTemplate):
         self.users_list = users_list
         self.waiting_list = waiting_list
     # TODO add functions: register_user, unregister_user, isBooked, add_to_waiting_list ...
+
+    def add_to_month_schedule(self, month_schedule, day):
+        year = month_schedule.year
+        month = month_schedule.month
+        days_in_month = monthrange(year, month)[1]
+        #calculate all the matching days of the current month
+        days_to_update = [x for x in range(day, days_in_month+1) if (x-day) % 7 == 0]
+        for i in days_to_update:
+            for course in month_schedule.schedule_table[str(i)].courses_list:
+                if course.name.lower() == self.name.lower() and course.hour == self.hour:
+                    return
+            month_schedule.schedule_table[str(i)].courses_list.append(self)
+        month_schedule.put()
 
     def __str__(self):
         return super(Course, self).__str__() + \
@@ -71,7 +87,6 @@ class Instructor(object):
 
 class Studio(object):
     def __init__(self, name):
-        self.gym = gym_entity
         self.name = name
 
     def add_to_gym(self, gym_entity):
