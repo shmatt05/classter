@@ -267,6 +267,7 @@
             var date_month =  "{{ day.month }}";
             var date_year = "{{ day.year }}";
             var date_dayofweek = (parseInt( "{{ day.day_in_week }}")-1).toString();
+            console.log('date: ' +date_day + 'day of week: ' + date_dayofweek);
             $('#labelday'+date_dayofweek).text(date_day + "/" + date_month + "/" + date_year);
         </script>
     {% for course in day.courses_list %}

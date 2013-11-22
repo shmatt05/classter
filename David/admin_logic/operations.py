@@ -111,4 +111,8 @@ class AdminManager:
 
     """ returns the number of the day in range (1,7) by the given date """
     def get_day_by_date(self, year, month, day):
-        return (calendar.weekday(year, month, day)+2) % 7
+        temp_day = calendar.weekday(year, month, day)
+        if temp_day == 5:
+            return 7
+        else:
+            return (temp_day+2) % 7

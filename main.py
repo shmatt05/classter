@@ -166,8 +166,8 @@ def parse_course(str):
 class TestHandler(webapp2.RequestHandler):
     def get(self):
         users_manager = operations.DailyScheduleManager("peer", "peer")
-        start_date = datetime(day=1, month=11, year=2013)
-        end_date = datetime(day=2, month=11, year=2013)
+        #start_date = datetime(day=1, month=11, year=2013)
+        #end_date = datetime(day=2, month=11, year=2013)
         sched = users_manager.get_week_daily_schedule_list()
         #sched = users_manager.get_daily_schedule_list(start_date, end_date)
 
