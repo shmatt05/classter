@@ -216,6 +216,7 @@ class CreateCourse(webapp2.RequestHandler):
     def post(self):
         year = cgi.escape(self.request.get('year'))
         month = cgi.escape(self.request.get('month'))
+        day = cgi.escape(self.request.get('day'))
         class_name = cgi.escape(self.request.get('classes'))
         studio = cgi.escape(self.request.get('studio'))
         instructor = cgi.escape(self.request.get('instructor'))
@@ -223,6 +224,11 @@ class CreateCourse(webapp2.RequestHandler):
         end_hour = cgi.escape(self.request.get('end_hour'))
         capacity = cgi.escape(self.request.get('capacity'))
         schedule_man = operations.DailyScheduleManager("peer", "peer")
+
+        admin_man = AdminManager("peer", "peer")
+        admin_man.create_course_for_month(class_name, description, start_hour, end_hour-start_hour,capacity,instructor
+            ,studio,"blue",[],[],year,month,day)
+
         today = date(int(year), int(month),1)
         in_a_week = date(int(year),int(month),7)
         daily_scheduale_list = schedule_man.get_daily_schedule_list(today, in_a_week)
