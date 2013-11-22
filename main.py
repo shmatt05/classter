@@ -238,19 +238,30 @@ class CreateCourse(webapp2.RequestHandler):
         end_hour = cgi.escape(self.request.get('end_hour'))
         capacity = cgi.escape(self.request.get('capacity'))
         schedule_man = operations.DailyScheduleManager("peer", "peer")
-
+        # Get description
         admin_man = AdminManager("peer", "peer")
-        #admin_man.get_courses_templates()[]
-        #admin_man.create_course_for_month(class_name, description, start_hour, end_hour-start_hour,capacity,instructor
-        #    ,studio,"blue",[],[], year,month, day)
-
+        class_template = admin_man.get_courses_templates()[str(class_name)]
+        description = class_template.description
+        # Add course
+        admin_man.create_course_for_month(class_name, description, start_hour, end_hour-start_hour,capacity,instructor
+           ,studio,"blue",[],[], year,month, day)
+        # Get signed courses
         today = date(int(year), int(month),1)
         in_a_week = date(int(year),int(month),7)
         daily_scheduale_list = schedule_man.get_daily_schedule_list(today, in_a_week)
-        courses = self.get_courses_list_from_daily_schedual_list(daily_scheduale_list)
-        self.response.write("year = "+year + " month= "+ month+ " class= " + str(class_name) + " studio= "+
-                             studio + " instructor= " + instructor + " start= " + start_hour +
-                                 " end= " + end_hour + " capacity= " + capacity +"courses list= " + str(courses))
+        singed_courses = self.get_courses_list_from_daily_schedual_list(daily_scheduale_list)
+        #self.response.write("year = "+year + " month= "+ month+ " class= " + str(class_name) + " studio= "+
+        #                     studio + " instructor= " + instructor + " start= " + start_hour +
+        #                         " end= " + end_hour + " capacity= " + capacity +"courses list= " + str(courses))
+        template_values = {
+            'year': year,
+            'month': month,
+            'courses': admin_man.get_courses_templates(),
+            'singed_courses':singed_courses
+        }
+
+        template = JINJA_ENVIRONMENT.get_template('Matan/create_monthly_schedule.html')
+        self.response.write(template.render(template_values))
 
     def get_courses_list_from_daily_schedual_list(self, daily_schedual_list):
         result = []
@@ -262,14 +273,26 @@ class CreateCourse(webapp2.RequestHandler):
 class RegisterToClass(webapp2.RequestHandler):
 
     def post(self):
-        template_values = {
 
-        }
         full_name=cgi.escape(self.request.get('firstname'))
         class_key=cgi.escape(self.request.get('classkey'))
-        self.response.write(1000)
+        param_list = parse_course(class_key)
+        year = param_list[0]
+        month = param_list[1]
+        day = param_list[2]
+        course_name = param_list[3]
+        hour = param_list[4]
+        studio = param_list[5]
+        schedule_man = users_logic.DailyScheduleManager("peer", "peer")
+        user_exists = users_logic.DailyScheduleManager.is_user_subscribed(full_name, course_name)
+        if not user_exists:
+            if schedule_man.add_user_to_course(full_name, year, month, day, hour, course_name) == True:
+                result = 100 # success
+            else:
+                result = 200 # class full
+        result = 300 # user exists
 
-
+        self.response.write(result)
 
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table
