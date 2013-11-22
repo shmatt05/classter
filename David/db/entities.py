@@ -13,9 +13,9 @@ class Gym(ndb.Model):
     name = ndb.StringProperty(required=True)
     gym_network = ndb.StringProperty(required=True)
     address = ndb.StringProperty()
-    courses = properties.OurJsonProperty()
-    instructors = properties.OurJsonProperty()
-    studios = properties.OurJsonProperty()
+    courses = properties.OurJsonProperty()     # {}
+    instructors = properties.OurJsonProperty() # {}
+    studios = properties.OurJsonProperty()     # []
 
     def set_key(self):
         #self.key = ndb.Key(Gym, self.gym_network + '_' +self.name)
