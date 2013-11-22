@@ -252,7 +252,7 @@ class RegisterToClass(webapp2.RequestHandler):
         }
         full_name=cgi.escape(self.request.get('firstname'))
         class_key=cgi.escape(self.request.get('classkey'))
-        self.response.write("name = " + full_name + "   class key = " + class_key)
+        self.response.write(1000)
 
 
 

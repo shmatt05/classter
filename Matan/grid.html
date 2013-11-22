@@ -255,7 +255,7 @@
             oneClass.instructor = "{{ course.instructor }}";
             oneClass.maxSlots = "{{ course.max_capacity }}";
             oneClass.takenSlots = "{{ course.userslist }}".length;
-            oneClass.classID = oneClass.year + "#" + oneClass.month + "#" + oneClass.dayOfMonth + "#" + oneClass.className + "#" + oneClass.timeOfDay + "#" + oneClass.studioID;
+            oneClass.classID = oneClass.year + "_" + oneClass.month + "_" + oneClass.dayOfMonth + "_" + oneClass.className + "_" + oneClass.timeOfDay + "_" + oneClass.studioID;
             setClassesOnGrid(oneClass);
         </script>
     {% endfor %}

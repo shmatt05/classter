@@ -11,7 +11,7 @@ $(document).ready(function() {
                 data : postData,
                 success:function(data, textStatus, jqXHR)
                 {
-                    alert(data + " " + textStatus + " " + jqXHR);
+                    alert(data);
                 },
                 error: function(jqXHR, textStatus, errorThrown)
                 {

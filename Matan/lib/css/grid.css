@@ -10,14 +10,10 @@ table, th, td
 .classBox {
     text-align:center;
     font-size:small;
-    margin:0;
-    padding:0;
+
 }
 
-body {
-    margin:0;
-    padding:0;
-}
+
 .classLabels {
     background-color:darkblue;
     color:white;

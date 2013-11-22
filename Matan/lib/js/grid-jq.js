@@ -74,7 +74,15 @@ $(document).ready(function() {
                 data : postData,
                 success:function(data, textStatus, jqXHR)
                 {
-                    alert(data + " " + textStatus + " " + jqXHR);
+                   if (parseInt(data) === 1000) { // Successful signup for course
+                       alert('ההרשמה עברה בהצלחה, יום טוב!');
+                       var classLabel = '#lbl' +  $('#classkey').val();
+                       var newCount = parseInt($(classLabel).text()) - 1;
+
+                       $(classLabel).text(newCount);
+                       $.magnificPopup.close();
+
+                   }
                 },
                 error: function(jqXHR, textStatus, errorThrown)
                 {
