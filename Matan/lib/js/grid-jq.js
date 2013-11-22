@@ -143,7 +143,10 @@ function setClassesOnGrid(oneClass) {
 
 
     $divOverlay.css('height', classLength);
-    $divOverlay.append("<p>" + oneClass.className + "<br>" +  oneClass.instructor + "<br>" + oneClass.studioID +"</p>");
+
+    var openSlots = parseInt(oneClass.maxSlots) - parseInt(oneClass.takenSlots);
+    var labelName = 'lbl' + oneClass.classID;
+    $divOverlay.append("<p>" + oneClass.className + "<br>" +  oneClass.instructor + "<br>Studio: " + oneClass.studioID + "<br><label id=" + labelName +" class='classLabels'>"+ openSlots +"</label> </p>");
 
 
 

@@ -4,16 +4,25 @@ tbody tr{
 table, th, td
 {
     border: 1px solid black;
-     clear:both;
-    position:relative;
+
 }
 
 .classBox {
-
-    float:left !important;
-
-
+    text-align:center;
+    font-size:small;
+    margin:0;
+    padding:0;
 }
+
+body {
+    margin:0;
+    padding:0;
+}
+.classLabels {
+    background-color:darkblue;
+    color:white;
+}
+
 
 .clearfix:after  {
    content: " " !important; /* Older browser do not support empty content */
