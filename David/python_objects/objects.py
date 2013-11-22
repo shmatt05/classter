@@ -1,7 +1,15 @@
 class CourseTemplate(object):
-    def __init__(self, name, description):
+    def __init__(self, gym_entity, name, description):
+        self.gym = gym_entity
         self.name = name
         self.description = description
+
+    def add_to_gym(self):
+        for template in self.gym.courses:
+            if self.name.lower() == template.name.lower():
+                return
+        self.gym.courses.append(self)
+        self.gym.put()
 
     def __str__(self):
         return self.name + "; " + self.description
@@ -58,8 +66,21 @@ class Instructor(object):
         self.last_name = last_name
 
     def add_to_gym(self):
-        for instructor in self.gyn.instructors:
+        for instructor in self.gym.instructors:
             if self.id_num == instructor.id_num:
                 return
         self.gym.instructors.append(self)
+        self.gym.put()
+
+
+class Studio(object):
+    def __init__(self, gym_entity, name):
+        self.gym = gym_entity
+        self.name = name
+
+    def add_to_gym(self):
+        for studio in self.gym.studios:
+            if self.name == studio.name:
+                return
+        self.gym.studios.append(self)
         self.gym.put()

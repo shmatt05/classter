@@ -34,12 +34,8 @@ class AdminManager:
     def add_course_template(self, name, description):
         if self.gym is None:
             raise Exception("No such Gym!")
-        for template in self.gym.courses:
-            if name.lower() == template.name.lower():
-                return
-        new_template = objects.CourseTemplate(name, description)
-        self.gym.courses.append(new_template)
-        self.gym.put()
+        new_template = objects.CourseTemplate(self.gym, name, description)
+        new_template.add_to_gym()
 
     """ adds a new instructor object to the instructors list of the specified Gym entity
         the method does nothing in case the instructor already exists
