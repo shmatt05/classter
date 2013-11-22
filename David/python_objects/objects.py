@@ -5,10 +5,10 @@ class CourseTemplate(object):
         self.description = description
 
     def add_to_gym(self):
-        for template in self.gym.courses:
-            if self.name.lower() == template.name.lower():
-                return
-        self.gym.courses.append(self)
+
+        if self.name in self.gym.courses.keys():
+            return
+        self.gym.courses[self.name] = self
         self.gym.put()
 
     def __str__(self):
