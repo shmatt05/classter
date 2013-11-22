@@ -1,9 +1,13 @@
 tbody tr{
     height:75px;
 }
+#row_dates{
+    height:30px;
+}
 table, th, td
 {
     border: 1px solid black;
+    text-align:center;
 
 }
 

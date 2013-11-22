@@ -34,6 +34,17 @@
         </tr>
       </thead>
       <tbody>
+        <tr id="row_dates">
+            <td></td>
+            <td><label id="labelday0"></label></td>
+            <td><label id="labelday1"></label></td>
+            <td><label id="labelday2"></label></td>
+            <td><label id="labelday3"></label></td>
+            <td><label id="labelday4"></label></td>
+            <td><label id="labelday5"></label></td>
+            <td><label id="labelday6"></label></td>
+
+        </tr>
         <tr id="row_0600">
           <th id="hour06" class="timesColumn">06:00</th>
           <td id="00600"></td>
@@ -240,6 +251,13 @@
     initDepthArr();
 </script>
 {% for day in days %}
+        <script>
+            var date_day = "{{ day.day_in_month }}";
+            var date_month =  "{{ day.month }}";
+            var date_year = "{{ day.year }}";
+            var date_dayofweek = (parseInt( "{{ day.day_in_week }}")-1).toString();
+            $('#labelday'+date_dayofweek).text(date_day + "/" + date_month + "/" + date_year);
+        </script>
     {% for course in day.courses_list %}
         <script>
              var oneClass ={};
