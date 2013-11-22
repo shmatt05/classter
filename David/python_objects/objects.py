@@ -1,15 +1,13 @@
 class CourseTemplate(object):
-    def __init__(self, gym_entity, name, description):
-        self.gym = gym_entity
+    def __init__(self, name, description):
         self.name = name
         self.description = description
 
-    def add_to_gym(self):
-
-        if self.name in self.gym.courses.keys():
+    def add_to_gym(self, gym_entity):
+        if self.name in gym_entity.courses.keys():
             return
-        self.gym.courses[self.name] = self
-        self.gym.put()
+        gym_entity.courses[self.name] = self
+        gym_entity.put()
 
     def __str__(self):
         return self.name + "; " + self.description
@@ -19,8 +17,8 @@ class CourseTemplate(object):
 
 
 class Course(CourseTemplate):
-    def __init__(self, gym, name, description, hour, duration, max_capacity, instructor, studio, color, users_list, waiting_list):
-        super(Course, self).__init__(gym, name, description)
+    def __init__(self, name, description, hour, duration, max_capacity, instructor, studio, color, users_list, waiting_list):
+        super(Course, self).__init__(name, description)
         self.hour = hour
         self.duration = duration
         self.max_capacity = max_capacity
@@ -59,28 +57,26 @@ class User(object):
 
 
 class Instructor(object):
-    def __init__(self, gym_entity, id_num, first_name, last_name):
-        self.gym = gym_entity
+    def __init__(self, id_num, first_name, last_name):
         self.id_num = id_num
         self.first_name = first_name
         self.last_name = last_name
 
-    def add_to_gym(self):
-        for instructor in self.gym.instructors:
-            if self.id_num == instructor.id_num:
-                return
-        self.gym.instructors.append(self)
-        self.gym.put()
+    def add_to_gym(self, gym_entity):
+        if self.id_num in gym_entity.instructors.keys():
+            return
+        gym_entity.instructors[self.id_num] = self
+        gym_entity.put()
 
 
 class Studio(object):
-    def __init__(self, gym_entity, name):
+    def __init__(self, name):
         self.gym = gym_entity
         self.name = name
 
-    def add_to_gym(self):
-        for studio in self.gym.studios:
+    def add_to_gym(self, gym_entity):
+        for studio in gym_entity.studios:
             if self.name == studio.name:
                 return
-        self.gym.studios.append(self)
-        self.gym.put()
+        gym_entity.studios.append(self)
+        gym_entity.put()
