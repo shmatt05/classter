@@ -226,8 +226,9 @@ class CreateCourse(webapp2.RequestHandler):
         schedule_man = operations.DailyScheduleManager("peer", "peer")
 
         admin_man = AdminManager("peer", "peer")
+        admin_man.get_courses_templates()[]
         admin_man.create_course_for_month(class_name, description, start_hour, end_hour-start_hour,capacity,instructor
-            ,studio,"blue",[],[],year,month,day)
+            ,studio,"blue",[],[], year,month, day)
 
         today = date(int(year), int(month),1)
         in_a_week = date(int(year),int(month),7)
