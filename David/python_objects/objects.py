@@ -48,3 +48,18 @@ class User(object):
         self.name = name
 
         # TODO: add user's history.
+
+
+class Instructor(object):
+    def __init__(self, gym_entity, id_num, first_name, last_name):
+        self.gym = gym_entity
+        self.id_num = id_num
+        self.first_name = first_name
+        self.last_name = last_name
+
+    def add_to_gym(self):
+        for instructor in self.gyn.instructors:
+            if self.id_num == instructor.id_num:
+                return
+        self.gym.instructors.append(self)
+        self.gym.put()

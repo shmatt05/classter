@@ -11,12 +11,19 @@ class AdminManager:
     def __init__(self, gym_network, gym_branch): #gym_key is <network>_<branch>
         self.gym_network = gym_network
         self.gym_branch = gym_branch
+        self.gym = self.__get_gym()
 
     def __get_gym(self):
         return entities.Gym.get_key(self.gym_network, self.gym_branch).get()
 
     def get_courses_templates(self):
-        return self.__get_gym().courses
+        return self.gym.courses
+
+    def get_instructors(self):
+        return self.gym.instructors
+
+    def get_studios(self):
+        return self.gym.studios
 
     def __get_month_schedule(self, month, year):
         return entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
@@ -25,27 +32,34 @@ class AdminManager:
         the method does nothing in case the course_template already exists
     """
     def add_course_template(self, name, description):
-        gym = self.__get_gym()
-        if gym is None:
+        if self.gym is None:
             raise Exception("No such Gym!")
-        for template in gym.courses:
+        for template in self.gym.courses:
             if name.lower() == template.name.lower():
                 return
         new_template = objects.CourseTemplate(name, description)
-        gym.courses.append(new_template)
-        gym.put()
+        self.gym.courses.append(new_template)
+        self.gym.put()
+
+    """ adds a new instructor object to the instructors list of the specified Gym entity
+        the method does nothing in case the instructor already exists
+    """
+    def add_instructor(self, id_num, first_name, last_name):
+        if self.gym is None:
+            raise Exception("No such Gym!")
+        new_instructor = objects.Instructor(self.gym,first_name,last_name)
+        new_instructor.add_to_gym()
 
     """ edits an existing course_template object in the courses list of the specified Gym entity """
     def edit_course_template(self, previous_name, new_name, new_description):
-        gym = self.__get_gym()
-        if gym is None:
+        if self.gym is None:
             raise Exception("No such Gym!")
-        for template in gym.courses:
+        for template in self.gym.courses:
             if previous_name.lower() == template.name.lower():
                 if template.name != new_name or template.description != new_description:
                     template.name = new_name
                     template.description = new_description
-                    gym.put()
+                    self.gym.put()
 
     """ creates a new MonthSchedule entity for the given month and year with the current gym as its parent
         doesn't change the DB if the MonthSchedule already exists
