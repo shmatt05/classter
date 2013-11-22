@@ -1,5 +1,5 @@
 from calendar import monthrange
-
+from datetime import date
 
 class CourseTemplate(object):
     def __init__(self, name, description):
@@ -32,10 +32,14 @@ class Course(CourseTemplate):
         self.waiting_list = waiting_list
     # TODO add functions: register_user, unregister_user, isBooked, add_to_waiting_list ...
 
+    """ day should be in range 1-7 """
     def add_to_month_schedule(self, month_schedule, day):
         year = month_schedule.year
         month = month_schedule.month
         days_in_month = monthrange(year, month)[1]
+        for i in range(1, 8):
+            if date(year, month, i).isoweekday() % 7 + 1 == day:
+                day = i
         #calculate all the matching days of the current month
         days_to_update = [x for x in range(day, days_in_month+1) if (x-day) % 7 == 0]
         for i in days_to_update:
