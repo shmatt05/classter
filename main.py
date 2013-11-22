@@ -20,6 +20,7 @@ import webapp2
 import cgi
 import jinja2
 import os
+from David.users_logic import operations
 
 from David.python_objects import objects
 from David.db import entities
@@ -221,11 +222,20 @@ class CreateCourse(webapp2.RequestHandler):
         start_hour = cgi.escape(self.request.get('start_hour'))
         end_hour = cgi.escape(self.request.get('end_hour'))
         capacity = cgi.escape(self.request.get('capacity'))
-
+        schedule_man = operations.DailyScheduleManager("peer", "peer")
+        today = date(int(year), int(month),1)
+        in_a_week = date(int(year),int(month),7)
+        daily_scheduale_list = schedule_man.get_daily_schedule_list(today, in_a_week)
+        courses = self.get_courses_list_from_daily_schedual_list(daily_scheduale_list)
         self.response.write("year = "+year + " month= "+ month+ " class= " + str(class_name) + " studio= "+
                              studio + " instructor= " + instructor + " start= " + start_hour +
-                                 " end= " + end_hour + " capacity= " + capacity)
+                                 " end= " + end_hour + " capacity= " + capacity +"courses list= " + str(courses))
 
+    def get_courses_list_from_daily_schedual_list(self, daily_schedual_list):
+        result = []
+        for daily in daily_schedual_list:
+            result.extend(daily.courses_list)
+        return result
 
 class RegisterToClass(webapp2.RequestHandler):
 
