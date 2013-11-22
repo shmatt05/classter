@@ -31,15 +31,29 @@ var hourHeight = 75; // Macro for row height
 
 
 $(document).ready(function() {
-    var mfp = $.magnificPopup.instance;
 
-    //setClassesOnGrid(classList);
     $('.classBox').click(function() {
-        //var classKey = $(this).attr('id');
+        var classKey = $(this).attr('id');
+        $('#classkey').val(classKey);
+//        $.magnificPopup.open({
+//                type:'ajax',
+//            items: {
+//                src: 'html/popup.html'
+//
+//            },
+//
+//            closeOnContentClick: false,
+//            ajax: {
+//                data:({
+//                    'classID':classKey
+//                })
+//            }
+//
+//        });
         $.magnificPopup.open({
-                type:'ajax',
+            type:'inline',
             items: {
-                src: 'html/popup.html'
+                src: '#test-popup'
 
             },
 

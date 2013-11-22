@@ -243,14 +243,19 @@
     {% for course in day.courses_list %}
         <script>
              var oneClass ={};
+            oneClass.year = "{{ day.year }}";
+            oneClass.month = "{{ day.month }}";
             oneClass.dayOfWeek =(parseInt("{{ day.day_in_week }}")-1).toString();
+            oneClass.dayOfMonth = "{{ day.day_in_month }}";
             oneClass.timeOfDay = "{{ course.hour }}";
             oneClass.classLength = parseFloat(parseInt("{{ course.duration }}") / 60);
-            oneClass.classID = "{{ course.name }}" + "{{ day.day_in_month }}" + "{{ course.hour }}";
             oneClass.colorCode = "{{ course.color }}" ;
             oneClass.studioID = "{{ course.studio }}";
             oneClass.className = "{{ course.name }}";
             oneClass.instructor = "{{ course.instructor }}";
+            oneClass.maxSlots = "{{ course.max_capacity }}";
+            oneClass.takenSlots = "{{ course.userslist }}".length;
+            oneClass.classID = oneClass.year + "#" + oneClass.month + "#" + oneClass.dayOfMonth + "#" + oneClass.className + "#" + oneClass.timeOfDay + "#" + oneClass.studioID;
             setClassesOnGrid(oneClass);
         </script>
     {% endfor %}
