@@ -68,7 +68,7 @@
                    <label name="duration">משך שיעור בדקות</label>
                </td>
                <td>
-                   <input name="אduration" >
+                   <input name="duration" type="number" >
                </td>
            </tr>
            <tr>
@@ -145,6 +145,8 @@
         <input type="text" name="month" value="{{month}}" style="display: none">
     </form>
     <h2>קורסים שנוצרו</h2>
-
+    {%for course in singed_courses %}
+    <p>{{course.name}}</p>
+    {% endfor %}
 </body>
 </html>

@@ -239,10 +239,16 @@ class CreateCourse(webapp2.RequestHandler):
         class_name = cgi.escape(self.request.get('classes'))
         studio = cgi.escape(self.request.get('studio'))
         instructor = cgi.escape(self.request.get('instructor'))
-        start_hour = cgi.escape(self.request.get('start_hour'))
+        start_hour = cgi.escape(self.request.get('start_hour')).replace(":", "")
         duration = cgi.escape(self.request.get('duration'))
         capacity = cgi.escape(self.request.get('capacity'))
+
         schedule_man = operations.DailyScheduleManager("peer", "peer")
+
+        #print("year = "+year + " month= "+ month+ " class= " + str(class_name) + " studio= "+
+        #             studio + " instructor= " + instructor + " start= " + start_hour +
+        #                 " duration= " + duration + " capacity= " + capacity + " day= " + day)
+
         # Get description
         admin_man = AdminManager("peer", "peer")
         class_template = admin_man.get_courses_templates()[str(class_name)]
@@ -252,6 +258,7 @@ class CreateCourse(webapp2.RequestHandler):
         admin_man.create_course_for_month(class_name, description, start_hour, duration,capacity,instructor
            ,studio,"blue",[],[], year,month, day)
         # Get signed courses
+
         today = date(int(year), int(month),1)
         in_a_week = date(int(year),int(month),7)
         daily_scheduale_list = schedule_man.get_daily_schedule_list(today, in_a_week)

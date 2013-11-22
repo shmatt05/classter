@@ -38,7 +38,7 @@ class Course(CourseTemplate):
         month = month_schedule.month
         days_in_month = monthrange(year, month)[1]
         for i in range(1, 8):
-            if date(year, month, i).isoweekday() % 7 + 1 == day:
+            if date(year, month, i).isoweekday() % 7 + 1 == int(day):
                 day = i
         #calculate all the matching days of the current month
         days_to_update = [x for x in range(day, days_in_month+1) if (x-day) % 7 == 0]
