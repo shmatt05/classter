@@ -57,8 +57,12 @@ class MainHandler(webapp2.RequestHandler):
 
         hour = datetime.now().hour
 
-        admin_manager.create_course_for_month("ZumbaLatis", "Latis the Zumbot", hour, 120, 10,
-                              "Moished", "Park","blue", [], [], 2018, 10, 3)
+        admin_manager.create_course_for_month("ZumbaLatis", "Latis the Zumbot","1400", 120, 10,
+                              "Moished", "Park","blue", [], [], 2013, 11, 3)
+
+
+        admin_manager.create_course_for_month("PilaYoga", "Yoga the Pila", "0930", 60, 10,
+                              "Moished", "Park","blue", [], [], 2013, 11, 5)
 
 
         #creating course templates
@@ -160,7 +164,7 @@ class MainHandler(webapp2.RequestHandler):
 #output: list of [year, month, day, course_name, hour, studio]
 
 def parse_course(str):
-    return  str.split('#')
+    return  str.split('_')
 
 
 class TestHandler(webapp2.RequestHandler):
@@ -236,7 +240,7 @@ class CreateCourse(webapp2.RequestHandler):
         studio = cgi.escape(self.request.get('studio'))
         instructor = cgi.escape(self.request.get('instructor'))
         start_hour = cgi.escape(self.request.get('start_hour'))
-        end_hour = cgi.escape(self.request.get('end_hour'))
+        duration = cgi.escape(self.request.get('duration'))
         capacity = cgi.escape(self.request.get('capacity'))
         schedule_man = operations.DailyScheduleManager("peer", "peer")
         # Get description
@@ -244,7 +248,8 @@ class CreateCourse(webapp2.RequestHandler):
         class_template = admin_man.get_courses_templates()[str(class_name)]
         description = class_template.description
         # Add course
-        admin_man.create_course_for_month(class_name, description, start_hour, end_hour-start_hour,capacity,instructor
+
+        admin_man.create_course_for_month(class_name, description, start_hour, duration,capacity,instructor
            ,studio,"blue",[],[], year,month, day)
         # Get signed courses
         today = date(int(year), int(month),1)
@@ -274,7 +279,6 @@ class CreateCourse(webapp2.RequestHandler):
 class RegisterToClass(webapp2.RequestHandler):
 
     def post(self):
-
         full_name=cgi.escape(self.request.get('firstname'))
         class_key=cgi.escape(self.request.get('classkey'))
         param_list = parse_course(class_key)
