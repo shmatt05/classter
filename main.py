@@ -24,8 +24,9 @@ from David.users_logic import operations
 
 from David.python_objects import objects
 from David.db import entities
-from David.users_logic import operations
+from David.users_logic.operations import DailyScheduleManager
 from David.admin_logic.operations import AdminManager
+
 from google.appengine.ext import ndb
 import jsonpickle
 from David.users_logic.timezone import Time
@@ -283,8 +284,8 @@ class RegisterToClass(webapp2.RequestHandler):
         course_name = param_list[3]
         hour = param_list[4]
         studio = param_list[5]
-        schedule_man = users_logic.DailyScheduleManager("peer", "peer")
-        user_exists = users_logic.DailyScheduleManager.is_user_subscribed(full_name, course_name)
+        schedule_man = DailyScheduleManager("peer", "peer")
+        user_exists = DailyScheduleManager.is_user_subscribed(full_name, course_name)
         if not user_exists:
             if schedule_man.add_user_to_course(full_name, year, month, day, hour, course_name) == True:
                 result = 100 # success
@@ -306,5 +307,4 @@ app = webapp2.WSGIApplication([
     ('/create_course', CreateCourse),
     ('/register_to_class', RegisterToClass )
 ], debug=True)
-
 
