@@ -296,15 +296,16 @@ class RegisterToClass(webapp2.RequestHandler):
         hour = param_list[4]
         studio = param_list[5]
         schedule_man = DailyScheduleManager("peer", "peer")
-        user_exists = DailyScheduleManager.is_user_subscribed(full_name, course_name)
-        if not user_exists:
-            if schedule_man.add_user_to_course(full_name, year, month, day, hour, course_name) == True:
-                result = 100 # success
-            else:
-                result = 200 # class full
-        result = 300 # user exists
-
-        self.response.write(result)
+        #user_exists = DailyScheduleManager.is_user_subscribed(full_name, course_name)
+        result = schedule_man.add_user_to_course(full_name, year, month, day, hour, course_name)
+        #if not user_exists:
+        #    if schedule_man.add_user_to_course(full_name, year, month, day, hour, course_name) == True:
+        #        result = 100 # success
+        #    else:
+        #        result = 200 # class full
+        #result = 300 # user exists
+        return result
+        #self.response.write(result)
 
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table

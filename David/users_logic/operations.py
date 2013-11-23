@@ -66,13 +66,16 @@ class DailyScheduleManager:
         month_schedule = entities.MonthSchedule.get_key(month, year, self.gym_network, self.gym_branch).get()
         day_schedule = month_schedule.schedule_table[str(day)]
         courses = day_schedule.courses_list
-        succeeded  = False
+        succeeded = 200
         for course in courses:
             if course.name.lower() == course_name.lower() and course.hour == start_hour:
+                if DailyScheduleManager.is_user_subscribed(username, course):
+                    return 300 #user already subscribed
+
                 user = objects.User(username, 0, None, username)
-                if len(course.users_list) < course.max_capacity and not DailyScheduleManager.is_user_subscribed(username, course):
+                if len(course.users_list) < course.max_capacity:
                     course.users_list.append(user)
-                    succeeded = True
+                    succeeded = 100
                 else:
                     course.waiting_list.append(user)
                 month_schedule.put()
