@@ -54,6 +54,14 @@ class AdminManager:
         new_studio = objects.Studio(name)
         new_studio.add_to_gym(self.gym)
 
+    """ edits an existing studio object in the studios list of the specified Gym entity """
+    def edit_studio(self, current_name, new_name):
+        if self.gym is None:
+            raise Exception("No such Gym!")
+        for studio in self.gym.studios:
+            if current_name.lower() == studio.name.lower():
+                studio.edit_gym_studio(self.gym, new_name)
+
     """ edits an existing course_template object in the courses list of the specified Gym entity """
     def edit_course_template(self, previous_name, new_name, new_description):
         if self.gym is None:

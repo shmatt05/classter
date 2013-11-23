@@ -1,6 +1,7 @@
 from calendar import monthrange
 from datetime import date
 
+
 class CourseTemplate(object):
     def __init__(self, name, description):
         self.name = name
@@ -95,7 +96,14 @@ class Studio(object):
 
     def add_to_gym(self, gym_entity):
         for studio in gym_entity.studios:
-            if self.name == studio.name:
+            if self.name.lower() == studio.name.lower():
                 return
         gym_entity.studios.append(self)
+        gym_entity.put()
+
+    def edit_gym_studio(self, gym_entity, new_name):
+        for studio in gym_entity.studios:
+            if self.name.lower() == studio.name.lower():
+                studio.name = new_name
+                break
         gym_entity.put()
