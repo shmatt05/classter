@@ -89,6 +89,12 @@ class Instructor(object):
         gym_entity.instructors[self.id_num] = self
         gym_entity.put()
 
+    def delete_from_gym(self, gym_entity):
+        if self.id_num not in gym_entity.instructors.keys():
+            return
+        del gym_entity.instructors[self.id_num]
+        gym_entity.put()
+
 
 class Studio(object):
     def __init__(self, name):

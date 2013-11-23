@@ -36,14 +36,34 @@ class AdminManager:
         new_template = objects.CourseTemplate(name, description)
         new_template.add_to_gym(self.gym)
 
+    """ edits an existing course_template object in the courses list of the specified Gym entity """
+    def edit_course_template(self, previous_name, new_name, new_description):
+        if self.gym is None:
+            raise Exception("No such Gym!")
+        for template in self.gym.courses:
+            if previous_name.lower() == template.name.lower():
+                if template.name != new_name or template.description != new_description:
+                    template.name = new_name
+                    template.description = new_description
+                    self.gym.put()
+    # TODO: the method above is not updated, courses in Gym is a dictionary, and we should implement an object method
+    # TODO: add delete_course_template method
+
     """ adds a new instructor object to the instructors list of the specified Gym entity
         the method does nothing in case the instructor already exists
     """
     def add_instructor(self, id_num, first_name, last_name):
         if self.gym is None:
             raise Exception("No such Gym!")
-        new_instructor = objects.Instructor(first_name, last_name)
+        new_instructor = objects.Instructor(id_num, first_name, last_name)
         new_instructor.add_to_gym(self.gym)
+
+    """ deletes an instructor from the instructors dictionary of the specified Gym entity """
+    def delete_instructor(self, id_num):
+        if self.gym is None:
+            raise Exception("No such Gym!")
+        instructor = self.gym.instructors[id_num]
+        instructor.delete_from_gym(self.gym)
 
     """ adds a new studio object to the studios list of the specified Gym entity
         the method does nothing in case the studio already exists
@@ -61,17 +81,7 @@ class AdminManager:
         for studio in self.gym.studios:
             if current_name.lower() == studio.name.lower():
                 studio.edit_gym_studio(self.gym, new_name)
-
-    """ edits an existing course_template object in the courses list of the specified Gym entity """
-    def edit_course_template(self, previous_name, new_name, new_description):
-        if self.gym is None:
-            raise Exception("No such Gym!")
-        for template in self.gym.courses:
-            if previous_name.lower() == template.name.lower():
-                if template.name != new_name or template.description != new_description:
-                    template.name = new_name
-                    template.description = new_description
-                    self.gym.put()
+    # TODO: add delete_studio method
 
     """ creates a new MonthSchedule entity for the given month and year with the current gym as its parent
         doesn't change the DB if the MonthSchedule already exists
