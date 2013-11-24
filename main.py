@@ -32,9 +32,13 @@ import jsonpickle
 from David.users_logic.timezone import Time
 import sys
 sys.path.insert(0, 'libs')
+#os.path.dirname(__file__)
 
 JINJA_ENVIRONMENT = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+    loader=jinja2.FileSystemLoader(
+            "Matan"
+
+    ),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
@@ -181,7 +185,7 @@ class TestHandler(webapp2.RequestHandler):
             'days': sched
         }
 
-        template = JINJA_ENVIRONMENT.get_template('Matan/grid.html')
+        template = JINJA_ENVIRONMENT.get_template('grid.html')
         self.response.write(template.render(template_values))
 
 
@@ -200,7 +204,7 @@ class CreateMonthSched(webapp2.RequestHandler):
             'month': month,
             'courses': admin_man.get_courses_templates()
         }
-        template = JINJA_ENVIRONMENT.get_template('Matan/create_monthly_schedule.html')
+        template = JINJA_ENVIRONMENT.get_template('create_monthly_schedule.html')
         self.response.write(template.render(template_values))
 
 
@@ -210,7 +214,7 @@ class CreateMonthYear(webapp2.RequestHandler):
         template_values = {
 
         }
-        template = JINJA_ENVIRONMENT.get_template('Matan/choose_month_year.html')
+        template = JINJA_ENVIRONMENT.get_template('choose_month_year.html')
         self.response.write(template.render(template_values))
 
 
@@ -229,7 +233,7 @@ class AddCourse(webapp2.RequestHandler):
             'courses': admin_man.get_courses_templates()
         }
 
-        template = JINJA_ENVIRONMENT.get_template('Matan/create_monthly_schedule.html')
+        template = JINJA_ENVIRONMENT.get_template('create_monthly_schedule.html')
         self.response.write(template.render(template_values))
 
 
@@ -275,7 +279,7 @@ class CreateCourse(webapp2.RequestHandler):
             'singed_courses':singed_courses
         }
 
-        template = JINJA_ENVIRONMENT.get_template('Matan/create_monthly_schedule.html')
+        template = JINJA_ENVIRONMENT.get_template('create_monthly_schedule.html')
         self.response.write(template.render(template_values))
 
     def get_courses_list_from_daily_schedual_list(self, daily_schedual_list):

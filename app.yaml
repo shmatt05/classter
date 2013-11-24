@@ -13,7 +13,6 @@ handlers:
   static_dir: Matan/lib
 - url: /html
   static_dir: Matan
-
 - url: /.*
   script: main.app
 
