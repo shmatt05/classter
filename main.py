@@ -260,7 +260,7 @@ class CreateCourse(webapp2.RequestHandler):
         # Add course
 
         admin_man.create_course_for_month(class_name, description, start_hour, duration,capacity,instructor
-           ,studio,"blue",[],[], year,month, day)
+           ,studio,"lavenderblush",[],[], year,month, day)
         # Get signed courses
 
         today = date(int(year), int(month),1)

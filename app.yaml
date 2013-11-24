@@ -1,5 +1,5 @@
 application: classter-app
-version: 1
+version: 2
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -10,7 +10,7 @@ handlers:
   upload: favicon\.ico
 
 - url: /lib
-  static_dir: Matan/lib
+  static_dir: templates/lib
 - url: /html
   static_dir: Matan
 - url: /.*
