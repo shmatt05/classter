@@ -30,6 +30,8 @@ from David.admin_logic.operations import AdminManager
 import google.appengine.ext
 import jsonpickle
 from David.users_logic.timezone import Time
+import sys
+sys.path.insert(0, 'libs')
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),

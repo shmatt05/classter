@@ -1,5 +1,8 @@
 __author__ = 'rokli_000'
-import pytz
+import sys
+sys.path.insert(0, 'libs')
+from pytz.gae import pytz
+
 from datetime import datetime
 from datetime import timedelta
 
