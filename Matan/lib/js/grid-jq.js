@@ -74,7 +74,8 @@ $(document).ready(function() {
                 data : postData,
                 success:function(data, textStatus, jqXHR)
                 {
-                   if (parseInt(data) === 1000) { // Successful signup for course
+                   result = parseInt(data);
+                   if (result === 100) { // Successful signup for course
                        alert('ההרשמה עברה בהצלחה, יום טוב!');
                        var classLabel = '#lbl' +  $('#classkey').val();
                        var newCount = parseInt($(classLabel).text()) - 1;
@@ -83,10 +84,21 @@ $(document).ready(function() {
                        $.magnificPopup.close();
 
                    }
+                   else if (result === 200) {
+                       alert('השיעור מלא, אנא נסה להרשם לשיעור אחר');
+                   }
+                   else if (result === 300) {
+                       alert('הינך רשום כבר לשיעור זה');
+                       $.magnificPopup.close();
+                   }
+                   else {
+                       alert('ארעה תקלה, נסה שנית');
+                       $.magnificPopup.close();
+                   }
                 },
                 error: function(jqXHR, textStatus, errorThrown)
                 {
-                    //if fails
+                    alert('ארעה תקלה, נסה שנית');
                 }
             });
         e.preventDefault(); //STOP default action

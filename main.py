@@ -304,7 +304,7 @@ class RegisterToClass(webapp2.RequestHandler):
         #    else:
         #        result = 200 # class full
         #result = 300 # user exists
-        return result
+        self.response.write(result)
         #self.response.write(result)
 
 #todo consider make users a property in gym
