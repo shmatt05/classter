@@ -1,0 +1,44 @@
+tbody tr{
+    height:75px;
+}
+#row_dates{
+    height:30px;
+}
+table, th, td
+{
+    border: 1px solid black;
+    text-align:center;
+
+}
+
+.classBox {
+    text-align:center;
+    font-size:small;
+
+}
+#colday4{
+    background-color:lavenderblush;
+}
+
+.classLabels {
+    background-color:darkblue;
+    color:white;
+}
+
+
+.clearfix:after  {
+   content: " " !important; /* Older browser do not support empty content */
+   visibility: hidden !important;
+   display: block !important;
+   height: 0 !important;
+   clear: both !important;
+}
+
+.white-popup {
+  position: relative;
+  background: #FFF;
+  padding: 20px;
+  width: auto;
+  max-width: 500px;
+  margin: 20px auto;
+}
