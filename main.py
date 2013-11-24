@@ -19,6 +19,7 @@ from datetime import date, datetime
 import webapp2
 import cgi
 import jinja2
+import urllib
 import os
 from David.users_logic import operations
 
@@ -35,10 +36,7 @@ sys.path.insert(0, 'libs')
 #os.path.dirname(__file__)
 
 JINJA_ENVIRONMENT = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(
-            "Matan"
-
-    ),
+    loader=jinja2.FileSystemLoader('templates'),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
