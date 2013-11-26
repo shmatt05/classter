@@ -21,7 +21,8 @@ class CourseTemplate(object):
 
 
 class Course(CourseTemplate):
-    def __init__(self, name, description, hour, duration, max_capacity, instructor, studio, color, users_list, waiting_list):
+    def __init__(self, name, description, hour, duration, max_capacity, instructor, studio, color,
+                 users_table, waiting_list_table, registration_start_time):
         super(Course, self).__init__(name, description)
         self.hour = hour
         self.duration = duration
@@ -29,8 +30,9 @@ class Course(CourseTemplate):
         self.instructor = instructor
         self.studio = studio
         self.color = color
-        self.users_list = users_list
-        self.waiting_list = waiting_list
+        self.users_table = users_table
+        self.waiting_list_table = waiting_list_table
+        self.registration_start_time = registration_start_time
     # TODO add functions: register_user, unregister_user, isBooked, add_to_waiting_list ...
 
     """ day should be in range 1-7 """
