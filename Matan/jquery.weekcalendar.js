@@ -292,7 +292,7 @@
         self._renderCalendar();
         self._loadCalEvents();
         self._resizeCalendar();
-        self._scrollToHour(self.options.date.getHours(), true);
+        //self._scrollToHour(self.options.date.getHours(), true);
 
         if (this.options.resizeEvent) {
           $(window).unbind(this.options.resizeEvent);
@@ -785,7 +785,7 @@
 
         //first row
         calendarHeaderHtml = '<div class=\"ui-widget-content wc-header\">';
-        calendarHeaderHtml += '<table><tbody><tr><td class=\"wc-time-column-header\"></td>';
+        calendarHeaderHtml += '<table dir="rtl"><tbody><tr><td class=\"wc-time-column-header\"></td>';
         for (var i = 1; i <= options.daysToShow; i++) {
           calendarHeaderHtml += '<td class=\"wc-day-column-header wc-day-' + i + '\"' + colspan + '></td>';
         }
@@ -839,7 +839,7 @@
             $calendarBody, $calendarTableTbody;
         // create the structure
         $calendarBody = '<div class=\"wc-scrollable-grid\">';
-        $calendarBody += '<table class=\"wc-time-slots\">';
+        $calendarBody += '<table dir="rtl" class=\"wc-time-slots\">';
         $calendarBody += '<tbody>';
         $calendarBody += '</tbody>';
         $calendarBody += '</table>';
@@ -938,7 +938,7 @@
                 oddEven = (oddEven == 'odd' ? 'even' : 'odd');
                 renderRow += '<td class=\"wc-day-column day-' + i + '\">';
                 renderRow += '<div class=\"wc-no-height-wrapper wc-oddeven-wrapper\">';
-                renderRow += '<div class=\"wc-full-height-column ' + oddEvenClasses[oddEven] + '\"></div>';
+                renderRow += '<div dir="ltr" class=\"wc-full-height-column ' + oddEvenClasses[oddEven] + '\"></div>';
                 renderRow += '</div>';
                 renderRow += '</td>';
               }
@@ -948,7 +948,7 @@
                     oddEven = (oddEven == 'odd' ? 'even' : 'odd');
                     renderRow += '<td class=\"wc-day-column day-' + i + '\">';
                     renderRow += '<div class=\"wc-no-height-wrapper wc-oddeven-wrapper\">';
-                    renderRow += '<div class=\"wc-full-height-column ' + oddEvenClasses[oddEven] + '\" ></div>';
+                    renderRow += '<div dir="ltr" class=\"wc-full-height-column ' + oddEvenClasses[oddEven] + '\" ></div>';
                     renderRow += '</div>';
                     renderRow += '</td>';
                 }
@@ -976,7 +976,7 @@
               if (!showAsSeparatedUser) {
                 renderRow += '<td class=\"wc-day-column day-' + i + '\">';
                 renderRow += '<div class=\"wc-no-height-wrapper wc-freebusy-wrapper\">';
-                renderRow += '<div class=\"wc-full-height-column wc-column-freebusy wc-day-' + i + '\"></div>';
+                renderRow += '<div dir="ltr" class=\"wc-full-height-column wc-column-freebusy wc-day-' + i + '\"></div>';
                 renderRow += '</div>';
                 renderRow += '</td>';
               }
@@ -985,7 +985,7 @@
                 for (var j = 0; j < uLength; j++) {
                     renderRow += '<td class=\"wc-day-column day-' + i + '\">';
                     renderRow += '<div class=\"wc-no-height-wrapper wc-freebusy-wrapper\">';
-                    renderRow += '<div class=\"wc-full-height-column wc-column-freebusy wc-day-' + i;
+                    renderRow += '<div dir="ltr" class=\"wc-full-height-column wc-column-freebusy wc-day-' + i;
                     renderRow += ' wc-user-' + self._getUserIdFromIndex(j) + '\">';
                     renderRow += '</div>';
                     renderRow += '</div>';
@@ -1030,7 +1030,7 @@
         for (var i = 1; i <= options.daysToShow; i++) {
           if (!showAsSeparatedUser) {
             renderRow += '<td class=\"' + _columnBaseClass + ' wc-day-column-first wc-day-column-last day-' + i + '\">';
-            renderRow += '<div class=\"wc-full-height-column wc-day-column-inner day-' + i + '\"></div>';
+            renderRow += '<div dir="ltr" class=\"wc-full-height-column wc-day-column-inner day-' + i + '\"></div>';
             renderRow += '</td>';
           }
           else {
@@ -1051,7 +1051,7 @@
                 columnclass = columnclass.join(' ');
               }
               renderRow += '<td class=\"' + _columnBaseClass + ' ' + columnclass + ' day-' + i + '\">';
-              renderRow += '<div class=\"wc-full-height-column wc-day-column-inner day-' + i;
+              renderRow += '<div dir="ltr" class=\"wc-full-height-column wc-day-column-inner day-' + i;
               renderRow += ' wc-user-' + self._getUserIdFromIndex(j) + '\">';
               renderRow += '</div>';
               renderRow += '</td>';

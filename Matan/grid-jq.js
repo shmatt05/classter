@@ -8,14 +8,17 @@ var eventData = null;
       use24Hour:true,
       timeslotsPerHour: 4,
         defaultEventLength:4,
+        timeSeparator: ' - ',
         buttons:false,
         longDays:['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'],
+        longMonths:['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'],
+        shortMonths:['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'],
         startOnFirstDayOfWeek:false,
-        displayOddEven:true,
       businessHours:{start:6, end:23, limitDisplay: false},
       allowCalEventOverlap: true,
       overlapEventsSeparate: true,
       totalEventsWidthPercentInOneColumn : 95,
+        hourLine:true,
 
       height: function($calendar) {
         return $(window).height() - $('h1').outerHeight(true);
