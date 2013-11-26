@@ -21,11 +21,11 @@ import sys
 import webapp2
 import jinja2
 
-from users_logic import operations
+from users_logic import user_manager
 from python_objects import objects
 from db import entities
-from users_logic.operations import DailyScheduleManager
-from admin_logic.operations import AdminManager
+from users_logic.user_manager import DailyScheduleManager
+from admin_logic.admin_manager import AdminManager
 sys.path.insert(0, 'libs')
 #os.path.dirname(__file__)
 
@@ -167,7 +167,7 @@ def parse_course(str):
 
 class TestHandler(webapp2.RequestHandler):
     def get(self):
-        users_manager = operations.DailyScheduleManager("peer", "peer")
+        users_manager = user_manager.DailyScheduleManager("peer", "peer")
         #start_date = datetime(day=1, month=11, year=2013)
         #end_date = datetime(day=2, month=11, year=2013)
         sched = users_manager.get_week_daily_schedule_list()
@@ -241,7 +241,7 @@ class CreateCourse(webapp2.RequestHandler):
         duration = cgi.escape(self.request.get('duration'))
         capacity = cgi.escape(self.request.get('capacity'))
 
-        schedule_man = operations.DailyScheduleManager("peer", "peer")
+        schedule_man = user_manager.DailyScheduleManager("peer", "peer")
 
         #print("year = "+year + " month= "+ month+ " class= " + str(class_name) + " studio= "+
         #             studio + " instructor= " + instructor + " start= " + start_hour +
