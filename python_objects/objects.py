@@ -1,6 +1,6 @@
 from calendar import monthrange
 from datetime import date
-
+import uuid
 
 class CourseTemplate(object):
     def __init__(self, name, description):
@@ -24,6 +24,7 @@ class Course(CourseTemplate):
     def __init__(self, name, description, hour, duration, max_capacity, instructor, studio, color,
                  users_table, waiting_list_table, registration_start_time):
         super(Course, self).__init__(name, description)
+        self.id = uuid.uuid4()
         self.hour = hour
         self.duration = duration
         self.max_capacity = max_capacity
