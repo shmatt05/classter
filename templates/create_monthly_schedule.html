@@ -44,7 +44,11 @@
                    <label name="studio">סטודיו</label>
                </td>
                <td>
-                   <input name="studio">
+                   <select name="studios">
+                      {% for studio in studios %}
+                      <option value="{{studio.name}}">{{studio.name}}</option>
+                      {% endfor %}
+                   </select>
                </td>
            </tr>
            <tr>
@@ -52,7 +56,11 @@
                    <label name="instructor">מדריך: </label>
                </td>
                <td>
-                   <input name="instructor">
+                   <select name="instructor">
+                      {% for instructor in instructors.keys() %}
+                      <option value="{{instructors[instructor].first_name}}">{{instructors[instructor].first_name}}</option>
+                      {% endfor %}
+                   </select>
                </td>
            </tr>
             <tr>

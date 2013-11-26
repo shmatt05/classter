@@ -22,12 +22,11 @@ import webapp2
 import jinja2
 
 from users_logic import user_manager
-from python_objects import objects
 from db import entities
 from users_logic.user_manager import DailyScheduleManager
 from admin_logic.admin_manager import AdminManager
 sys.path.insert(0, 'libs')
-#os.path.dirname(__file__)
+
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader('templates'),
@@ -48,6 +47,10 @@ class MainHandler(webapp2.RequestHandler):
 
         admin_manager.add_course_template("Zumba", "stupid course")
         admin_manager.add_course_template("Yoga", "ugly course")
+        admin_manager.add_instructor("123456", "Roy", "Klinger")
+        admin_manager.add_instructor("1234326", "Moshe", "Tuki")
+        admin_manager.add_studio("Spinning Room")
+        admin_manager.add_studio("Yoga Room")
 
         peer_gym_before = entities.Gym.get_key("peer", "peer").get()
         course_templates = peer_gym_before.courses
@@ -158,8 +161,6 @@ class MainHandler(webapp2.RequestHandler):
         #self.response.write(str(result.schedule_table[str(first_day.day_in_month)].day_in_month) + "<br/>")
         #self.response.write(str(users_manager.get_daily_schedule_list(start_date, end_date)[0].courses_list[0].studio))
 
-#input: str == year#month#day#course_name#hour#studio
-#output: list of [year, month, day, course_name, hour, studio]
 
 def parse_course(str):
     return  str.split('_')
@@ -194,7 +195,9 @@ class CreateMonthSched(webapp2.RequestHandler):
         template_values = {
             'year': year,
             'month': month,
-            'courses': admin_man.get_courses_templates()
+            'courses': admin_man.get_courses_templates(),
+            'instructors': admin_man.get_instructors(),
+            'studios': admin_man.get_studios()
         }
         template = JINJA_ENVIRONMENT.get_template('create_monthly_schedule.html')
         self.response.write(template.render(template_values))

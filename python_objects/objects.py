@@ -85,16 +85,23 @@ class Instructor(object):
         self.last_name = last_name
 
     def add_to_gym(self, gym_entity):
-        if self.id_num in gym_entity.instructors.keys():
+        if self.__is_instructor_in_gym(gym_entity):
             return
-        gym_entity.instructors[self.id_num] = self
-        gym_entity.put()
+        else:
+            # add instructor to the gym's instructors table
+            gym_entity.instructors[self.id_num] = self
+            gym_entity.put()
 
     def delete_from_gym(self, gym_entity):
-        if self.id_num not in gym_entity.instructors.keys():
-            return
-        del gym_entity.instructors[self.id_num]
-        gym_entity.put()
+        if not self.__is_instructor_in_gym(gym_entity):
+            return # the instructor isn't in that gym so we can't delete it
+        else:
+            del gym_entity.instructors[self.id_num]
+            gym_entity.put()
+
+    """ check if instructor belong to the gym_entity and return true/false """
+    def __is_instructor_in_gym(self, gym_entity):
+        return self.id_num in gym_entity.instructors.keys()
 
 
 class Studio(object):

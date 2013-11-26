@@ -1,6 +1,6 @@
 from google.appengine.ext import ndb
 from db import properties
-from python_objects import objects
+from python_objects.objects import *
 
 DEFAULT_NETWORK = "network"
 DEFAULT_BRANCH = "branch"
@@ -18,7 +18,6 @@ class Gym(ndb.Model):
     studios = properties.OurJsonProperty()     # []
 
     def set_key(self):
-        #self.key = ndb.Key(Gym, self.gym_network + '_' +self.name)
         self.key = Gym.__generate_key(self.gym_network, self.name)
 
     @classmethod
@@ -39,8 +38,7 @@ class MonthSchedule(ndb.Model):
 
     """ must set year and month prior calling the function! """
     def set_key(self, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
-         #self.key = ndb.Key(Gym, gym_network +'_' + gym_branch, MonthSchedule, str(self.month) + '-' + str(self.year))
-          self.key = MonthSchedule.__generate_key(self.month, self.year, gym_network, gym_branch)
+         self.key = MonthSchedule.__generate_key(self.month, self.year, gym_network, gym_branch)
 
     @classmethod
     def get_key(cls, month=DEFAULT_MONTH, year= DEFAULT_YEAR, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
@@ -59,7 +57,7 @@ class Users(ndb.Model):
     def create_users_table(self, *users):
         users_table = {}
         for user in users:
-            assert (type(user)== objects.User)
+            assert (type(user) == User)
             users_table[user.id] = user
         return users_table
 
