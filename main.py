@@ -15,23 +15,17 @@
 # limitations under the License.
 #
 from datetime import date, datetime
+import cgi
+import sys
 
 import webapp2
-import cgi
 import jinja2
-import urllib
-import os
-from David.users_logic import operations
 
-from David.python_objects import objects
-from David.db import entities
-from David.users_logic.operations import DailyScheduleManager
-from David.admin_logic.operations import AdminManager
-
-import google.appengine.ext
-import jsonpickle
-from David.users_logic.timezone import Time
-import sys
+from users_logic import operations
+from python_objects import objects
+from db import entities
+from users_logic.operations import DailyScheduleManager
+from admin_logic.operations import AdminManager
 sys.path.insert(0, 'libs')
 #os.path.dirname(__file__)
 
