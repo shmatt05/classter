@@ -44,10 +44,8 @@ class MainHandler(webapp2.RequestHandler):
 
         # create gym and put in db:
         admin_manager = AdminManager("peer", "peer")
-        admin_manager.create_gym("tel aviv")
-        #peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses={}, instructors={}, studios=[])
-        #peer.set_key()
-        #peer.put()
+        #admin_manager.create_gym("tel aviv")
+
 
         # add month schedule
         admin_manager.create_month_schedule(2013,11)
@@ -76,6 +74,10 @@ class MainHandler(webapp2.RequestHandler):
         #                      "Moished", "Park","blue", [], [], 2013, 11, 5)
 
 ###############################
+
+        #peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses={}, instructors={}, studios=[])
+        #peer.set_key()
+        #peer.put()
 
         #creating course templates
         #zumba = objects.CourseTemplate("Zumba", "Funny course")

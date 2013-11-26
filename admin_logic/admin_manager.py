@@ -12,10 +12,7 @@ class AdminManager:
         self.gym_branch = gym_branch
         gym_entity = self.__get_gym()
         if gym_entity is None:
-             gym_entity = entities.Gym(name=gym_branch, gym_network=gym_network, address="",
-                                       courses={}, instructors={}, studios=[])
-             gym_entity.set_key()
-             gym_entity.put()
+            gym_entity = self.create_gym(gym_network,gym_branch)
         self.gym = gym_entity
 
     def __get_gym(self):
@@ -89,12 +86,12 @@ class AdminManager:
                 studio.edit_gym_studio(self.gym, new_name)
     # TODO: add delete_studio method
 
-    def create_gym(self, address, courses= {}, instructors= {}, studios= []):
-        self.gym.address = address
-        self.gym.courses = courses
-        self.gym.instructors = instructors
-        self.gym.studios = studios
-        self.gym.put()
+    def create_gym(self,gym_network, gym_branch, address="", courses={}, instructors={}, studios=[]):
+        gym_entity = entities.Gym(name=gym_branch, gym_network=gym_network, address=address,
+                                       courses=courses, instructors=instructors, studios=studios)
+        gym_entity.set_key()
+        gym_entity.put()
+        return gym_entity
 
 
     """ creates a new MonthSchedule entity for the given month and year with the current gym as its parent
