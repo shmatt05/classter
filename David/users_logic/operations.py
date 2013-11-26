@@ -63,6 +63,7 @@ class DailyScheduleManager:
 
     def add_user_to_course(self, username, year, month, day, start_hour, course_name):
         #get the course
+        print 'hello'
         month_schedule = entities.MonthSchedule.get_key(month, year, self.gym_network, self.gym_branch).get()
         day_schedule = month_schedule.schedule_table[str(day)]
         courses = day_schedule.courses_list
@@ -73,14 +74,15 @@ class DailyScheduleManager:
                     return 300 #user already subscribed
 
                 user = objects.User(username, 0, None, username)
-                if len(course.users_list) < course.max_capacity:
+                if len(course.users_list) < int(course.max_capacity):
                     course.users_list.append(user)
                     succeeded = 100
                 else:
                     course.waiting_list.append(user)
                 month_schedule.put()
+                print 'succeeded = ' + str(succeeded) + ' length = ' + str(len(course.users_list)) + ' max = ' + str(course.max_capacity)
                 return succeeded
-                break
+
 
     def delete_user_from_course(self, username, year, month, day, start_hour, course_name):
         month_schedule = entities.MonthSchedule.get_key(month, year, self.gym_network, self.gym_branch).get()

@@ -41,6 +41,7 @@ class Course(CourseTemplate):
         for i in range(1, 8):
             if date(year, month, i).isoweekday() % 7 + 1 == int(day):
                 day = i
+                break
         #calculate all the matching days of the current month
         days_to_update = [x for x in range(day, days_in_month+1) if (x-day) % 7 == 0]
         for i in days_to_update:
