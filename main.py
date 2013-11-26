@@ -36,35 +36,46 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 DEFAULT_GYM_NAME = "default_gym"
 DEFAULT_MONTH_YEAR = "01-2001"
 
+
+
+
 class MainHandler(webapp2.RequestHandler):
     def get(self):
 
-        peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses={}, instructors ={}, studios=[])
-        peer.set_key()
-        peer.put()
-
+        # create gym and put in db:
         admin_manager = AdminManager("peer", "peer")
+        admin_manager.create_gym("tel aviv")
+        #peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses={}, instructors={}, studios=[])
+        #peer.set_key()
+        #peer.put()
 
-        admin_manager.add_course_template("Zumba", "stupid course")
-        admin_manager.add_course_template("Yoga", "ugly course")
-        admin_manager.add_instructor("123456", "Roy", "Klinger")
-        admin_manager.add_instructor("1234326", "Moshe", "Tuki")
-        admin_manager.add_studio("Spinning Room")
-        admin_manager.add_studio("Yoga Room")
-
-        peer_gym_before = entities.Gym.get_key("peer", "peer").get()
-        course_templates = peer_gym_before.courses
-        self.response.write(str(course_templates) + "<br/>")
-
-        hour = datetime.now().hour
-
-        admin_manager.create_course_for_month("ZumbaLatis", "Latis the Zumbot","1400", 120, 10,
-                              "Moished", "Park","blue", [], [], 2013, 11, 3)
+        # add month schedule
+        admin_manager.create_month_schedule(2013,11)
 
 
-        admin_manager.create_course_for_month("PilaYoga", "Yoga the Pila", "0930", 60, 10,
-                              "Moished", "Park","blue", [], [], 2013, 11, 5)
+        ## add
+        #admin_manager = AdminManager("peer", "peer")
+        #admin_manager.add_course_template("Zumba", "stupid course")
+        #admin_manager.add_course_template("Yoga", "ugly course")
+        #admin_manager.add_instructor("123456", "Roy", "Klinger")
+        #admin_manager.add_instructor("1234326", "Moshe", "Tuki")
+        #admin_manager.add_studio("Spinning Room")
+        #admin_manager.add_studio("Yoga Room")
+        #
+        #peer_gym_before = entities.Gym.get_key("peer", "peer").get()
+        #course_templates = peer_gym_before.courses
+        #self.response.write(str(course_templates) + "<br/>")
+        #
+        #hour = datetime.now().hour
+        #
+        #admin_manager.create_course_for_month("ZumbaLatis", "Latis the Zumbot","1400", 120, 10,
+        #                      "Moished", "Park","blue", [], [], 2013, 11, 3)
+        #
+        #
+        #admin_manager.create_course_for_month("PilaYoga", "Yoga the Pila", "0930", 60, 10,
+        #                      "Moished", "Park","blue", [], [], 2013, 11, 5)
 
+###############################
 
         #creating course templates
         #zumba = objects.CourseTemplate("Zumba", "Funny course")

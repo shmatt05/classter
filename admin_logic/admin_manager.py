@@ -10,7 +10,13 @@ class AdminManager:
     def __init__(self, gym_network, gym_branch): #gym_key is <network>_<branch>
         self.gym_network = gym_network
         self.gym_branch = gym_branch
-        self.gym = self.__get_gym()
+        gym_entity = self.__get_gym()
+        if gym_entity is None:
+             gym_entity = entities.Gym(name=gym_branch, gym_network=gym_network, address="",
+                                       courses={}, instructors={}, studios=[])
+             gym_entity.set_key()
+             gym_entity.put()
+        self.gym = gym_entity
 
     def __get_gym(self):
         return entities.Gym.get_key(self.gym_network, self.gym_branch).get()
@@ -83,6 +89,14 @@ class AdminManager:
                 studio.edit_gym_studio(self.gym, new_name)
     # TODO: add delete_studio method
 
+    def create_gym(self, address, courses= {}, instructors= {}, studios= []):
+        self.gym.address = address
+        self.gym.courses = courses
+        self.gym.instructors = instructors
+        self.gym.studios = studios
+        self.gym.put()
+
+
     """ creates a new MonthSchedule entity for the given month and year with the current gym as its parent
         doesn't change the DB if the MonthSchedule already exists
     """
@@ -90,11 +104,12 @@ class AdminManager:
         days_in_month = calendar.monthrange(year, month)[1]
         schedule = self.__get_month_schedule(month, year)
         if schedule is None:
-            schedule = entities.MonthSchedule(year=year, month=month, schedule_table={})
+            schedule = entities.MonthSchedule(year=year, month=month, daily_schedule_table={})
             schedule.set_key(self.gym_network, self.gym_branch)
-            for day in range(1, days_in_month+1):
-                new_day = objects.DailySchedule(year, month, day, self.get_day_by_date(year, month, day), [])
-                schedule.schedule_table[day] = new_day
+            for day_of_month in range(1, days_in_month+1):
+                daily_schedule = objects.DailySchedule(year, month, day_of_month,
+                                                       self.get_day_by_date(year, month, day_of_month), [])
+                schedule.daily_schedule_table[day_of_month] = daily_schedule
             schedule.put()
 
     """ creates a new course object and updates the day that matches the given day in each week of the current month

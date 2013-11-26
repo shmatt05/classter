@@ -29,12 +29,16 @@ class Gym(ndb.Model):
     def __generate_key(cls, gym_network, gym_branch):
         return ndb.Key(Gym, gym_network + '_' + gym_branch)
 
+    def __str__(self):
+        return "name= " + self.name + ", network= " + self.gym_network + ", address= " + self.address + ", courses= " +\
+               str(self.courses) + ", instructors= " + str(self.instructors) + ", studios= " + str(self.studios)
+
 
 class MonthSchedule(ndb.Model):
     """ Month Schedule Entity. It's parent key is Gym """
     year = ndb.IntegerProperty(required=True)
     month = ndb.IntegerProperty(required=True)
-    schedule_table = properties.OurJsonProperty() #schedule_table = {day_one.day : day_one,  day_two.day : day_two }
+    daily_schedule_table = properties.OurJsonProperty() #schedule_table = {day_one.day : day_one,  day_two.day : day_two }
 
     """ must set year and month prior calling the function! """
     def set_key(self, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
@@ -42,7 +46,6 @@ class MonthSchedule(ndb.Model):
 
     @classmethod
     def get_key(cls, month=DEFAULT_MONTH, year= DEFAULT_YEAR, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
-        #return ndb.Key(Gym, gym_network +'_' + gym_branch, MonthSchedule, month + '-' + year)
         return cls.__generate_key(month, year, gym_network, gym_branch)
 
     @classmethod
