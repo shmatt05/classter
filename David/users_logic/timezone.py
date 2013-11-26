@@ -11,7 +11,7 @@ class Time():
     tz should be one of pytz.all_timezones
     """
     def __init__(self, tz=None):
-        if tz==None:
+        if tz is None:
             self.tz_time = None
         else:
             self.tz_time = pytz.timezone(tz)
