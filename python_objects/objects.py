@@ -121,5 +121,12 @@ class Studio(object):
         for studio in gym_entity.studios:
             if self.name.lower() == studio.name.lower():
                 studio.name = new_name
+                gym_entity.put()
                 break
-        gym_entity.put()
+
+    def delete_from_gym(self, gym_entity):
+        for studio in gym_entity.studios:
+            if self.name.lower() == studio.name.lower():
+                gym_entity.studios.remove(studio)
+                gym_entity.put();
+                break;
