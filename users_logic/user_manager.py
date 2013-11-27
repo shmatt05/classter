@@ -53,19 +53,19 @@ class DailyScheduleManager:
         for day in range(days+1):
             curr_date = start_date + timedelta(day)
             if curr_date.month == month:
-                result.append(schedule.schedule_table[str(curr_date.day)])
+                result.append(schedule.daily_schedule_table[str(curr_date.day)])
             else:
                 year = start_date.year
                 month = start_date.month
                 schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
-                result.append(schedule.schedule_table[str(curr_date.day)])
+                result.append(schedule.daily_schedule_table[str(curr_date.day)])
         return result
 
     def add_user_to_course(self, username, year, month, day, start_hour, course_name):
         #get the course
         print 'hello'
         month_schedule = entities.MonthSchedule.get_key(month, year, self.gym_network, self.gym_branch).get()
-        day_schedule = month_schedule.schedule_table[str(day)]
+        day_schedule = month_schedule.daily_schedule_table[str(day)]
         courses = day_schedule.courses_list
         succeeded = 200
         for course in courses:
@@ -86,7 +86,7 @@ class DailyScheduleManager:
 
     def delete_user_from_course(self, username, year, month, day, start_hour, course_name):
         month_schedule = entities.MonthSchedule.get_key(month, year, self.gym_network, self.gym_branch).get()
-        day_schedule = month_schedule.schedule_table[str(day)]
+        day_schedule = month_schedule.daily_schedule_table[str(day)]
         courses = day_schedule.courses_list
         course = DailyScheduleManager.get_specified_course(course_name, start_hour, courses)
         if course is None:

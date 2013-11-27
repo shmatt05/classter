@@ -21,7 +21,7 @@ import sys
 import webapp2
 import jinja2
 
-from users_logic import user_manager
+from users_logic.user_manager import DailyScheduleManager
 from db import entities
 from users_logic.user_manager import DailyScheduleManager
 from admin_logic.admin_manager import AdminManager
@@ -50,19 +50,29 @@ class MainHandler(webapp2.RequestHandler):
         # add month schedule
         admin_manager.create_month_schedule(2013,11)
 
+        # create DailyScheduleManager
+        daily_sched_manager = DailyScheduleManager("peer", "peer")
+        daily_list = daily_sched_manager.get_daily_schedule_list_from_today(3)
+        self.response.write(str(daily_list[0].day_in_week))
+
+        # add course template
+        admin_manager.add_course_template("Zumba", "stupid course")
+        admin_manager.add_course_template("Yoga", "ugly course")
+        admin_manager.add_course_template("yoga", "ugly course")
+        self.response.write(admin_manager.get_courses_templates())
+
+        # create course
+        admin_manager.create_course_for_month("ZumbaLatis", "Latis the Zumbot","1400", 120, 10,
+                      "Moished", "Park","blue", [], [], 2013, 11, 3)
 
         ## add
-        #admin_manager = AdminManager("peer", "peer")
-        #admin_manager.add_course_template("Zumba", "stupid course")
-        #admin_manager.add_course_template("Yoga", "ugly course")
+
         #admin_manager.add_instructor("123456", "Roy", "Klinger")
         #admin_manager.add_instructor("1234326", "Moshe", "Tuki")
         #admin_manager.add_studio("Spinning Room")
         #admin_manager.add_studio("Yoga Room")
         #
-        #peer_gym_before = entities.Gym.get_key("peer", "peer").get()
-        #course_templates = peer_gym_before.courses
-        #self.response.write(str(course_templates) + "<br/>")
+
         #
         #hour = datetime.now().hour
         #

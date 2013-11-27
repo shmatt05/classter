@@ -1,5 +1,7 @@
 from calendar import monthrange
 from datetime import date
+from datetime import datetime
+import time
 import uuid
 
 class CourseTemplate(object):
@@ -8,7 +10,7 @@ class CourseTemplate(object):
         self.description = description
 
     def add_to_gym(self, gym_entity):
-        if self.name in gym_entity.courses.keys():
+        if self.name.lower() in [item.lower() for item in gym_entity.courses.keys()]:
             return
         gym_entity.courses[self.name] = self
         gym_entity.put()
@@ -70,6 +72,9 @@ class DailySchedule(object):
         self.day_in_week = day_in_week
         self.courses_list = courses_list
 
+    def javascript_course_start_datetime(self, course):
+        return time.mktime(datetime(int(self.year), int(self.month), int(self.day_in_month), int(course.hour[:2]),
+                                    int(course.hour[2:4])))
 
 class User(object):
     def __init__(self, id, level, google_fb, name):
