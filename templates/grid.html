@@ -23,6 +23,7 @@
             oneClass.dayOfWeek =(parseInt("{{ day.day_in_week }}")-1).toString();
             oneClass.dayOfMonth = "{{ day.day_in_month }}";
             oneClass.timeOfDay = "{{ course.hour }}";
+            alert(oneClass.timeOfDay);
             oneClass.classLength = parseFloat(parseInt("{{ course.duration }}") / 60);
             oneClass.colorCode = "{{ course.color }}" ;
             oneClass.studioID = "{{ course.studio }}";
@@ -31,8 +32,7 @@
             oneClass.maxSlots = "{{ course.max_capacity }}";
 
             oneClass.takenSlots = "{{ course.userslist }}".length; // watch out, might not work, make sure it does
-            oneClass.classID = oneClass.year + "_" + oneClass.month + "_" + oneClass.dayOfMonth + "_" + oneClass.className + "_" + oneClass.timeOfDay + "_" + oneClass.studioID;
-            setClassesOnGrid(oneClass);
+            oneClass.classID = "{{ course.id }}"
         </script>
         {% endfor %}
     {% endfor %}
