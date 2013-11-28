@@ -1,4 +1,6 @@
 from google.appengine.ext import ndb
+import sys
+sys.path.insert(0, 'libs')
 import jsonpickle
 
 """ implements JsonProperty using jsonpickle """

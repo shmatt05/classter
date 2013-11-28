@@ -2,277 +2,22 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>Classter</title>
-    <link rel="stylesheet" type="text/css" href="lib/css/grid.css">
-    <link rel="stylesheet" type="text/css" href="lib/css/magnific-popup.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <title>Classter JS Library Test v1</title>
+    <link rel='stylesheet' type='text/css' href='lib/css/jquery-ui-1.8.11.custom.css' />
+    <link rel='stylesheet' type='text/css' href='lib/css/jquery.weekcalendar.css' />
+    <script type='text/javascript' src='lib/js/jquery-1.4.4.min.js'></script>
+    <script type='text/javascript' src='lib/js/jquery-ui-1.8.11.custom.min.js'></script>
     <script type="text/javascript" src="lib/js/date.js"></script>
-    <script type='text/javascript' src='lib/js/classter-grid.js'></script>
+    <script type='text/javascript' src='lib/js/jquery.weekcalendar.js'></script>
     <script type='text/javascript' src='lib/js/grid-jq.js'></script>
-
-    <script type="text/javascript" src="lib/js/jquery.magnific-popup.js"></script>
-
-</head>
-<body>
-        <div id="timesTable" class="span12 pull-right">
-
-
-
-    <table id="timeTable" width="100%" height="70%" class="table table-striped  table-bordered table-condensed timeTableBorder" dir="rtl" align="right">
-    <div class="ttClasses" width="100%"></div>
-    <colgroup>
-        <col id="hours">
-        <col id="colday0" class="gridCols">
-        <col id="colday1" class="gridCols">
-        <col id="colday2" class="gridCols">
-        <col id="colday3" class="gridCols">
-        <col id="colday4" class="gridCols">
-        <col id="colday5" class="gridCols">
-        <col id="colday6" class="gridCols">
-
-    </colgroup>
-      <thead>
-        <tr class="info" id="ttHead">
-          <th width="4%"></th>
-          <th width="13.7%">ראשון</th>
-          <th width="13.7%">שני</th>
-          <th width="13.7%">שלישי</th>
-          <th width="13.7%">רביעי</th>
-          <th width="13.7%">חמישי</th>
-          <th width="13.7%">שישי</th>
-          <th width="13.7%">שבת</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr id="row_dates">
-            <td></td>
-            <td><label id="labelday0"></label></td>
-            <td><label id="labelday1"></label></td>
-            <td><label id="labelday2"></label></td>
-            <td><label id="labelday3"></label></td>
-            <td><label id="labelday4"></label></td>
-            <td><label id="labelday5"></label></td>
-            <td><label id="labelday6"></label></td>
-
-        </tr>
-        <tr id="row_0600">
-          <th id="hour06" class="timesColumn">06:00</th>
-          <td id="00600"></td>
-          <td id="10600"></td>
-          <td id="20600"></td>
-          <td id="30600"></td>
-          <td id="40600"></td>
-          <td id="50600"></td>
-          <td id="60600"></td>
-        </tr>
-          <tr id="row_0700">
-              <th id="hour07" class="timesColumn">07:00</th>
-              <td id="00700"></td>
-              <td id="10700"></td>
-              <td id="20700"></td>
-              <td id="30700"></td>
-              <td id="40700"></td>
-              <td id="50700"></td>
-              <td id="60700"></td>
-        </tr>
-          <tr id="row_0800">
-              <th id="hour08" class="timesColumn">08:00</th>
-              <td id="00800"></td>
-              <td id="10800"></td>
-              <td id="20800"></td>
-              <td id="30800"></td>
-              <td id="40800"></td>
-              <td id="50800"></td>
-              <td id="60800"></td>
-        </tr>
-        <tr id="row_0900">
-          <th id="hour09" class="timesColumn">09:00</th>
-          <td id="00900"></td>
-          <td id="10900"></td>
-          <td id="20900"></td>
-          <td id="30900"></td>
-          <td id="40900"></td>
-          <td id="50900"></td>
-          <td id="60900"></td>
-        </tr>
-        <tr id="row_1000">
-          <th id="hour10" class="timesColumn">10:00</th>
-          <td id="01000"></td>
-          <td id="11000"></td>
-          <td id="21000"></td>
-          <td id="31000"></td>
-          <td id="41000"></td>
-          <td id="51000"></td>
-          <td id="61000"></td>
-        </tr>
-        <tr id="row_1100">
-          <th id="hour11" class="timesColumn">11:00</th>
-          <td id="01100"></td>
-          <td id="11100"></td>
-          <td id="21100"></td>
-          <td id="31100"></td>
-          <td id="41100"></td>
-          <td id="51100"></td>
-          <td id="61100"></td>
-        </tr>
-        <tr id="row_1200">
-          <th id="hour12" class="timesColumn">12:00</th>
-          <td id="01200"></td>
-          <td id="11200"></td>
-          <td id="21200"></td>
-          <td id="31200"></td>
-          <td id="41200"></td>
-          <td id="51200"></td>
-          <td id="61200"></td>
-        </tr>
-        <tr id="row_1300">
-          <th id="hour13" class="timesColumn">13:00</th>
-          <td id="01300"></td>
-          <td id="11300"></td>
-          <td id="21300"></td>
-          <td id="31300"></td>
-          <td id="41300"></td>
-          <td id="51300"></td>
-          <td id="61300"></td>
-        </tr>
-        <tr id="row_1400">
-          <th id="hour14" class="timesColumn">14:00</th>
-          <td id="01400"></td>
-          <td id="11400"></td>
-          <td id="21400"></td>
-          <td id="31400"></td>
-          <td id="41400"></td>
-          <td id="51400"></td>
-          <td id="61400"></td>
-        </tr>
-        <tr id="row_1500">
-          <th id="hour15" class="timesColumn">15:00</th>
-          <td id="01500"></td>
-          <td id="11500"></td>
-          <td id="21500"></td>
-          <td id="31500"></td>
-          <td id="41500"></td>
-          <td id="51500"></td>
-          <td id="61500"></td>
-        </tr>
-        <tr id="row_1600">
-          <th id="hour16" class="timesColumn">16:00</th>
-          <td id="01600"></td>
-          <td id="11600"></td>
-          <td id="21600"></td>
-          <td id="31600"></td>
-          <td id="41600"></td>
-          <td id="51600"></td>
-          <td id="61600"></td>
-        </tr>
-        <tr id="row_1700">
-          <th id="hour17" class="timesColumn">17:00</th>
-          <td id="01700"></td>
-          <td id="11700"></td>
-          <td id="21700"></td>
-          <td id="31700"></td>
-          <td id="41700"></td>
-          <td id="51700"></td>
-          <td id="61700"></td>
-        </tr>
-        <tr id="row_1800">
-          <th id="hour18" class="timesColumn">18:00</th>
-          <td id="01800"></td>
-          <td id="11800"></td>
-          <td id="21800"></td>
-          <td id="31800"></td>
-          <td id="41800"></td>
-          <td id="51800"></td>
-          <td id="61800"></td>
-        </tr>
-        <tr id="row_1900">
-          <th id="hour19" class="timesColumn">19:00</th>
-          <td id="01900"></td>
-          <td id="11900"></td>
-          <td id="21900"></td>
-          <td id="31900"></td>
-          <td id="41900"></td>
-          <td id="51900"></td>
-          <td id="61900"></td>
-        </tr>
-        <tr id="row_2000">
-          <th id="hour20" class="timesColumn">20:00</th>
-          <td id="02000"></td>
-          <td id="12000"></td>
-          <td id="22000"></td>
-          <td id="32000"></td>
-          <td id="42000"></td>
-          <td id="52000"></td>
-          <td id="62000"></td>
-        </tr>
-        <tr id="row_2100">
-
-          <th id="hour21" class="timesColumn">21:00</th>
-          <td id="02100"></td>
-          <td id="12100"></td>
-          <td id="22100"></td>
-          <td id="32100"></td>
-          <td id="42100"></td>
-          <td id="52100"></td>
-          <td id="62100"></td>
-        </tr>
-
-              <tr id="row_2200">
-
-          <th id="hour22" class="timesColumn">22:00</th>
-          <td id="02200"></td>
-          <td id="12200"></td>
-          <td id="22200"></td>
-          <td id="32200"></td>
-          <td id="42200"></td>
-          <td id="52200"></td>
-          <td id="62200"></td>
-        </tr>
-
-              <tr id="row_2300">
-
-          <th id="hour23" class="timesColumn">23:00</th>
-          <td id="02300"></td>
-          <td id="12300"></td>
-          <td id="22300"></td>
-          <td id="32300"></td>
-          <td id="42300"></td>
-          <td id="52300"></td>
-          <td id="62300"></td>
-        </tr>
-
-
-      </tbody>
-    </table>
-
-
-
-   </div>
-   <div id="test-popup" class="white-popup mfp-hide">
-     <form id="signup" action="register_to_class" method="post">
-        Please Enter Your Name To Sign Up:<br>
-        <input type="text" name="firstname" /><br>
-        <input type="hidden" id="classkey" name="classkey" value="" />
-        <input type="submit" value="Submit">
-
-    </form>
-    </div>
-<script>
-    initDepthArr();
-</script>
-{% for day in days %}
+    <script>
+        var classesObjectArr = new Array(); //to save secondary information on all courses
+        var classesTableArr = new Array(); //to insert each class to our calendar
+    </script>
+    {% for day in days %}
+        {% for course in day.courses_list %}
         <script>
-            var date_day = "{{ day.day_in_month }}";
-            var date_month =  "{{ day.month }}";
-            var date_year = "{{ day.year }}";
-            var date_dayofweek = (parseInt( "{{ day.day_in_week }}")-1).toString();
-            console.log('date: ' +date_day + 'day of week: ' + date_dayofweek);
-            $('#labelday'+date_dayofweek).text(date_day + "/" + date_month + "/" + date_year);
-        </script>
-    {% for course in day.courses_list %}
-        <script>
-             var oneClass ={};
+            var oneClass ={};
             oneClass.year = "{{ day.year }}";
             oneClass.month = "{{ day.month }}";
             oneClass.dayOfWeek =(parseInt("{{ day.day_in_week }}")-1).toString();
@@ -289,9 +34,10 @@
             oneClass.classID = oneClass.year + "_" + oneClass.month + "_" + oneClass.dayOfMonth + "_" + oneClass.className + "_" + oneClass.timeOfDay + "_" + oneClass.studioID;
             setClassesOnGrid(oneClass);
         </script>
+        {% endfor %}
     {% endfor %}
-{% endfor %}
-
-
+</head>
+<body>
+<div id="calendar"></div>
 </body>
 </html>
