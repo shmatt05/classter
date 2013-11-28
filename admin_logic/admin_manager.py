@@ -1,5 +1,6 @@
 from db import entities
 from python_objects.objects import *
+import uuid
 
 __author__ = 'rokli_000'
 
@@ -58,7 +59,7 @@ class AdminManager:
     def add_instructor(self, id_num, first_name, last_name):
         if self.gym is None:
             raise Exception("No such Gym!")
-        new_instructor = objects.Instructor(id_num, first_name, last_name)
+        new_instructor = Instructor(id_num, first_name, last_name)
         new_instructor.add_to_gym(self.gym)
 
     """ deletes an instructor from the instructors dictionary of the specified Gym entity """
@@ -74,7 +75,7 @@ class AdminManager:
     def add_studio(self, name):
         if self.gym is None:
             raise Exception("No such Gym!")
-        new_studio = objects.Studio(name)
+        new_studio = Studio(name)
         new_studio.add_to_gym(self.gym)
 
     """ edits an existing studio object in the studios list of the specified Gym entity """
@@ -122,8 +123,8 @@ class AdminManager:
         month_schedule = self.__get_month_schedule(month, year)
         if month_schedule is None:
             raise Exception("No Month Schedule!") #may be changed in the future
-        new_course = Course(course_template.name, course_template.description, hour, duration, max_capacity,
-                            instructor, studio, color, users_list, waiting_list, None)
+        new_course = Course(str(course_template.name), str(course_template.description), hour, duration, max_capacity,
+                            instructor, studio, color, users_list, waiting_list, datetime.now(),str(uuid.uuid4()))
         new_course.add_to_month_schedule(month_schedule, day)
 
     def edit_course(self, old_name, new_name,  old_hour, new_hour, description, duration, max_capacity, instructor,

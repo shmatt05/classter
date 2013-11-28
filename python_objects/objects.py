@@ -43,9 +43,9 @@ class CourseTemplate(object):
 
 class Course(CourseTemplate):
     def __init__(self, name, description, hour, duration, max_capacity, instructor, studio, color,
-                 users_table, waiting_list_table, registration_start_time):
+                 users_table, waiting_list_table, registration_start_time, identifier):
         super(Course, self).__init__(name, description)
-        #self.identifier = identifier
+        self.id = identifier
         self.hour = hour
         self.duration = duration
         self.max_capacity = max_capacity
@@ -69,9 +69,9 @@ class Course(CourseTemplate):
         #calculate all the matching days of the current month
         days_to_update = [x for x in range(day_in_week, days_in_month+1) if (x-day_in_week) % 7 == 0]
         for i in days_to_update:
-            for course in month_schedule.daily_schedule_table[str(i)].courses_list:
-                if course.name == self.name:
-                    return
+            #for course in month_schedule.daily_schedule_table[str(i)].courses_list:
+            #    if course.id == self.id:
+            #        return
             month_schedule.daily_schedule_table[str(i)].courses_list.append(self)
         month_schedule.put()
 

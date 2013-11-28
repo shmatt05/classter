@@ -62,8 +62,16 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(admin_manager.get_courses_templates())
 
         # create course
-        admin_manager.create_course_for_month("ZumbaLatis", "Latis the Zumbot","1400", 120, 10,
-                      "Moished", "Park","blue", [], [], 2013, 11, 3)
+        admin_manager.create_course_for_month("Zumba","1400", 120, 10,
+                      "Moished", "Park","blue", [], [], 2013, 11, 4)
+
+        admin_manager.create_course_for_month("Zumba","1800", 40, 10,
+                      "Moished", "Park","green", [], [], 2013, 11, 5)
+
+        admin_manager.create_course_for_month("Yoga","1700", 90, 10,
+                      "Moished", "Park","blue", [], [], 2013, 11, 5)
+
+        self.response.write(str(daily_list[0].courses_list[0].name))
 
         ## add
 
@@ -191,7 +199,7 @@ def parse_course(str):
 
 class TestHandler(webapp2.RequestHandler):
     def get(self):
-        users_manager = user_manager.DailyScheduleManager("peer", "peer")
+        users_manager = DailyScheduleManager("peer", "peer")
         #start_date = datetime(day=1, month=11, year=2013)
         #end_date = datetime(day=2, month=11, year=2013)
         sched = users_manager.get_week_daily_schedule_list()
@@ -267,7 +275,7 @@ class CreateCourse(webapp2.RequestHandler):
         duration = cgi.escape(self.request.get('duration'))
         capacity = cgi.escape(self.request.get('capacity'))
 
-        schedule_man = user_manager.DailyScheduleManager("peer", "peer")
+        schedule_man = DailyScheduleManager("peer", "peer")
 
         #print("year = "+year + " month= "+ month+ " class= " + str(class_name) + " studio= "+
         #             studio + " instructor= " + instructor + " start= " + start_hour +
