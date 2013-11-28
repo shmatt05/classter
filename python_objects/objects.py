@@ -5,7 +5,7 @@ from datetime import datetime
 #from db import entities
 import time
 
-class GymManager():
+class GymManager(object):
     def __init__(self, gym_entity):
         self.gym = gym_entity
 
@@ -16,11 +16,6 @@ class GymManager():
         for item in course_templates_table.keys():
             if (course_name.lower() == item.lower()):
                 return course_templates_table[item]
-
-class MonthScheduleManager():
-    def __init__(self, month_schedule_entity):
-        self.month_schedule = month_schedule_entity
-
 
 
 class CourseTemplate(object):

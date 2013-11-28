@@ -50,28 +50,28 @@ class MainHandler(webapp2.RequestHandler):
         # add month schedule
         admin_manager.create_month_schedule(2013,11)
 
-        # create DailyScheduleManager
-        daily_sched_manager = DailyScheduleManager("peer", "peer")
-        daily_list = daily_sched_manager.get_daily_schedule_list_from_today(3)
-        self.response.write(str(daily_list[0].day_in_week))
+        ## create DailyScheduleManager
+        #daily_sched_manager = DailyScheduleManager("peer", "peer")
+        #daily_list = daily_sched_manager.get_daily_schedule_list_from_today(3)
+        #self.response.write(str(daily_list[0].day_in_week))
 
-        # add course template
-        admin_manager.add_course_template("Zumba", "stupid course")
-        admin_manager.add_course_template("Yoga", "ugly course")
-        admin_manager.add_course_template("yoga", "ugly course")
-        self.response.write(admin_manager.get_courses_templates())
-
-        # create course
-        admin_manager.create_course_for_month("Zumba","1400", 120, 10,
-                      "Moished", "Park","blue", [], [], 2013, 11, 4)
-
-        admin_manager.create_course_for_month("Zumba","1800", 40, 10,
-                      "Moished", "Park","green", [], [], 2013, 11, 5)
-
-        admin_manager.create_course_for_month("Yoga","1700", 90, 10,
-                      "Moished", "Park","blue", [], [], 2013, 11, 5)
-
-        self.response.write(str(daily_list[0].courses_list[0].name))
+        ## add course template
+        #admin_manager.add_course_template("Zumba", "stupid course")
+        #admin_manager.add_course_template("Yoga", "ugly course")
+        #admin_manager.add_course_template("yoga", "ugly course")
+        #self.response.write(admin_manager.get_courses_templates())
+        #
+        ## create course
+        #admin_manager.create_course_for_month("Zumba","1400", 120, 10,
+        #              "Moished", "Park","blue", [], [], 2013, 11, 4)
+        #
+        #admin_manager.create_course_for_month("Zumba","1800", 40, 10,
+        #              "Moished", "Park","green", [], [], 2013, 11, 5)
+        #
+        #admin_manager.create_course_for_month("Yoga","1700", 90, 10,
+        #              "Moished", "Park","blue", [], [], 2013, 11, 5)
+        #
+        #self.response.write(str(daily_list[0].courses_list[0].name))
 
         ## add
 

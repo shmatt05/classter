@@ -95,16 +95,3 @@ class DailyScheduleManager:
         month_schedule.put()
 
 
-
-print str(11)+ "-" + str(2013)
-time = Time('Israel')
-today = time.now()
-for day in range(7):
-    curr_date = today + timedelta(day)
-    print curr_date
-print timedelta(3)
-print range(7)
- #from pytz.all_timezones
-print time.now().day - time.get_date_with_delta(-7).day
-print time.now()
-print time.get_date_with_delta(20)
