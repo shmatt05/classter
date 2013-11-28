@@ -74,16 +74,14 @@ class InitialHandler(webapp2.RequestHandler):
         admin_manager.create_course_for_month("Yoga","1700", 90, 10,
                       "Moished", "Park","blue", [], [], 2013, 11, 5)
 
+        self.response.write(str(daily_list[0].courses_list[0].name))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
 
         admin_manager = AdminManager("peer", "peer")
-        daily_sched_manager = DailyScheduleManager(admin_manager.gym_network, admin_manager.gym_branch)
 
-        daily_list = daily_sched_manager.get_daily_schedule_list_from_today(3)
 
-        self.response.write(str(daily_list[0].courses_list[0].name))
 
         ## add
 
