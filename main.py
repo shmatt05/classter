@@ -37,41 +37,53 @@ DEFAULT_GYM_NAME = "default_gym"
 DEFAULT_MONTH_YEAR = "01-2001"
 
 
+class InitialHandler(webapp2.RequestHandler):
+    def get(self):
+        """initialize the db"""
+        """create gym and put in db:"""
+        admin_manager = AdminManager("peer", "peer")
+        #admin_manager.create_gym("tel aviv")
+
+        """add month schedule"""
+        admin_manager.create_month_schedule(2013, 11)
+
+        """create DailyScheduleManager"""
+        daily_sched_manager = DailyScheduleManager(admin_manager.gym_network, admin_manager.gym_branch)
+        daily_list = daily_sched_manager.get_daily_schedule_list_from_today(3)
+        self.response.write(str(daily_list[0].day_in_week))
+
+        """add course templates"""
+        admin_manager.add_course_template("Zumba", "stupid course")
+        admin_manager.add_course_template("Yoga", "ugly course")
+        admin_manager.add_course_template("yoga", "ugly course")
+        self.response.write(admin_manager.get_courses_templates())
+
+        """add course template"""
+        admin_manager.add_course_template("Zumba", "stupid course")
+        admin_manager.add_course_template("Yoga", "ugly course")
+        admin_manager.add_course_template("yoga", "ugly course") #won't succeed, because Yoga already exist
+        self.response.write(admin_manager.get_courses_templates())
+
+        """create courses"""
+        admin_manager.create_course_for_month("Zumba","1400", 120, 10,
+                      "Moished", "Park","blue", [], [], 2013, 11, 4)
+
+        admin_manager.create_course_for_month("Zumba","1800", 40, 10,
+                      "Moished", "Park","green", [], [], 2013, 11, 5)
+
+        admin_manager.create_course_for_month("Yoga","1700", 90, 10,
+                      "Moished", "Park","blue", [], [], 2013, 11, 5)
 
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
 
-        # create gym and put in db:
         admin_manager = AdminManager("peer", "peer")
-        #admin_manager.create_gym("tel aviv")
+        daily_sched_manager = DailyScheduleManager(admin_manager.gym_network, admin_manager.gym_branch)
 
+        daily_list = daily_sched_manager.get_daily_schedule_list_from_today(3)
 
-        # add month schedule
-        admin_manager.create_month_schedule(2013,11)
-
-        ## create DailyScheduleManager
-        #daily_sched_manager = DailyScheduleManager("peer", "peer")
-        #daily_list = daily_sched_manager.get_daily_schedule_list_from_today(3)
-        #self.response.write(str(daily_list[0].day_in_week))
-
-        ## add course template
-        #admin_manager.add_course_template("Zumba", "stupid course")
-        #admin_manager.add_course_template("Yoga", "ugly course")
-        #admin_manager.add_course_template("yoga", "ugly course")
-        #self.response.write(admin_manager.get_courses_templates())
-        #
-        ## create course
-        #admin_manager.create_course_for_month("Zumba","1400", 120, 10,
-        #              "Moished", "Park","blue", [], [], 2013, 11, 4)
-        #
-        #admin_manager.create_course_for_month("Zumba","1800", 40, 10,
-        #              "Moished", "Park","green", [], [], 2013, 11, 5)
-        #
-        #admin_manager.create_course_for_month("Yoga","1700", 90, 10,
-        #              "Moished", "Park","blue", [], [], 2013, 11, 5)
-        #
-        #self.response.write(str(daily_list[0].courses_list[0].name))
+        self.response.write(str(daily_list[0].courses_list[0].name))
 
         ## add
 
@@ -349,6 +361,7 @@ app = webapp2.WSGIApplication([
     ('/create_month_year', CreateMonthYear),
     ('/add_course', AddCourse),
     ('/create_course', CreateCourse),
-    ('/register_to_class', RegisterToClass )
+    ('/register_to_class', RegisterToClass ),
+    ('/initial',InitialHandler)
 ], debug=True)
 

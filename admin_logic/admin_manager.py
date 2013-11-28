@@ -124,7 +124,7 @@ class AdminManager:
         if month_schedule is None:
             raise Exception("No Month Schedule!") #may be changed in the future
         new_course = Course(str(course_template.name), str(course_template.description), hour, duration, max_capacity,
-                            instructor, studio, color, users_list, waiting_list, datetime.now(),str(uuid.uuid4()))
+                            instructor, studio, color, users_list, waiting_list, None,str(uuid.uuid4()))
         new_course.add_to_month_schedule(month_schedule, day)
 
     def edit_course(self, old_name, new_name,  old_hour, new_hour, description, duration, max_capacity, instructor,
