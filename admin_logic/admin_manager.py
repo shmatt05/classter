@@ -1,5 +1,5 @@
 from db import entities
-from python_objects import objects
+from python_objects.objects import *
 
 __author__ = 'rokli_000'
 
@@ -36,7 +36,7 @@ class AdminManager:
     def add_course_template(self, name, description):
         if self.gym is None:
             raise Exception("No such Gym!")
-        new_template = objects.CourseTemplate(name, description)
+        new_template = CourseTemplate(name, description)
         new_template.add_to_gym(self.gym)
 
     """ edits an existing course_template object in the courses list of the specified Gym entity """
@@ -104,7 +104,7 @@ class AdminManager:
             schedule = entities.MonthSchedule(year=year, month=month, daily_schedule_table={})
             schedule.set_key(self.gym_network, self.gym_branch)
             for day_of_month in range(1, days_in_month+1):
-                daily_schedule = objects.DailySchedule(year, month, day_of_month,
+                daily_schedule = DailySchedule(year, month, day_of_month,
                                                        self.get_day_by_date(year, month, day_of_month), [])
                 schedule.daily_schedule_table[day_of_month] = daily_schedule
             schedule.put()
@@ -112,15 +112,18 @@ class AdminManager:
     """ creates a new course object and updates the day that matches the given day in each week of the current month
         day should be in range(1,7)
     """
-    def create_course_for_month(self, name, description, hour, duration, max_capacity, instructor, studio, color,
+    def create_course_for_month(self, name, hour, duration, max_capacity, instructor, studio, color,
                                 users_list, waiting_list, year, month, day):
         # check and get the course template of that course
-        #course_template = #todo
+        gym_manager = GymManager(self.gym)
+        course_template = gym_manager.does_course_template_exist(name)
+        if course_template is None:
+            raise Exception("No such Course Template")
         month_schedule = self.__get_month_schedule(month, year)
         if month_schedule is None:
             raise Exception("No Month Schedule!") #may be changed in the future
-        new_course = objects.Course(name, description, hour, duration, max_capacity, instructor, studio, color,
-                                    users_list, waiting_list)
+        new_course = Course(course_template.name, course_template.description, hour, duration, max_capacity,
+                            instructor, studio, color, users_list, waiting_list, None)
         new_course.add_to_month_schedule(month_schedule, day)
 
     def edit_course(self, old_name, new_name,  old_hour, new_hour, description, duration, max_capacity, instructor,

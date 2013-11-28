@@ -1,8 +1,27 @@
 from calendar import monthrange
 from datetime import date
 from datetime import datetime
+
+#from db import entities
 import time
-import uuid
+
+class GymManager():
+    def __init__(self, gym_entity):
+        self.gym = gym_entity
+
+    def does_course_template_exist(self, course_name):
+        course_templates_table = self.gym.courses
+        if course_templates_table is None:
+            return None
+        for item in course_templates_table.keys():
+            if (course_name.lower() == item.lower()):
+                return course_templates_table[item]
+
+class MonthScheduleManager():
+    def __init__(self, month_schedule_entity):
+        self.month_schedule = month_schedule_entity
+
+
 
 class CourseTemplate(object):
     def __init__(self, name, description):
@@ -26,7 +45,7 @@ class Course(CourseTemplate):
     def __init__(self, name, description, hour, duration, max_capacity, instructor, studio, color,
                  users_table, waiting_list_table, registration_start_time):
         super(Course, self).__init__(name, description)
-        self.id = uuid.uuid4()
+        #self.identifier = identifier
         self.hour = hour
         self.duration = duration
         self.max_capacity = max_capacity
@@ -39,21 +58,21 @@ class Course(CourseTemplate):
     # TODO add functions: register_user, unregister_user, isBooked, add_to_waiting_list ...
 
     """ day should be in range 1-7 """
-    def add_to_month_schedule(self, month_schedule, day):
+    def add_to_month_schedule(self, month_schedule, day_in_week):
         year = month_schedule.year
         month = month_schedule.month
         days_in_month = monthrange(year, month)[1]
         for i in range(1, 8):
-            if date(year, month, i).isoweekday() % 7 + 1 == int(day):
-                day = i
+            if date(year, month, i).isoweekday() % 7 + 1 == int(day_in_week):
+                day_in_week = i
                 break
         #calculate all the matching days of the current month
-        days_to_update = [x for x in range(day, days_in_month+1) if (x-day) % 7 == 0]
+        days_to_update = [x for x in range(day_in_week, days_in_month+1) if (x-day_in_week) % 7 == 0]
         for i in days_to_update:
-            for course in month_schedule.schedule_table[str(i)].courses_list:
-                if course.name.lower() == self.name.lower() and course.hour == self.hour:
+            for course in month_schedule.daily_schedule_table[str(i)].courses_list:
+                if course.name == self.name:
                     return
-            month_schedule.schedule_table[str(i)].courses_list.append(self)
+            month_schedule.daily_schedule_table[str(i)].courses_list.append(self)
         month_schedule.put()
 
     def __str__(self):
@@ -75,6 +94,7 @@ class DailySchedule(object):
     def javascript_course_start_datetime(self, course):
         return time.mktime(datetime(int(self.year), int(self.month), int(self.day_in_month), int(course.hour[:2]),
                                     int(course.hour[2:4])))
+
 
 class User(object):
     def __init__(self, id, level, google_fb, name):
