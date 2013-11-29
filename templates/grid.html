@@ -17,6 +17,7 @@
     {% for day in days %}
         {% for course in day.courses_list %}
         <script>
+            console.log('now in new course...');
             var oneClass ={};
             oneClass.year = "{{ day.year }}";
             oneClass.month = "{{ day.month }}";
