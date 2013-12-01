@@ -58,7 +58,7 @@ class InitialHandler(webapp2.RequestHandler):
         #admin_manager.create_gym("tel aviv")
 
         """add month schedule"""
-        admin_manager.create_month_schedule(2013, 11)
+
         admin_manager.create_month_schedule(2013, 12)
 
         """create DailyScheduleManager"""

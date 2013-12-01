@@ -47,7 +47,7 @@ var mfp, // As we have only one instance of MagnificPopup object, we define it l
  * Private functions
  */
 var _mfpOn = function(name, f) {
-		mfp.ev.on(NS + name + EVENT_NS, f);
+		mfp.ev.bind(NS + name + EVENT_NS, f);
 	},
 	_getEl = function(className, appendTo, html, raw) {
 		var el = document.createElement('div');
@@ -211,11 +211,11 @@ MagnificPopup.prototype = {
 		if(!mfp.bgOverlay) {
 
 			// Dark overlay
-			mfp.bgOverlay = _getEl('bg').on('click'+EVENT_NS, function() {
+			mfp.bgOverlay = _getEl('bg').bind('click'+EVENT_NS, function() {
 				mfp.close();
 			});
 
-			mfp.wrap = _getEl('wrap').attr('tabindex', -1).on('click'+EVENT_NS, function(e) {
+			mfp.wrap = _getEl('wrap').attr('tabindex', -1).bind('click'+EVENT_NS, function(e) {
 				if(mfp._checkIfClose(e.target)) {
 					mfp.close();
 				}
@@ -281,14 +281,14 @@ MagnificPopup.prototype = {
 
 		if(mfp.st.enableEscapeKey) {
 			// Close on ESC key
-			_document.on('keyup' + EVENT_NS, function(e) {
+			_document.bind('keyup' + EVENT_NS, function(e) {
 				if(e.keyCode === 27) {
 					mfp.close();
 				}
 			});
 		}
 
-		_window.on('resize' + EVENT_NS, function() {
+		_window.bind('resize' + EVENT_NS, function() {
 			mfp.updateSize();
 		});
 
@@ -364,7 +364,7 @@ MagnificPopup.prototype = {
 			}
 			
 			// Trap the focus in popup
-			_document.on('focusin' + EVENT_NS, mfp._onFocusIn);
+			_document.bind('focusin' + EVENT_NS, mfp._onFocusIn);
 
 		}, 16);
 
@@ -618,14 +618,14 @@ MagnificPopup.prototype = {
 		
 		if(options.items) {
 			options.isObj = true;
-			el.off(eName).on(eName, eHandler);
+			el.off(eName).bind(eName, eHandler);
 		} else {
 			options.isObj = false;
 			if(options.delegate) {
-				el.off(eName).on(eName, options.delegate , eHandler);
+				el.off(eName).bind(eName, options.delegate , eHandler);
 			} else {
 				options.items = el;
-				el.off(eName).on(eName, eHandler);
+				el.off(eName).bind(eName, eHandler);
 			}
 		}
 	},
@@ -695,7 +695,7 @@ MagnificPopup.prototype = {
 
 			mfp.preloader.html(text);
 
-			mfp.preloader.find('a').on('click', function(e) {
+			mfp.preloader.find('a').bind('click', function(e) {
 				e.stopImmediatePropagation();
 			});
 
@@ -1323,7 +1323,7 @@ $.magnificPopup.registerModule('image', {
 			if(el.length) {
 				var img = document.createElement('img');
 				img.className = 'mfp-img';
-				item.img = $(img).on('load.mfploader', onLoadComplete).on('error.mfploader', onLoadError);
+				item.img = $(img).bind('load.mfploader', onLoadComplete).bind('error.mfploader', onLoadError);
 				img.src = item.src;
 
 				// without clone() "error" event is not firing when IMG is replaced by new IMG
@@ -1717,7 +1717,7 @@ $.magnificPopup.registerModule('gallery', {
 			_mfpOn(OPEN_EVENT+ns, function() {
 
 				if(gSt.navigateByImgClick) {
-					mfp.wrap.on('click'+ns, '.mfp-img', function() {
+					mfp.wrap.bind('click'+ns, '.mfp-img', function() {
 						if(mfp.items.length > 1) {
 							mfp.next();
 							return false;
@@ -1725,7 +1725,7 @@ $.magnificPopup.registerModule('gallery', {
 					});
 				}
 
-				_document.on('keydown'+ns, function(e) {
+				_document.bind('keydown'+ns, function(e) {
 					if (e.keyCode === 37) {
 						mfp.prev();
 					} else if (e.keyCode === 39) {
@@ -1835,9 +1835,9 @@ $.magnificPopup.registerModule('gallery', {
 			_mfpTrigger('LazyLoad', item);
 
 			if(item.type === 'image') {
-				item.img = $('<img class="mfp-img" />').on('load.mfploader', function() {
+				item.img = $('<img class="mfp-img" />').bind('load.mfploader', function() {
 					item.hasSize = true;
-				}).on('error.mfploader', function() {
+				}).bind('error.mfploader', function() {
 					item.hasSize = true;
 					item.loadError = true;
 					_mfpTrigger('LazyLoadError', item);
@@ -1990,7 +1990,7 @@ $.magnificPopup.registerModule(RETINA_NS, {
 					point,
 					numPointers;
 
-				elem.on('touchstart' + ns, function(e) {
+				elem.bind('touchstart' + ns, function(e) {
 					pointerMoved = false;
 					numPointers = 1;
 
@@ -1998,7 +1998,7 @@ $.magnificPopup.registerModule(RETINA_NS, {
 					startX = point.clientX;
 					startY = point.clientY;
 
-					_window.on('touchmove'+ns, function(e) {
+					_window.bind('touchmove'+ns, function(e) {
 						point = e.originalEvent ? e.originalEvent.touches : e.touches;
 						numPointers = point.length;
 						point = point[0];
@@ -2007,7 +2007,7 @@ $.magnificPopup.registerModule(RETINA_NS, {
 							pointerMoved = true;
 							unbindTouchMove();
 						}
-					}).on('touchend'+ns, function(e) {
+					}).bind('touchend'+ns, function(e) {
 						unbindTouchMove();
 						if(pointerMoved || numPointers > 1) {
 							return;
@@ -2024,7 +2024,7 @@ $.magnificPopup.registerModule(RETINA_NS, {
 
 			}
 
-			elem.on('click' + ns, function() {
+			elem.bind('click' + ns, function() {
 				if(!lock) {
 					callback();
 				}

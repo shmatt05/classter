@@ -46,7 +46,7 @@ class DailyScheduleManager:
     """ get a list of DailySchedule from start date up to end_date """
     def get_daily_schedule_list(self, start_date, end_date):
         result = []
-        days = DailyScheduleManager.get_days_difference(end_date,  start_date.day)
+        days = 7 #DailyScheduleManager.get_days_difference(end_date,  start_date.day)
         year = start_date.year
         month = start_date.month
         schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()

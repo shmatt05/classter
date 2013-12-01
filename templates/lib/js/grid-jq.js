@@ -17,8 +17,8 @@
         dateFormat:"d/m/Y",
       allowCalEventOverlap: true,
       overlapEventsSeparate: true,
-      totalEventsWidthPercentInOneColumn : 95,
-        hourLine:true,
+      totalEventsWidthPercentInOneColumn : 100,
+        readonly:true,
 
       height: function($calendar) {
         return $(window).height() - $('h1').outerHeight(true);
@@ -43,7 +43,7 @@
         displayMessage('<strong>Resized Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
       },
       eventClick: function(calEvent, $event) {
-        displayMessage('<strong>Clicked Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+        openPopup();
       },
       eventMouseover: function(calEvent, $event) {
         displayMessage('<strong>Mouseover Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
@@ -62,3 +62,18 @@
 
     //$('<div id="message" class="ui-corner-all"></div>').prependTo($('body'));
   });
+
+function openPopup() {
+    $.magnificPopup.open({
+        type:'inline',
+        items: {
+            src: '#test-popup'
+
+        },
+
+        closeOnContentClick: false
+
+    });
+
+
+}

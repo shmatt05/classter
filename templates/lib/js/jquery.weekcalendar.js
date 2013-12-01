@@ -1500,9 +1500,12 @@
           var eventClass, eventHtml, $calEventList, $modifiedEvent;
 
           eventClass = calEvent.id ? 'wc-cal-event' : 'wc-cal-event wc-new-cal-event';
-          eventHtml = '<div class=\"' + eventClass + ' ui-corner-all classBox\">';
+          eventHtml = '<div id='+ calEvent.id +' class=\"' + eventClass + ' ui-corner-all classBox\">';
+
           eventHtml += '<div class=\"wc-time ui-corner-top\"></div>';
-          eventHtml += '<div class=\"wc-title\"></div></div>';
+          eventHtml += '<div class=\"wc-title\"></div>';
+          eventHtml += '<label id=lbl' + calEvent.id+' class="counterLabel">Testing</label>';
+          eventHtml += '</div>'; // END OF CLASS BOX IS HERE
 
           $weekDay.each(function() {
             var $calEvent = $(eventHtml);
