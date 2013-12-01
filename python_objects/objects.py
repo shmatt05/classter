@@ -85,10 +85,10 @@ class DailySchedule(object):
         self.day_in_month = day_in_month
         self.day_in_week = day_in_week
         self.courses_list = courses_list
-
+    @classmethod
     def javascript_course_start_datetime(self, course):
         return time.mktime(datetime(int(self.year), int(self.month), int(self.day_in_month), int(course.hour[:2]),
-                                    int(course.hour[2:4])))
+                                    int(course.hour[2:4])))*1000
 
 
 class User(object):

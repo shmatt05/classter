@@ -46,11 +46,12 @@ class InitialHandler(webapp2.RequestHandler):
 
         """add month schedule"""
         admin_manager.create_month_schedule(2013, 11)
+        admin_manager.create_month_schedule(2013, 12)
 
         """create DailyScheduleManager"""
         daily_sched_manager = DailyScheduleManager(admin_manager.gym_network, admin_manager.gym_branch)
-        daily_list = daily_sched_manager.get_daily_schedule_list_from_today(3)
-        self.response.write(str(daily_list[0].day_in_week))
+        #daily_list = daily_sched_manager.get_daily_schedule_list_from_today(3)
+        #self.response.write(str(daily_list[0].day_in_week))
 
         """add course templates"""
         admin_manager.add_course_template("Zumba", "stupid course")
@@ -66,15 +67,30 @@ class InitialHandler(webapp2.RequestHandler):
 
         """create courses"""
         admin_manager.create_course_for_month("Zumba","1400", 120, 10,
-                      "Moished", "Park","blue", [], [], 2013, 11, 4)
+                      "Moished", "Park","blue", [], [], 2013, 11, 6)
 
         admin_manager.create_course_for_month("Zumba","1800", 40, 10,
-                      "Moished", "Park","green", [], [], 2013, 11, 5)
+                      "Moished", "Park","green", [], [], 2013, 11, 6)
 
         admin_manager.create_course_for_month("Yoga","1700", 90, 10,
-                      "Moished", "Park","blue", [], [], 2013, 11, 5)
+                      "Moished", "Park","blue", [], [], 2013, 11, 7)
 
-        self.response.write(str(daily_list[0].courses_list[0].name))
+        admin_manager.create_course_for_month("Yoga","1500", 90, 10,
+                      "Moished", "Park","blue", [], [], 2013, 11, 7)
+
+        admin_manager.create_course_for_month("Zumba","1400", 120, 10,
+                      "Moished", "Park","blue", [], [], 2013, 12, 1)
+
+        admin_manager.create_course_for_month("Zumba","1800", 40, 10,
+                      "Moished", "Park","green", [], [], 2013, 12, 1)
+
+        admin_manager.create_course_for_month("Yoga","1700", 90, 10,
+                      "Moished", "Park","blue", [], [], 2013, 12, 2)
+
+        admin_manager.create_course_for_month("Yoga","1500", 90, 10,
+                      "Moished", "Park","blue", [], [], 2013, 12, 2)
+
+        #self.response.write(str(daily_list[0].courses_list[0].name))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -212,6 +228,7 @@ class TestHandler(webapp2.RequestHandler):
         users_manager = DailyScheduleManager("peer", "peer")
         #start_date = datetime(day=1, month=11, year=2013)
         #end_date = datetime(day=2, month=11, year=2013)
+
         sched = users_manager.get_week_daily_schedule_list()
         #sched = users_manager.get_daily_schedule_list(start_date, end_date)
 
