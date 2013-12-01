@@ -46,7 +46,7 @@ class DailyScheduleManager:
     """ get a list of DailySchedule from start date up to end_date """
     def get_daily_schedule_list(self, start_date, end_date):
         result = []
-        days = end_date.day - start_date.day
+        days = DailyScheduleManager.get_days_difference(end_date,  start_date.day)
         year = start_date.year
         month = start_date.month
         schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
@@ -83,7 +83,6 @@ class DailyScheduleManager:
                 print 'succeeded = ' + str(succeeded) + ' length = ' + str(len(course.users_list)) + ' max = ' + str(course.max_capacity)
                 return succeeded
 
-
     def delete_user_from_course(self, username, year, month, day, start_hour, course_name):
         month_schedule = entities.MonthSchedule.get_key(month, year, self.gym_network, self.gym_branch).get()
         day_schedule = month_schedule.daily_schedule_table[str(day)]
@@ -93,5 +92,12 @@ class DailyScheduleManager:
             return
         DailyScheduleManager.remove_user_from_class(username, course)
         month_schedule.put()
+
+    @classmethod
+    def get_days_difference(cls, start_datetime, end_dateime):
+        if start_datetime > end_dateime:
+            raise Exception("start_date is bigger than end_date")
+        time_delta = end_dateime - start_datetime
+        return time_delta.days
 
 
