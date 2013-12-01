@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from datetime import date, datetime
+from datetime import date, datetime, time
 import cgi
 import sys
 
@@ -35,6 +35,12 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 DEFAULT_GYM_NAME = "default_gym"
 DEFAULT_MONTH_YEAR = "01-2001"
+
+def to_mili(day, course):
+    return time.mktime(datetime(int(day.year), int(day.month), int(day.day_in_month), int(course.hour[:2]),
+                                int(course.hour[2:4])))*1000
+
+
 
 
 def create_course_milli_from_daily_schedule_list(daily_sched_list):
@@ -73,29 +79,19 @@ class InitialHandler(webapp2.RequestHandler):
         self.response.write(admin_manager.get_courses_templates())
 
         """create courses"""
-        admin_manager.create_course_for_month("Zumba","1400", 120, 10,
-                      "Moished", "Park","blue", [], [], 2013, 11, 6)
 
-        admin_manager.create_course_for_month("Zumba","1800", 40, 10,
-                      "Moished", "Park","green", [], [], 2013, 11, 6)
 
-        admin_manager.create_course_for_month("Yoga","1700", 90, 10,
-                      "Moished", "Park","blue", [], [], 2013, 11, 7)
+        admin_manager.create_course_for_month("Zumba","1385899200000", 120, 10,
+                      "Moished", "Park","blue", [], [], 2013, 12, 1) # December 1st 14:00
 
-        admin_manager.create_course_for_month("Yoga","1500", 90, 10,
-                      "Moished", "Park","blue", [], [], 2013, 11, 7)
+        admin_manager.create_course_for_month("Zumba","1385967600000", 40, 10,
+                      "Moished", "Park","green", [], [], 2013, 12, 1) #December 2nd 09:00
 
-        admin_manager.create_course_for_month("Zumba","1400", 120, 10,
-                      "Moished", "Park","blue", [], [], 2013, 12, 1)
+        admin_manager.create_course_for_month("Yoga","1386046800000", 90, 10,
+                      "Moished", "Park","blue", [], [], 2013, 12, 2) #December 3rd 07:00
 
-        admin_manager.create_course_for_month("Zumba","1800", 40, 10,
-                      "Moished", "Park","green", [], [], 2013, 12, 1)
-
-        admin_manager.create_course_for_month("Yoga","1700", 90, 10,
-                      "Moished", "Park","blue", [], [], 2013, 12, 2)
-
-        admin_manager.create_course_for_month("Yoga","1500", 90, 10,
-                      "Moished", "Park","blue", [], [], 2013, 12, 2)
+        admin_manager.create_course_for_month("Yoga","1386086400000", 90, 10,
+                      "Moished", "Park","blue", [], [], 2013, 12, 2) #December 3rd 18:00
 
         #self.response.write(str(daily_list[0].courses_list[0].name))
 

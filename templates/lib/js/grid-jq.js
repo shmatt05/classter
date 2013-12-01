@@ -1,10 +1,9 @@
 ﻿/**
  * Created by Matan on 11/26/13.
  */
-var eventData = null;
  $(document).ready(function() {
     $('#calendar').weekCalendar({
-      data: eventData,
+      data: classesTableArr,
       use24Hour:true,
       timeslotsPerHour: 4,
         defaultEventLength:4,
