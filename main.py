@@ -37,6 +37,13 @@ DEFAULT_GYM_NAME = "default_gym"
 DEFAULT_MONTH_YEAR = "01-2001"
 
 
+def create_course_milli_from_daily_schedule_list(daily_sched_list):
+    dict = {}
+    for daily_sched in daily_sched_list:
+        for course in daily_sched.courses_list:
+            dict[course.id] = daily_sched.javascript_course_start_datetime()
+    return dict
+
 class InitialHandler(webapp2.RequestHandler):
     def get(self):
         """initialize the db"""
