@@ -29,14 +29,20 @@
 <body>
 {% for day in days %}
     {% for course in day.courses_list %}
+        {%  set class_id = course.id %}
         <script>
+            console.log("{{ mili_times }}" );
             console.log('now parsing new class');
             var oneClass ={};
             oneClass.year = "{{ day.year }}";
             oneClass.month = "{{ day.month }}";
             oneClass.dayOfWeek =(parseInt("{{ day.day_in_week }}")-1).toString();
             oneClass.dayOfMonth = "{{ day.day_in_month }}";
-            oneClass.start = parseInt("{{ course.hour }}");
+            oneClass.id = "{{ course.id }}";
+
+
+            oneClass.start = parseInt( "{{ mili_times.class_id }}" );
+
             oneClass.end = oneClass.start+(parseInt("{{ course.duration }}")*60000)
             oneClass.classLength = parseFloat(parseInt("{{ course.duration }}") / 60);
             oneClass.colorCode = "{{ course.color }}" ;
@@ -45,7 +51,8 @@
             oneClass.instructor = "{{ course.instructor }}";
             oneClass.maxSlots = "{{ course.max_capacity }}";
             oneClass.takenSlots = "{{ course.userslist }}".length; // watch out, might not work, make sure it does
-            oneClass.id = "{{ course.id }}";
+
+            console.log(oneClass);
             classesTableArr.push(oneClass);
         </script>
     {% endfor %}

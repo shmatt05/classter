@@ -47,7 +47,7 @@ def create_course_milli_from_daily_schedule_list(daily_sched_list):
     dict = {}
     for daily_sched in daily_sched_list:
         for course in daily_sched.courses_list:
-            dict[course.id] = daily_sched.javascript_course_start_datetime()
+            dict[str(course.id)] = daily_sched.javascript_course_start_datetime(course)
     return dict
 
 class InitialHandler(webapp2.RequestHandler):
@@ -81,17 +81,17 @@ class InitialHandler(webapp2.RequestHandler):
         """create courses"""
 
 
-        admin_manager.create_course_for_month("Zumba","1385899200000", 120, 10,
-                      "Moished", "Park","blue", [], [], 2013, 12, 1) # December 1st 14:00
+        admin_manager.create_course_for_month("Zumba","1400", 120, 10,
+                      "Moished", "Park","blue", [], [], 2013, 12, 1) # December 1st 14:00 1385899200000
 
-        admin_manager.create_course_for_month("Zumba","1385967600000", 40, 10,
-                      "Moished", "Park","green", [], [], 2013, 12, 1) #December 2nd 09:00
+        admin_manager.create_course_for_month("Zumba","0900", 40, 10,
+                      "Moished", "Park","green", [], [], 2013, 12, 2) #December 2nd 09:00 1385967600000
 
-        admin_manager.create_course_for_month("Yoga","1386046800000", 90, 10,
-                      "Moished", "Park","blue", [], [], 2013, 12, 2) #December 3rd 07:00
+        admin_manager.create_course_for_month("Yoga","0700", 90, 10,
+                      "Moished", "Park","blue", [], [], 2013, 12, 3) #December 3rd 07:00 1386046800000
 
-        admin_manager.create_course_for_month("Yoga","1386086400000", 90, 10,
-                      "Moished", "Park","blue", [], [], 2013, 12, 2) #December 3rd 18:00
+        admin_manager.create_course_for_month("Yoga","1800", 90, 10,
+                      "Moished", "Park","blue", [], [], 2013, 12, 4) #December 3rd 18:00 1386086400000
 
         #self.response.write(str(daily_list[0].courses_list[0].name))
 
@@ -234,9 +234,11 @@ class TestHandler(webapp2.RequestHandler):
 
         sched = users_manager.get_week_daily_schedule_list()
         #sched = users_manager.get_daily_schedule_list(start_date, end_date)
-
+        mili_times = create_course_milli_from_daily_schedule_list(sched)
+        print mili_times
         template_values = {
-            'days': sched
+            'days': sched,
+            'mili_times': mili_times
         }
 
         template = JINJA_ENVIRONMENT.get_template('grid.html')
