@@ -82,3 +82,47 @@ class UserCredentials(ndb.Model):
             raise Exception("No such gym")
         else:
             return gym_entity
+
+
+class GoogleCredentials(ndb.Model):
+    google_id = StringProperty
+    user_id = StringProperty
+
+    def set_key(self):
+        self.key = GoogleCredentials.__generate_key(self.google_id)
+
+    @classmethod
+    def get_key(cls, google_id):
+        return cls.__generate_key(google_id)
+
+    @classmethod
+    def __generate_key(cls, google_id):
+        return ndb.Key(GoogleCredentials, google_id)
+
+    def get_user_gym_entity(self):
+        self.get_user_entity().get_gym_entity()
+
+    def get_user_entity(self):
+        UserCredentials.get_key(self.user_id).get()
+
+
+class FacebookCredentials(ndb.Model):
+    facebook_id = StringProperty
+    user_id = StringProperty
+
+    def set_key(self):
+        self.key = FacebookCredentials.__generate_key(self.facebook_id)
+
+    @classmethod
+    def get_key(cls, facebook_id):
+        return cls.__generate_key(facebook_id)
+
+    @classmethod
+    def __generate_key(cls, facebook_id):
+        return ndb.Key(FacebookCredentials, facebook_id)
+
+    def get_user_gym_entity(self):
+        self.get_user_entity().get_gym_entity()
+
+    def get_user_entity(self):
+        UserCredentials.get_key(self.user_id).get()
