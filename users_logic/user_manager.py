@@ -41,7 +41,7 @@ class DailyScheduleManager:
 
     def get_from_last_week_to_next_week(self):
         time = Time('Israel')
-        return self.get_daily_schedule_list(time.get_date_with_delta(-7), time.get_date_with_delta(7-1))
+        return self.get_daily_schedule_list(time.get_date_with_delta(-7), time.get_date_with_delta(14))
 
     """get a list of this week DailySchedule starting from today"""
     def get_week_daily_schedule_list(self):
@@ -50,7 +50,7 @@ class DailyScheduleManager:
     """ get a list of DailySchedule from start date up to end_date """
     def get_daily_schedule_list(self, start_datetime, end_datetime):
         result = []
-        days = DailyScheduleManager.get_days_difference(end_datetime,  start_datetime)
+        days = DailyScheduleManager.get_days_difference(start_datetime, end_datetime)
         year = start_datetime.year
         month = start_datetime.month
         schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
@@ -59,8 +59,8 @@ class DailyScheduleManager:
             if curr_date.month == month:
                 result.append(schedule.daily_schedule_table[str(curr_date.day)])
             else:
-                year = start_datetime.year
-                month = start_datetime.month
+                year = curr_date.year
+                month = curr_date.month
                 schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
                 result.append(schedule.daily_schedule_table[str(curr_date.day)])
         return result
