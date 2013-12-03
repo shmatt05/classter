@@ -56,11 +56,11 @@ class MonthSchedule(ndb.Model):
 
 
 class UserCredentials(ndb.Model):
-    id = StringProperty
-    gym_network = StringProperty
-    gym_branch = StringProperty
-    google_id = StringProperty
-    facebook_id = StringProperty
+    id = ndb.StringProperty()
+    gym_network = ndb.StringProperty()
+    gym_branch = ndb.StringProperty()
+    google_id = ndb.StringProperty()
+    facebook_id = ndb.StringProperty()
 
     def set_key(self):
         self.key = UserCredentials.__generate_key(self.id)
@@ -73,9 +73,6 @@ class UserCredentials(ndb.Model):
     def __generate_key(cls, id):
         return ndb.Key(UserCredentials, id)
 
-    def set_key(self, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
-        self.key = ndb.Key(Gym, gym_network + '_' + gym_branch, Users, "Users")
-
     def get_gym_entity(self):
         gym_entity = Gym.get_key(self.gym_network, self.gym_branch).get()
         if gym_entity is None:
@@ -85,8 +82,8 @@ class UserCredentials(ndb.Model):
 
 
 class GoogleCredentials(ndb.Model):
-    google_id = StringProperty
-    user_id = StringProperty
+    google_id = ndb.StringProperty()
+    user_id = ndb.StringProperty()
 
     def set_key(self):
         self.key = GoogleCredentials.__generate_key(self.google_id)
@@ -107,8 +104,8 @@ class GoogleCredentials(ndb.Model):
 
 
 class FacebookCredentials(ndb.Model):
-    facebook_id = StringProperty
-    user_id = StringProperty
+    facebook_id = ndb.StringProperty()
+    user_id = ndb.StringProperty()
 
     def set_key(self):
         self.key = FacebookCredentials.__generate_key(self.facebook_id)

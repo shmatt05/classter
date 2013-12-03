@@ -225,6 +225,13 @@ class MainHandler(webapp2.RequestHandler):
 def parse_course(str):
     return  str.split('_')
 
+class AddUser(webapp2.RequestHandler):
+    def get(self):
+        david = entities.UserCredentials(id="3213908", gym_network="peer", gym_branch="peer", google_id="3241",
+                                         facebook_id="4124321")
+        david.set_key()
+        david.put()
+
 
 class TestHandler(webapp2.RequestHandler):
     def get(self):
@@ -382,6 +389,7 @@ app = webapp2.WSGIApplication([
     ('/add_course', AddCourse),
     ('/create_course', CreateCourse),
     ('/register_to_class', RegisterToClass ),
-    ('/initial',InitialHandler)
+    ('/initial',InitialHandler),
+    ('/add_user',AddUser),
 ], debug=True)
 
