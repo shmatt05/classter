@@ -697,12 +697,14 @@
         if (options.buttons) {
             var calendarNavHtml = '';
 
-            calendarNavHtml += '<div class=\"ui-widget-header wc-toolbar\">';
-              calendarNavHtml += '<div class=\"wc-display\"></div>';
+            calendarNavHtml += '<div  class=\"ui-widget-header wc-toolbar\">';
+              calendarNavHtml += '<div  class=\"wc-display\"></div>';
               calendarNavHtml += '<div class=\"wc-nav\">';
-                calendarNavHtml += '<button class=\"wc-prev\">' + options.buttonText.lastWeek + '</button>';
+             calendarNavHtml += '<button class=\"wc-next\">' + options.buttonText.nextWeek + '</button>';
                 calendarNavHtml += '<button class=\"wc-today\">' + options.buttonText.today + '</button>';
-                calendarNavHtml += '<button class=\"wc-next\">' + options.buttonText.nextWeek + '</button>';
+                calendarNavHtml += '<button class=\"wc-prev\">' + options.buttonText.lastWeek + '</button>';
+
+
               calendarNavHtml += '</div>';
               calendarNavHtml += '<h1 class=\"wc-title\"></h1>';
             calendarNavHtml += '</div>';
@@ -720,7 +722,7 @@
             $calendarContainer.find('.wc-nav .wc-prev')
               .button({
                 text: false,
-                icons: {primary: 'ui-icon-seek-prev'}})
+                icons: {primary: 'ui-icon-seek-next'}})
               .click(function() {
                   self.element.weekCalendar('prev');
                   return false;
@@ -729,7 +731,7 @@
             $calendarContainer.find('.wc-nav .wc-next')
               .button({
                 text: false,
-                icons: {primary: 'ui-icon-seek-next'}})
+                icons: {primary: 'ui-icon-seek-prev'}})
               .click(function() {
                   self.element.weekCalendar('next');
                   return false;

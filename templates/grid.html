@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -40,8 +40,8 @@
             oneClass.id = "{{ course.id }}";
 
 
-            oneClass.start = parseInt( "{{ course.milli }}" );
-            console.log(oneClass.start);
+            oneClass.start =  parseFloat("{{ course.milli }}") ;
+            console.log(new Date(oneClass.start));
             oneClass.end = oneClass.start+(parseInt("{{ course.duration }}")*60000);
             oneClass.classLength = parseFloat(parseInt("{{ course.duration }}") / 60);
             oneClass.colorCode = "{{ course.color }}" ;

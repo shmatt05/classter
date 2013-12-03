@@ -5,7 +5,10 @@
 
 $(document).ready(function() {
 
-
+    var past = new Date();
+    past.addDays(-7);
+    var future = new Date();
+    future.addDays(14);
 
     $('#calendar').weekCalendar({
         data: classesTableArr,
@@ -13,17 +16,19 @@ $(document).ready(function() {
         timeslotsPerHour: 4,
         defaultEventLength:4,
         timeSeparator: ' - ',
-        buttons:false,
+        buttons:true,
+        minDate:past,
+        maxDate:future,
         longDays:['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'],
         longMonths:['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'],
         shortMonths:['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'],
-        startOnFirstDayOfWeek:false,
+        startOnFirstDayOfWeek:true,
         businessHours:{start:6, end:23, limitDisplay: true},
         dateFormat:"d/m/Y",
         allowCalEventOverlap: true,
         overlapEventsSeparate: true,
         totalEventsWidthPercentInOneColumn : 100,
-        readonly:true,
+        readonly:false,
 
         height: function($calendar) {
             return $(window).height() - $('h1').outerHeight(true);
