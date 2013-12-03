@@ -25,6 +25,6 @@ $(document).ready(function() {
 
 
 $(window).ready(function(){
-        document.getElementById('classkey').value = classID;
+        document.getElementById('classkey').value = class_id;
 
 });

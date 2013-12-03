@@ -5,6 +5,8 @@
 
 $(document).ready(function() {
 
+
+    // Calendar Date Limitations (Back / Forward)
     var past = new Date();
     past.addDays(-7);
     var future = new Date();
@@ -12,6 +14,12 @@ $(document).ready(function() {
 
     $('#calendar').weekCalendar({
         data: classesTableArr,
+        buttonText: {
+            today:'היום',
+            lastWeek:'קודם',
+            nextWeek:'הבא'
+
+        },
         use24Hour:true,
         timeslotsPerHour: 4,
         defaultEventLength:4,
@@ -28,7 +36,7 @@ $(document).ready(function() {
         allowCalEventOverlap: true,
         overlapEventsSeparate: true,
         totalEventsWidthPercentInOneColumn : 100,
-        readonly:false,
+        readonly:true,
 
         height: function($calendar) {
             return $(window).height() - $('h1').outerHeight(true);
@@ -53,7 +61,7 @@ $(document).ready(function() {
             displayMessage('<strong>Resized Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
         },
         eventClick: function(calEvent, $event) {
-            openPopup();
+            openPopup(calEvent.id);
         },
         eventMouseover: function(calEvent, $event) {
             displayMessage('<strong>Mouseover Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
@@ -74,17 +82,31 @@ $(document).ready(function() {
 
 });
 
-function openPopup() {
+function openPopup(classID) {
+//    $.magnificPopup.open({
+//        type:'inline',
+//        items: {
+//            src: '#test-popup'
+//
+//        },
+//
+//        closeOnContentClick: false
+//
+//    });
     $.magnificPopup.open({
-        type:'inline',
+        type:'ajax',
         items: {
-            src: '#test-popup'
+            src: 'popup.html'
 
         },
 
-        closeOnContentClick: false
+        closeOnContentClick: false,
+        callbacks: {
+            open:function(){
 
-    });
 
+        }
+    }
+});
 
 }
