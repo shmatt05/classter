@@ -101,11 +101,15 @@ class DailySchedule(object):
 
 
 class User(object):
-    def __init__(self, id, level, google_fb, name):
+    def __init__(self, id, first_name, last_name, email, phone):
         self.id = id
-        self.level = level
-        self.google_fb = google_fb
-        self.name = name
+        self.first_name = first_name
+        self.last_name = last_name
+        self.email = email
+        self.phone = phone
+        #self.histroy = history
+        #self.level = level
+
 
         # TODO: add user's history.
 

@@ -1,4 +1,5 @@
 from google.appengine.ext import ndb
+from google.appengine.ext.db import StringProperty
 from db import properties
 from python_objects.objects import *
 
@@ -13,9 +14,10 @@ class Gym(ndb.Model):
     name = ndb.StringProperty(required=True)
     gym_network = ndb.StringProperty(required=True)
     address = ndb.StringProperty()
-    courses = properties.OurJsonProperty()     # {}
-    instructors = properties.OurJsonProperty() # {}
-    studios = properties.OurJsonProperty()     # []
+    courses = properties.OurJsonProperty(default={})
+    instructors = properties.OurJsonProperty(default={})
+    studios = properties.OurJsonProperty(default=[])
+    users_table = properties.OurJsonProperty(default={})
 
     def set_key(self):
         self.key = Gym.__generate_key(self.gym_network, self.name)
@@ -53,17 +55,30 @@ class MonthSchedule(ndb.Model):
          return ndb.Key(Gym, gym_network +'_' + gym_branch, MonthSchedule, str(month) + '-' + str(year))
 
 
-class Users(ndb.Model):
-    """ Users Entity. It's parent key is Gym """
-    users_table = properties.OurJsonProperty()
+class UserCredentials(ndb.Model):
+    id = StringProperty
+    gym_network = StringProperty
+    gym_branch = StringProperty
+    google_id = StringProperty
+    facebook_id = StringProperty
 
-    def create_users_table(self, *users):
-        users_table = {}
-        for user in users:
-            assert (type(user) == User)
-            users_table[user.id] = user
-        return users_table
+    def set_key(self):
+        self.key = UserCredentials.__generate_key(self.id)
+
+    @classmethod
+    def get_key(cls, id):
+        return cls.__generate_key(id)
+
+    @classmethod
+    def __generate_key(cls, id):
+        return ndb.Key(UserCredentials, id)
 
     def set_key(self, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
         self.key = ndb.Key(Gym, gym_network + '_' + gym_branch, Users, "Users")
 
+    def get_gym_entity(self):
+        gym_entity = Gym.get_key(self.gym_network, self.gym_branch).get()
+        if gym_entity is None:
+            raise Exception("No such gym")
+        else:
+            return gym_entity
