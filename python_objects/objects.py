@@ -38,10 +38,11 @@ class CourseTemplate(object):
 
 class Course(CourseTemplate):
     def __init__(self, name, description, hour, duration, max_capacity, instructor, studio, color,
-                 users_table, waiting_list_table, registration_start_time, identifier):
+                 users_table, waiting_list_table, registration_start_time, identifier, milli):
         super(Course, self).__init__(name, description)
         self.id = identifier
         self.hour = hour
+        self.milli = milli
         self.duration = duration
         self.max_capacity = max_capacity
         self.instructor = instructor
@@ -67,7 +68,11 @@ class Course(CourseTemplate):
             #for course in month_schedule.daily_schedule_table[str(i)].courses_list:
             #    if course.id == self.id:
             #        return
-            month_schedule.daily_schedule_table[str(i)].courses_list.append(self)
+            new_course = Course(self.name, self.description, self.hour, self.duration, self.max_capacity,
+                                self.instructor, self.studio, self.color, self.users_table, self.waiting_list_table,
+                                self.registration_start_time, self.id,  self.to_mili(year, month, i, self))
+            #new_course.milli = new_course.to_mili(year, month, i, new_course)
+            month_schedule.daily_schedule_table[str(i)].courses_list.append(new_course)
         month_schedule.put()
 
     def __str__(self):
@@ -76,6 +81,10 @@ class Course(CourseTemplate):
 
     def __repr__(self):
         return self.__str__()
+
+    def to_mili(self, year, month, day_in_month, course):
+        return time.mktime(datetime(int(year), int(month), int(day_in_month), int(course.hour[:2]),
+                                int(course.hour[2:4])).timetuple())*1000
 
 
 class DailySchedule(object):

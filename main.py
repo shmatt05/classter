@@ -234,11 +234,11 @@ class TestHandler(webapp2.RequestHandler):
 
         sched = users_manager.get_week_daily_schedule_list()
         #sched = users_manager.get_daily_schedule_list(start_date, end_date)
-        mili_times = create_course_milli_from_daily_schedule_list(sched)
-        print mili_times
+        #mili_times = create_course_milli_from_daily_schedule_list(sched)
+        #print mili_times
         template_values = {
             'days': sched,
-            'mili_times': mili_times
+            #'mili_times': mili_times
         }
 
         template = JINJA_ENVIRONMENT.get_template('grid.html')

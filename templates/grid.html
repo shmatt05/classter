@@ -31,7 +31,6 @@
     {% for course in day.courses_list %}
         {%  set class_id = course.id %}
         <script>
-            console.log("{{ mili_times }}" );
             console.log('now parsing new class');
             var oneClass ={};
             oneClass.year = "{{ day.year }}";
@@ -41,9 +40,9 @@
             oneClass.id = "{{ course.id }}";
 
 
-            oneClass.start = parseInt( "{{ mili_times.class_id }}" );
-
-            oneClass.end = oneClass.start+(parseInt("{{ course.duration }}")*60000)
+            oneClass.start = parseInt( "{{ course.milli }}" );
+            console.log(oneClass.start);
+            oneClass.end = oneClass.start+(parseInt("{{ course.duration }}")*60000);
             oneClass.classLength = parseFloat(parseInt("{{ course.duration }}") / 60);
             oneClass.colorCode = "{{ course.color }}" ;
             oneClass.studioID = "{{ course.studio }}";
