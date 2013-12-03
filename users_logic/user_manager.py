@@ -37,26 +37,30 @@ class DailyScheduleManager:
     """ get a list of DailySchedule from today up to num_days """
     def get_daily_schedule_list_from_today(self, num_days):
         time = Time('Israel') #from pytz.all_timezones
-        return self.get_daily_schedule_list(time.now().date(), time.get_date_with_delta(num_days-1).date())
+        return self.get_daily_schedule_list(time.now(), time.get_date_with_delta(num_days-1))
+
+    def get_from_last_week_to_next_week(self):
+        time = Time('Israel')
+        return self.get_daily_schedule_list(time.get_date_with_delta(-7), time.get_date_with_delta(7-1))
 
     """get a list of this week DailySchedule starting from today"""
     def get_week_daily_schedule_list(self):
         return self.get_daily_schedule_list_from_today(7)
 
     """ get a list of DailySchedule from start date up to end_date """
-    def get_daily_schedule_list(self, start_date, end_date):
+    def get_daily_schedule_list(self, start_datetime, end_datetime):
         result = []
-        days = 7 #DailyScheduleManager.get_days_difference(end_date,  start_date.day)
-        year = start_date.year
-        month = start_date.month
+        days = DailyScheduleManager.get_days_difference(end_datetime,  start_datetime)
+        year = start_datetime.year
+        month = start_datetime.month
         schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
         for day in range(days+1):
-            curr_date = start_date + timedelta(day)
+            curr_date = start_datetime + timedelta(day)
             if curr_date.month == month:
                 result.append(schedule.daily_schedule_table[str(curr_date.day)])
             else:
-                year = start_date.year
-                month = start_date.month
+                year = start_datetime.year
+                month = start_datetime.month
                 schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
                 result.append(schedule.daily_schedule_table[str(curr_date.day)])
         return result
@@ -94,10 +98,10 @@ class DailyScheduleManager:
         month_schedule.put()
 
     @classmethod
-    def get_days_difference(cls, start_datetime, end_dateime):
-        if start_datetime > end_dateime:
+    def get_days_difference(cls, start_datetime, end_datetime):
+        if start_datetime > end_datetime:
             raise Exception("start_date is bigger than end_date")
-        time_delta = end_dateime - start_datetime
+        time_delta = end_datetime - start_datetime
         return time_delta.days
 
 
