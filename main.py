@@ -50,6 +50,15 @@ def create_course_milli_from_daily_schedule_list(daily_sched_list):
             dict[str(course.id)] = daily_sched.javascript_course_start_datetime(course)
     return dict
 
+class SignUpPopUp(webapp2.RequestHandler):
+    def get(self):
+        class_key  = cgi.escape(self.request.get('class_key')) #works great!
+
+        template = JINJA_ENVIRONMENT.get_template('popup.html')
+        self.response.write(template.render())
+
+
+
 class InitialHandler(webapp2.RequestHandler):
     def get(self):
         """initialize the db"""
@@ -60,7 +69,7 @@ class InitialHandler(webapp2.RequestHandler):
         """add month schedule"""
 
         admin_manager.create_month_schedule(2013, 12)
-
+        admin_manager.create_month_schedule(2013, 11)
         """create DailyScheduleManager"""
         daily_sched_manager = DailyScheduleManager(admin_manager.gym_network, admin_manager.gym_branch)
         #daily_list = daily_sched_manager.get_daily_schedule_list_from_today(3)
@@ -391,5 +400,6 @@ app = webapp2.WSGIApplication([
     ('/register_to_class', RegisterToClass ),
     ('/initial',InitialHandler),
     ('/add_user',AddUser),
+    ('/signupopup', SignUpPopUp)
 ], debug=True)
 

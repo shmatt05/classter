@@ -96,16 +96,22 @@ function openPopup(classID) {
     $.magnificPopup.open({
         type:'ajax',
         items: {
-            src: 'html/popup.html'
+            src: '/signupopup'
 
         },
+        ajax: {
+            settings: {
+                cache:false,
+                type:'GET',
+                data: {
+                    class_key:classID
+                }
 
+            }
+        },
         closeOnContentClick: false,
         callbacks: {
-            open:function(){
-                var class_id = classID;
 
-        }
     }
 });
 
