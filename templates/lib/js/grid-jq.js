@@ -96,14 +96,14 @@ function openPopup(classID) {
     $.magnificPopup.open({
         type:'ajax',
         items: {
-            src: 'popup.html'
+            src: 'html/popup.html'
 
         },
 
         closeOnContentClick: false,
         callbacks: {
             open:function(){
-
+                var class_id = classID;
 
         }
     }

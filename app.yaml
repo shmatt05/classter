@@ -12,7 +12,7 @@ handlers:
 - url: /lib
   static_dir: templates/lib
 - url: /html
-  static_dir: Matan
+  static_dir: templates/popup
 - url: /.*
   script: main.app
 
