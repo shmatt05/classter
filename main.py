@@ -248,7 +248,7 @@ class AddUser(webapp2.RequestHandler):
         david.put()
 
 
-class TestHandler(webapp2.RequestHandler):
+class UserHandler(webapp2.RequestHandler):
     def get(self):
         users_manager = DailyScheduleManager("peer", "peer")
         #start_date = datetime(day=1, month=11, year=2013)
@@ -263,9 +263,13 @@ class TestHandler(webapp2.RequestHandler):
             #'mili_times': mili_times
         }
 
-        template = JINJA_ENVIRONMENT.get_template('grid.html')
+        template = JINJA_ENVIRONMENT.get_template('user_grid.html')
         self.response.write(template.render(template_values))
 
+class AdminHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('admin_grid.html')
+        self.response.write(template.render())
 
 class CreateMonthSched(webapp2.RequestHandler):
     def post(self):
@@ -399,7 +403,8 @@ class RegisterToClass(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/test', TestHandler),
+    ('/user', UserHandler),
+    ('/admin', AdminHandler),
     ('/craete_monthly_schedule', CreateMonthSched),
     ('/create_month_year', CreateMonthYear),
     ('/add_course', AddCourse),
