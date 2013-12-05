@@ -14,7 +14,7 @@ $(document).ready(function() {
                 success:function(data, textStatus, jqXHR)
                 {
 
-                    $("div.popup-div").html(data);
+                    $("div.popup-div").html(data); // Fits Any Message - Failed And Successful!
                 },
                 error: function(jqXHR, textStatus, errorThrown)
                 {

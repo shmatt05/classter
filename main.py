@@ -51,7 +51,7 @@ def create_course_milli_from_daily_schedule_list(daily_sched_list):
     return dict
 
 class SignUpPopUp(webapp2.RequestHandler):
-    def get(self):
+    def post(self):
         class_key  = cgi.escape(self.request.get('class_key')) #works great!
         template_values = {
             'course': {

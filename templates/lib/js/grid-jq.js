@@ -102,7 +102,8 @@ function openPopup(classID) {
         ajax: {
             settings: {
                 cache:false,
-                type:'GET',
+
+                type:'POST',
                 data: {
                     class_key:classID
                 }
