@@ -12,3 +12,7 @@
   max-width: 500px;
   margin: 20px auto;
 }
+
+.wc-time {
+    visibility:hidden;
+}
