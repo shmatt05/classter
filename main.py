@@ -53,9 +53,15 @@ def create_course_milli_from_daily_schedule_list(daily_sched_list):
 class SignUpPopUp(webapp2.RequestHandler):
     def get(self):
         class_key  = cgi.escape(self.request.get('class_key')) #works great!
-
+        template_values = {
+            'course': {
+                'name':'Zumbalatis',
+                'studio':'Orange',
+                'class_key':'163bd5d1-e886-47bf-a4fd-23455a58deb7'
+            }
+        }
         template = JINJA_ENVIRONMENT.get_template('popup.html')
-        self.response.write(template.render())
+        self.response.write(template.render(template_values))
 
 
 
@@ -366,25 +372,25 @@ class CreateCourse(webapp2.RequestHandler):
 class RegisterToClass(webapp2.RequestHandler):
 
     def post(self):
-        full_name=cgi.escape(self.request.get('firstname'))
-        class_key=cgi.escape(self.request.get('classkey'))
-        param_list = parse_course(class_key)
-        year = param_list[0]
-        month = param_list[1]
-        day = param_list[2]
-        course_name = param_list[3]
-        hour = param_list[4]
-        studio = param_list[5]
-        schedule_man = DailyScheduleManager("peer", "peer")
+        #full_name=cgi.escape(self.request.get('firstname'))
+        ##class_key=cgi.escape(self.request.get('classkey'))
+        ##param_list = parse_course(class_key)
+        ##year = param_list[0]
+        ##month = param_list[1]
+        ##day = param_list[2]
+        #course_name = param_list[3]
+        ##hour = param_list[4]
+        ##studio = param_list[5]
+        ##schedule_man = DailyScheduleManager("peer", "peer")
         #user_exists = DailyScheduleManager.is_user_subscribed(full_name, course_name)
-        result = schedule_man.add_user_to_course(full_name, year, month, day, hour, course_name)
+        ##result = schedule_man.add_user_to_course(full_name, year, month, day, hour, course_name)
         #if not user_exists:
         #    if schedule_man.add_user_to_course(full_name, year, month, day, hour, course_name) == True:
         #        result = 100 # success
         #    else:
         #        result = 200 # class full
         #result = 300 # user exists
-        self.response.write(result)
+        self.response.write(100)
         #self.response.write(result)
 
 #todo consider make users a property in gym

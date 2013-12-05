@@ -2,11 +2,12 @@
 <div class="white-popup">
     <script type='text/javascript' src='../lib/js/popup-jq.js'></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
+    <h1>{{ course.name }}</h1><br>
+    <h2>{{ course.studio }}</h2>
     <form id="signup" action="register_to_class" method="post">
         Please Enter Your Name To Sign Up:<br>
         <input type="text" name="firstname" /><br>
-
+        <input type="text" name="classkey" value="{{course.class_key}}"/>
         <input type="submit" value="Submit">
 
     </form>
