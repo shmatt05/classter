@@ -112,7 +112,7 @@ function openPopup(classID) {
         closeOnContentClick: false,
         callbacks: {
 
-    }
-});
+        }
+    });
 
 }
