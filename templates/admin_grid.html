@@ -15,14 +15,19 @@
     <script type="text/javascript" src="lib/js/date.js"></script>
     <script type='text/javascript' src='lib/js/jquery.weekcalendar.js'></script>
     <script type="text/javascript" src="lib/js/jquery.magnific-popup.min.js"></script>
+    <script type='text/javascript' src='lib/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='lib/js/admin-grid-jq.js'></script>
 </head>
 <body>
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#calendar">Home</a></li>
-    <li><a href="#users">Profile</a></li>
-    <li><a href="#courses">Messages</a></li>
+<ul class="nav nav-tabs" data-tabs="tabs">
+    <li class="active"><a href="#calendar" data-toggle="tab">מערכת שעות</a></li>
+    <li><a href="#users" data-toggle="tab">משתמשים</a></li>
+    <li><a href="#courses" data-toggle="tab">שיעורים</a></li>
 </ul>
-<div id="calendar"></div>
+<div class="tab-content">
+<div id="calendar" class="tab-pane active"></div>
+<div id="users" class="tab-pane"><h2>ניהול משתמשים</h2></div>
+<div id="courses" class="tab-pane"><h2>ניהול שיעורים</h2></div>
+    </div>
 </body>
 </html>

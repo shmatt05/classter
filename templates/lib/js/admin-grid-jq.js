@@ -78,5 +78,5 @@ $(document).ready(function () {
     }
 
     //$('<div id="message" class="ui-corner-all"></div>').prependTo($('body'));
-
+     $('#tabs').tab();
 });
