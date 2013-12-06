@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <title>Classter Admin View</title>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
     <link rel='stylesheet' type='text/css' href='lib/css/jquery-ui-1.8.11.custom.css' />
     <link rel='stylesheet' type='text/css' href='lib/css/jquery.weekcalendar.css' />
     <link rel="stylesheet" type="text/css" href="lib/css/magnific-popup.css">
@@ -20,14 +21,18 @@
 </head>
 <body>
 <ul class="nav nav-tabs" data-tabs="tabs">
-    <li class="active"><a href="#calendar" data-toggle="tab">מערכת שעות</a></li>
+    <li class="active"><a href="#caldiv" data-toggle="tab">מערכת שעות</a></li>
     <li><a href="#users" data-toggle="tab">משתמשים</a></li>
     <li><a href="#courses" data-toggle="tab">שיעורים</a></li>
 </ul>
 <div class="tab-content">
-<div id="calendar" class="tab-pane active"></div>
-<div id="users" class="tab-pane"><h2>ניהול משתמשים</h2></div>
-<div id="courses" class="tab-pane"><h2>ניהול שיעורים</h2></div>
+    <div id="caldiv" class="tab-pane active">
+        <div id="calsideview">
+            <input class="week-picker" id="weekpicker"> </input></div>
+
+            <div id="calendar"></div></div>
+        <div id="users" class="tab-pane"><h2>ניהול משתמשים</h2></div>
+        <div id="courses" class="tab-pane"><h2>ניהול שיעורים</h2></div>
     </div>
 </body>
 </html>

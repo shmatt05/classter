@@ -11,6 +11,48 @@ $(document).ready(function () {
     var future = new Date();
     future.addDays(14);
 
+// Start Weekly Customization for Calendar
+ var startDate,
+        endDate,
+        selectCurrentWeek = function () {
+            window.setTimeout(function () {
+                $('#weekpicker').datepicker('widget').find('.ui-datepicker-current-day a').addClass('ui-state-active')
+            }, 1);
+        };
+    $('#weekpicker').datepicker({
+        dateFormat: 'dd/mm/yy',
+        "showOtherMonths": false,
+        "selectOtherMonths": false,
+        "onSelect": function (dateText, inst) {
+            var date = $(this).datepicker('getDate'),
+                dateFormat = inst.settings.dateFormat || $.datepicker._defaults.dateFormat;
+            startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay());
+            endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 6);
+            $('#weekpicker').val($.datepicker.formatDate(dateFormat,date,inst.settings)); //$.datepicker.formatDate(dateFormat, startDate, inst.settings) + ' - ' + $.datepicker.formatDate(dateFormat, endDate, inst.settings)
+            selectCurrentWeek();
+        },
+        "beforeShow": function () {
+            selectCurrentWeek();
+        },
+        "beforeShowDay": function (date) {
+            var cssClass = '';
+            if (date >= startDate && date <= endDate) {
+                cssClass = 'ui-datepicker-current-day';
+            }
+            return [true, cssClass];
+        },
+        "onChangeMonthYear": function (year, month, inst) {
+            selectCurrentWeek();
+        }
+    }).datepicker('widget').addClass('ui-weekpicker');
+    $('.ui-weekpicker').on('mousemove', 'tr', function () {
+        $(this).find('td a').addClass('ui-state-hover');
+    });
+    $('.ui-weekpicker').on('mouseleave', 'tr', function () {
+        $(this).find('td a').removeClass('ui-state-hover');
+    });
+    // End Customization for jQuery UI Weekly
+
     $('#calendar').weekCalendar({
         data: null,
         buttonText: {
@@ -49,34 +91,32 @@ $(document).ready(function () {
                 });
             }
         },
-        eventNew: function(calEvent, $event) {
-            displayMessage('<strong>Added event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
-            alert('You\'ve added a new event. You would capture this event, add the logic for creating a new event with your own fields, data and whatever backend persistence you require.');
+        eventNew: function(calEvent, $event) { // Added New Event
+            //TODO: Open Editor?
+            //TODO: Create New Class On Serverside - Send Back New UUID and Save it Client Side
         },
-        eventDrop: function(calEvent, $event) {
-            displayMessage('<strong>Moved Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+        eventDrop: function(calEvent, $event) { // Moved Existing Event
+            //TODO: Send server edit_event parameters with class UUID -> Get Confirmation?
         },
-        eventResize: function(calEvent, $event) {
-            displayMessage('<strong>Resized Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+        eventResize: function(calEvent, $event) { // Resized Existing Event
+            //TODO: Send server edit_event parameters with class UUID -> Get Confirmation?
         },
-         eventClick: function(calEvent, $event) {
-        displayMessage('<strong>Clicked Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+         eventClick: function(calEvent, $event) { // Clicked classBox
+            //TODO: Open Class Viewer / Editor
       },
         eventMouseover: function(calEvent, $event) {
-            displayMessage('<strong>Mouseover Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
+            //TODO: Slightly Zoom / Add Tooltip?
         },
         eventMouseout: function(calEvent, $event) {
-            displayMessage('<strong>Mouseout Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
-        },
-        noEvents: function() {
-            displayMessage('There are no events for this week');
+
         }
     });
 
-    function displayMessage(message) {
-        $('#message').html(message).fadeIn();
-    }
-
-   // $('<div id="message" class="ui-corner-all"></div>').prependTo($('body'));
      $('#tabs').tab();
+
+
+
 });
+
+
+
