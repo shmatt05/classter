@@ -129,10 +129,10 @@ class Course(CourseTemplate):
         self.users_table[user_entity.id] = user_entity
 
     def __get_start_hour(self):
-        return self.start_hour[:2]
+        return self.hour[:2]
 
     def __get_start_minute(self):
-        return self.start_hour[2:4]
+        return self.hour[2:4]
 
     def __str__(self):
         return super(Course, self).__str__() + \
