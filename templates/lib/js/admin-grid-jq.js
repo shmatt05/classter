@@ -21,9 +21,14 @@ $(document).ready(function () {
         };
     $('#weekpicker').datepicker({
         dateFormat: 'dd/mm/yy',
+        "showButtonPanel":true,
         "showOtherMonths": false,
         "selectOtherMonths": false,
-
+        "closeText":"סיים",
+        currentText:"היום",
+        "isRTL":true,
+        dayNamesMin:["ר","ש","ש","ר","ח","ש","ש"],
+        monthNames:['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'],
         "onSelect": function (dateText, inst) {
             var date = $(this).datepicker('getDate'),
                 dateFormat = inst.settings.dateFormat || $.datepicker._defaults.dateFormat;
