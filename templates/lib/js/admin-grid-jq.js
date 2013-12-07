@@ -63,7 +63,7 @@ $(document).ready(function () {
 
     // Start Calendar Instance Customization
     $('#calendar').weekCalendar({
-        data: changeWeek(new Date()),
+        data: changeWeek(new Date().getTime()),
         buttonText: {
             today:'היום',
             lastWeek:'קודם',
@@ -137,6 +137,8 @@ function updateCalendarWeek(chosenDate) {
 }
 
 // Render new chosen week via AJAX
+
+//TODO: Server Side Function That Gets Date and returns whole week of date in schedules
 function changeWeek(newDate) {
     classesTableArr = new Array();
     $.ajax(
@@ -162,7 +164,7 @@ function changeWeek(newDate) {
                                 oneClass.title = newClass.name;
                                 //$('#calendar').weekCalendar('updateEvent', newClass);
                                 classesTableArr.push(oneClass);
-                                console.log(classesTableArr);
+
                                 //$('#calendar').weekCalendar('clear');
                                 //$('#calendar').weekCalendar('refresh');
                             }
