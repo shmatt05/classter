@@ -1,6 +1,7 @@
 /**
  * Created by matan on 12/5/13.
  */
+var classesTableArr;
 $(document).ready(function () {
 
 
@@ -70,6 +71,9 @@ $(document).ready(function () {
 
         },
         use24Hour:true,
+        changedate: function($calendar, date) {
+            //TODO: Add and Parse AJAX Request for more courses when browsing through calendar
+        },
         timeslotsPerHour: 4,
         defaultEventLength:4,
         timeSeparator: ' - ',
@@ -121,7 +125,7 @@ $(document).ready(function () {
     });
 
     $('#tabs').tab();
-
+    changeWeek(0);
 
 
 });
@@ -130,4 +134,42 @@ $(document).ready(function () {
 
 function updateCalendarWeek(chosenDate) {
             $('#calendar').weekCalendar('gotoWeek', chosenDate);
+}
+
+// Render new chosen week via AJAX
+function changeWeek(newDate) {
+    classesTableArr = new Array();
+    $.ajax(
+            {
+                url : '/changeweek',
+                type: "POST",
+                data : newDate,
+                success:function(data, textStatus, jqXHR)
+                {
+                    var result = $.parseJSON(data);
+                    console.log(result);
+//                    for (course) {
+//
+//                        var courseList = data[i].coursesList;
+//                        console.log(courseList);
+//                        for (var j=0; j<courseList.length; j++) {
+//                            var newClass = courseList[j];
+//                            var oneClass = {};
+//                            oneClass.id = newClass.id;
+//                            oneClass.start = newClass.milli;
+//                            oneClass.end = oneClass.start + +(parseInt(newClass.duration)*60000);
+//                            oneClass.title = newClass.name;
+//                            classesTableArr.push(oneClass);
+//                            //$('#calendar').weekCalendar('clear');
+//                            $('#calendar').weekCalendar('refresh');
+//                        }
+//                    }
+
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    alert('ארעה תקלה, נסה שנית');
+                }
+            });
+
 }

@@ -41,7 +41,6 @@
 
 
             oneClass.start =  parseFloat("{{ course.milli }}") ;
-            console.log(new Date(oneClass.start));
             oneClass.end = oneClass.start+(parseInt("{{ course.duration }}")*60000);
             oneClass.classLength = parseFloat(parseInt("{{ course.duration }}") / 60);
             oneClass.colorCode = "{{ course.color }}" ;

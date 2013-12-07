@@ -16,10 +16,12 @@
 #
 from datetime import date, datetime, time
 import cgi
+import json
 import sys
 
 import webapp2
 import jinja2
+
 
 from users_logic.user_manager import DailyScheduleManager
 from db import entities
@@ -27,7 +29,7 @@ from users_logic.user_manager import DailyScheduleManager
 from users_logic.user_manager import UserOperation
 from admin_logic.admin_manager import AdminManager
 sys.path.insert(0, 'libs')
-
+import jsonpickle
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader('templates'),
@@ -63,6 +65,12 @@ class SignUpPopUp(webapp2.RequestHandler):
         }
         template = JINJA_ENVIRONMENT.get_template('popup.html')
         self.response.write(template.render(template_values))
+
+class ChangeWeek(webapp2.RequestHandler):
+    def post(self):
+        users_manager = DailyScheduleManager("peer", "peer")
+        sched = users_manager.get_from_last_week_to_next_week()
+        self.response.write(jsonpickle.encode(sched))
 
 
 
@@ -416,6 +424,7 @@ app = webapp2.WSGIApplication([
     ('/register_to_class', RegisterToClass ),
     ('/initial',InitialHandler),
     ('/add_user',AddUser),
-    ('/signupopup', SignUpPopUp)
+    ('/signupopup', SignUpPopUp),
+    ('/changeweek', ChangeWeek)
 ], debug=True)
 
