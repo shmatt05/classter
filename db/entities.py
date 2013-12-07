@@ -23,6 +23,10 @@ class Gym(ndb.Model):
         self.key = Gym.__generate_key(self.gym_network, self.name)
 
     @classmethod
+    def get_gym_entity(cls, gym_network, gym_branch):
+        return Gym.get_key(gym_network, gym_branch).get()
+
+    @classmethod
     def get_key(cls, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
         #return ndb.Key(Gym, gym_network +'_' +gym_branch)
         return cls.__generate_key(gym_network, gym_branch)
@@ -47,6 +51,10 @@ class MonthSchedule(ndb.Model):
          self.key = MonthSchedule.__generate_key(self.month, self.year, gym_network, gym_branch)
 
     @classmethod
+    def get_month_schedule_entity(cls, month, year, gym_network, gym_branch):
+        return MonthSchedule.get_key(month, year, gym_network, gym_branch).get()
+
+    @classmethod
     def get_key(cls, month=DEFAULT_MONTH, year= DEFAULT_YEAR, gym_network=DEFAULT_NETWORK, gym_branch=DEFAULT_BRANCH):
         return cls.__generate_key(month, year, gym_network, gym_branch)
 
@@ -64,6 +72,10 @@ class UserCredentials(ndb.Model):
 
     def set_key(self):
         self.key = UserCredentials.__generate_key(self.id)
+
+    @classmethod
+    def get_user_entity(cls, id):
+        return UserCredentials.get_key(id).get()
 
     @classmethod
     def get_key(cls, id):

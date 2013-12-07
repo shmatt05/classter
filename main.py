@@ -24,6 +24,7 @@ import jinja2
 from users_logic.user_manager import DailyScheduleManager
 from db import entities
 from users_logic.user_manager import DailyScheduleManager
+from users_logic.user_manager import UserOperation
 from admin_logic.admin_manager import AdminManager
 sys.path.insert(0, 'libs')
 
@@ -246,6 +247,9 @@ class AddUser(webapp2.RequestHandler):
                                          facebook_id="4124321")
         david.set_key()
         david.put()
+
+
+        user_op = UserOperation(3213908, 1111, 2013, 12, 2)
 
 
 class UserHandler(webapp2.RequestHandler):
