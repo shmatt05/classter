@@ -63,7 +63,7 @@ $(document).ready(function () {
 
     // Start Calendar Instance Customization
     $('#calendar').weekCalendar({
-        data: changeWeek(0),
+        data: changeWeek(new Date()),
         buttonText: {
             today:'היום',
             lastWeek:'קודם',
@@ -170,22 +170,7 @@ function changeWeek(newDate) {
 
 
                     }
-//                    for (course) {
-//
-//                        var courseList = data[i].coursesList;
-//                        console.log(courseList);
-//                        for (var j=0; j<courseList.length; j++) {
-//                            var newClass = courseList[j];
-//                            var oneClass = {};
-//                            oneClass.id = newClass.id;
-//                            oneClass.start = newClass.milli;
-//                            oneClass.end = oneClass.start + +(parseInt(newClass.duration)*60000);
-//                            oneClass.title = newClass.name;
-//                            classesTableArr.push(oneClass);
-//                            //$('#calendar').weekCalendar('clear');
-//                            $('#calendar').weekCalendar('refresh');
-//                        }
-//                    }
+
 
                 },
                 error: function(jqXHR, textStatus, errorThrown)
