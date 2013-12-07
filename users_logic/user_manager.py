@@ -144,18 +144,22 @@ class UserOperation:
         "find the correct course"
         for course in self.daily_schedule_entity.courses_list:
             if course.id == self.course_id:
-                if course.check_registration_started():
-                    if not course.is_full():
-                        if not course.does_user_already_registered(self.user_id):
-                            course.add_user_to_course(self.user_id);
+                if not course.did_course_time_pass(self.year, self.month, self.day):
+                    if course.did_registration_start():
+                        if not course.is_full():
+                            if not course.does_user_already_registered(self.user_id):
+                                course.add_user_to_course(self.user_entity);
+                                return USER_REGISTRATION_SUCCEEDED
+                            else:
+                                return USER_ALREADY_REGISTERED
                         else:
-                            return USER_ALREADY_REGISTERED
+                            return COURSE_IS_FULL
                     else:
-                        return COURSE_IS_FULL
+                        return REGISTRATION_DID_NOT_START
                 else:
-                    return REGISTRARION_DID_NOT_START
+                    return NO_SUCH_COURSE
             else:
-                return NO_SUCH_COURSE
+                return COURSE_TIME_PASSED
 
 
 
@@ -172,5 +176,7 @@ NO_SUCH_USER = 100
 NO_DAILY_SCHEDULE = 200
 USER_ALREADY_REGISTERED = 300
 COURSE_IS_FULL = 400
-REGISTRARION_DID_NOT_START = 500
+REGISTRATION_DID_NOT_START = 500
 NO_SUCH_COURSE = 600
+COURSE_TIME_PASSED = 700
+USER_REGISTRATION_SUCCEEDED = 800

@@ -4,6 +4,8 @@ from datetime import datetime
 
 #from db import entities
 import time
+from users_logic.timezone import Time
+
 
 class GymManager(object):
     def __init__(self, gym_entity):
@@ -74,6 +76,33 @@ class Course(CourseTemplate):
             #new_course.milli = new_course.to_mili(year, month, i, new_course)
             month_schedule.daily_schedule_table[str(i)].courses_list.append(new_course)
         month_schedule.put()
+
+    def did_course_time_pass(self, year, month, day):
+        now = Time('Israel').now()
+        hour = self.__get_start_hour()
+        minute = self.__get_start_minute()
+        return now >= datetime(int(year), int(month), int(day), int(hour), int(minute))
+
+    def did_registration_start(self):
+        pass
+
+    def is_full(self):
+        return len(self.users_table) >= int(self.max_capacity)
+
+    def does_user_already_registered(self, user_id):
+        if user_id in self.users_table:
+            return True
+        else:
+            return False
+
+    def add_user_to_course(self, user_entity):
+        self.users_table[user_entity.id] = user_entity
+
+    def __get_start_hour(self):
+        return self.hour[:2]
+
+    def __get_start_minute(self):
+        return self.hour[2:4]
 
     def __str__(self):
         return super(Course, self).__str__() + \
