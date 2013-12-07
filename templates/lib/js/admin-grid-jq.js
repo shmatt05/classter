@@ -63,7 +63,7 @@ $(document).ready(function () {
 
     // Start Calendar Instance Customization
     $('#calendar').weekCalendar({
-        data: null,
+        data: changeWeek(0),
         buttonText: {
             today:'היום',
             lastWeek:'קודם',
@@ -125,7 +125,7 @@ $(document).ready(function () {
     });
 
     $('#tabs').tab();
-    changeWeek(0);
+    //changeWeek(0);
 
 
 });
@@ -147,7 +147,29 @@ function changeWeek(newDate) {
                 success:function(data, textStatus, jqXHR)
                 {
                     var result = $.parseJSON(data);
-                    console.log(result);
+                    result.shift(); // Remove 1st element of array (month/day/etc)
+
+                    for (var day in result) {
+                        dayObj = result[day].courses_list;
+
+                        if (dayObj.length >0) {
+                            for (var course in dayObj){
+                                var newClass = dayObj[course];
+                                var oneClass = {};
+                                oneClass.id=newClass.id;
+                                oneClass.start=newClass.milli;
+                                oneClass.end = oneClass.start + +(parseInt(newClass.duration)*60000);
+                                oneClass.title = newClass.name;
+                                //$('#calendar').weekCalendar('updateEvent', newClass);
+                                classesTableArr.push(oneClass);
+                                console.log(classesTableArr);
+                                //$('#calendar').weekCalendar('clear');
+                                //$('#calendar').weekCalendar('refresh');
+                            }
+                        }
+
+
+                    }
 //                    for (course) {
 //
 //                        var courseList = data[i].coursesList;
@@ -171,5 +193,6 @@ function changeWeek(newDate) {
                     alert('ארעה תקלה, נסה שנית');
                 }
             });
+    return classesTableArr;
 
 }
