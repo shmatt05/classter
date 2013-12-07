@@ -20,6 +20,34 @@ class GymManager(object):
                 return course_templates_table[item]
 
 
+class MonthScheduleManager(object):
+    def __init__(self, month_schedule_entity):
+        self.month_schedule = month_schedule_entity
+
+    def add_course_to_month(self, course , day_in_week):
+        year = self.month_schedule.year
+        month = self.month_schedule.month
+        days_in_month = get_num_of_days_in_month(year, month)
+        for i in range(1, 8):
+            if date(year, month, i).isoweekday() % 7 + 1 == int(day_in_week):
+                day_in_week = i
+                break
+        #calculate all the matching days of the current month
+        days_to_update = [x for x in range(day_in_week, days_in_month+1) if (x-day_in_week) % 7 == 0]
+        for i in days_to_update:
+            #for course in month_schedule.daily_schedule_table[str(i)].courses_list:
+            #    if course.id == self.id:
+            #        return
+            new_course = Course(course.name, course.description, course.hour, course.duration, course.max_capacity,
+                                course.instructor, course.studio, course.color, course.users_table,
+                                course.waiting_list_table, course.registration_days_before,
+                                course.registration_start_time, course.id, course.to_mili(year, month, i, self))
+            #new_course.milli = new_course.to_mili(year, month, i, new_course)
+            self.month_schedule.daily_schedule_table[str(i)].courses_list.append(new_course)
+        self.month_schedule.put()
+        pass
+
+
 class CourseTemplate(object):
     def __init__(self, name, description):
         self.name = name
@@ -39,12 +67,12 @@ class CourseTemplate(object):
 
 
 class Course(CourseTemplate):
-    def __init__(self, name, description, hour, duration, max_capacity, instructor, studio, color,
-                 users_table, waiting_list_table, registration_start_time, identifier, milli):
+    def __init__(self, name, description, start_hour, duration, max_capacity, instructor, studio, color,
+                 users_table, waiting_list_table, registration_days_before, registration_start_time, identifier, start_milli):
         super(Course, self).__init__(name, description)
         self.id = identifier
-        self.hour = hour
-        self.milli = milli
+        self.hour = start_hour
+        self.milli = start_milli
         self.duration = duration
         self.max_capacity = max_capacity
         self.instructor = instructor
@@ -52,8 +80,9 @@ class Course(CourseTemplate):
         self.color = color
         self.users_table = users_table
         self.waiting_list_table = waiting_list_table
+        self.registration_days_before = registration_days_before
         self.registration_start_time = registration_start_time
-    # TODO add functions: register_user, unregister_user, isBooked, add_to_waiting_list ...
+    # TODO add functions: unregister_user, isBooked, add_to_waiting_list ...
 
     """ day should be in range 1-7 """
     def add_to_month_schedule(self, month_schedule, day_in_week):
@@ -70,9 +99,10 @@ class Course(CourseTemplate):
             #for course in month_schedule.daily_schedule_table[str(i)].courses_list:
             #    if course.id == self.id:
             #        return
-            new_course = Course(self.name, self.description, self.hour, self.duration, self.max_capacity,
+            new_course = Course(self.name, self.description, self.start_hour, self.duration, self.max_capacity,
                                 self.instructor, self.studio, self.color, self.users_table, self.waiting_list_table,
-                                self.registration_start_time, self.id,  self.to_mili(year, month, i, self))
+                                self.registration_days_before, self.registration_start_time,
+                                self.id, self.to_mili(year, month, i, self))
             #new_course.milli = new_course.to_mili(year, month, i, new_course)
             month_schedule.daily_schedule_table[str(i)].courses_list.append(new_course)
         month_schedule.put()
@@ -99,10 +129,10 @@ class Course(CourseTemplate):
         self.users_table[user_entity.id] = user_entity
 
     def __get_start_hour(self):
-        return self.hour[:2]
+        return self.start_hour[:2]
 
     def __get_start_minute(self):
-        return self.hour[2:4]
+        return self.start_hour[2:4]
 
     def __str__(self):
         return super(Course, self).__str__() + \
@@ -111,9 +141,9 @@ class Course(CourseTemplate):
     def __repr__(self):
         return self.__str__()
 
-    def to_mili(self, year, month, day_in_month, course):
-        return time.mktime(datetime(int(year), int(month), int(day_in_month), int(course.hour[:2]),
-                                int(course.hour[2:4])).timetuple())*1000
+    def to_mili(self, year, month, day_in_month):
+        return time.mktime(datetime(int(year), int(month), int(day_in_month), int(self.__get_start_hour()),
+                                int(self.__get_start_minute())).timetuple())*1000
 
 
 class DailySchedule(object):
@@ -193,3 +223,7 @@ class Studio(object):
                 gym_entity.studios.remove(studio)
                 gym_entity.put();
                 break;
+
+
+def get_num_of_days_in_month(year, month):
+    return monthrange(year, month)[1]
