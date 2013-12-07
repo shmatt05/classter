@@ -6,13 +6,13 @@ $(document).ready(function () {
 
 
     // Calendar Date Limitations (Back / Forward)
-    var past = new Date();
-    past.addDays(-7);
-    var future = new Date();
-    future.addDays(14);
+//    var past = new Date();
+//    past.addDays(-7);
+//    var future = new Date();
+//    future.addDays(14);
 
 // Start Weekly Customization for Calendar
- var startDate,
+    var startDate,
         endDate,
         selectCurrentWeek = function () {
             window.setTimeout(function () {
@@ -23,6 +23,7 @@ $(document).ready(function () {
         dateFormat: 'dd/mm/yy',
         "showOtherMonths": false,
         "selectOtherMonths": false,
+
         "onSelect": function (dateText, inst) {
             var date = $(this).datepicker('getDate'),
                 dateFormat = inst.settings.dateFormat || $.datepicker._defaults.dateFormat;
@@ -30,6 +31,7 @@ $(document).ready(function () {
             endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 6);
             $('#weekpicker').val($.datepicker.formatDate(dateFormat,date,inst.settings)); //$.datepicker.formatDate(dateFormat, startDate, inst.settings) + ' - ' + $.datepicker.formatDate(dateFormat, endDate, inst.settings)
             selectCurrentWeek();
+            updateCalendarWeek(date);
         },
         "beforeShow": function () {
             selectCurrentWeek();
@@ -53,6 +55,7 @@ $(document).ready(function () {
     });
     // End Customization for jQuery UI Weekly
 
+    // Start Calendar Instance Customization
     $('#calendar').weekCalendar({
         data: null,
         buttonText: {
@@ -66,8 +69,8 @@ $(document).ready(function () {
         defaultEventLength:4,
         timeSeparator: ' - ',
         buttons:true,
-        minDate:past,
-        maxDate:future,
+//        minDate:past,
+//        maxDate:future,
         longDays:['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'],
         longMonths:['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'],
         shortMonths:['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'],
@@ -101,9 +104,9 @@ $(document).ready(function () {
         eventResize: function(calEvent, $event) { // Resized Existing Event
             //TODO: Send server edit_event parameters with class UUID -> Get Confirmation?
         },
-         eventClick: function(calEvent, $event) { // Clicked classBox
+        eventClick: function(calEvent, $event) { // Clicked classBox
             //TODO: Open Class Viewer / Editor
-      },
+        },
         eventMouseover: function(calEvent, $event) {
             //TODO: Slightly Zoom / Add Tooltip?
         },
@@ -112,7 +115,7 @@ $(document).ready(function () {
         }
     });
 
-     $('#tabs').tab();
+    $('#tabs').tab();
 
 
 
@@ -120,3 +123,6 @@ $(document).ready(function () {
 
 
 
+function updateCalendarWeek(chosenDate) {
+            $('#calendar').weekCalendar('gotoWeek', chosenDate);
+}
