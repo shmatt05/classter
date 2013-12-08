@@ -8,12 +8,12 @@ import calendar
 
 
 class AdminManager:
-    def __init__(self, gym_network, gym_branch): #gym_key is <network>_<branch>
+    def __init__(self, gym_network, gym_branch):  # gym_key is <network>_<branch>
         self.gym_network = gym_network
         self.gym_branch = gym_branch
         gym_entity = self.__get_gym()
         if gym_entity is None:
-            gym_entity = self.create_gym(gym_network,gym_branch)
+            gym_entity = self.create_gym(gym_network, gym_branch)
         self.gym = gym_entity
 
     def __get_gym(self):
@@ -117,7 +117,7 @@ class AdminManager:
                                 users_table, waiting_list_table, registration_days_before, registration_start_time,
                                 year, month, day):
         # check and get the course template of that course
-        gym_manager = GymManager(self.gym_network, self.gym_branch)
+        gym_manager = GymManager(self.gym)
         course_template = gym_manager.does_course_template_exist(name)
         if course_template is None:
             raise Exception("No such Course Template")
@@ -128,7 +128,7 @@ class AdminManager:
                             instructor, studio, color, users_table, waiting_list_table,
                             registration_days_before, registration_start_time, str(uuid.uuid4()), None)
         month_schedule_manager = MonthScheduleManager(month_schedule)
-        month_schedule_manager.add_course_to_month(new_course , day)
+        month_schedule_manager.add_course_to_month(new_course, day)
         #new_course.add_to_month_schedule(month_schedule, day)
 
     def edit_course(self, old_name, new_name,  old_hour, new_hour, description, duration, max_capacity, instructor,

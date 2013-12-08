@@ -3,17 +3,15 @@ from datetime import date
 from datetime import datetime
 import uuid
 
-#from db import entities
+
 import time
-from datetime import timedelta
-from users_logic.user_manager import DailyScheduleManager
-from db.entities import MonthSchedule, Gym
+from db.entities import Gym
 from users_logic.timezone import Time
 
 
 class GymManager(object):
-    def __init__(self, gym_network, gym_branch):
-        self.gym = Gym.get_gym_entity(gym_network, gym_branch)
+    def __init__(self, gym_entity):
+        self.gym = gym_entity
 
     def does_course_template_exist(self, course_name):
         course_templates_table = self.gym.courses
@@ -22,45 +20,6 @@ class GymManager(object):
         for item in course_templates_table.keys():
             if course_name.lower() == item.lower():
                 return course_templates_table[item]
-
-    """ get a list of DailySchedule from start date up to end_date """
-    def get_daily_schedule_list(self, start_datetime, end_datetime):
-        result = []
-        days = DailyScheduleManager.get_days_difference(start_datetime, end_datetime)
-        year = start_datetime.year
-        month = start_datetime.month
-        schedule = MonthSchedule.get_key(str(month), str(year), self.gym.gym_network, self.gym.name).get()
-        for day in range(days+1):
-            curr_date = start_datetime + timedelta(day)
-            if curr_date.month == month:
-                result.append(schedule.daily_schedule_table[str(curr_date.day)])
-            else:
-                year = curr_date.year
-                month = curr_date.month
-                schedule = MonthSchedule.get_key(str(month), str(year), self.gym.gym_network, self.gym.name).get()
-                result.append(schedule.daily_schedule_table[str(curr_date.day)])
-        return result
-
-    """ get a list of DailySchedule from today up to num_days """
-    def get_daily_schedule_list_from_today(self, num_days):
-        time = Time('Israel') #from pytz.all_timezones
-        return self.get_daily_schedule_list(time.now(), time.get_date_with_delta(num_days-1))
-
-    def get_from_last_week_to_next_week(self):
-        time = Time('Israel')
-        return self.get_daily_schedule_list(time.get_date_with_delta(-7), time.get_date_with_delta(14))
-
-    """get a list of this week DailySchedule starting from today"""
-    def get_week_daily_schedule_list(self):
-        return self.get_daily_schedule_list_from_today(7)
-
-    def get_daily_schedule(self, year, month, day):
-        date_time = datetime(int(year), int(month), int(day))
-        daily_schedule = self.get_daily_schedule_list(date_time, date_time)[0]
-        if daily_schedule is None:
-            raise Exception("No such daily schedule")
-        else:
-            return daily_schedule
 
 
 class MonthScheduleManager(object):
