@@ -17,7 +17,7 @@ import json
 import sys
 
 import webapp2
-import jinja2
+
 
 
 from users_logic.user_manager import DailyScheduleManager
@@ -467,9 +467,9 @@ class SignUpPopUp(BaseRequestHandler):
                 'class_key':'163bd5d1-e886-47bf-a4fd-23455a58deb7'
             }
         }
-        template = JINJA_ENVIRONMENT.get_template('popup.html')
-        self.response.write(template.render(template_values))
-
+        #template = JINJA_ENVIRONMENT.get_template('popup.html')
+        #self.response.write(template.render(template_values))
+        self.render('popup.html')
 
 class InitialHandler(BaseRequestHandler):
     def get(self):
@@ -819,11 +819,11 @@ class RegisterToClass(BaseRequestHandler):
 
 sys.path.insert(0, 'libs')
 import jsonpickle
-
-JINJA_ENVIRONMENT = jinja2.Environment(
-    loader=jinja2.FileSystemLoader('templates'),
-    extensions=['jinja2.ext.autoescape'],
-    autoescape=True)
+#
+#JINJA_ENVIRONMENT = jinja2.Environment(
+#    loader=jinja2.FileSystemLoader('templates'),
+#    extensions=['jinja2.ext.autoescape'],
+#    autoescape=True)
 
 DEFAULT_GYM_NAME = "default_gym"
 DEFAULT_MONTH_YEAR = "01-2001"
