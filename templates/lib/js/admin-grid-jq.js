@@ -17,10 +17,10 @@ $(document).ready(function () {
         endDate,
         selectCurrentWeek = function () {
             window.setTimeout(function () {
-                $('#weekpicker').datepicker('widget').find('.ui-datepicker-current-day a').addClass('ui-state-active')
+                $('.week-picker').datepicker('widget').find('.ui-datepicker-current-day a').addClass('ui-state-active')
             }, 1);
         };
-    $('#weekpicker').datepicker({
+    $('.week-picker').datepicker({
         dateFormat: 'dd/mm/yy',
         "showButtonPanel":true,
         "showOtherMonths": false,
@@ -35,9 +35,10 @@ $(document).ready(function () {
                 dateFormat = inst.settings.dateFormat || $.datepicker._defaults.dateFormat;
             startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay());
             endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 6);
-            $('#weekpicker').val($.datepicker.formatDate(dateFormat,date,inst.settings)); //$.datepicker.formatDate(dateFormat, startDate, inst.settings) + ' - ' + $.datepicker.formatDate(dateFormat, endDate, inst.settings)
+            $('.week-picker').val($.datepicker.formatDate(dateFormat,date,inst.settings)); //$.datepicker.formatDate(dateFormat, startDate, inst.settings) + ' - ' + $.datepicker.formatDate(dateFormat, endDate, inst.settings)
             selectCurrentWeek();
             updateCalendarWeek(date);
+
         },
         "beforeShow": function () {
             selectCurrentWeek();
@@ -53,10 +54,10 @@ $(document).ready(function () {
             selectCurrentWeek();
         }
     }).datepicker('widget').addClass('ui-weekpicker');
-    $('.ui-weekpicker').on('mousemove', 'tr', function () {
+    $('.week-picker').on('mousemove', 'tr', function () {
         $(this).find('td a').addClass('ui-state-hover');
     });
-    $('.ui-weekpicker').on('mouseleave', 'tr', function () {
+    $('.week-picker').on('mouseleave', 'tr', function () {
         $(this).find('td a').removeClass('ui-state-hover');
     });
     // End Customization for jQuery UI Weekly
@@ -133,7 +134,7 @@ $(document).ready(function () {
 
 
 function updateCalendarWeek(chosenDate) {
-            $('#calendar').weekCalendar('gotoWeek', chosenDate);
+    $('#calendar').weekCalendar('gotoWeek', chosenDate);
 }
 
 // Render new chosen week via AJAX
@@ -142,44 +143,44 @@ function updateCalendarWeek(chosenDate) {
 function changeWeek(newDate) {
     classesTableArr = new Array();
     $.ajax(
+        {
+            url : '/changeweek',
+            type: "POST",
+            data : newDate,
+            success:function(data, textStatus, jqXHR)
             {
-                url : '/changeweek',
-                type: "POST",
-                data : newDate,
-                success:function(data, textStatus, jqXHR)
-                {
-                    var result = $.parseJSON(data);
-                    result.shift(); // Remove 1st element of array (month/day/etc)
+                var result = $.parseJSON(data);
+                result.shift(); // Remove 1st element of array (month/day/etc)
 
-                    for (var day in result) {
-                        dayObj = result[day].courses_list;
+                for (var day in result) {
+                    dayObj = result[day].courses_list;
 
-                        if (dayObj.length >0) {
-                            for (var course in dayObj){
-                                var newClass = dayObj[course];
-                                var oneClass = {};
-                                oneClass.id=newClass.id;
-                                oneClass.start=newClass.milli;
-                                oneClass.end = oneClass.start + +(parseInt(newClass.duration)*60000);
-                                oneClass.title = newClass.name;
-                                //$('#calendar').weekCalendar('updateEvent', newClass);
-                                classesTableArr.push(oneClass);
+                    if (dayObj.length >0) {
+                        for (var course in dayObj){
+                            var newClass = dayObj[course];
+                            var oneClass = {};
+                            oneClass.id=newClass.id;
+                            oneClass.start=newClass.milli;
+                            oneClass.end = oneClass.start + +(parseInt(newClass.duration)*60000);
+                            oneClass.title = newClass.name;
+                            //$('#calendar').weekCalendar('updateEvent', newClass);
+                            classesTableArr.push(oneClass);
 
-                                //$('#calendar').weekCalendar('clear');
-                                //$('#calendar').weekCalendar('refresh');
-                            }
+                            //$('#calendar').weekCalendar('clear');
+                            //$('#calendar').weekCalendar('refresh');
                         }
-
-
                     }
 
 
-                },
-                error: function(jqXHR, textStatus, errorThrown)
-                {
-                    alert('ארעה תקלה, נסה שנית');
                 }
-            });
+
+
+            },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+                alert('ארעה תקלה, נסה שנית');
+            }
+        });
     return classesTableArr;
 
 }
