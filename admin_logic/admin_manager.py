@@ -1,6 +1,8 @@
 from db import entities
 from python_objects.objects import *
+from users_logic.user_manager import DailyScheduleManager
 import uuid
+import datetime
 
 __author__ = 'rokli_000'
 
@@ -149,10 +151,13 @@ class AdminManager:
                 course.waiting_list = waiting_list
                 month_schedule.put()
 
+    """ for a given datetime object returns the daily schedule of all the days on the same week (sunday to saturday) """
     def get_weekly_daily_schedule_list_by_date(self, date_time):
-        year = date_time.year
-        month = date_time.month
-
+        day_num = 7 if date_time.weekday() == 5 else (date_time.weekday()+2) % 7
+        sunday = date_time + datetime.timedelta(1 - day_num)
+        saturday = date_time + datetime.timedelta(7 - day_num)
+        # TODO: export the methods out of DailyScheduleManager
+        return DailyScheduleManager.get_daily_schedule_list(sunday, saturday)
 
     """ returns the number of the day in range (1,7) by the given date """
     def get_day_by_date(self, year, month, day):
@@ -161,4 +166,3 @@ class AdminManager:
             return 7
         else:
             return (temp_day+2) % 7
-
