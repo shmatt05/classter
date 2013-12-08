@@ -18,7 +18,6 @@ handlers:
   secure: always
 
 
-handlers:
 
 # static content handlers
 - url: /(favicon\.ico)
