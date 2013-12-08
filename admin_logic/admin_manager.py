@@ -119,7 +119,7 @@ class AdminManager:
                                 users_table, waiting_list_table, registration_days_before, registration_start_time,
                                 year, month, day):
         # check and get the course template of that course
-        gym_manager = GymManager(self.gym)
+        gym_manager = GymManager(self.gym_network, self.gym_branch)
         course_template = gym_manager.does_course_template_exist(name)
         if course_template is None:
             raise Exception("No such Course Template")
@@ -154,10 +154,16 @@ class AdminManager:
     """ for a given datetime object returns the daily schedule of all the days on the same week (sunday to saturday) """
     def get_weekly_daily_schedule_list_by_date(self, date_time):
         day_num = 7 if date_time.weekday() == 5 else (date_time.weekday()+2) % 7
-        sunday = date_time + datetime.timedelta(1 - day_num)
-        saturday = date_time + datetime.timedelta(7 - day_num)
+        sunday = Time.get_sunday_of_week_containing_datetime(date_time, day_num)
+        saturday = Time.get_saturday_of_week_containing_datetime(date_time, day_num)
         # TODO: export the methods out of DailyScheduleManager
         return DailyScheduleManager.get_daily_schedule_list(sunday, saturday)
+
+    #def __get_sunday_of_week_containing_datetime(date_time, day_num):
+    #    return date_time + datetime.timedelta(1 - day_num)
+    #
+    #def __get_saturday_of_week_containing_datetime(date_time, day_num):
+    #    return date_time + datetime.timedelta(7 - day_num)
 
     """ returns the number of the day in range (1,7) by the given date """
     def get_day_by_date(self, year, month, day):

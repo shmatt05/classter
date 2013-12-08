@@ -24,106 +24,106 @@ class DailyScheduleManager:
             if course.name.lower() == course_name.lower() and course.hour == start_hour:
                 return course
 
-    """ returns True if the user corresponds to username already subscribed to course """
-    @classmethod
-    def is_user_subscribed(cls, username, course):
-        for user in course.users_list:
-            if username == user.name:
-                return True
-        return False
+    #""" returns True if the user corresponds to username already subscribed to course """
+    #@classmethod
+    #def is_user_subscribed(cls, username, course):
+    #    for user in course.users_list:
+    #        if username == user.name:
+    #            return True
+    #    return False
 
-    """ removes the user corresponds to username from the course's users_list """
-    @classmethod
-    def remove_user_from_class(cls, username, course):
-        for user in course.users_list:
-            if username == user.name:
-                course.users_list.remove(user)
+    #""" removes the user corresponds to username from the course's users_list """
+    #@classmethod
+    #def remove_user_from_class(cls, username, course):
+    #    for user in course.users_list:
+    #        if username == user.name:
+    #            course.users_list.remove(user)
+    #
+    #def add_user_to_course(self, username, year, month, day, start_hour, course_name):
+    #    #get the course
+    #    print 'hello'
+    #    month_schedule = entities.MonthSchedule.get_key(month, year, self.gym_network, self.gym_branch).get()
+    #    day_schedule = month_schedule.daily_schedule_table[str(day)]
+    #    courses = day_schedule.courses_list
+    #    succeeded = 200
+    #    for course in courses:
+    #        if course.name.lower() == course_name.lower() and course.hour == start_hour:
+    #            if DailyScheduleManager.is_user_subscribed(username, course):
+    #                return 300 #user already subscribed
+    #
+    #            user = objects.User(username, 0, None, username)
+    #            if len(course.users_list) < int(course.max_capacity):
+    #                course.users_list.append(user)
+    #                succeeded = 100
+    #            else:
+    #                course.waiting_list.append(user)
+    #            month_schedule.put()
+    #            print 'succeeded = ' + str(succeeded) + ' length = ' + str(len(course.users_list)) + ' max = ' + str(course.max_capacity)
+    #            return succeeded
+    #
+    #def delete_user_from_course(self, username, year, month, day, start_hour, course_name):
+    #    month_schedule = entities.MonthSchedule.get_key(month, year, self.gym_network, self.gym_branch).get()
+    #    day_schedule = month_schedule.daily_schedule_table[str(day)]
+    #    courses = day_schedule.courses_list
+    #    course = DailyScheduleManager.get_specified_course(course_name, start_hour, courses)
+    #    if course is None:
+    #        return
+    #    DailyScheduleManager.remove_user_from_class(username, course)
+    #    month_schedule.put()
+    #
+    #def add_user_to_course(self, user_id, course_id, year, month, day):
+    #    #verify user in database
+    #
+    #    #verify the user is allowed to take that course in that gym
+    #
+    #    pass
 
-    def add_user_to_course(self, username, year, month, day, start_hour, course_name):
-        #get the course
-        print 'hello'
-        month_schedule = entities.MonthSchedule.get_key(month, year, self.gym_network, self.gym_branch).get()
-        day_schedule = month_schedule.daily_schedule_table[str(day)]
-        courses = day_schedule.courses_list
-        succeeded = 200
-        for course in courses:
-            if course.name.lower() == course_name.lower() and course.hour == start_hour:
-                if DailyScheduleManager.is_user_subscribed(username, course):
-                    return 300 #user already subscribed
-
-                user = objects.User(username, 0, None, username)
-                if len(course.users_list) < int(course.max_capacity):
-                    course.users_list.append(user)
-                    succeeded = 100
-                else:
-                    course.waiting_list.append(user)
-                month_schedule.put()
-                print 'succeeded = ' + str(succeeded) + ' length = ' + str(len(course.users_list)) + ' max = ' + str(course.max_capacity)
-                return succeeded
-
-    def delete_user_from_course(self, username, year, month, day, start_hour, course_name):
-        month_schedule = entities.MonthSchedule.get_key(month, year, self.gym_network, self.gym_branch).get()
-        day_schedule = month_schedule.daily_schedule_table[str(day)]
-        courses = day_schedule.courses_list
-        course = DailyScheduleManager.get_specified_course(course_name, start_hour, courses)
-        if course is None:
-            return
-        DailyScheduleManager.remove_user_from_class(username, course)
-        month_schedule.put()
-
-    def add_user_to_course(self, user_id, course_id, year, month, day):
-        #verify user in database
-
-        #verify the user is allowed to take that course in that gym
-
-        pass
-
-    @classmethod
-    def get_days_difference(cls, start_datetime, end_datetime):
-        if start_datetime > end_datetime:
-            raise Exception("start_date is bigger than end_date")
-        time_delta = end_datetime - start_datetime
-        return time_delta.days
-
-    """ get a list of DailySchedule from start date up to end_date """
-    def get_daily_schedule_list(self, start_datetime, end_datetime):
-        result = []
-        days = DailyScheduleManager.get_days_difference(start_datetime, end_datetime)
-        year = start_datetime.year
-        month = start_datetime.month
-        schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
-        for day in range(days+1):
-            curr_date = start_datetime + timedelta(day)
-            if curr_date.month == month:
-                result.append(schedule.daily_schedule_table[str(curr_date.day)])
-            else:
-                year = curr_date.year
-                month = curr_date.month
-                schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
-                result.append(schedule.daily_schedule_table[str(curr_date.day)])
-        return result
-
-    """ get a list of DailySchedule from today up to num_days """
-    def get_daily_schedule_list_from_today(self, num_days):
-        time = Time('Israel')  # from pytz.all_timezones
-        return self.get_daily_schedule_list(time.now(), time.get_date_with_delta(num_days-1))
-
-    def get_from_last_week_to_next_week(self):
-        time = Time('Israel')
-        return self.get_daily_schedule_list(time.get_date_with_delta(-7), time.get_date_with_delta(14))
-
-    """get a list of this week DailySchedule starting from today"""
-    def get_week_daily_schedule_list(self):
-        return self.get_daily_schedule_list_from_today(7)
-
-    def get_daily_schedule(self, year, month, day):
-        date_time = datetime(int(year), int(month), int(day))
-        daily_schedule = self.get_daily_schedule_list(date_time, date_time)[0]
-        if daily_schedule is None:
-            raise Exception("No such daily schedule")
-        else:
-            return daily_schedule
-
+    #@classmethod
+    #def get_days_difference(cls, start_datetime, end_datetime):
+    #    if start_datetime > end_datetime:
+    #        raise Exception("start_date is bigger than end_date")
+    #    time_delta = end_datetime - start_datetime
+    #    return time_delta.days
+    #
+    ##""" get a list of DailySchedule from start date up to end_date """
+    ##def get_daily_schedule_list(self, start_datetime, end_datetime):
+    ##    result = []
+    ##    days = DailyScheduleManager.get_days_difference(start_datetime, end_datetime)
+    ##    year = start_datetime.year
+    ##    month = start_datetime.month
+    ##    schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
+    ##    for day in range(days+1):
+    ##        curr_date = start_datetime + timedelta(day)
+    ##        if curr_date.month == month:
+    ##            result.append(schedule.daily_schedule_table[str(curr_date.day)])
+    ##        else:
+    ##            year = curr_date.year
+    ##            month = curr_date.month
+    ##            schedule = entities.MonthSchedule.get_key(str(month), str(year), self.gym_network, self.gym_branch).get()
+    ##            result.append(schedule.daily_schedule_table[str(curr_date.day)])
+    ##    return result
+    ##
+    ##""" get a list of DailySchedule from today up to num_days """
+    ##def get_daily_schedule_list_from_today(self, num_days):
+    ##    time = Time('Israel')  # from pytz.all_timezones
+    ##    return self.get_daily_schedule_list(time.now(), time.get_date_with_delta(num_days-1))
+    ##
+    ##def get_from_last_week_to_next_week(self):
+    ##    time = Time('Israel')
+    ##    return self.get_daily_schedule_list(time.get_date_with_delta(-7), time.get_date_with_delta(14))
+    ##
+    ##"""get a list of this week DailySchedule starting from today"""
+    ##def get_week_daily_schedule_list(self):
+    ##    return self.get_daily_schedule_list_from_today(7)
+    ##
+    ##def get_daily_schedule(self, year, month, day):
+    ##    date_time = datetime(int(year), int(month), int(day))
+    ##    daily_schedule = self.get_daily_schedule_list(date_time, date_time)[0]
+    ##    if daily_schedule is None:
+    ##        raise Exception("No such daily schedule")
+    ##    else:
+    ##        return daily_schedule
+    #
 
 class UserOperation:
     def __init__(self, user_id, course_id, year, month, day):

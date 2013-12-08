@@ -1,7 +1,6 @@
 from google.appengine.ext import ndb
-from google.appengine.ext.db import StringProperty
 from db import properties
-from python_objects.objects import *
+
 
 DEFAULT_NETWORK = "network"
 DEFAULT_BRANCH = "branch"

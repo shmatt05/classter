@@ -25,6 +25,7 @@ from db import entities
 from users_logic.user_manager import DailyScheduleManager
 from users_logic.user_manager import UserOperation
 from admin_logic.admin_manager import AdminManager
+from python_objects.objects import GymManager
 
 def user_required(handler):
   """
@@ -646,7 +647,8 @@ class MainHandler(BaseRequestHandler):
 class ChangeWeek(BaseRequestHandler):
     def post(self):
         users_manager = DailyScheduleManager("peer", "peer")
-        sched = users_manager.get_from_last_week_to_next_week()
+        gym_manager = GymManager("peer","peer")
+        sched = gym_manager.get_from_last_week_to_next_week()
         self.response.write(jsonpickle.encode(sched))
 
 
@@ -664,10 +666,11 @@ class AddUser(BaseRequestHandler):
 class UserHandler(BaseRequestHandler):
     def get(self):
         users_manager = DailyScheduleManager("peer", "peer")
+        gym_manager = GymManager("peer","peer")
         #start_date = datetime(day=1, month=11, year=2013)
         #end_date = datetime(day=2, month=11, year=2013)
 
-        sched = users_manager.get_from_last_week_to_next_week()
+        sched = gym_manager.get_from_last_week_to_next_week()
         #sched = users_manager.get_daily_schedule_list(start_date, end_date)
         #mili_times = create_course_milli_from_daily_schedule_list(sched)
         #print mili_times
