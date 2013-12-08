@@ -114,7 +114,8 @@ class AdminManager:
         day should be in range(1,7)
     """
     def create_course_for_month(self, name, hour, duration, max_capacity, instructor, studio, color,
-                                users_list, waiting_list, year, month, day):
+                                users_table, waiting_list_table, registration_days_before, registration_start_time,
+                                year, month, day):
         # check and get the course template of that course
         gym_manager = GymManager(self.gym)
         course_template = gym_manager.does_course_template_exist(name)
@@ -124,7 +125,8 @@ class AdminManager:
         if month_schedule is None:
             raise Exception("No Month Schedule!") #may be changed in the future
         new_course = Course(str(course_template.name), str(course_template.description), hour, duration, max_capacity,
-                            instructor, studio, color, users_list, waiting_list,None, None,str(uuid.uuid4()), None)
+                            instructor, studio, color, users_table, waiting_list_table,
+                            registration_days_before, registration_start_time, str(uuid.uuid4()), None)
         month_schedule_manager = MonthScheduleManager(month_schedule)
         month_schedule_manager.add_course_to_month(new_course , day)
         #new_course.add_to_month_schedule(month_schedule, day)

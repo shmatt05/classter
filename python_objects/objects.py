@@ -24,7 +24,7 @@ class MonthScheduleManager(object):
     def __init__(self, month_schedule_entity):
         self.month_schedule = month_schedule_entity
 
-    def add_course_to_month(self, course , day_in_week):
+    def add_course_to_month(self, course, day_in_week):
         year = self.month_schedule.year
         month = self.month_schedule.month
         days_in_month = get_num_of_days_in_month(year, month)
@@ -41,7 +41,7 @@ class MonthScheduleManager(object):
             new_course = Course(course.name, course.description, course.hour, course.duration, course.max_capacity,
                                 course.instructor, course.studio, course.color, course.users_table,
                                 course.waiting_list_table, course.registration_days_before,
-                                course.registration_start_time, course.id, course.to_mili(year, month, i, self))
+                                course.registration_start_time, course.id, course.to_mili(year, month, i))
             #new_course.milli = new_course.to_mili(year, month, i, new_course)
             self.month_schedule.daily_schedule_table[str(i)].courses_list.append(new_course)
         self.month_schedule.put()
