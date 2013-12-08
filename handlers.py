@@ -503,16 +503,16 @@ class InitialHandler(BaseRequestHandler):
 
 
         admin_manager.create_course_for_month("Zumba","1400", 120, 10,
-                      "Moished", "Park","blue", [], [], 2013, 12, 1) # December 1st 14:00 1385899200000
+                      "Moished", "Park","blue", {}, {},"1" ,"1000", 2013, 12, 1) # December 1st 14:00 1385899200000
 
         admin_manager.create_course_for_month("Zumba","0900", 40, 10,
-                      "Moished", "Park","green", [], [], 2013, 12, 2) #December 2nd 09:00 1385967600000
+                      "Moished", "Park","green", {}, {},"1" ,"1000", 2013, 12, 2) #December 2nd 09:00 1385967600000
 
         admin_manager.create_course_for_month("Yoga","0700", 90, 10,
-                      "Moished", "Park","blue", [], [], 2013, 12, 3) #December 3rd 07:00 1386046800000
+                      "Moished", "Park","blue", {}, {},"1" ,"1000", 2013, 12, 3) #December 3rd 07:00 1386046800000
 
         admin_manager.create_course_for_month("Yoga","1800", 90, 10,
-                      "Moished", "Park","blue", [], [], 2013, 12, 4) #December 3rd 18:00 1386086400000
+                      "Moished", "Park","blue", {}, {},"1" ,"1000", 2013, 12, 4) #December 3rd 18:00 1386086400000
 
         #self.response.write(str(daily_list[0].courses_list[0].name))
 

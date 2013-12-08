@@ -5,7 +5,6 @@ import uuid
 
 
 import time
-from db.entities import Gym
 from users_logic.timezone import Time
 
 
@@ -47,7 +46,7 @@ class MonthScheduleManager(object):
             #new_course.milli = new_course.to_mili(year, month, i, new_course)
             self.month_schedule.daily_schedule_table[str(i)].courses_list.append(new_course)
         self.month_schedule.put()
-        pass
+
 
 
 class CourseTemplate(object):
