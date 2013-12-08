@@ -1,6 +1,7 @@
 from calendar import monthrange
 from datetime import date
 from datetime import datetime
+import uuid
 
 #from db import entities
 import time
@@ -41,7 +42,7 @@ class MonthScheduleManager(object):
             new_course = Course(course.name, course.description, course.hour, course.duration, course.max_capacity,
                                 course.instructor, course.studio, course.color, course.users_table,
                                 course.waiting_list_table, course.registration_days_before,
-                                course.registration_start_time, course.id, course.to_mili(year, month, i))
+                                course.registration_start_time, str(uuid.uuid4()), course.to_mili(year, month, i))
             #new_course.milli = new_course.to_mili(year, month, i, new_course)
             self.month_schedule.daily_schedule_table[str(i)].courses_list.append(new_course)
         self.month_schedule.put()
