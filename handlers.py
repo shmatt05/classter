@@ -469,7 +469,7 @@ class SignUpPopUp(BaseRequestHandler):
         }
         #template = JINJA_ENVIRONMENT.get_template('popup.html')
         #self.response.write(template.render(template_values))
-        self.render('popup.html')
+        self.render('popup.html',template_values)
 
 class InitialHandler(BaseRequestHandler):
     def get(self):
@@ -678,7 +678,7 @@ class UserHandler(BaseRequestHandler):
 
         #template = JINJA_ENVIRONMENT.get_template('user_grid.html')
         #self.response.write(template.render(template_values))
-        self.render('user_grid.html')
+        self.render('user_grid.html',template_values)
 
 class AdminHandler(BaseRequestHandler):
     def get(self):
@@ -704,7 +704,7 @@ class CreateMonthSched(BaseRequestHandler):
         }
         #template = JINJA_ENVIRONMENT.get_template('create_monthly_schedule.html')
         #self.response.write(template.render(template_values))
-        self.render('create_monthly_schedule.html')
+        self.render('create_monthly_schedule.html', template_values)
 
 class CreateMonthYear(BaseRequestHandler):
 
@@ -714,7 +714,7 @@ class CreateMonthYear(BaseRequestHandler):
         }
         #template = JINJA_ENVIRONMENT.get_template('choose_month_year.html')
         #self.response.write(template.render(template_values))
-        self.render('choose_month_year.html')
+        self.render('choose_month_year.html', template_values)
 
 class AddCourse(BaseRequestHandler):
 
@@ -733,7 +733,7 @@ class AddCourse(BaseRequestHandler):
 
         #template = JINJA_ENVIRONMENT.get_template('create_monthly_schedule.html')
         #self.response.write(template.render(template_values))
-        self.render('create_monthly_schedule.html')
+        self.render('create_monthly_schedule.html',template_values)
 
 class CreateCourse(BaseRequestHandler):
     def post(self):
@@ -779,7 +779,7 @@ class CreateCourse(BaseRequestHandler):
 
         #template = JINJA_ENVIRONMENT.get_template('create_monthly_schedule.html')
         #self.response.write(template.render(template_values))
-        self.render('create_monthly_schedule.html')
+        self.render('create_monthly_schedule.html',template_values)
     def get_courses_list_from_daily_schedual_list(self, daily_schedual_list):
         result = []
         for daily in daily_schedual_list:
