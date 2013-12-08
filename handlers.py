@@ -676,14 +676,15 @@ class UserHandler(BaseRequestHandler):
             #'mili_times': mili_times
         }
 
-        template = JINJA_ENVIRONMENT.get_template('user_grid.html')
-        self.response.write(template.render(template_values))
+        #template = JINJA_ENVIRONMENT.get_template('user_grid.html')
+        #self.response.write(template.render(template_values))
+        self.render('user_grid.html')
 
 class AdminHandler(BaseRequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('admin_grid.html')
-        self.response.write(template.render())
-
+        #template = JINJA_ENVIRONMENT.get_template('admin_grid.html')
+        #self.response.write(template.render())
+        self.render('admin_grid.html')
 class CreateMonthSched(BaseRequestHandler):
     def post(self):
         full_date = cgi.escape(self.request.get('month'))
@@ -701,9 +702,9 @@ class CreateMonthSched(BaseRequestHandler):
             'instructors': admin_man.get_instructors(),
             'studios': admin_man.get_studios()
         }
-        template = JINJA_ENVIRONMENT.get_template('create_monthly_schedule.html')
-        self.response.write(template.render(template_values))
-
+        #template = JINJA_ENVIRONMENT.get_template('create_monthly_schedule.html')
+        #self.response.write(template.render(template_values))
+        self.render('create_monthly_schedule.html')
 
 class CreateMonthYear(BaseRequestHandler):
 
@@ -711,9 +712,9 @@ class CreateMonthYear(BaseRequestHandler):
         template_values = {
 
         }
-        template = JINJA_ENVIRONMENT.get_template('choose_month_year.html')
-        self.response.write(template.render(template_values))
-
+        #template = JINJA_ENVIRONMENT.get_template('choose_month_year.html')
+        #self.response.write(template.render(template_values))
+        self.render('choose_month_year.html')
 
 class AddCourse(BaseRequestHandler):
 
@@ -730,9 +731,9 @@ class AddCourse(BaseRequestHandler):
             'courses': admin_man.get_courses_templates()
         }
 
-        template = JINJA_ENVIRONMENT.get_template('create_monthly_schedule.html')
-        self.response.write(template.render(template_values))
-
+        #template = JINJA_ENVIRONMENT.get_template('create_monthly_schedule.html')
+        #self.response.write(template.render(template_values))
+        self.render('create_monthly_schedule.html')
 
 class CreateCourse(BaseRequestHandler):
     def post(self):
@@ -776,9 +777,9 @@ class CreateCourse(BaseRequestHandler):
             'singed_courses':singed_courses
         }
 
-        template = JINJA_ENVIRONMENT.get_template('create_monthly_schedule.html')
-        self.response.write(template.render(template_values))
-
+        #template = JINJA_ENVIRONMENT.get_template('create_monthly_schedule.html')
+        #self.response.write(template.render(template_values))
+        self.render('create_monthly_schedule.html')
     def get_courses_list_from_daily_schedual_list(self, daily_schedual_list):
         result = []
         for daily in daily_schedual_list:
@@ -807,10 +808,10 @@ class RegisterToClass(BaseRequestHandler):
         #    else:
         #        result = 200 # class full
         #result = 300 # user exists
-        template = JINJA_ENVIRONMENT.get_template('popup-success.html')
-        self.response.write(template.render())
+        #template = JINJA_ENVIRONMENT.get_template('popup-success.html')
+        #self.response.write(template.render())
         #self.response.write(result)
-
+          self.render('popup-success.html')
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table
 
@@ -819,7 +820,7 @@ class RegisterToClass(BaseRequestHandler):
 
 sys.path.insert(0, 'libs')
 import jsonpickle
-#
+
 #JINJA_ENVIRONMENT = jinja2.Environment(
 #    loader=jinja2.FileSystemLoader('templates'),
 #    extensions=['jinja2.ext.autoescape'],
