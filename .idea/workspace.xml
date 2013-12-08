@@ -2,7 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d37152e-1487-46af-9b4d-41c4c5277bde" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/favicon.ico" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/img/missing-avatar.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simpleauth/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/app.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/base.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/buttons.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/error.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/forgot.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simpleauth/handler.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/home.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index.yaml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/layout.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/login.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/main.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/media-object.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/message.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/profile.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/resetpassword.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/robots.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/secrets.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/sign_up.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/signup.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/style.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/handlers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Google_App_Engine_SDK.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Google_App_Engine_SDK.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/classter.iml" afterPath="$PROJECT_DIR$/.idea/classter.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="classter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -15,16 +44,16 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/classter$classter.coverage" NAME="classter Coverage Results" MODIFIED="1383662621913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/classter$DataEntities.coverage" NAME="DataEntities Coverage Results" MODIFIED="1383996561924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roy Testing/DB" />
-    <SUITE FILE_PATH="coverage/classter$operations__1_.coverage" NAME="operations (1) Coverage Results" MODIFIED="1384583640954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/admin_logic" />
-    <SUITE FILE_PATH="coverage/classter$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1385058284373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/db" />
-    <SUITE FILE_PATH="coverage/classter$google_workshop.coverage" NAME="google-workshop Coverage Results" MODIFIED="1385063121935" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/classter$__init____1_.coverage" NAME="__init__ (1) Coverage Results" MODIFIED="1385062606975" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/admin_logic" />
-    <SUITE FILE_PATH="coverage/classter$operations.coverage" NAME="operations Coverage Results" MODIFIED="1384504049979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/userss_logic" />
-    <SUITE FILE_PATH="coverage/classter$operations__2_.coverage" NAME="operations (2) Coverage Results" MODIFIED="1385057523222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/users_logic" />
     <SUITE FILE_PATH="coverage/classter$main.coverage" NAME="main Coverage Results" MODIFIED="1383996596923" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/classter$operations.coverage" NAME="operations Coverage Results" MODIFIED="1384504049979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/userss_logic" />
+    <SUITE FILE_PATH="coverage/classter$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1385058284373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/db" />
+    <SUITE FILE_PATH="coverage/classter$operations__1_.coverage" NAME="operations (1) Coverage Results" MODIFIED="1384583640954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/admin_logic" />
+    <SUITE FILE_PATH="coverage/classter$classter.coverage" NAME="classter Coverage Results" MODIFIED="1383662621913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/classter$objects.coverage" NAME="objects Coverage Results" MODIFIED="1384366763706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/python_objects" />
+    <SUITE FILE_PATH="coverage/classter$operations__2_.coverage" NAME="operations (2) Coverage Results" MODIFIED="1385057523222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/users_logic" />
+    <SUITE FILE_PATH="coverage/classter$__init____1_.coverage" NAME="__init__ (1) Coverage Results" MODIFIED="1385062606975" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/admin_logic" />
+    <SUITE FILE_PATH="coverage/classter$google_workshop.coverage" NAME="google-workshop Coverage Results" MODIFIED="1386496724144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -38,119 +67,125 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="app.yaml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="handlers.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/handlers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="788" column="40" selection-start="27981" selection-end="27981" vertical-scroll-proportion="1.0398936" vertical-offset="663" max-vertical-offset="1530">
+              <folding>
+                <element signature="e#701#1074#0" expanded="false" />
+                <element signature="e#701#841#1" expanded="false" />
+                <element signature="e#888#1052#0" expanded="false" />
+                <element signature="e#1128#4075#0" expanded="false" />
+                <element signature="e#1152#1435#0" expanded="false" />
+                <element signature="e#1488#1589#0" expanded="false" />
+                <element signature="e#1643#1739#0" expanded="false" />
+                <element signature="e#1792#1814#0" expanded="false" />
+                <element signature="e#1873#2029#0" expanded="false" />
+                <element signature="e#2085#2208#0" expanded="false" />
+                <element signature="e#2268#2686#0" expanded="false" />
+                <element signature="e#2717#2794#0" expanded="false" />
+                <element signature="e#2914#3237#0" expanded="false" />
+                <element signature="e#2914#3194#1" expanded="false" />
+                <element signature="e#3288#3645#0" expanded="false" />
+                <element signature="e#3288#3556#1" expanded="false" />
+                <element signature="e#3702#3876#0" expanded="false" />
+                <element signature="e#3702#3838#1" expanded="false" />
+                <element signature="e#3922#4075#0" expanded="false" />
+                <element signature="e#4118#4200#0" expanded="false" />
+                <element signature="e#4137#4200#0" expanded="false" />
+                <element signature="e#4246#4480#0" expanded="false" />
+                <element signature="e#4265#4480#0" expanded="false" />
+                <element signature="e#4542#8978#0" expanded="false" />
+                <element signature="e#6078#8199#0" expanded="false" />
+                <element signature="e#6078#6245#1" expanded="false" />
+                <element signature="e#8225#8273#0" expanded="false" />
+                <element signature="e#8327#8407#0" expanded="false" />
+                <element signature="e#8454#8521#0" expanded="false" />
+                <element signature="e#8573#8673#0" expanded="false" />
+                <element signature="e#8730#8978#0" expanded="false" />
+                <element signature="e#9022#9109#0" expanded="false" />
+                <element signature="e#9041#9107#0" expanded="false" />
+                <element signature="e#9179#9843#0" expanded="false" />
+                <element signature="e#9198#9216#0" expanded="false" />
+                <element signature="e#9240#9649#0" expanded="false" />
+                <element signature="e#9694#9843#0" expanded="false" />
+                <element signature="e#9894#11234#0" expanded="false" />
+                <element signature="e#9930#11234#0" expanded="false" />
+                <element signature="e#11279#12405#0" expanded="false" />
+                <element signature="e#11298#11324#0" expanded="false" />
+                <element signature="e#11348#12405#0" expanded="false" />
+                <element signature="e#12457#12526#0" expanded="false" />
+                <element signature="e#12493#12526#0" expanded="false" />
+                <element signature="e#12579#13493#0" expanded="false" />
+                <element signature="e#12598#12616#0" expanded="false" />
+                <element signature="e#12640#13289#0" expanded="false" />
+                <element signature="e#13337#13493#0" expanded="false" />
+                <element signature="e#13544#14059#0" expanded="false" />
+                <element signature="e#13581#14057#0" expanded="false" />
+                <element signature="e#14135#14568#0" expanded="false" />
+                <element signature="e#14159#14568#0" expanded="false" />
+                <element signature="e#14617#16675#0" expanded="false" />
+                <element signature="e#14640#16675#0" expanded="false" />
+                <element signature="e#16720#22319#0" expanded="false" />
+                <element signature="e#16744#17469#0" expanded="false" />
+                <element signature="e#22364#22558#0" expanded="false" />
+                <element signature="e#22388#22558#0" expanded="false" />
+                <element signature="e#22600#22896#0" expanded="false" />
+                <element signature="e#22623#22896#0" expanded="false" />
+                <element signature="e#22942#23609#0" expanded="false" />
+                <element signature="e#22965#23609#0" expanded="false" />
+                <element signature="e#23655#23785#0" expanded="false" />
+                <element signature="e#23678#23785#0" expanded="false" />
+                <element signature="e#23835#24551#0" expanded="false" />
+                <element signature="e#23859#24551#0" expanded="false" />
+                <element signature="e#24602#24793#0" expanded="false" />
+                <element signature="e#24625#24793#0" expanded="false" />
+                <element signature="e#24838#25434#0" expanded="false" />
+                <element signature="e#24862#25434#0" expanded="false" />
+                <element signature="e#25481#27938#0" expanded="false" />
+                <element signature="e#25505#27729#0" expanded="false" />
+                <element signature="e#27817#27938#0" expanded="false" />
+                <element signature="e#27989#29043#0" expanded="false" />
+                <element signature="e#28013#29043#0" expanded="false" />
+                <element signature="e#29465#29629#0" expanded="false" />
+                <element signature="e#29702#29904#0" expanded="false" />
+                <element signature="e#29932#29954#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="228" column="0" selection-start="9146" selection-end="9146" vertical-scroll-proportion="-43.310345" vertical-offset="1515" max-vertical-offset="3196">
-              <folding>
-                <element signature="e#601#636#0" expanded="true" />
-                <element signature="e#6199#6221#0" expanded="false" />
-                <element signature="e#6273#6746#0" expanded="false" />
-                <element signature="e#6801#7419#0" expanded="false" />
-                <element signature="e#7474#7671#0" expanded="false" />
-                <element signature="e#7720#8322#0" expanded="false" />
-                <element signature="e#8373#9144#0" expanded="false" />
-                <element signature="e#9199#9459#0" expanded="false" />
-              </folding>
+            <state line="40" column="24" selection-start="928" selection-end="940" vertical-scroll-proportion="-5.08" vertical-offset="230" max-vertical-offset="918">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="5" selection-start="55" selection-end="55" vertical-scroll-proportion="0.13492064" vertical-offset="0" max-vertical-offset="630">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create_monthly_schedule.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Matan/create_monthly_schedule.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="93" column="65" selection-start="3022" selection-end="3022" vertical-scroll-proportion="-31.384615" vertical-offset="765" max-vertical-offset="2346">
-              <folding>
-                <element signature="n#style#0;n#input#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="operations.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/David/admin_logic/operations.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="444" selection-end="444" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="986">
-              <folding>
-                <element signature="e#579#680#0" expanded="false" />
-                <element signature="e#917#1245#0" expanded="false" />
-                <element signature="e#1434#1847#0" expanded="false" />
-                <element signature="e#2983#3817#0" expanded="false" />
-                <element signature="e#4023#4748#0" expanded="false" />
-                <element signature="e#4882#4931#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/David/admin_logic/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="25" selection-end="25" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="operations.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/David/users_logic/operations.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="0" selection-start="1616" selection-end="1790" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1020">
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-                <element signature="e#546#692#0" expanded="false" />
-                <element signature="e#860#977#0" expanded="false" />
-                <element signature="e#1141#1256#0" expanded="false" />
-                <element signature="e#1392#1546#0" expanded="false" />
-                <element signature="e#1859#2612#0" expanded="false" />
-                <element signature="e#2709#3442#0" expanded="false" />
-                <element signature="e#3544#3990#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/David/db/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="25" selection-end="25" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="entities.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/David/db/entities.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="timezone.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/David/users_logic/timezone.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="objects.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/David/python_objects/objects.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="24" selection-start="1190" selection-end="1190" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="935">
+            <state line="5" column="5" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
               <folding />
             </state>
           </provider>
@@ -180,8 +215,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/David/db/properties.py" />
-        <option value="$PROJECT_DIR$/David/userss_logic/TimeZone.py" />
         <option value="$PROJECT_DIR$/David/userss_logic/timezone.py" />
         <option value="$PROJECT_DIR$/David/userss_logic/operations.py" />
         <option value="$PROJECT_DIR$/David/db/entities.py" />
@@ -194,16 +227,18 @@
         <option value="$PROJECT_DIR$/David/users_logic/operations.py" />
         <option value="$PROJECT_DIR$/David/db/__init__.py" />
         <option value="$PROJECT_DIR$/David/admin_logic/__init__.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/main1.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/handlers.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1050" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1040" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -278,7 +313,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Matan" />
+              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -291,14 +326,14 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="218" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="250" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="recentsLimit" value="5" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="230" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.idea/classter.iml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="251" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1154" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="1158" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1154" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="247" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="246" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -310,7 +345,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Ignored.Files" />
+    <property name="options.lastSelected" value="com.jetbrains.appengine.AppEngineModulesConfigurable" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="options.searchVisible" value="true" />
@@ -342,7 +377,9 @@
             <option name="mySupportsDeletion" value="false" />
             <option name="myCanBeAbsent" value="false" />
             <option name="myId" value="UPDATED" />
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/David/db/entities.py</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/templates/admin_grid.html</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/templates/lib/js/admin-grid-jq.js</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/users_logic/user_manager.py</PATH>
           </FILE-GROUP>
           <FILE-GROUP>
             <option name="myUpdateName" value="Created" />
@@ -580,22 +617,6 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="Python.AppEngineServer" factoryName="App Engine server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="classter" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="browserUrl" value="" />
-      <option name="additionalOptions" value="" />
-      <method />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Nosetests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -618,6 +639,22 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="Python.AppEngineServer" factoryName="App Engine server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="classter" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="browserUrl" value="" />
+      <option name="additionalOptions" value="" />
+      <method />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -635,27 +672,7 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="classter" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
@@ -681,7 +698,27 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="classter" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -983,29 +1020,50 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1040" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23958333" sideWeight="0.75582683" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25255623" sideWeight="0.6848382" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29522753" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2416" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31520534" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24417314" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31516185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24190801" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32761312" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32761312" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29522753" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2416" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24190801" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25255623" sideWeight="0.6848382" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31516185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -1069,11 +1127,6 @@
           <line>20</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>172</line>
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -1082,143 +1135,245 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Matan/lib/js/jquery.magnific-popup.min.js">
+    <entry file="file://$PROJECT_DIR$/app.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/runtime/wsgi.py">
+    <entry file="file://$PROJECT_DIR$/handlers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="238" column="0" selection-start="7698" selection-end="7698" vertical-scroll-proportion="-0.1443124" vertical-offset="4046" max-vertical-offset="5661">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Matan/lib/js/jquery.magnific-popup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="137" column="32" selection-start="3621" selection-end="3621" vertical-scroll-proportion="0.0" vertical-offset="8007" max-vertical-offset="34799">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Matan/popup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="895">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Matan/grid.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="278" selection-end="370" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="4522">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Matan/choose_month_year.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="30" selection-start="258" selection-end="258" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="612">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Matan/create_monthly_schedule.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="65" selection-start="3022" selection-end="3022" vertical-scroll-proportion="-31.384615" vertical-offset="765" max-vertical-offset="2346">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7548">
           <folding>
-            <element signature="n#style#0;n#input#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#1;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#701#1074#0" expanded="false" />
+            <element signature="e#701#841#1" expanded="false" />
+            <element signature="e#888#1052#0" expanded="false" />
+            <element signature="e#1128#4075#0" expanded="false" />
+            <element signature="e#1152#1435#0" expanded="false" />
+            <element signature="e#1488#1589#0" expanded="false" />
+            <element signature="e#1643#1739#0" expanded="false" />
+            <element signature="e#1792#1814#0" expanded="false" />
+            <element signature="e#1873#2029#0" expanded="false" />
+            <element signature="e#2085#2208#0" expanded="false" />
+            <element signature="e#2268#2686#0" expanded="false" />
+            <element signature="e#2717#2794#0" expanded="false" />
+            <element signature="e#2914#3237#0" expanded="false" />
+            <element signature="e#2914#3194#1" expanded="false" />
+            <element signature="e#3288#3645#0" expanded="false" />
+            <element signature="e#3288#3556#1" expanded="false" />
+            <element signature="e#3702#3876#0" expanded="false" />
+            <element signature="e#3702#3838#1" expanded="false" />
+            <element signature="e#3922#4075#0" expanded="false" />
+            <element signature="e#4118#4200#0" expanded="false" />
+            <element signature="e#4137#4200#0" expanded="false" />
+            <element signature="e#4246#4480#0" expanded="false" />
+            <element signature="e#4265#4480#0" expanded="false" />
+            <element signature="e#4542#8978#0" expanded="false" />
+            <element signature="e#6078#8199#0" expanded="false" />
+            <element signature="e#6078#6245#1" expanded="false" />
+            <element signature="e#8225#8273#0" expanded="false" />
+            <element signature="e#8327#8407#0" expanded="false" />
+            <element signature="e#8454#8521#0" expanded="false" />
+            <element signature="e#8573#8673#0" expanded="false" />
+            <element signature="e#8730#8978#0" expanded="false" />
+            <element signature="e#9022#9109#0" expanded="false" />
+            <element signature="e#9041#9107#0" expanded="false" />
+            <element signature="e#9179#9843#0" expanded="false" />
+            <element signature="e#9198#9216#0" expanded="false" />
+            <element signature="e#9240#9649#0" expanded="false" />
+            <element signature="e#9694#9843#0" expanded="false" />
+            <element signature="e#9894#11234#0" expanded="false" />
+            <element signature="e#9930#11234#0" expanded="false" />
+            <element signature="e#11279#12405#0" expanded="false" />
+            <element signature="e#11298#11324#0" expanded="false" />
+            <element signature="e#11348#12405#0" expanded="false" />
+            <element signature="e#12457#12526#0" expanded="false" />
+            <element signature="e#12493#12526#0" expanded="false" />
+            <element signature="e#12579#13493#0" expanded="false" />
+            <element signature="e#12598#12616#0" expanded="false" />
+            <element signature="e#12640#13289#0" expanded="false" />
+            <element signature="e#13337#13493#0" expanded="false" />
+            <element signature="e#13544#14059#0" expanded="false" />
+            <element signature="e#13581#14057#0" expanded="false" />
+            <element signature="e#14135#14568#0" expanded="false" />
+            <element signature="e#14159#14568#0" expanded="false" />
+            <element signature="e#14617#16675#0" expanded="false" />
+            <element signature="e#14640#16675#0" expanded="false" />
+            <element signature="e#16720#22319#0" expanded="false" />
+            <element signature="e#16744#17469#0" expanded="false" />
+            <element signature="e#22364#22558#0" expanded="false" />
+            <element signature="e#22388#22558#0" expanded="false" />
+            <element signature="e#22600#22896#0" expanded="false" />
+            <element signature="e#22623#22896#0" expanded="false" />
+            <element signature="e#22942#23609#0" expanded="false" />
+            <element signature="e#22965#23609#0" expanded="false" />
+            <element signature="e#23655#23785#0" expanded="false" />
+            <element signature="e#23678#23785#0" expanded="false" />
+            <element signature="e#23835#24551#0" expanded="false" />
+            <element signature="e#23859#24551#0" expanded="false" />
+            <element signature="e#24602#24793#0" expanded="false" />
+            <element signature="e#24625#24793#0" expanded="false" />
+            <element signature="e#24838#25434#0" expanded="false" />
+            <element signature="e#24862#25434#0" expanded="false" />
+            <element signature="e#25481#27938#0" expanded="false" />
+            <element signature="e#25505#27729#0" expanded="false" />
+            <element signature="e#27817#27938#0" expanded="false" />
+            <element signature="e#27989#29043#0" expanded="false" />
+            <element signature="e#28013#29043#0" expanded="false" />
+            <element signature="e#29465#29629#0" expanded="false" />
+            <element signature="e#29702#29904#0" expanded="false" />
+            <element signature="e#29932#29954#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David/users_logic/timezone.py">
+    <entry file="file://$PROJECT_DIR$/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David/db/__init__.py">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="25" selection-end="25" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
+        <state line="5" column="5" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David/admin_logic/operations.py">
+    <entry file="file://$PROJECT_DIR$/app.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="444" selection-end="444" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="986">
-          <folding>
-            <element signature="e#579#680#0" expanded="false" />
-            <element signature="e#917#1245#0" expanded="false" />
-            <element signature="e#1434#1847#0" expanded="false" />
-            <element signature="e#2983#3817#0" expanded="false" />
-            <element signature="e#4023#4748#0" expanded="false" />
-            <element signature="e#4882#4931#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David/admin_logic/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="25" selection-end="25" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David/users_logic/operations.py">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="0" selection-start="1616" selection-end="1790" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1020">
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#546#692#0" expanded="false" />
-            <element signature="e#860#977#0" expanded="false" />
-            <element signature="e#1141#1256#0" expanded="false" />
-            <element signature="e#1392#1546#0" expanded="false" />
-            <element signature="e#1859#2612#0" expanded="false" />
-            <element signature="e#2709#3442#0" expanded="false" />
-            <element signature="e#3544#3990#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/David/python_objects/objects.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="24" selection-start="1190" selection-end="1190" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="935">
+        <state line="5" column="5" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/David/db/entities.py">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
+        <state line="5" column="5" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="5" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="228" column="0" selection-start="9146" selection-end="9146" vertical-scroll-proportion="-43.310345" vertical-offset="1515" max-vertical-offset="3196">
-          <folding>
-            <element signature="e#601#636#0" expanded="true" />
-            <element signature="e#6199#6221#0" expanded="false" />
-            <element signature="e#6273#6746#0" expanded="false" />
-            <element signature="e#6801#7419#0" expanded="false" />
-            <element signature="e#7474#7671#0" expanded="false" />
-            <element signature="e#7720#8322#0" expanded="false" />
-            <element signature="e#8373#9144#0" expanded="false" />
-            <element signature="e#9199#9459#0" expanded="false" />
-          </folding>
+        <state line="40" column="24" selection-start="928" selection-end="940" vertical-scroll-proportion="-5.08" vertical-offset="230" max-vertical-offset="918">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="5" selection-start="55" selection-end="55" vertical-scroll-proportion="0.13492064" vertical-offset="0" max-vertical-offset="630">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handlers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="788" column="40" selection-start="27981" selection-end="27981" vertical-scroll-proportion="1.0398936" vertical-offset="663" max-vertical-offset="1530">
+          <folding>
+            <element signature="e#701#1074#0" expanded="false" />
+            <element signature="e#701#841#1" expanded="false" />
+            <element signature="e#888#1052#0" expanded="false" />
+            <element signature="e#1128#4075#0" expanded="false" />
+            <element signature="e#1152#1435#0" expanded="false" />
+            <element signature="e#1488#1589#0" expanded="false" />
+            <element signature="e#1643#1739#0" expanded="false" />
+            <element signature="e#1792#1814#0" expanded="false" />
+            <element signature="e#1873#2029#0" expanded="false" />
+            <element signature="e#2085#2208#0" expanded="false" />
+            <element signature="e#2268#2686#0" expanded="false" />
+            <element signature="e#2717#2794#0" expanded="false" />
+            <element signature="e#2914#3237#0" expanded="false" />
+            <element signature="e#2914#3194#1" expanded="false" />
+            <element signature="e#3288#3645#0" expanded="false" />
+            <element signature="e#3288#3556#1" expanded="false" />
+            <element signature="e#3702#3876#0" expanded="false" />
+            <element signature="e#3702#3838#1" expanded="false" />
+            <element signature="e#3922#4075#0" expanded="false" />
+            <element signature="e#4118#4200#0" expanded="false" />
+            <element signature="e#4137#4200#0" expanded="false" />
+            <element signature="e#4246#4480#0" expanded="false" />
+            <element signature="e#4265#4480#0" expanded="false" />
+            <element signature="e#4542#8978#0" expanded="false" />
+            <element signature="e#6078#8199#0" expanded="false" />
+            <element signature="e#6078#6245#1" expanded="false" />
+            <element signature="e#8225#8273#0" expanded="false" />
+            <element signature="e#8327#8407#0" expanded="false" />
+            <element signature="e#8454#8521#0" expanded="false" />
+            <element signature="e#8573#8673#0" expanded="false" />
+            <element signature="e#8730#8978#0" expanded="false" />
+            <element signature="e#9022#9109#0" expanded="false" />
+            <element signature="e#9041#9107#0" expanded="false" />
+            <element signature="e#9179#9843#0" expanded="false" />
+            <element signature="e#9198#9216#0" expanded="false" />
+            <element signature="e#9240#9649#0" expanded="false" />
+            <element signature="e#9694#9843#0" expanded="false" />
+            <element signature="e#9894#11234#0" expanded="false" />
+            <element signature="e#9930#11234#0" expanded="false" />
+            <element signature="e#11279#12405#0" expanded="false" />
+            <element signature="e#11298#11324#0" expanded="false" />
+            <element signature="e#11348#12405#0" expanded="false" />
+            <element signature="e#12457#12526#0" expanded="false" />
+            <element signature="e#12493#12526#0" expanded="false" />
+            <element signature="e#12579#13493#0" expanded="false" />
+            <element signature="e#12598#12616#0" expanded="false" />
+            <element signature="e#12640#13289#0" expanded="false" />
+            <element signature="e#13337#13493#0" expanded="false" />
+            <element signature="e#13544#14059#0" expanded="false" />
+            <element signature="e#13581#14057#0" expanded="false" />
+            <element signature="e#14135#14568#0" expanded="false" />
+            <element signature="e#14159#14568#0" expanded="false" />
+            <element signature="e#14617#16675#0" expanded="false" />
+            <element signature="e#14640#16675#0" expanded="false" />
+            <element signature="e#16720#22319#0" expanded="false" />
+            <element signature="e#16744#17469#0" expanded="false" />
+            <element signature="e#22364#22558#0" expanded="false" />
+            <element signature="e#22388#22558#0" expanded="false" />
+            <element signature="e#22600#22896#0" expanded="false" />
+            <element signature="e#22623#22896#0" expanded="false" />
+            <element signature="e#22942#23609#0" expanded="false" />
+            <element signature="e#22965#23609#0" expanded="false" />
+            <element signature="e#23655#23785#0" expanded="false" />
+            <element signature="e#23678#23785#0" expanded="false" />
+            <element signature="e#23835#24551#0" expanded="false" />
+            <element signature="e#23859#24551#0" expanded="false" />
+            <element signature="e#24602#24793#0" expanded="false" />
+            <element signature="e#24625#24793#0" expanded="false" />
+            <element signature="e#24838#25434#0" expanded="false" />
+            <element signature="e#24862#25434#0" expanded="false" />
+            <element signature="e#25481#27938#0" expanded="false" />
+            <element signature="e#25505#27729#0" expanded="false" />
+            <element signature="e#27817#27938#0" expanded="false" />
+            <element signature="e#27989#29043#0" expanded="false" />
+            <element signature="e#28013#29043#0" expanded="false" />
+            <element signature="e#29465#29629#0" expanded="false" />
+            <element signature="e#29702#29904#0" expanded="false" />
+            <element signature="e#29932#29954#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    {% if logged_in %}
+        <p>Hey there. Looks like you're logged in already.</p>
+        <a href="{{ url_for('profile') }}" class="btn">my profile</a>
+        <a href="/logout" class="btn">logout</a>
+    {% else %}
+        <p>Please add your ID:</p>
+        <form action="demo_form.asp">
+            ID: <input type="text" name="id"><br>
+            <br/>
+
+            <p>
+                <a href="/auth/google" class="btn">Google</a>
+                <a href="/auth/facebook" class="btn">Facebook</a>
+                <a href="signup" class="btn">Sign In</a>
+
+
+            </p>
+
+
+        </form>
+
+        <br/>
+        <br/>
+
+
+    {% endif %}
+{% endblock %}
