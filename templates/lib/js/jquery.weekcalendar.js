@@ -840,17 +840,17 @@
             showAsSeparatedUser = options.showAsSeparateUsers && options.users && options.users.length,
             $calendarBody, $calendarTableTbody;
         // create the structure
-        $calendarBody = '<div class=\"wc-scrollable-grid\">';
-        $calendarBody += '<table dir="rtl" class=\"wc-time-slots\">';
-        $calendarBody += '<tbody>';
-        $calendarBody += '</tbody>';
-        $calendarBody += '</table>';
-        $calendarBody += '</div>';
-        $calendarBody = $($calendarBody);
-        $calendarTableTbody = $calendarBody.find('tbody');
+          $calendarBody = '<div class=\"wc-scrollable-grid\">';
+          $calendarBody += '<table dir="rtl" class=\"wc-time-slots\">';
+          $calendarBody += '<tbody>';
+          $calendarBody += '</tbody>';
+          $calendarBody += '</table>';
+          $calendarBody += '</div>';
+          $calendarBody = $($calendarBody);
+          $calendarTableTbody = $calendarBody.find('tbody');
 
-        self._renderCalendarBodyTimeSlots($calendarTableTbody);
-        self._renderCalendarBodyOddEven($calendarTableTbody);
+          self._renderCalendarBodyTimeSlots($calendarTableTbody);
+          self._renderCalendarBodyOddEven($calendarTableTbody);
         self._renderCalendarBodyFreeBusy($calendarTableTbody);
         self._renderCalendarBodyEvents($calendarTableTbody);
 
