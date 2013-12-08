@@ -117,7 +117,7 @@ class AdminManager:
                                 users_table, waiting_list_table, registration_days_before, registration_start_time,
                                 year, month, day):
         # check and get the course template of that course
-        gym_manager = GymManager(self.gym)
+        gym_manager = GymManager(self.gym_network, self.gym_branch)
         course_template = gym_manager.does_course_template_exist(name)
         if course_template is None:
             raise Exception("No such Course Template")
@@ -148,6 +148,11 @@ class AdminManager:
                 course.users_list = users_list
                 course.waiting_list = waiting_list
                 month_schedule.put()
+
+    def get_weekly_daily_schedule_list_by_date(self, date_time):
+        year = date_time.year
+        month = date_time.month
+
 
     """ returns the number of the day in range (1,7) by the given date """
     def get_day_by_date(self, year, month, day):
