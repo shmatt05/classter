@@ -124,6 +124,7 @@ class DailyScheduleManager:
         time_delta = end_datetime - start_datetime
         return time_delta.days
 
+
 class UserOperation:
     def __init__(self, user_id, course_id, year, month, day):
         self.user_id = user_id
@@ -133,8 +134,9 @@ class UserOperation:
         self.day = day
         self.user_entity = entities.UserCredentials.get_user_entity(str(user_id))
         self.gym_entity = self.user_entity.get_gym_entity()# we get the gym from the user
-        self.daily_schedule_entity = get_daily_schedule_from_gym(self.gym_entity.gym_network, self.gym_entity.name,
-                                                                 year, month, day)
+        self.month_schedule_entity = get_month_schedule_from_gym(self.gym_entity.gym_network, self.gym_entity.name,
+                                                                 year, month)
+        self.daily_schedule_entity = self.month_schedule_entity.daily_schedule_table[str(day)]
 
     def register_to_course(self):
         if self.user_entity is None:
@@ -148,7 +150,8 @@ class UserOperation:
                     if course.did_registration_start():
                         if not course.is_full():
                             if not course.does_user_already_registered(self.user_id):
-                                course.add_user_to_course(self.user_entity);
+                                course.add_user_to_course(self.user_entity)
+                                self.month_schedule_entity.put()
                                 return USER_REGISTRATION_SUCCEEDED
                             else:
                                 return USER_ALREADY_REGISTERED
@@ -171,6 +174,10 @@ class UserOperation:
 def get_daily_schedule_from_gym(gym_network, gym_branch, year, month, day):
     daily_schedule_manager = DailyScheduleManager(gym_network,gym_branch)
     return daily_schedule_manager.get_daily_schedule(year, month, day)
+
+
+def get_month_schedule_from_gym(gym_network, name, year, month):
+    return entities.MonthSchedule.get_month_schedule_entity(month, year, gym_network, name)
 
 NO_SUCH_USER = 100
 NO_DAILY_SCHEDULE = 200
