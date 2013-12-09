@@ -273,8 +273,8 @@ class Studio(object):
         for studio in gym_entity.studios:
             if self.name.lower() == studio.name.lower():
                 gym_entity.studios.remove(studio)
-                gym_entity.put();
-                break;
+                gym_entity.put()
+                break
 
 
 def get_num_of_days_in_month(year, month):
