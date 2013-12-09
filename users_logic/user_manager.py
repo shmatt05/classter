@@ -147,7 +147,7 @@ class UserOperation:
         for course in self.daily_schedule_entity.courses_list:
             if course.id == self.course_id:
                 if not course.did_course_time_pass(self.year, self.month, self.day):
-                    if course.did_registration_start():
+                    if course.did_registration_start(self.year, self.month, self.day):
                         if not course.is_full():
                             if not course.does_user_already_registered(self.user_id):
                                 course.add_user_to_course(self.user_entity)

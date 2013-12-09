@@ -1,6 +1,7 @@
 from calendar import monthrange
 from datetime import date
 from datetime import datetime, timedelta
+import pytz
 from db.entities import MonthSchedule, Gym
 import uuid
 
@@ -156,8 +157,16 @@ class Course(CourseTemplate):
         minute = self.__get_start_minute()
         return now >= datetime(int(year), int(month), int(day), int(hour), int(minute))
 
-    def did_registration_start(self):
-        pass
+    def did_registration_start(self, year, month, day):
+        course_date_time = datetime(year, month, day)
+        registration_start_date_time = course_date_time + timedelta(int(-self.registration_days_before))
+        registration_start_date_time = datetime(registration_start_date_time.year, registration_start_date_time.month,
+                                                registration_start_date_time.day, self.registration_start_time[:2],
+                                                self.registration_start_time[2:4], 0, 0,
+                                                tzinfo = pytz.timezone("Israel"))
+        now = Time('Israel').now()
+        return now >= registration_start_date_time
+
 
     def is_full(self):
         return len(self.users_table) >= int(self.max_capacity)
@@ -270,3 +279,15 @@ class Studio(object):
 
 def get_num_of_days_in_month(year, month):
     return monthrange(year, month)[1]
+
+
+
+
+
+course_date_time = datetime(2013, 11, 17)
+registration_start_date_time = course_date_time + timedelta(int(-1))
+registration_start_date_time = datetime(registration_start_date_time.year, registration_start_date_time.month,
+                                        registration_start_date_time.day, 10, 00,0,0,tzinfo = pytz.timezone("Israel"))
+now = Time('Israel').now()
+if now >= registration_start_date_time:
+    print "course time passed"
