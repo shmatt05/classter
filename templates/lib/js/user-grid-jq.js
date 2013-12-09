@@ -1,10 +1,11 @@
 ﻿/**
  * Created by Matan on 11/26/13.
  */
-
+var classesTableArr = [];
+var changeWeekVar = new Date().getTime();
 
 $(document).ready(function() {
-
+   changeWeek(new Date().getTime()); //initialize first date screen
 
     // Calendar Date Limitations (Back / Forward)
     var past = new Date();
@@ -13,7 +14,9 @@ $(document).ready(function() {
     future.addDays(14);
 
     $('#calendar').weekCalendar({
-        data: classesTableArr,
+        data: function (start, end, callback) {
+                    callback(classesTableArr);
+                },
         buttonText: {
             today:'היום',
             lastWeek:'קודם',
@@ -21,6 +24,10 @@ $(document).ready(function() {
 
         },
         use24Hour:true,
+        changedate: function($calendar, date) {
+            changeWeek(date.getTime());
+
+        },
         timeslotsPerHour: 4,
         defaultEventLength:4,
         timeSeparator: ' - ',
@@ -115,5 +122,54 @@ function openPopup(classID) {
 
         }
     });
+
+}
+
+// Render new chosen week via AJAX
+//Server Side Function That Gets Date and returns whole week of date in schedules
+function changeWeek(newDate) {
+    classesTableArr = [];
+
+    $.ajax(
+        {
+            url : '/changeweek',
+            type: "POST",
+            data : {'new_date':newDate},
+            async:false,
+            success:function(data, textStatus, jqXHR)
+            {
+                var result = $.parseJSON(data);
+                result.shift(); // Remove 1st element of array (month/day/etc)
+
+                for (var day in result) {
+                    dayObj = result[day].courses_list;
+
+                    if (dayObj.length >0) {
+                        for (var course in dayObj){
+                            var newClass = dayObj[course];
+                            var oneClass = {};
+                            oneClass.id=newClass.id;
+                            oneClass.start=newClass.milli;
+                            oneClass.end = oneClass.start + +(parseInt(newClass.duration)*60000);
+                            oneClass.title = newClass.name;
+                            //$('#calendar').weekCalendar('updateEvent', newClass);
+                            classesTableArr.push(oneClass);
+
+                            //$('#calendar').weekCalendar('clear');
+                            //$('#calendar').weekCalendar('refresh');
+                        }
+                    }
+
+
+                }
+
+
+            },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+                alert('ארעה תקלה, נסה שנית');
+            }
+        });
+
 
 }

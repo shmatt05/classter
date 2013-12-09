@@ -18,8 +18,9 @@ $(document).ready(function () {
     var startDate,
         endDate,
         selectCurrentWeek = function () {
+            console.log('now in');
             window.setTimeout(function () {
-                $('.week-picker').datepicker('widget').find('.ui-datepicker-current-day a').addClass('ui-state-active')
+                $('.week-picker').datepicker('widget').find('.ui-datepicker-current-day').find('a').addClass('white')
             }, 1);
         };
     $('.week-picker').datepicker({
@@ -37,8 +38,13 @@ $(document).ready(function () {
                 dateFormat = inst.settings.dateFormat || $.datepicker._defaults.dateFormat;
             startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay());
             endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 6);
-            $('.week-picker').val($.datepicker.formatDate(dateFormat,date,inst.settings)); //$.datepicker.formatDate(dateFormat, startDate, inst.settings) + ' - ' + $.datepicker.formatDate(dateFormat, endDate, inst.settings)
+            //$('.week-picker').val($.datepicker.formatDate(dateFormat,date,inst.settings)); //$.datepicker.formatDate(dateFormat, startDate, inst.settings) + ' - ' + $.datepicker.formatDate(dateFormat, endDate, inst.settings)
             selectCurrentWeek();
+                        // highlight the TR
+            $('.ui-datepicker-current-day').parent().addClass('highlight');
+
+            // highlight the TD > A
+            $('.ui-datepicker-current-day').siblings().find('a').addClass('white');
             updateCalendarWeek(date);
 
         },
@@ -55,7 +61,15 @@ $(document).ready(function () {
         "onChangeMonthYear": function (year, month, inst) {
             selectCurrentWeek();
         }
-    }).datepicker('widget').addClass('ui-weekpicker');
+    }).click(function(event) {
+            // highlight the TR
+            $('.ui-datepicker-current-day').parent().addClass('highlight');
+
+            // highlight the TD > A
+            $('.ui-datepicker-current-day:eq(0)').siblings().find('a').addClass('white');
+        });
+
+
     $('.week-picker').on('mousemove', 'tr', function () {
         $(this).find('td a').addClass('ui-state-hover');
     });
@@ -154,8 +168,7 @@ function updateCalendarWeek(chosenDate) {
 }
 
 // Render new chosen week via AJAX
-
-//TODO: Server Side Function That Gets Date and returns whole week of date in schedules
+//Server Side Function That Gets Date and returns whole week of date in schedules
 function changeWeek(newDate) {
     classesTableArr = [];
 
@@ -199,7 +212,6 @@ function changeWeek(newDate) {
                 alert('ארעה תקלה, נסה שנית');
             }
         });
-    //$('#calendar').weekCalendar('refresh');
-    //return classesTableArr;
+
 
 }

@@ -18,3 +18,11 @@
     width:20%;
     float:right;
 }
+
+.highlight {
+    border: 1px solid red;
+}
+
+.white {
+    background: white !important;
+}
