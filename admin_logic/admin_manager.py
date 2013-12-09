@@ -157,7 +157,8 @@ class AdminManager:
         sunday = Time.get_sunday_of_week_containing_datetime(date_time, day_num)
         saturday = Time.get_saturday_of_week_containing_datetime(date_time, day_num)
         # TODO: export the methods out of DailyScheduleManager
-        return DailyScheduleManager.get_daily_schedule_list(sunday, saturday)
+        gym_manager = GymManager(self.gym_network,self.gym_branch)
+        return gym_manager.get_daily_schedule_list(sunday, saturday)
 
     #def __get_sunday_of_week_containing_datetime(date_time, day_num):
     #    return date_time + datetime.timedelta(1 - day_num)

@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import sys
+sys.path.insert(0, 'libs')
 import os
 import sys
 import logging
@@ -282,7 +284,7 @@ class SimpleAuthHandler(object):
         "No OAuth verifier was provided", provider)
 
     consumer_key, consumer_secret = self._get_consumer_info_for(provider)
-    token = oauth1.Token(request_token['oauth_token'], 
+    token = oauth1.Token(request_token['oauth_token'],
                          request_token['oauth_token_secret'])
     token.set_verifier(verifier)
     client = self._oauth1_client(token, consumer_key, consumer_secret)
@@ -424,7 +426,7 @@ class SimpleAuthHandler(object):
     logging.warn('LinkedIn OAuth 1.0a is deprecated. '
                   'Use LinkedIn with OAuth 2.0: '
                   'https://developer.linkedin.com/documents/authentication')
-    token = oauth1.Token(key=auth_info['oauth_token'], 
+    token = oauth1.Token(key=auth_info['oauth_token'],
                          secret=auth_info['oauth_token_secret'])
     client = self._oauth1_client(token, key, secret)
 

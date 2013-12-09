@@ -21,8 +21,8 @@ from users_logic.user_manager import UserOperation
 from admin_logic.admin_manager import AdminManager
 # inject './lib' dir in the path so that we can simply do "import ndb" 
 # or whatever there's in the app lib dir.
-if 'lib' not in sys.path:
-    sys.path[0:0] = ['lib']
+import sys
+sys.path.insert(0, 'libs')
 
 # webapp2 config
 app_config = {

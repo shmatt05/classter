@@ -30,11 +30,11 @@ class Time():
 
     @classmethod
     def get_sunday_of_week_containing_datetime(cls, date_time, day_num):
-        return date_time + datetime.timedelta(1 - day_num)
+        return date_time + timedelta(1 - day_num)
 
     @classmethod
     def get_saturday_of_week_containing_datetime(cls, date_time, day_num):
-        return date_time + datetime.timedelta(7 - day_num)
+        return date_time + timedelta(7 - day_num)
 
     @classmethod
     def get_days_difference(cls, start_datetime, end_datetime):

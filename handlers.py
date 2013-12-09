@@ -648,7 +648,13 @@ class ChangeWeek(BaseRequestHandler):
     def post(self):
         users_manager = DailyScheduleManager("peer", "peer")
         gym_manager = GymManager("peer","peer")
-        sched = gym_manager.get_from_last_week_to_next_week()
+        admin_manager = AdminManager("peer","peer")
+        client_date = float(cgi.escape(self.request.get('new_date')))
+        new_date = datetime.fromtimestamp(client_date/1e3)
+        print new_date
+        sched = admin_manager.get_weekly_daily_schedule_list_by_date(new_date)
+
+
         self.response.write(jsonpickle.encode(sched))
 
 

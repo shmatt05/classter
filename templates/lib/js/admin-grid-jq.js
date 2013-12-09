@@ -1,10 +1,12 @@
 /**
  * Created by matan on 12/5/13.
  */
-var classesTableArr;
+var classesTableArr = [];
+var changeWeekVar = new Date().getTime();
+
 $(document).ready(function () {
 
-
+    changeWeek(new Date().getTime()); //initialize first date screen
 
     // Calendar Date Limitations (Back / Forward)
 //    var past = new Date();
@@ -62,9 +64,16 @@ $(document).ready(function () {
     });
     // End Customization for jQuery UI Weekly
 
+
+
+
+
     // Start Calendar Instance Customization
     $('#calendar').weekCalendar({
-        data: changeWeek(new Date().getTime()),
+        data: function (start, end, callback) {
+                    //changeWeek(changeWeekVar);
+                    callback(classesTableArr);
+                },
         buttonText: {
             today:'היום',
             lastWeek:'קודם',
@@ -73,7 +82,14 @@ $(document).ready(function () {
         },
         use24Hour:true,
         changedate: function($calendar, date) {
-            //TODO: Add and Parse AJAX Request for more courses when browsing through calendar
+            //changeWeekVar = date.getTime();
+
+
+            //console.log(classesTableArr);
+            changeWeek(date.getTime());
+            //$('#calendar').weekCalendar('refresh')
+
+
         },
         timeslotsPerHour: 4,
         defaultEventLength:4,
@@ -141,12 +157,14 @@ function updateCalendarWeek(chosenDate) {
 
 //TODO: Server Side Function That Gets Date and returns whole week of date in schedules
 function changeWeek(newDate) {
-    classesTableArr = new Array();
+    classesTableArr = [];
+
     $.ajax(
         {
             url : '/changeweek',
             type: "POST",
-            data : newDate,
+            data : {'new_date':newDate},
+            async:false,
             success:function(data, textStatus, jqXHR)
             {
                 var result = $.parseJSON(data);
@@ -181,6 +199,7 @@ function changeWeek(newDate) {
                 alert('ארעה תקלה, נסה שנית');
             }
         });
-    return classesTableArr;
+    //$('#calendar').weekCalendar('refresh');
+    //return classesTableArr;
 
 }
