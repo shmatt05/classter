@@ -192,9 +192,9 @@ class Course(CourseTemplate):
         return self.__str__()
 
     def to_mili(self, year, month, day_in_month):
-        milli = long(time.mktime(datetime(int(year), int(month), int(day_in_month), int(self.__get_start_hour()),
+        return long(time.mktime(datetime(int(year), int(month), int(day_in_month), int(self.__get_start_hour())-2,
                      int(self.__get_start_minute())).timetuple())*1000)
-        return milli
+
 
 
 class DailySchedule(object):
