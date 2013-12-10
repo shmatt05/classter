@@ -156,7 +156,7 @@ $(document).ready(function () {
     });
 
     $('#tabs').tab();
-    //changeWeek(0);
+
 
 
 });
@@ -216,5 +216,26 @@ function changeWeek(newDate) {
 }
 
 function newCoursePopup() {
+    $.magnificPopup.open({
+        type:'ajax',
+        items: {
+            src: '/newcoursepopup'
 
+        },
+        ajax: {
+            settings: {
+                cache:false,
+
+                type:'POST',
+                data: {
+                    class_milli:classMilli
+                }
+
+            }
+        },
+        closeOnContentClick: false,
+        callbacks: {
+
+        }
+    });
 }

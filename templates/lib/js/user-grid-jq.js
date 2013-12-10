@@ -68,7 +68,7 @@ $(document).ready(function() {
             displayMessage('<strong>Resized Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
         },
         eventClick: function(calEvent, $event) {
-            openPopup(calEvent.id);
+            openPopup(calEvent.id, calEvent.start);
         },
         eventMouseover: function(calEvent, $event) {
             displayMessage('<strong>Mouseover Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
@@ -89,7 +89,7 @@ $(document).ready(function() {
 
 });
 
-function openPopup(classID) {
+function openPopup(classID, classMilli) {
 //    $.magnificPopup.open({
 //        type:'inline',
 //        items: {
@@ -112,7 +112,8 @@ function openPopup(classID) {
 
                 type:'POST',
                 data: {
-                    class_key:classID
+                    class_key:classID,
+                    class_milli:classMilli
                 }
 
             }
