@@ -154,6 +154,7 @@ class AdminManager:
     """ for a given datetime object returns the daily schedule of all the days on the same week (sunday to saturday) """
     def get_weekly_daily_schedule_list_by_date(self, date_time):
         day_num = 7 if date_time.weekday() == 5 else (date_time.weekday()+2) % 7
+        date_time = datetime.datetime(date_time.year, date_time.month, date_time.day)
         sunday = Time.get_sunday_of_week_containing_datetime(date_time, day_num)
         saturday = Time.get_saturday_of_week_containing_datetime(date_time, day_num)
         # TODO: export the methods out of DailyScheduleManager
