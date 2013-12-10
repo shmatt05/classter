@@ -57,7 +57,7 @@ routes = [
     Route('/add_course', 'handlers.AddCourse'),
     Route('/create_course', 'handlers.CreateCourse'),
     Route('/register_to_class', 'handlers.RegisterToClass' ),
-    Route('/initial','handlers.InitialHandler'),
+    Route('/new_initial','handlers.InitialHandler'),
     Route('/add_user', 'handlers.AddUser'),
     Route('/signupopup', 'handlers.SignUpPopUp'),
     Route('/changeweek', 'handlers.ChangeWeek')

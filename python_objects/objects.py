@@ -194,7 +194,6 @@ class Course(CourseTemplate):
     def to_mili(self, year, month, day_in_month):
         milli = long(time.mktime(datetime(int(year), int(month), int(day_in_month), int(self.__get_start_hour()),
                      int(self.__get_start_minute())).timetuple())*1000)
-        print str(milli)
         return milli
 
 
