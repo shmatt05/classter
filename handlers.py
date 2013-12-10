@@ -671,22 +671,12 @@ class AddUser(BaseRequestHandler):
 
 class UserHandler(BaseRequestHandler):
     def get(self):
-        users_manager = DailyScheduleManager("peer", "peer")
-        gym_manager = GymManager("peer","peer")
-        #start_date = datetime(day=1, month=11, year=2013)
-        #end_date = datetime(day=2, month=11, year=2013)
 
-        sched = gym_manager.get_from_last_week_to_next_week()
-        #sched = users_manager.get_daily_schedule_list(start_date, end_date)
-        #mili_times = create_course_milli_from_daily_schedule_list(sched)
-        #print mili_times
         template_values = {
-            'days': sched,
+
             #'mili_times': mili_times
         }
 
-        #template = JINJA_ENVIRONMENT.get_template('user_grid.html')
-        #self.response.write(template.render(template_values))
         self.render('user_grid.html',template_values)
 
 class AdminHandler(BaseRequestHandler):
