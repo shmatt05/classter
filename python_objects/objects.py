@@ -91,7 +91,6 @@ class MonthScheduleManager(object):
         self.month_schedule.put()
 
 
-
 class CourseTemplate(object):
     def __init__(self, name, description):
         self.name = name
@@ -146,8 +145,7 @@ class Course(CourseTemplate):
             new_course = Course(self.name, self.description, self.start_hour, self.duration, self.max_capacity,
                                 self.instructor, self.studio, self.color, self.users_table, self.waiting_list_table,
                                 self.registration_days_before, self.registration_start_time,
-                                self.id, self.to_mili(year, month, i, self))
-            #new_course.milli = new_course.to_mili(year, month, i, new_course)
+                                str(uuid.uuid4()), str(self.to_mili(year, month, i, self)))
             month_schedule.daily_schedule_table[str(i)].courses_list.append(new_course)
         month_schedule.put()
 
@@ -155,7 +153,8 @@ class Course(CourseTemplate):
         now = Time('Israel').now()
         hour = self.__get_start_hour()
         minute = self.__get_start_minute()
-        return now >= datetime(int(year), int(month), int(day), int(hour), int(minute))
+        return now >= datetime(int(year), int(month), int(day), int(hour), int(minute),
+                               0, 0, tzinfo=pytz.timezone("Israel"))
 
     def did_registration_start(self, year, month, day):
         course_date_time = datetime(year, month, day)
@@ -163,10 +162,9 @@ class Course(CourseTemplate):
         registration_start_date_time = datetime(registration_start_date_time.year, registration_start_date_time.month,
                                                 registration_start_date_time.day, self.registration_start_time[:2],
                                                 self.registration_start_time[2:4], 0, 0,
-                                                tzinfo = pytz.timezone("Israel"))
+                                                tzinfo=pytz.timezone("Israel"))
         now = Time('Israel').now()
         return now >= registration_start_date_time
-
 
     def is_full(self):
         return len(self.users_table) >= int(self.max_capacity)
@@ -194,8 +192,10 @@ class Course(CourseTemplate):
         return self.__str__()
 
     def to_mili(self, year, month, day_in_month):
-        return time.mktime(datetime(int(year), int(month), int(day_in_month), int(self.__get_start_hour()),
-                                int(self.__get_start_minute())).timetuple())*1000
+        milli = long(time.mktime(datetime(int(year), int(month), int(day_in_month), int(self.__get_start_hour()),
+                     int(self.__get_start_minute())).timetuple())*1000)
+        print str(milli)
+        return milli
 
 
 class DailySchedule(object):
