@@ -138,8 +138,8 @@ function changeWeek(newDate) {
             async:false,
             success:function(data, textStatus, jqXHR)
             {
+
                 var result = $.parseJSON(data);
-                result.shift(); // Remove 1st element of array (month/day/etc)
 
                 for (var day in result) {
                     dayObj = result[day].courses_list;
