@@ -17,13 +17,12 @@ import json
 import sys
 
 import webapp2
-
-
+from users_logic import user_manager
 
 from users_logic.user_manager import DailyScheduleManager
 from db import entities
 from users_logic.user_manager import DailyScheduleManager
-from users_logic.user_manager import UserOperation
+from users_logic.user_manager import UserOperation, UserView
 from admin_logic.admin_manager import AdminManager
 from python_objects.objects import GymManager
 
@@ -461,6 +460,14 @@ class SetPasswordHandler(BaseRequestHandler):
 class SignUpPopUp(BaseRequestHandler):
     def post(self):
         class_key  = cgi.escape(self.request.get('class_key')) #works great!
+        # check if user is registered. if not redirect to registration
+
+        #user = session.get('cur_user_id'))
+        user_viewer = UserView(12346, 456654, 2013, 11, 17)
+        course = user_viewer.get_course()
+        code = user_viewer.get_view_code(course)
+
+
         template_values = {
             'course': {
                 'name':'Zumbalatis',

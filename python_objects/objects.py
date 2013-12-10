@@ -178,6 +178,12 @@ class Course(CourseTemplate):
     def add_user_to_course(self, user_entity):
         self.users_table[user_entity.id] = user_entity
 
+    def get_num_open_slots(self):
+        if self.is_full():
+            return 0
+        else:
+            return int(self.max_capacity) - len(self.users_table)
+
     def __get_start_hour(self):
         return self.hour[:2]
 

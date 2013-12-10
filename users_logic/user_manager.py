@@ -170,6 +170,48 @@ class UserOperation:
     def cancel_course_registration(self):
         pass
 
+class UserView:
+    def __init__(self, user_id, course_id, year, month, day):
+        self.user_id = user_id
+        self.course_id = course_id
+        self.year = year
+        self.month = month
+        self.day = day
+        self.user_entity = entities.UserCredentials.get_user_entity(str(user_id))
+        self.gym_entity = self.user_entity.get_gym_entity()# we get the gym from the user
+        self.month_schedule_entity = get_month_schedule_from_gym(self.gym_entity.gym_network, self.gym_entity.name,
+                                                                 year, month)
+        self.daily_schedule_entity = self.month_schedule_entity.daily_schedule_table[str(day)]
+
+    def get_course_by_id(self):
+        if self.user_entity is None:
+            return NO_SUCH_USER
+        if self.daily_schedule_entity is None:
+            return NO_DAILY_SCHEDULE
+        "find the correct course"
+        for course in self.daily_schedule_entity.courses_list:
+            if course.id == self.course_id:
+                return course
+        return None
+
+    def get_view_code(self, course):
+        if course is None:
+            return NO_SUCH_COURSE
+        if not course.did_course_time_pass(self.year, self.month, self.day):
+            if course.did_registration_start(self.year, self.month, self.day):
+                if not course.is_full():
+                    if course.does_user_already_registered(self.user_id):
+                        return USER_ALREADY_REGISTERED
+                    else:
+                        return USER_IS_NOT_REGISTERED
+                else:
+                    return COURSE_IS_FULL
+            else:
+                return REGISTRATION_DID_NOT_START
+        else:
+            return COURSE_TIME_PASSED
+
+
 
 def get_daily_schedule_from_gym(gym_network, gym_branch, year, month, day):
     daily_schedule_manager = DailyScheduleManager(gym_network,gym_branch)
@@ -187,3 +229,4 @@ REGISTRATION_DID_NOT_START = 500
 NO_SUCH_COURSE = 600
 COURSE_TIME_PASSED = 700
 USER_REGISTRATION_SUCCEEDED = 800
+USER_IS_NOT_REGISTERED = 900
