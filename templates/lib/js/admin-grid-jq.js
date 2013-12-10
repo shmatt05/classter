@@ -228,7 +228,7 @@ function newCoursePopup() {
 
                 type:'POST',
                 data: {
-                    class_milli:classMilli
+
                 }
 
             }
