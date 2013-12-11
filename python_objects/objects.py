@@ -13,6 +13,9 @@ from users_logic.timezone import Time
 class GymManager(object):
     def __init__(self, gym_network, gym_branch):
         self.gym_entity = Gym.get_gym_entity(gym_network, gym_branch)
+        self.instructors_table = self.gym_entity.instructors
+        self.courses_template_table = self.gym_entity.courses
+        self.studios_list = self.gym_entity.studios
 
     def does_course_template_exist(self, course_name):
         course_templates_table = self.gym_entity.courses
@@ -199,7 +202,6 @@ class Course(CourseTemplate):
     def to_mili(self, year, month, day_in_month):
         return long(time.mktime(datetime(int(year), int(month), int(day_in_month), int(self.__get_start_hour())-2,
                      int(self.__get_start_minute())).timetuple())*1000)
-
 
 
 class DailySchedule(object):

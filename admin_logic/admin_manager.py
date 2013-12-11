@@ -174,3 +174,12 @@ class AdminManager:
             return 7
         else:
             return (temp_day+2) % 7
+
+class AdminViewer:
+    def __init__(self, gym_network, gym_branch):  # gym_key is <network>_<branch>
+        self.gym_network = gym_network
+        self.gym_branch = gym_branch
+
+    def get_gym_info_for_popup(self):
+        return GymManager(self.gym_network, self.gym_branch)
+
