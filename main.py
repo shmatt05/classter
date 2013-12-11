@@ -60,7 +60,9 @@ routes = [
     Route('/new_initial','handlers.InitialHandler'),
     Route('/add_user', 'handlers.AddUser'),
     Route('/signupopup', 'handlers.SignUpPopUp'),
-    Route('/changeweek', 'handlers.ChangeWeek')
+    Route('/changeweek', 'handlers.ChangeWeek'),
+    Route('/newcoursepopup', 'handlers.NewCoursePopup')
+
 ]
 
 app = WSGIApplication(routes, config=app_config, debug=True)

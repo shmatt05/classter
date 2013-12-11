@@ -463,8 +463,8 @@ class SignUpPopUp(BaseRequestHandler):
         # check if user is registered. if not redirect to registration
 
         #user = session.get('cur_user_id'))
-        user_viewer = UserView(12346, 456654, 2013, 11, 17)
-        course = user_viewer.get_course()
+        user_viewer = UserView(3213908, 'f3e8aa1c-0452-4e97-86a4-3d8349e8a9db', 2013, 12, 11)
+        course = user_viewer.get_course_by_id()
         code = user_viewer.get_view_code(course)
 
 
@@ -475,9 +475,16 @@ class SignUpPopUp(BaseRequestHandler):
                 'class_key':'163bd5d1-e886-47bf-a4fd-23455a58deb7'
             }
         }
-        #template = JINJA_ENVIRONMENT.get_template('popup.html')
+        #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
         #self.response.write(template.render(template_values))
-        self.render('popup.html',template_values)
+        self.render('user-popup.html',template_values)
+
+class NewCoursePopup(BaseRequestHandler):
+    def post(self):
+        template_values = {
+
+        }
+        self.render('admin-edit-course.html',template_values)
 
 class InitialHandler(BaseRequestHandler):
     def get(self):
@@ -814,10 +821,10 @@ class RegisterToClass(BaseRequestHandler):
         #    else:
         #        result = 200 # class full
         #result = 300 # user exists
-        #template = JINJA_ENVIRONMENT.get_template('popup-success.html')
+        #template = JINJA_ENVIRONMENT.get_template('user-popup-success.html')
         #self.response.write(template.render())
         #self.response.write(result)
-          self.render('popup-success.html')
+          self.render('user-popup-success.html')
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table
 

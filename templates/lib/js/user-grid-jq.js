@@ -68,6 +68,7 @@ $(document).ready(function() {
             displayMessage('<strong>Resized Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
         },
         eventClick: function(calEvent, $event) {
+            console.log(calEvent.id);
             openPopup(calEvent.id, calEvent.start);
         },
         eventMouseover: function(calEvent, $event) {

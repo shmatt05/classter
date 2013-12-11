@@ -38,7 +38,7 @@ $(document).ready(function() {
 //        $.magnificPopup.open({
 //                type:'ajax',
 //            items: {
-//                src: 'html/popup.html'
+//                src: 'html/user-popup.html'
 //
 //            },
 //
