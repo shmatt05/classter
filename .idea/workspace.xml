@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d37152e-1487-46af-9b4d-41c4c5277bde" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.yaml" afterPath="$PROJECT_DIR$/app.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Google_App_Engine_SDK.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Google_App_Engine_SDK.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/classter.iml" afterPath="$PROJECT_DIR$/.idea/classter.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/python_objects/objects.py" afterPath="$PROJECT_DIR$/python_objects/objects.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="classter.iws" />
@@ -16,16 +19,16 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/classter$DataEntities.coverage" NAME="DataEntities Coverage Results" MODIFIED="1383996561924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roy Testing/DB" />
-    <SUITE FILE_PATH="coverage/classter$main.coverage" NAME="main Coverage Results" MODIFIED="1383996596923" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/classter$operations.coverage" NAME="operations Coverage Results" MODIFIED="1384504049979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/userss_logic" />
-    <SUITE FILE_PATH="coverage/classter$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1385058284373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/db" />
-    <SUITE FILE_PATH="coverage/classter$operations__1_.coverage" NAME="operations (1) Coverage Results" MODIFIED="1384583640954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/admin_logic" />
     <SUITE FILE_PATH="coverage/classter$classter.coverage" NAME="classter Coverage Results" MODIFIED="1383662621913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/classter$objects.coverage" NAME="objects Coverage Results" MODIFIED="1384366763706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/python_objects" />
-    <SUITE FILE_PATH="coverage/classter$operations__2_.coverage" NAME="operations (2) Coverage Results" MODIFIED="1385057523222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/users_logic" />
+    <SUITE FILE_PATH="coverage/classter$DataEntities.coverage" NAME="DataEntities Coverage Results" MODIFIED="1383996561924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Roy Testing/DB" />
+    <SUITE FILE_PATH="coverage/classter$operations__1_.coverage" NAME="operations (1) Coverage Results" MODIFIED="1384583640954" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/admin_logic" />
+    <SUITE FILE_PATH="coverage/classter$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1385058284373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/db" />
+    <SUITE FILE_PATH="coverage/classter$google_workshop.coverage" NAME="google-workshop Coverage Results" MODIFIED="1386778656476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/classter$__init____1_.coverage" NAME="__init__ (1) Coverage Results" MODIFIED="1385062606975" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/admin_logic" />
-    <SUITE FILE_PATH="coverage/classter$google_workshop.coverage" NAME="google-workshop Coverage Results" MODIFIED="1386504967147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/classter$operations.coverage" NAME="operations Coverage Results" MODIFIED="1384504049979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/userss_logic" />
+    <SUITE FILE_PATH="coverage/classter$operations__2_.coverage" NAME="operations (2) Coverage Results" MODIFIED="1385057523222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/users_logic" />
+    <SUITE FILE_PATH="coverage/classter$main.coverage" NAME="main Coverage Results" MODIFIED="1383996596923" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/classter$objects.coverage" NAME="objects Coverage Results" MODIFIED="1384366763706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/David/python_objects" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -39,80 +42,141 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.yaml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app.yaml">
+      <file leaf-file-name="objects.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/python_objects/objects.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="301" selection-end="301" vertical-scroll-proportion="0.42977527" vertical-offset="170" max-vertical-offset="1785">
+            <state line="165" column="0" selection-start="7826" selection-end="7826" vertical-scroll-proportion="0.0" vertical-offset="2529" max-vertical-offset="4845">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/login.html">
+      <file leaf-file-name="model.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/ext/ndb/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
+            <state line="1260" column="0" selection-start="43807" selection-end="43807" vertical-scroll-proportion="0.0" vertical-offset="21420" max-vertical-offset="64498">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/main.html">
+      <file leaf-file-name="request_handler.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/tools/devappserver2/python/request_handler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
+            <state line="121" column="0" selection-start="4717" selection-end="4717" vertical-scroll-proportion="0.0" vertical-offset="1577" max-vertical-offset="3706">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/layout.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="10" selection-start="272" selection-end="272" vertical-scroll-proportion="-3.9230769" vertical-offset="102" max-vertical-offset="731">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="missing-avatar.png" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/img/missing-avatar.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="handlers.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="handlers.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/handlers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="471" column="32" selection-start="14590" selection-end="14590" vertical-scroll-proportion="0.0" vertical-offset="8007" max-vertical-offset="14399">
+            <state line="470" column="0" selection-start="14615" selection-end="14615" vertical-scroll-proportion="0.33153638" vertical-offset="1815" max-vertical-offset="8602">
+              <folding>
+                <element signature="e#24#38#0" expanded="true" />
+                <element signature="e#779#1152#0" expanded="false" />
+                <element signature="e#779#919#1" expanded="false" />
+                <element signature="e#966#1130#0" expanded="false" />
+                <element signature="e#1566#1667#0" expanded="false" />
+                <element signature="e#1721#1817#0" expanded="false" />
+                <element signature="e#1870#1892#0" expanded="false" />
+                <element signature="e#1951#2107#0" expanded="false" />
+                <element signature="e#2163#2286#0" expanded="false" />
+                <element signature="e#2346#2764#0" expanded="false" />
+                <element signature="e#2795#2872#0" expanded="false" />
+                <element signature="e#2992#3315#0" expanded="false" />
+                <element signature="e#2992#3272#1" expanded="false" />
+                <element signature="e#3366#3723#0" expanded="false" />
+                <element signature="e#3366#3634#1" expanded="false" />
+                <element signature="e#3780#3954#0" expanded="false" />
+                <element signature="e#3780#3916#1" expanded="false" />
+                <element signature="e#4000#4153#0" expanded="false" />
+                <element signature="e#4196#4278#0" expanded="false" />
+                <element signature="e#4215#4278#0" expanded="false" />
+                <element signature="e#4324#4558#0" expanded="false" />
+                <element signature="e#4343#4558#0" expanded="false" />
+                <element signature="e#4620#9056#0" expanded="false" />
+                <element signature="e#6156#8277#0" expanded="false" />
+                <element signature="e#6156#6323#1" expanded="false" />
+                <element signature="e#8303#8351#0" expanded="false" />
+                <element signature="e#8405#8485#0" expanded="false" />
+                <element signature="e#8532#8599#0" expanded="false" />
+                <element signature="e#8651#8751#0" expanded="false" />
+                <element signature="e#8808#9056#0" expanded="false" />
+                <element signature="e#9100#9187#0" expanded="false" />
+                <element signature="e#9119#9185#0" expanded="false" />
+                <element signature="e#9257#9921#0" expanded="false" />
+                <element signature="e#9276#9294#0" expanded="false" />
+                <element signature="e#9318#9727#0" expanded="false" />
+                <element signature="e#9772#9921#0" expanded="false" />
+                <element signature="e#9972#11312#0" expanded="false" />
+                <element signature="e#10008#11312#0" expanded="false" />
+                <element signature="e#11357#12483#0" expanded="false" />
+                <element signature="e#11376#11402#0" expanded="false" />
+                <element signature="e#11426#12483#0" expanded="false" />
+                <element signature="e#12535#12604#0" expanded="false" />
+                <element signature="e#12571#12604#0" expanded="false" />
+                <element signature="e#12657#13571#0" expanded="false" />
+                <element signature="e#12676#12694#0" expanded="false" />
+                <element signature="e#12718#13367#0" expanded="false" />
+                <element signature="e#13415#13571#0" expanded="false" />
+                <element signature="e#13622#14137#0" expanded="false" />
+                <element signature="e#13659#14135#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="webapp2.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/Google/google_appengine/lib/webapp2-2.5.2/webapp2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="569" column="0" selection-start="19382" selection-end="19382" vertical-scroll-proportion="0.0" vertical-offset="8020" max-vertical-offset="33609">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models.py">
+      <file leaf-file-name="wsgi.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/runtime/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
+            <state line="327" column="0" selection-start="10354" selection-end="10354" vertical-scroll-proportion="0.0" vertical-offset="5290" max-vertical-offset="5661">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.py">
+      <file leaf-file-name="runtime.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/runtime/runtime.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="25" selection-start="928" selection-end="941" vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1241">
+            <state line="150" column="0" selection-start="4792" selection-end="4792" vertical-scroll-proportion="0.0" vertical-offset="2291" max-vertical-offset="3077">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="user_manager.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/users_logic/user_manager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="5" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
+            <state line="209" column="0" selection-start="9307" selection-end="9307" vertical-scroll-proportion="0.0" vertical-offset="3362" max-vertical-offset="3961">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="request_rewriter.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/tools/devappserver2/request_rewriter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="310" column="0" selection-start="11610" selection-end="11610" vertical-scroll-proportion="0.0" vertical-offset="5270" max-vertical-offset="6460">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin_manager.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin_logic/admin_manager.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="155" column="0" selection-start="7397" selection-end="7397" vertical-scroll-proportion="0.0" vertical-offset="2444" max-vertical-offset="3009">
               <folding />
             </state>
           </provider>
@@ -142,11 +206,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/David/db/entities.py" />
-        <option value="$PROJECT_DIR$/Matan/admin_create_new_schedule.html" />
-        <option value="$PROJECT_DIR$/David/python_objects/objects.py" />
-        <option value="$PROJECT_DIR$/Matan/choose_mont_year.html" />
-        <option value="$PROJECT_DIR$/Matan/choose_month_year.html" />
         <option value="$PROJECT_DIR$/David/admin_logic/operations.py" />
         <option value="$PROJECT_DIR$/Matan/create_monthly_schedule.html" />
         <option value="$PROJECT_DIR$/David/users_logic/operations.py" />
@@ -155,17 +214,22 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/main1.py" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/handlers.py" />
         <option value="$PROJECT_DIR$/templates/layout.html" />
         <option value="$PROJECT_DIR$/app.yaml" />
+        <option value="$PROJECT_DIR$/users_logic/timezone.py" />
+        <option value="$PROJECT_DIR$/admin_logic/admin_manager.py" />
+        <option value="$PROJECT_DIR$/users_logic/user_view.py" />
+        <option value="$PROJECT_DIR$/users_logic/user_manager.py" />
+        <option value="$PROJECT_DIR$/handlers.py" />
+        <option value="$PROJECT_DIR$/python_objects/objects.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1040" />
-    <option name="height" value="744" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -239,14 +303,14 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="218" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="250" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="230" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="230" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="251" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="1158" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1154" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="1158" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="247" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="246" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -418,6 +482,22 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="Python.AppEngineServer" factoryName="App Engine server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="classter" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="browserUrl" value="" />
+      <option name="additionalOptions" value="" />
+      <method />
+    </configuration>
     <configuration default="true" type="tests" factoryName="Nosetests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -440,22 +520,6 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="Python.AppEngineServer" factoryName="App Engine server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="classter" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="browserUrl" value="" />
-      <option name="additionalOptions" value="" />
-      <method />
-    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -473,7 +537,27 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="classter" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
@@ -499,27 +583,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="classter" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -825,29 +889,45 @@
       <created>1386503984958</created>
       <updated>1386503984958</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="get milli minus 2 hours, to support gae">
+      <created>1386680902831</created>
+      <updated>1386680902831</updated>
+    </task>
+    <task id="LOCAL-00052" summary="get_weekly_daily_schedule_list_by_date datetime fixes">
+      <created>1386684461403</created>
+      <updated>1386684461403</updated>
+    </task>
+    <task id="LOCAL-00053" summary="1. Added functionality to SignUpPopUp&#10;2. Added get_num_open_slots to Course&#10;3. Created the ckass UserView in user_manager">
+      <created>1386704335200</created>
+      <updated>1386704335201</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Fixed a bug in did_registration_start">
+      <created>1386781104027</created>
+      <updated>1386781104027</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1040" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28323108" sideWeight="0.68654174" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29522753" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2828125" sideWeight="0.4428413" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5571587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2416" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31345826" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24190801" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3118757" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2408435" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32761312" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -869,9 +949,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19090909" sideWeight="0.68654174" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31345826" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31345826" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -881,10 +961,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="additional cleanup" />
-    <MESSAGE value="Users are now in the game too" />
-    <MESSAGE value="Added Time class" />
-    <MESSAGE value="changes" />
     <MESSAGE value="fixes to get daily schedule" />
     <MESSAGE value="finished and checked week schedule function&#10;cleaned and improved the code" />
     <MESSAGE value="additional design improvements" />
@@ -906,7 +982,11 @@
     <MESSAGE value="cleaned main" />
     <MESSAGE value="schedule_table key returns from db as str and not int" />
     <MESSAGE value="add sesion" />
-    <option name="LAST_COMMIT_MESSAGE" value="add sesion" />
+    <MESSAGE value="get milli minus 2 hours, to support gae" />
+    <MESSAGE value="get_weekly_daily_schedule_list_by_date datetime fixes" />
+    <MESSAGE value="1. Added functionality to SignUpPopUp&#10;2. Added get_num_open_slots to Course&#10;3. Created the ckass UserView in user_manager" />
+    <MESSAGE value="Fixed a bug in did_registration_start" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed a bug in did_registration_start" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -921,102 +1001,47 @@
           <line>15</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
+        <line-breakpoint type="python-line">
           <url>file://$PROJECT_DIR$/David/users_logic/operations.py</url>
           <line>67</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
+        <line-breakpoint type="python-line">
           <url>file://$PROJECT_DIR$/David/python_objects/objects.py</url>
           <line>12</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
+        <line-breakpoint type="python-line">
           <url>file://$PROJECT_DIR$/David/admin_logic/operations.py</url>
           <line>20</line>
           <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint type="python-line">
+          <url>file://$PROJECT_DIR$/python_objects/objects.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/admin_logic/admin_manager.py</url>
+          <line>155</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/handlers.py</url>
+          <line>465</line>
+          <option name="timeStamp" value="69" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="60" />
+      <option name="time" value="70" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app.yaml">
+    <entry file="file://$PROJECT_DIR$/users_logic/timezone.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handlers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7548">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="5" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="5" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="5" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="5" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="680">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="25" selection-start="928" selection-end="941" vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1241">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handlers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="471" column="32" selection-start="14590" selection-end="14590" vertical-scroll-proportion="0.0" vertical-offset="8007" max-vertical-offset="14399">
+        <state line="31" column="61" selection-start="736" selection-end="736" vertical-scroll-proportion="0.0" vertical-offset="527" max-vertical-offset="850">
           <folding />
         </state>
       </provider>
@@ -1026,31 +1051,149 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="10" selection-start="272" selection-end="272" vertical-scroll-proportion="-3.9230769" vertical-offset="102" max-vertical-offset="731">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="301" selection-end="301" vertical-scroll-proportion="0.42977527" vertical-offset="170" max-vertical-offset="1785">
+        <state line="19" column="0" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1785">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/tools/devappserver2/wsgi_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="268" column="0" selection-start="9243" selection-end="9243" vertical-scroll-proportion="0.0" vertical-offset="4192" max-vertical-offset="6936" />
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Google/google_appengine/lib/cherrypy/cherrypy/wsgiserver/wsgiserver2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2114" column="0" selection-start="80749" selection-end="80749" vertical-scroll-proportion="0.0" vertical-offset="35834" max-vertical-offset="39576">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/ext/ndb/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1260" column="0" selection-start="43807" selection-end="43807" vertical-scroll-proportion="0.0" vertical-offset="21056" max-vertical-offset="64243">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users_logic/timezone.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="61" selection-start="736" selection-end="736" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/tools/devappserver2/request_rewriter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="310" column="0" selection-start="11610" selection-end="11610" vertical-scroll-proportion="0.0" vertical-offset="4717" max-vertical-offset="6307">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/runtime/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="327" column="0" selection-start="10354" selection-end="10354" vertical-scroll-proportion="0.0" vertical-offset="5290" max-vertical-offset="5661">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/runtime/runtime.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="150" column="0" selection-start="4792" selection-end="4792" vertical-scroll-proportion="0.0" vertical-offset="2291" max-vertical-offset="3077">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Google/google_appengine/google/appengine/tools/devappserver2/python/request_handler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="121" column="0" selection-start="4717" selection-end="4717" vertical-scroll-proportion="0.0" vertical-offset="1577" max-vertical-offset="3706">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin_logic/admin_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="155" column="0" selection-start="7397" selection-end="7397" vertical-scroll-proportion="0.0" vertical-offset="2444" max-vertical-offset="3009">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Google/google_appengine/lib/webapp2-2.5.2/webapp2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="569" column="0" selection-start="19382" selection-end="19382" vertical-scroll-proportion="0.0" vertical-offset="8020" max-vertical-offset="33609">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/python_objects/objects.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="165" column="0" selection-start="7826" selection-end="7826" vertical-scroll-proportion="0.0" vertical-offset="2529" max-vertical-offset="4845">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users_logic/user_manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="209" column="0" selection-start="9307" selection-end="9307" vertical-scroll-proportion="0.0" vertical-offset="3362" max-vertical-offset="3961">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handlers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="470" column="0" selection-start="14615" selection-end="14615" vertical-scroll-proportion="0.33153638" vertical-offset="1815" max-vertical-offset="8602">
+          <folding>
+            <element signature="e#24#38#0" expanded="true" />
+            <element signature="e#779#1152#0" expanded="false" />
+            <element signature="e#779#919#1" expanded="false" />
+            <element signature="e#966#1130#0" expanded="false" />
+            <element signature="e#1566#1667#0" expanded="false" />
+            <element signature="e#1721#1817#0" expanded="false" />
+            <element signature="e#1870#1892#0" expanded="false" />
+            <element signature="e#1951#2107#0" expanded="false" />
+            <element signature="e#2163#2286#0" expanded="false" />
+            <element signature="e#2346#2764#0" expanded="false" />
+            <element signature="e#2795#2872#0" expanded="false" />
+            <element signature="e#2992#3315#0" expanded="false" />
+            <element signature="e#2992#3272#1" expanded="false" />
+            <element signature="e#3366#3723#0" expanded="false" />
+            <element signature="e#3366#3634#1" expanded="false" />
+            <element signature="e#3780#3954#0" expanded="false" />
+            <element signature="e#3780#3916#1" expanded="false" />
+            <element signature="e#4000#4153#0" expanded="false" />
+            <element signature="e#4196#4278#0" expanded="false" />
+            <element signature="e#4215#4278#0" expanded="false" />
+            <element signature="e#4324#4558#0" expanded="false" />
+            <element signature="e#4343#4558#0" expanded="false" />
+            <element signature="e#4620#9056#0" expanded="false" />
+            <element signature="e#6156#8277#0" expanded="false" />
+            <element signature="e#6156#6323#1" expanded="false" />
+            <element signature="e#8303#8351#0" expanded="false" />
+            <element signature="e#8405#8485#0" expanded="false" />
+            <element signature="e#8532#8599#0" expanded="false" />
+            <element signature="e#8651#8751#0" expanded="false" />
+            <element signature="e#8808#9056#0" expanded="false" />
+            <element signature="e#9100#9187#0" expanded="false" />
+            <element signature="e#9119#9185#0" expanded="false" />
+            <element signature="e#9257#9921#0" expanded="false" />
+            <element signature="e#9276#9294#0" expanded="false" />
+            <element signature="e#9318#9727#0" expanded="false" />
+            <element signature="e#9772#9921#0" expanded="false" />
+            <element signature="e#9972#11312#0" expanded="false" />
+            <element signature="e#10008#11312#0" expanded="false" />
+            <element signature="e#11357#12483#0" expanded="false" />
+            <element signature="e#11376#11402#0" expanded="false" />
+            <element signature="e#11426#12483#0" expanded="false" />
+            <element signature="e#12535#12604#0" expanded="false" />
+            <element signature="e#12571#12604#0" expanded="false" />
+            <element signature="e#12657#13571#0" expanded="false" />
+            <element signature="e#12676#12694#0" expanded="false" />
+            <element signature="e#12718#13367#0" expanded="false" />
+            <element signature="e#13415#13571#0" expanded="false" />
+            <element signature="e#13622#14137#0" expanded="false" />
+            <element signature="e#13659#14135#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
