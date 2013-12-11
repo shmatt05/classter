@@ -135,6 +135,7 @@ $(document).ready(function () {
             }
         },
         eventNew: function(calEvent, $event) { // Added New Event
+            newCoursePopup();
             //TODO: Open Editor?
             //TODO: Create New Class On Serverside - Send Back New UUID and Save it Client Side
         },

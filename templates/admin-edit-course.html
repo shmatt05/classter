@@ -1,14 +1,22 @@
 
-<div class="white-popup popup-div">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<div class="white-popup popup-div" dir="rtl">
+<link rel="stylesheet" type="text/css" href="lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/bootstrap-timepicker.min.css">
+  <script type='text/javascript' src='lib/js/bootstrap-timepicker.min.js'></script>
     <script type='text/javascript' src='lib/js/admin-popup-jq.js'></script>
-
-    <form id="addclass" action="add_class_to_schedule" method="post">
-        <fieldset>
+    <form id="addclass" action="add_class_to_schedule" method="post" dir="rtl">
+        <fieldset dir="rtl">
             <legend>עריכת פרטי קורס</legend>
-            <label for="daytime">יום ושעה</label><input type="datetime-local" id="daytime"><br>
+            <div class="input-append bootstrap-timepicker">
+                <input id="timepicker" type="text" class="input-small">
+            <span class="add-on">
+                <i class="icon-time"></i>
+            </span>
+            </div>
 
         </fieldset>
 
     </form>
+
+
 </div>
