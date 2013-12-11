@@ -125,7 +125,7 @@ class DailyScheduleManager:
     ##        return daily_schedule
     #
 
-class UserOperation:
+class UserBusinessLogic:
     def __init__(self, user_id, course_id, year, month, day):
         self.user_id = user_id
         self.course_id = course_id
@@ -163,9 +163,6 @@ class UserOperation:
                     return NO_SUCH_COURSE
             else:
                 return COURSE_TIME_PASSED
-
-
-
 
     def cancel_course_registration(self):
         pass

@@ -22,7 +22,7 @@ from users_logic import user_manager
 from users_logic.user_manager import DailyScheduleManager
 from db import entities
 from users_logic.user_manager import DailyScheduleManager
-from users_logic.user_manager import UserOperation, UserView
+from users_logic.user_manager import UserBusinessLogic, UserView
 from admin_logic.admin_manager import AdminManager
 from python_objects.objects import GymManager
 
@@ -680,7 +680,7 @@ class AddUser(BaseRequestHandler):
         david.put()
 
 
-        user_op = UserOperation(3213908, 1111, 2013, 12, 2)
+        user_op = UserBusinessLogic(3213908, 1111, 2013, 12, 2)
 
 
 class UserHandler(BaseRequestHandler):

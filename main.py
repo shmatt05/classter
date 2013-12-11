@@ -17,7 +17,7 @@ import jinja2
 from users_logic.user_manager import DailyScheduleManager
 from db import entities
 from users_logic.user_manager import DailyScheduleManager
-from users_logic.user_manager import UserOperation
+from users_logic.user_manager import UserBusinessLogic
 from admin_logic.admin_manager import AdminManager
 # inject './lib' dir in the path so that we can simply do "import ndb" 
 # or whatever there's in the app lib dir.
