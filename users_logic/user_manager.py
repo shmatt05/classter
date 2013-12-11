@@ -190,7 +190,7 @@ class UserView:
             return NO_DAILY_SCHEDULE
         "find the correct course"
         for course in self.daily_schedule_entity.courses_list:
-            if course.id == self.course_id:
+            if str(course.id) == str(self.course_id):
                 return course
         return None
 

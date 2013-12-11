@@ -463,7 +463,7 @@ class SignUpPopUp(BaseRequestHandler):
         # check if user is registered. if not redirect to registration
 
         #user = session.get('cur_user_id'))
-        user_viewer = UserView(3213908, "d25059e1-ed15-4971-8f32-3c0d2becb2ef", 2013, 12, 15)
+        user_viewer = UserView(3213908, "a6dc76ac-73c2-4add-8630-84a7cdb1705d", 2013, 12, 15)
         course = user_viewer.get_course_by_id()
         code = user_viewer.get_view_code(course)
 
@@ -518,7 +518,7 @@ class InitialHandler(BaseRequestHandler):
 
 
         admin_manager.create_course_for_month("Zumba","1400", 120, 10,
-                      "Moished", "Park","blue", {}, {},"1" ,"1000", 2013, 12, 1) # December 1st 14:00 1385899200000
+                      "Moished", "Park","blue", {}, {},"20" ,"1000", 2013, 12, 1) # December 1st 14:00 1385899200000
 
         admin_manager.create_course_for_month("Zumba","0900", 40, 10,
                       "Moished", "Park","green", {}, {},"1" ,"1000", 2013, 12, 2) #December 2nd 09:00 1385967600000
