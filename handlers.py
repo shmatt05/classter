@@ -463,7 +463,7 @@ class SignUpPopUp(BaseRequestHandler):
         # check if user is registered. if not redirect to registration
 
         #user = session.get('cur_user_id'))
-        user_viewer = UserView(3213908, 'f3e8aa1c-0452-4e97-86a4-3d8349e8a9db', 2013, 12, 11)
+        user_viewer = UserView(3213908, "d25059e1-ed15-4971-8f32-3c0d2becb2ef", 2013, 12, 15)
         course = user_viewer.get_course_by_id()
         code = user_viewer.get_view_code(course)
 
@@ -698,6 +698,7 @@ class AdminHandler(BaseRequestHandler):
         #template = JINJA_ENVIRONMENT.get_template('admin_grid.html')
         #self.response.write(template.render())
         self.render('admin_grid.html')
+
 class CreateMonthSched(BaseRequestHandler):
     def post(self):
         full_date = cgi.escape(self.request.get('month'))
