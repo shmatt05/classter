@@ -236,7 +236,9 @@ function newCoursePopup() {
         },
         closeOnContentClick: false,
         callbacks: {
+            open:function() {
 
+            }
         }
     });
 }

@@ -1,22 +1,37 @@
 
 <div class="white-popup popup-div" dir="rtl">
-<link rel="stylesheet" type="text/css" href="lib/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="lib/css/bootstrap-timepicker.min.css">
-  <script type='text/javascript' src='lib/js/bootstrap-timepicker.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/bootstrap-formhelpers.css">
+     <link rel="stylesheet" type="text/css" href="lib/css/chosen.css">
+    <script type='text/javascript' src='lib/js/bootstrap.min.js'></script>
+    <script type='text/javascript' src='lib/js/bootstrap-formhelpers.js'></script>
+    <script type='text/javascript' src='lib/js/chosen.jquery.js'></script>
     <script type='text/javascript' src='lib/js/admin-popup-jq.js'></script>
-    <form id="addclass" action="add_class_to_schedule" method="post" dir="rtl">
-        <fieldset dir="rtl">
-            <legend>עריכת פרטי קורס</legend>
-            <div class="input-append bootstrap-timepicker">
-                <input id="timepicker" type="text" class="input-small">
-            <span class="add-on">
-                <i class="icon-time"></i>
-            </span>
-            </div>
+    <br><form id="addclass" action="add_class_to_schedule" method="post" dir="rtl">
+    <fieldset dir="rtl">
+        <legend align="right">פרטי קורס</legend>
+        <div id="date" dir="rtl" class="bfh-datepicker" data-format="d-m-y" data-date="today"></div><br>
+        <div id="time" dir="rtl" class="bfh-timepicker" data-time="now"></div><br>
 
-        </fieldset>
+        <select id="classname" class="chosen-select chosen-rtl" data-placeholder="בחר שם שיעור">
+            <option value=""></option>
+            <option value="test1">Test 1</option>
+            <option value="test2">Test 2</option>
+        </select><br><br>
 
-    </form>
+        <select id="studio" class="chosen-select chosen-rtl" data-placeholder="בחר סטודיו">
+            <option value=""></option>
+            <option value="ttest1">tTest 1</option>
+            <option value="ttest2">tTest 2</option>
+        </select><br><br>
+        <select id="instructor" class="chosen-select chosen-rtl" data-placeholder="בחר מדריך">
+            <option value=""></option>
+            <option value="tttest1">ttTest 1</option>
+            <option value="tttest2">ttTest 2</option>
+        </select><br><br>
+    </fieldset>
+
+</form>
 
 
 </div>
