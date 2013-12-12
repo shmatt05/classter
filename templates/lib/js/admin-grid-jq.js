@@ -135,7 +135,7 @@ $(document).ready(function () {
             }
         },
         eventNew: function(calEvent, $event) { // Added New Event
-            newCoursePopup();
+            newCoursePopup(calEvent.start);
             //TODO: Open Editor?
             //TODO: Create New Class On Serverside - Send Back New UUID and Save it Client Side
         },
@@ -216,7 +216,12 @@ function changeWeek(newDate) {
 
 }
 
-function newCoursePopup() {
+function newCoursePopup(startTime) {
+
+    var newDate = returnDateStr(startTime);
+    var newHour = returnTimeStr(startTime);
+    console.log('date: ' + newDate +' hour: '+newHour);
+
     $.magnificPopup.open({
         type:'ajax',
         items: {
@@ -229,7 +234,8 @@ function newCoursePopup() {
 
                 type:'POST',
                 data: {
-
+                    'course_date':newDate,
+                    'course_hour':newHour
                 }
 
             }
@@ -241,4 +247,17 @@ function newCoursePopup() {
             }
         }
     });
+}
+
+function returnDateStr (someDate) {
+    return (someDate.getDate()<10?("0"+someDate.getDate()):someDate.getDate()) + "/" +
+      ((someDate.getMonth()+1)<10?("0"+(someDate.getMonth()+1)):(someDate.getMonth()+1)) + "/" +
+      someDate.getFullYear();
+
+}
+
+function returnTimeStr(someDate) {
+    var someHour = (someDate.getHours() < 10? '0' : '') + someDate.getHours();
+    var someMinutes = (someDate.getMinutes() < 10? '0' : '') + someDate.getMinutes();
+    return (someHour + ":" + someMinutes);
 }

@@ -13,6 +13,12 @@
         <div id="date" dir="rtl" class="bfh-datepicker" data-format="d/m/y" data-date="{{class_date}}"></div><br>
         <div id="time" dir="rtl" class="bfh-timepicker" data-time="{{class_time}}"></div><br>
 
+        <div>
+        <span style="float:right;"><label for="amount"> משך שיעור בדקות </label>
+         <input type="text" readonly="readonly" id="amount" style="border:0; color:#f6931f; font-weight:bold; width:50px;"></span>
+             <div id="slider-range-min" style="float:left; width:60%; margin-top:6px;"></div>
+        </div><br><br>
+
         <select id="classname" class="chosen-select chosen-rtl" data-placeholder="בחר שם שיעור">
             <option value=""></option>
             {% for class in class_names %}

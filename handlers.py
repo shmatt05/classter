@@ -481,6 +481,8 @@ class SignUpPopUp(BaseRequestHandler):
 
 class NewCoursePopup(BaseRequestHandler):
     def post(self):
+        class_date  = cgi.escape(self.request.get('course_date'))
+        class_hour  = cgi.escape(self.request.get('course_hour'))
         admin_viewer = AdminViewer("peer","peer")
         gym_info = admin_viewer.get_gym_info_for_popup()
         class_names = gym_info.courses_template_table
@@ -490,8 +492,8 @@ class NewCoursePopup(BaseRequestHandler):
             'class_names':class_names,
             'studio_names':studio_names,
             'instructor_names':instructor_names,
-            'class_time':'15:45',
-            'class_date':'15/01/14'
+            'class_time':class_hour,
+            'class_date':class_date
         }
         self.render('admin-edit-course.html',template_values)
 

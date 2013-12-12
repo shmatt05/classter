@@ -7,9 +7,19 @@ $(document).ready(function() {
     });
 
     $('.chosen-select').chosen({
-        no_results_text: 'Oops, nothing found!',
+        no_results_text: 'לא נמצאו תוצאות',
         width: '95%'
     });
 
+    $( "#slider-range-min" ).slider({
+      range: "min",
+      value: 60,
+      min: 1,
+      max: 180,
+      slide: function( event, ui ) {
+        $( "#amount" ).val(ui.value );
+      }
+    });
+    $( "#amount" ).val($( "#slider-range-min" ).slider( "value" ) );
 });
 
