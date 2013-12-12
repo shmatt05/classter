@@ -23,7 +23,7 @@ from users_logic.user_manager import DailyScheduleManager
 from db import entities
 from users_logic.user_manager import DailyScheduleManager
 from users_logic.user_manager import UserBusinessLogic, UserView
-from admin_logic.admin_manager import AdminManager
+from admin_logic.admin_manager import AdminManager, AdminViewer
 from python_objects.objects import GymManager
 
 def user_required(handler):
@@ -481,8 +481,17 @@ class SignUpPopUp(BaseRequestHandler):
 
 class NewCoursePopup(BaseRequestHandler):
     def post(self):
+        admin_viewer = AdminViewer("peer","peer")
+        gym_info = admin_viewer.get_gym_info_for_popup()
+        class_names = gym_info.courses_template_table
+        studio_names = gym_info.studios_list
+        instructor_names = gym_info.instructors_table
         template_values = {
-
+            'class_names':class_names,
+            'studio_names':studio_names,
+            'instructor_names':instructor_names,
+            'class_time':'15:45',
+            'class_date':'15/01/14'
         }
         self.render('admin-edit-course.html',template_values)
 

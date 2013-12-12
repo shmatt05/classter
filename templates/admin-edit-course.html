@@ -10,24 +10,27 @@
     <br><form id="addclass" action="add_class_to_schedule" method="post" dir="rtl">
     <fieldset dir="rtl">
         <legend align="right">פרטי קורס</legend>
-        <div id="date" dir="rtl" class="bfh-datepicker" data-format="d-m-y" data-date="today"></div><br>
-        <div id="time" dir="rtl" class="bfh-timepicker" data-time="now"></div><br>
+        <div id="date" dir="rtl" class="bfh-datepicker" data-format="d/m/y" data-date="{{class_date}}"></div><br>
+        <div id="time" dir="rtl" class="bfh-timepicker" data-time="{{class_time}}"></div><br>
 
         <select id="classname" class="chosen-select chosen-rtl" data-placeholder="בחר שם שיעור">
             <option value=""></option>
-            <option value="test1">Test 1</option>
-            <option value="test2">Test 2</option>
+            {% for class in class_names %}
+            <option value="{{class}}">{{class}}</option>
+            {% endfor %}
         </select><br><br>
 
         <select id="studio" class="chosen-select chosen-rtl" data-placeholder="בחר סטודיו">
             <option value=""></option>
-            <option value="ttest1">tTest 1</option>
-            <option value="ttest2">tTest 2</option>
+            {% for studio in studio_names %}
+            <option value="{{studio}}">{{studio}}</option>
+            {% endfor %}
         </select><br><br>
         <select id="instructor" class="chosen-select chosen-rtl" data-placeholder="בחר מדריך">
             <option value=""></option>
-            <option value="tttest1">ttTest 1</option>
-            <option value="tttest2">ttTest 2</option>
+             {% for instructor in instructor_names %}
+            <option value="{{instructor}}">{{instructor}}</option>
+            {% endfor %}
         </select><br><br>
     </fieldset>
 
