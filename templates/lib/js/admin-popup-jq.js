@@ -21,5 +21,31 @@ $(document).ready(function() {
       }
     });
     $( "#amount" ).val($( "#slider-range-min" ).slider( "value" ) );
+
+        $('#addclass').on('submit',  function(e) {
+
+//        var postData = $(this).serializeArray();
+//        var formURL = $(this).attr("action");
+//            console.log(postData);
+//        $.ajax(
+//            {
+//                url : formURL,
+//                type: "POST",
+//                data : postData,
+//                dataType:'html',
+//                async:'false',
+//                success:function(data, textStatus, jqXHR)
+//                {
+//
+//
+//                },
+//                error: function(jqXHR, textStatus, errorThrown)
+//                {
+//                    alert('בעיית תקשורת, אנא נסה שוב');
+//                }
+//            });
+//        e.preventDefault(); //STOP default action
+
+    });
 });
 

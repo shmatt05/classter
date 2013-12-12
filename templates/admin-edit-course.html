@@ -7,6 +7,7 @@
     <script type='text/javascript' src='lib/js/bootstrap-formhelpers.js'></script>
     <script type='text/javascript' src='lib/js/chosen.jquery.js'></script>
     <script type='text/javascript' src='lib/js/admin-popup-jq.js'></script>
+
     <br><form id="addclass" action="add_class_to_schedule" method="post" dir="rtl">
     <fieldset dir="rtl">
         <legend align="right">פרטי קורס</legend>
@@ -37,7 +38,8 @@
              {% for instructor in instructor_names %}
             <option value="{{instructor}}">{{instructor}}</option>
             {% endfor %}
-        </select><br><br>
+        </select><br><br><br>
+        <input type="submit" value="הוסף" style="float:right;">
     </fieldset>
 
 </form>

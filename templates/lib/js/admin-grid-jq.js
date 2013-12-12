@@ -220,7 +220,7 @@ function newCoursePopup(startTime) {
 
     var newDate = returnDateStr(startTime);
     var newHour = returnTimeStr(startTime);
-    console.log('date: ' + newDate +' hour: '+newHour);
+
 
     $.magnificPopup.open({
         type:'ajax',
