@@ -180,6 +180,9 @@ class Course(CourseTemplate):
     def add_user_to_course(self, user_entity):
         self.users_table[user_entity.id] = user_entity
 
+    def remove_user_from_course(self, user_entity):
+        del self.users_table[user_entity.id]
+
     def get_num_open_slots(self):
         if self.is_full():
             return 0

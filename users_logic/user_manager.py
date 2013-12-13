@@ -165,6 +165,18 @@ class UserBusinessLogic:
                 return COURSE_TIME_PASSED
 
     def cancel_course_registration(self):
+        if self.user_entity is None:
+            return NO_SUCH_USER
+        if self.daily_schedule_entity is None:
+            return NO_DAILY_SCHEDULE
+        "find the correct course"
+        for course in self.daily_schedule_entity.courses_list:
+            if course.id == self.course_id:
+                 if course.does_user_already_registered(self.user_id):
+                    course.remove_user_from_course(self.user_entity)
+                    return USER_REMOVED_FROM_COURSE_SUCCEEDED
+
+    def add_to_waiting_list_table(self):
         pass
 
 class UserView:
@@ -227,3 +239,4 @@ NO_SUCH_COURSE = 600
 COURSE_TIME_PASSED = 700
 USER_REGISTRATION_SUCCEEDED = 800
 USER_IS_NOT_REGISTERED = 900
+USER_REMOVED_FROM_COURSE_SUCCEEDED = 1000
