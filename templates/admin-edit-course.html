@@ -20,6 +20,18 @@
              <div id="slider-range-min" style="float:left; width:60%; margin-top:6px;"></div>
         </div><br><br>
 
+
+        <div>
+        <span style="float:right;"><label for="participants"> מספר משתתפים </label>
+         <input type="text" readonly="readonly" id="participants" style="border:0; color:#006E00; font-weight:bold; width:50px;"></span>
+             <div id="slider-range-min2" style="float:left; width:60%; margin-top:6px;"></div>
+        </div><br><br>
+
+        <!--<div>-->
+         <!--<span style="float:right;"><label for="participants">  </label></span>-->
+        <!--<input id="participants" type="number" min="1" max="100" step="1" value="20" name="participants" style="float:right; margin-right:15px;">-->
+        <!--</div><br><br>-->
+
         <select id="classname" class="chosen-select chosen-rtl" data-placeholder="בחר שם שיעור">
             <option value=""></option>
             {% for class in class_names %}
@@ -38,8 +50,15 @@
              {% for instructor in instructor_names %}
             <option value="{{instructor}}">{{instructor}}</option>
             {% endfor %}
-        </select><br><br><br>
-        <input type="submit" value="הוסף" style="float:right;">
+        </select><br><hr>
+        <fieldset>
+        <legend align="right"> מועד פתיחת הרשמה </legend>
+           <div id="opendate" dir="rtl" class="bfh-datepicker" data-format="d/m/y" data-date="{{class_date}}"></div><br>
+            <div id="opentime" dir="rtl" class="bfh-timepicker" data-time="{{class_time}}"></div><br>
+            </fieldset>
+        <div style="float:right;">
+        <input type="checkbox" name="allmonth" value="allmonth" id="allmonth""> שמור לכל החודש </div>
+        <input type="submit" value="הוסף" style="float:right; margin-right:80px;">
     </fieldset>
 
 </form>

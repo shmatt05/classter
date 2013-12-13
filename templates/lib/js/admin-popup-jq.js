@@ -24,6 +24,17 @@ $(document).ready(function() {
     });
     $( "#amount" ).val($( "#slider-range-min" ).slider( "value" ) );
 
+        $( "#slider-range-min2" ).slider({
+      range: "min",
+      value: 20,
+      min: 1,
+      max: 50,
+      slide: function( event, ui ) {
+        $( "#participants" ).val(ui.value );
+      }
+    });
+    $( "#participants" ).val($( "#slider-range-min2" ).slider( "value" ) );
+
         $('#addclass').on('submit',  function(e) {
 
 //        var postData = $(this).serializeArray();
