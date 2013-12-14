@@ -1,14 +1,38 @@
 
 <div class="white-popup popup-div">
+       <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/user-popup.css">
+    <script type='text/javascript' src='lib/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='lib/js/user-popup-jq.js'></script>
 
-    <h1>{{ course.name }}</h1><br>
-    <h2>{{ course.studio }}</h2>
+    {% if signed_up %}
+    <div class="alert alert-dismissable alert-danger text-center"><button type="button" class="btn btn-warning" id="cancel">בטל הרשמה</button></div>
+    {% endif %}
+    <div class="jumbotron text-center">
+
+            <h2>{{ course.name }}</h2>
+
+            <h3>{{ course.studio }}</h3>
+
+    </div><br>
+    <h3>{{ course.instructor }}</h3>
+    <h3>{{ course.time }}</h3>
+    <h3>{{ course.free_slots }}</h3>
+
     <form id="signup" action="register_to_class" method="post">
-        Please Enter Your Name To Sign Up:<br>
-        <input type="text" name="firstname" /><br>
-        <input type="text" name="classkey" value="{{course.class_key}}"/>
-        <input type="submit" value="Submit">
+
+        <input type="hidden" name="classkey" value="{{course.class_key}}"/>
+
+        {% if not signed_up %}
+
+        {% if not course_full %}
+        <input type="button" value="הרשם" id="signupbutton">
+        {% else %}
+        <div class="alert alert-dismissable alert-danger text-center">הקורס מלא</div>
+        {% endif %}
+
+        {% endif %}
 
     </form>
 </div>

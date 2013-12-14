@@ -826,7 +826,7 @@
         //close the header
         calendarHeaderHtml += '</tbody></table></div>';
 
-        $(calendarHeaderHtml).appendTo($calendarContainer);
+        //$(calendarHeaderHtml).appendTo($calendarContainer);
       },
 
       /**
@@ -841,7 +841,8 @@
             $calendarBody, $calendarTableTbody;
         // create the structure
           $calendarBody = '<div class=\"wc-scrollable-grid\">';
-          $calendarBody += '<table dir="rtl" class=\"wc-time-slots\">';
+          $calendarBody += '<table dir="rtl" class=\"wc-time-slots responsive table\">';
+
           $calendarBody += '<tbody>';
           $calendarBody += '</tbody>';
           $calendarBody += '</table>';

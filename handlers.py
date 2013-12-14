@@ -472,7 +472,8 @@ class SignUpPopUp(BaseRequestHandler):
             'course': {
                 'name':'Zumbalatis',
                 'studio':'Orange',
-                'class_key':'163bd5d1-e886-47bf-a4fd-23455a58deb7'
+                'class_key':'163bd5d1-e886-47bf-a4fd-23455a58deb7',
+                'time':'19:00-19:45'
             }
         }
         #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
