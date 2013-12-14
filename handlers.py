@@ -497,6 +497,21 @@ class NewCoursePopup(BaseRequestHandler):
         }
         self.render('admin-edit-course.html',template_values)
 
+class AddClassToSched(BaseRequestHandler):
+    def post(self):
+        date  = cgi.escape(self.request.get('date'))
+        time  = cgi.escape(self.request.get('time'))
+        length  = cgi.escape(self.request.get('length'))
+        participants  = cgi.escape(self.request.get('participants'))
+        class_name  = cgi.escape(self.request.get('class'))
+        studio  = cgi.escape(self.request.get('studio'))
+        instructor  = cgi.escape(self.request.get('instructor'))
+        open_date  = cgi.escape(self.request.get('open_date'))
+        open_time  = cgi.escape(self.request.get('open_time'))
+        all_month  = cgi.escape(self.request.get('all_month'))
+        print all_month
+
+
 class InitialHandler(BaseRequestHandler):
     def get(self):
         """initialize the db"""

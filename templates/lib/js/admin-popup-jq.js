@@ -36,28 +36,38 @@ $(document).ready(function() {
     $( "#participants" ).val($( "#slider-range-min2" ).slider( "value" ) );
 
         $('#addclass').on('submit',  function(e) {
+            var postData = {};
+            postData['date'] = $('#date').val();
+            postData['time'] = $('#time').val();
+            postData['length'] = $('#amount').val();
+            postData['participants'] = $('#participants').val();
+            postData['class'] = $('#classname').val();
+            postData['studio'] = $('#studio').val();
+            postData['instructor'] = $('#instructor').val();
+            postData['open_date'] = $('#opendate').val();
+            postData['open_time'] = $('#opentime').val();
+            postData['all_month'] = $('#allmonth').prop('checked');
 
-//        var postData = $(this).serializeArray();
-//        var formURL = $(this).attr("action");
-//            console.log(postData);
-//        $.ajax(
-//            {
-//                url : formURL,
-//                type: "POST",
-//                data : postData,
-//                dataType:'html',
-//                async:'false',
-//                success:function(data, textStatus, jqXHR)
-//                {
-//
-//
-//                },
-//                error: function(jqXHR, textStatus, errorThrown)
-//                {
-//                    alert('בעיית תקשורת, אנא נסה שוב');
-//                }
-//            });
-//        e.preventDefault(); //STOP default action
+            var formURL = $(this).attr("action");
+            console.log(postData);
+        $.ajax(
+            {
+                url : formURL,
+                type: "POST",
+                data : postData,
+                dataType:'html',
+                async:'false',
+                success:function(data, textStatus, jqXHR)
+                {
+
+
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    alert('בעיית תקשורת, אנא נסה שוב');
+                }
+            });
+        e.preventDefault(); //STOP default action
 
     });
 });

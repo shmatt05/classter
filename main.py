@@ -61,7 +61,8 @@ routes = [
     Route('/add_user', 'handlers.AddUser'),
     Route('/signupopup', 'handlers.SignUpPopUp'),
     Route('/changeweek', 'handlers.ChangeWeek'),
-    Route('/newcoursepopup', 'handlers.NewCoursePopup')
+    Route('/newcoursepopup', 'handlers.NewCoursePopup'),
+    Route('/add_class_to_schedule', 'handlers.AddClassToSched')
 
 ]
 
