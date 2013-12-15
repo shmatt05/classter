@@ -699,7 +699,7 @@
 
             calendarNavHtml += '<div  class=\"ui-widget-header wc-toolbar\">';
               calendarNavHtml += '<div  class=\"wc-display\"></div>';
-              calendarNavHtml += '<div class=\"wc-nav\">';
+              calendarNavHtml += '<div class=\"wc-nav\" style="float:right;">';
              calendarNavHtml += '<button class=\"wc-next\">' + options.buttonText.nextWeek + '</button>';
                 calendarNavHtml += '<button class=\"wc-today\">' + options.buttonText.today + '</button>';
                 calendarNavHtml += '<button class=\"wc-prev\">' + options.buttonText.lastWeek + '</button>';
