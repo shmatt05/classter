@@ -1,6 +1,5 @@
 from db import entities
 from python_objects.objects import *
-from users_logic.user_manager import DailyScheduleManager
 import uuid
 import datetime
 
@@ -10,6 +9,7 @@ import calendar
 
 
 class AdminManager:
+
     def __init__(self, gym_network, gym_branch):  # gym_key is <network>_<branch>
         self.gym_network = gym_network
         self.gym_branch = gym_branch
@@ -158,6 +158,8 @@ class AdminManager:
         sunday = Time.get_sunday_of_week_containing_datetime(date_time, day_num)
         saturday = Time.get_saturday_of_week_containing_datetime(date_time, day_num)
         # TODO: export the methods out of DailyScheduleManager
+        self.create_month_schedule(sunday.year, sunday.month)
+        self.create_month_schedule(saturday.year, saturday.month)
         gym_manager = GymManager(self.gym_network,self.gym_branch)
         return gym_manager.get_daily_schedule_list(sunday, saturday)
 
