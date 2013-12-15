@@ -477,7 +477,7 @@ class SignUpPopUp(BaseRequestHandler):
                     'color':course.color,
                     'free_slots': course.get_num_open_slots(),
                     'start_time': course.hour[:2] + ":" + course.hour[2:],
-                    'end_time': course.duration
+                    'end_time': get_end_time(course.milli, course.duration)
                 }
             }
         #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
@@ -488,6 +488,7 @@ class NewCoursePopup(BaseRequestHandler):
     def post(self):
         class_date  = cgi.escape(self.request.get('course_date'))
         class_hour  = cgi.escape(self.request.get('course_hour'))
+        class_minutes = cgi.escape(self.request.get('course_minutes'))
         admin_viewer = AdminViewer("peer","peer")
         gym_info = admin_viewer.get_gym_info_for_popup()
         class_names = gym_info.courses_template_table
@@ -498,7 +499,8 @@ class NewCoursePopup(BaseRequestHandler):
             'studio_names':studio_names,
             'instructor_names':instructor_names,
             'class_time':class_hour,
-            'class_date':class_date
+            'class_date':class_date,
+            'class_minutes':class_minutes
         }
         self.render('admin-edit-course.html',template_values)
 
