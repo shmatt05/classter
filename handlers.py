@@ -11,7 +11,7 @@ from jinja2.runtime import TemplateNotFound
 
 from simpleauth import SimpleAuthHandler
 
-from datetime import date, datetime, time
+from datetime import date, datetime, time, timedelta
 import cgi
 import json
 import sys
@@ -476,8 +476,8 @@ class SignUpPopUp(BaseRequestHandler):
                     'class_key':course.id,
                     'color':course.color,
                     'free_slots': course.get_num_open_slots(),
-                    'start_time': course.milli,
-                    'duration': course.duration
+                    'start_time': course.hour[:2] + ":" + course.hour[2:],
+                    'end_time': course.duration
                 }
             }
         #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
@@ -889,3 +889,6 @@ def create_course_milli_from_daily_schedule_list(daily_sched_list):
     return dict
 def parse_course(str):
     return  str.split('_')
+def get_end_time(start_time_in_milli, duration_in_minutes):
+    end_date_time = datetime.fromtimestamp(start_time_in_milli/1000.0) + timedelta(0, 0, 0, 0, duration_in_minutes)
+    return str(end_date_time.hour) + ":" + str(end_date_time.minute)
