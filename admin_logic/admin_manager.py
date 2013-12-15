@@ -123,7 +123,7 @@ class AdminManager:
         course_template = gym_manager.does_course_template_exist(name)
         if course_template is None:
             raise Exception("No such Course Template")
-        month_schedule = self.__get_month_schedule(month, year)
+        month_schedule = self.__get_month_schedule(int(month), int(year))
         if month_schedule is None:
             raise Exception("No Month Schedule!") #may be changed in the future
         new_course = Course(str(course_template.name), str(course_template.description), hour, duration, max_capacity,
@@ -158,10 +158,16 @@ class AdminManager:
         sunday = Time.get_sunday_of_week_containing_datetime(date_time, day_num)
         saturday = Time.get_saturday_of_week_containing_datetime(date_time, day_num)
         # TODO: export the methods out of DailyScheduleManager
-        self.create_month_schedule(sunday.year, sunday.month)
+        self.create_month_schedule(sunday.year,sunday.month)
         self.create_month_schedule(saturday.year, saturday.month)
         gym_manager = GymManager(self.gym_network,self.gym_branch)
-        return gym_manager.get_daily_schedule_list(sunday, saturday)
+        daily_sched_lst = gym_manager.get_daily_schedule_list(sunday, saturday)
+        for daily_sched in daily_sched_lst:
+            for course in daily_sched.courses_list:
+                course.is_registration_open = course.is_registration_open(daily_sched.year,
+                                                                          daily_sched.month, daily_sched.day_in_month)
+        #return gym_manager.get_daily_schedule_list(sunday, saturday)
+        return daily_sched_lst
 
     #def __get_sunday_of_week_containing_datetime(date_time, day_num):
     #    return date_time + datetime.timedelta(1 - day_num)

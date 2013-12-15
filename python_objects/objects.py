@@ -114,7 +114,8 @@ class CourseTemplate(object):
 
 class Course(CourseTemplate):
     def __init__(self, name, description, start_hour, duration, max_capacity, instructor, studio, color,
-                 users_table, waiting_list_table, registration_days_before, registration_start_time, identifier, start_milli):
+                 users_table, waiting_list_table, registration_days_before, registration_start_time, identifier,
+                 start_milli, is_registration_open = False):
         super(Course, self).__init__(name, description)
         self.id = identifier
         self.hour = start_hour
@@ -128,6 +129,7 @@ class Course(CourseTemplate):
         self.waiting_list_table = waiting_list_table
         self.registration_days_before = registration_days_before
         self.registration_start_time = registration_start_time
+        self.is_registration_open = is_registration_open
     # TODO add functions: unregister_user, isBooked, add_to_waiting_list ...
 
     """ day should be in range 1-7 """
@@ -160,7 +162,7 @@ class Course(CourseTemplate):
                                0, 0, tzinfo=pytz.timezone("Israel"))
 
     def did_registration_start(self, year, month, day):
-        course_date_time = datetime(year, month, day)
+        course_date_time = datetime(int(year), int(month), int(day))
         registration_start_date_time = course_date_time - timedelta(int(self.registration_days_before))
         registration_start_date_time = datetime(registration_start_date_time.year, registration_start_date_time.month,
                                                 registration_start_date_time.day, int(self.registration_start_time[:2]),
@@ -170,6 +172,12 @@ class Course(CourseTemplate):
 
     def is_full(self):
         return len(self.users_table) >= int(self.max_capacity)
+
+    def is_registration_open(self, year, month, day):
+       try:
+           return (not self.did_course_time_pass(year,month,day) and self.did_registration_start(year,month,day))
+       except:
+           return False
 
     def does_user_already_registered(self, user_id):
         if user_id in self.users_table:
