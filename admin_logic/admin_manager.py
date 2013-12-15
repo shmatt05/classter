@@ -164,7 +164,7 @@ class AdminManager:
         daily_sched_lst = gym_manager.get_daily_schedule_list(sunday, saturday)
         for daily_sched in daily_sched_lst:
             for course in daily_sched.courses_list:
-                course.is_registration_open = course.is_registration_open(daily_sched.year,
+                course.is_registration_open = course.is_registration_open_now(daily_sched.year,
                                                                           daily_sched.month, daily_sched.day_in_month)
         #return gym_manager.get_daily_schedule_list(sunday, saturday)
         return daily_sched_lst

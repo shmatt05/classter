@@ -173,7 +173,7 @@ class Course(CourseTemplate):
     def is_full(self):
         return len(self.users_table) >= int(self.max_capacity)
 
-    def is_registration_open(self, year, month, day):
+    def is_registration_open_now(self, year, month, day):
        try:
            return (not self.did_course_time_pass(year,month,day) and self.did_registration_start(year,month,day))
        except:
