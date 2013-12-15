@@ -463,7 +463,7 @@ class SignUpPopUp(BaseRequestHandler):
         # check if user is registered. if not redirect to registration
 
         #user = session.get('cur_user_id'))
-        user_viewer = UserView(3213908, "143e63cb-1a9b-4e87-b38d-0a2b5302ce36", 2013, 12, 15)
+        user_viewer = UserView(3213908, "a6dc76ac-73c2-4add-8630-84a7cdb1705d", 2013, 12, 15)
         course = user_viewer.get_course_by_id()
         code = user_viewer.get_view_code(course)
         if code == 600:
@@ -477,7 +477,7 @@ class SignUpPopUp(BaseRequestHandler):
                     'color':course.color,
                     'free_slots': course.get_num_open_slots(),
                     'start_time': course.hour[:2] + ":" + course.hour[2:],
-                    'end_time': get_end_time(course.milli, course.duration)
+                    'end_time': get_end_time(long(course.milli), course.duration)
                 }
             }
         #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
@@ -892,5 +892,9 @@ def create_course_milli_from_daily_schedule_list(daily_sched_list):
 def parse_course(str):
     return  str.split('_')
 def get_end_time(start_time_in_milli, duration_in_minutes):
-    end_date_time = datetime.fromtimestamp(start_time_in_milli/1000.0) + timedelta(0, 0, 0, 0, int(duration_in_minutes))
-    return str(end_date_time.hour) + ":" + str(end_date_time.minute)
+    end_date_time = datetime.fromtimestamp(start_time_in_milli/1000.0) + timedelta(0, 0, 0, 0,
+                                            int(duration_in_minutes),2)
+    if len(str(end_date_time.minute)) == 1:
+        return str(end_date_time.hour) + ":0" + str(end_date_time.minute)
+    else:
+        return str(end_date_time.hour) + ":" + str(end_date_time.minute)
