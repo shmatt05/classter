@@ -11,7 +11,6 @@
 
 #calendar {
     width:80%;
-    float:left;
 }
 
 #calsideview {
@@ -41,4 +40,9 @@
   max-width: 500px;
   margin: 20px auto;
 
+}
+
+.wc-grid-timeslot-header, .wc-header .wc-time-column-header {
+
+    width: 60px;
 }
