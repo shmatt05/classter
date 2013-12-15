@@ -35,20 +35,20 @@ $(document).ready(function() {
     });
     $( "#participants" ).val($( "#slider-range-min2" ).slider( "value" ) );
 
-        $('#addclass').on('submit',  function(e) {
-            var postData = {};
-            postData['date'] = $('#date').val();
-            postData['time'] = $('#time').val();
-            postData['length'] = $('#amount').val();
-            postData['participants'] = $('#participants').val();
-            postData['class'] = $('#classname').val();
-            postData['studio'] = $('#studio').val();
-            postData['instructor'] = $('#instructor').val();
-            postData['open_date'] = $('#opendate').val();
-            postData['open_time'] = $('#opentime').val();
-            postData['all_month'] = $('#allmonth').prop('checked');
+    $('#addclass').on('submit',  function(e) {
+        var postData = {};
+        postData['date'] = $('#date').val();
+        postData['time'] = $('#time').val();
+        postData['length'] = $('#amount').val();
+        postData['participants'] = $('#participants').val();
+        postData['class'] = $('#classname').val();
+        postData['studio'] = $('#studio').val();
+        postData['instructor'] = $('#instructor').val();
+        postData['open_date'] = $('#opendate').val();
+        postData['open_time'] = $('#opentime').val();
+        postData['all_month'] = $('#allmonth').prop('checked');
 
-            var formURL = $(this).attr("action");
+        var formURL = $(this).attr("action");
         $.ajax(
             {
                 url : formURL,
@@ -60,7 +60,7 @@ $(document).ready(function() {
                 {
                     var magnificPopup = $.magnificPopup.instance;
                     magnificPopup.close();
-                   var dt = new Date(postData['date'].replace(/(\d{2})\/(\d{2})\/(\d{4})/,'$3-$2-$1'));
+                    var dt = new Date(postData['date'].replace(/(\d{2})\/(\d{2})\/(\d{4})/,'$3-$2-$1'));
                     $("#calendar").weekCalendar("removeUnsavedEvents");
                     $("#calendar").weekCalendar("gotoWeek", dt);
 

@@ -136,17 +136,16 @@ $(document).ready(function () {
         },
         eventNew: function(calEvent, $event) { // Added New Event
             newCoursePopup(calEvent.start, calEvent.end);
-            //TODO: Open Editor?
-            //TODO: Create New Class On Serverside - Send Back New UUID and Save it Client Side
+
         },
         eventDrop: function(calEvent, $event) { // Moved Existing Event
-            //TODO: Send server edit_event parameters with class UUID -> Get Confirmation?
+            editCourseNoPopup(calEvent.start,calEvent.end, calEvent.id);
         },
         eventResize: function(calEvent, $event) { // Resized Existing Event
-            //TODO: Send server edit_event parameters with class UUID -> Get Confirmation?
+            editCourseNoPopup(calEvent.start,calEvent.end, calEvent.id);
         },
         eventClick: function(calEvent, $event) { // Clicked classBox
-            //TODO: Open Class Viewer / Editor
+            //editCoursePopup(calEvent.id);
         },
         eventMouseover: function(calEvent, $event) {
             //TODO: Slightly Zoom / Add Tooltip?
@@ -236,7 +235,8 @@ function newCoursePopup(startTime, endTime) {
                 data: {
                     'course_date':newDate,
                     'course_hour':newHour,
-                    'course_minutes':classMinutes
+                    'course_minutes':classMinutes,
+                    'new_course':true
                 }
 
             }
@@ -250,6 +250,63 @@ function newCoursePopup(startTime, endTime) {
     });
 }
 
+function editCoursePopup(startTime, endTime, courseID) {
+
+
+    $.magnificPopup.open({
+        type:'ajax',
+        items: {
+            src: '/newcoursepopup'
+
+        },
+        ajax: {
+            settings: {
+                cache:false,
+
+                type:'POST',
+                data: {
+
+                    'new_course':false,
+                    'course_id':courseID
+                }
+
+            }
+        },
+        closeOnContentClick: false,
+        callbacks: {
+
+        }
+    });
+}
+
+function editCourseNoPopup(startTime, endTime, courseID) {
+
+    postData = {};
+    postData['new_date'] = returnDateStr(startTime);
+    postData['new_hour'] = returnTimeStr(startTime);
+    postData['new_minutes'] = (endTime - startTime) / 60000;
+    $.ajax(
+        {
+            url : '/editcoursetime',
+            type: "POST",
+            data : postData,
+            dataType:'text',
+            async:'true',
+            cache:'false',
+            success:function(data, textStatus, jqXHR)
+            {
+
+            },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+                alert('בעיית תקשורת, אנא נסה שוב');
+            }
+        });
+
+
+
+
+}
 function returnDateStr (someDate) {
     return (someDate.getDate()<10?("0"+someDate.getDate()):someDate.getDate()) + "/" +
       ((someDate.getMonth()+1)<10?("0"+(someDate.getMonth()+1)):(someDate.getMonth()+1)) + "/" +

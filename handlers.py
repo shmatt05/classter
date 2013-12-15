@@ -522,7 +522,8 @@ class AddClassToSched(BaseRequestHandler):
                                           "blue", {}, {}, None, None, date[2], date[1],
                                           admin_man.get_day_by_date(int(date[2]), int(date[1]), int(date[0])))
 
-
+class EditCourseTime(BaseRequestHandler):
+    pass
 class InitialHandler(BaseRequestHandler):
     def get(self):
         """initialize the db"""
