@@ -49,7 +49,6 @@ $(document).ready(function() {
             postData['all_month'] = $('#allmonth').prop('checked');
 
             var formURL = $(this).attr("action");
-            console.log(postData);
         $.ajax(
             {
                 url : formURL,
@@ -59,7 +58,11 @@ $(document).ready(function() {
                 async:'false',
                 success:function(data, textStatus, jqXHR)
                 {
-
+                    var magnificPopup = $.magnificPopup.instance;
+                    magnificPopup.close();
+                   var dt = new Date(postData['date'].replace(/(\d{2})\/(\d{2})\/(\d{4})/,'$3-$2-$1'));
+                    $("#calendar").weekCalendar("removeUnsavedEvents");
+                    $("#calendar").weekCalendar("gotoWeek", dt);
 
                 },
                 error: function(jqXHR, textStatus, errorThrown)

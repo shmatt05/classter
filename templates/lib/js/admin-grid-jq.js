@@ -243,8 +243,8 @@ function newCoursePopup(startTime, endTime) {
         },
         closeOnContentClick: false,
         callbacks: {
-            open:function() {
-
+            close:function() {
+                $("#calendar").weekCalendar("removeUnsavedEvents");
             }
         }
     });
