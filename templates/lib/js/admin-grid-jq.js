@@ -220,7 +220,7 @@ function newCoursePopup(startTime, endTime) {
 
     var newDate = returnDateStr(startTime);
     var newHour = returnTimeStr(startTime);
-    alert(endTime - startTime);
+    var classMinutes = (endTime - startTime) / 60000;
 
     $.magnificPopup.open({
         type:'ajax',
@@ -235,7 +235,8 @@ function newCoursePopup(startTime, endTime) {
                 type:'POST',
                 data: {
                     'course_date':newDate,
-                    'course_hour':newHour
+                    'course_hour':newHour,
+                    'course_minutes':classMinutes
                 }
 
             }

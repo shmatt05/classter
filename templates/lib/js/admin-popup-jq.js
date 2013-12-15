@@ -15,7 +15,7 @@ $(document).ready(function() {
 
     $( "#slider-range-min" ).slider({
       range: "min",
-      value: 60,
+      value: classMinutes,
       min: 1,
       max: 180,
       slide: function( event, ui ) {

@@ -14656,15 +14656,16 @@ var BFHTimezonesList = {
         '<thead>' +
         '<tr class="months-header">' +
         '<th class="month" colspan="4">' +
+
+        '<a class="next" href="#"><i class="glyphicon glyphicon-chevron-right"></i></a>' +
+            '<a class="previous" href="#"><i class="glyphicon glyphicon-chevron-left"></i></a>' +
+        '<span></span>' +  '</th>' +
+         '<th class="year" colspan="3">' +
+
+        '<a class="next" href="#"><i class="glyphicon glyphicon-chevron-right"></i></a>' +
         '<a class="previous" href="#"><i class="glyphicon glyphicon-chevron-left"></i></a>' +
         '<span></span>' +
-        '<a class="next" href="#"><i class="glyphicon glyphicon-chevron-right"></i></a>' +
-        '</th>' +
-        '<th class="year" colspan="3">' +
-        '<a class="previous" href="#"><i class="glyphicon glyphicon-chevron-left"></i></a>' +
-        '<span></span>' +
-        '<a class="next" href="#"><i class="glyphicon glyphicon-chevron-right"></i></a>' +
-        '</th>' +
+            '</th>' +
         '</tr>' +
         '<tr class="days-header">' +
         '</tr>' +
@@ -15970,8 +15971,9 @@ var BFHTimezonesList = {
       
       if (this.options.buttons === true) {
         this.$element.wrap('<div class="input-group"></div>');
+           this.$element.parent().append('<span class="input-group-addon bfh-number-btn dec"><span class="glyphicon glyphicon-chevron-down"></span></span>');
         this.$element.parent().append('<span class="input-group-addon bfh-number-btn inc"><span class="glyphicon glyphicon-chevron-up"></span></span>');
-        this.$element.parent().append('<span class="input-group-addon bfh-number-btn dec"><span class="glyphicon glyphicon-chevron-down"></span></span>');
+
       }
       
       this.$element.on('change.bfhnumber.data-api', BFHNumber.prototype.change);
@@ -17451,13 +17453,15 @@ var BFHTimezonesList = {
         '<table class="table">' +
         '<tbody>' +
         '<tr>' +
+         '<td class="minute">' +
+        '<input type="text" class="' + this.options.input + ' bfh-number"  data-min="0" data-max="59" data-zeros="true" data-wrap="true">' +
+        '</td>' +
+         '<td class="separator">' + BFHTimePickerDelimiter + '</td>' +
         '<td class="hour">' +
         '<input type="text" class="' + this.options.input + ' bfh-number"  data-min="0" data-max="' + modeMax + '" data-zeros="true" data-wrap="true">' +
         '</td>' +
-        '<td class="separator">' + BFHTimePickerDelimiter + '</td>' +
-        '<td class="minute">' +
-        '<input type="text" class="' + this.options.input + ' bfh-number"  data-min="0" data-max="59" data-zeros="true" data-wrap="true">' +
-        '</td>' +
+
+
         modeAddon +
         '</tr>' +
         '</tbody>' +
