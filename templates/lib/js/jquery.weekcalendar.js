@@ -826,7 +826,7 @@
         //close the header
         calendarHeaderHtml += '</tbody></table></div>';
 
-        //$(calendarHeaderHtml).appendTo($calendarContainer);
+        $(calendarHeaderHtml).appendTo($calendarContainer);
       },
 
       /**

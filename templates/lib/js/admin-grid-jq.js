@@ -135,7 +135,7 @@ $(document).ready(function () {
             }
         },
         eventNew: function(calEvent, $event) { // Added New Event
-            newCoursePopup(calEvent.start);
+            newCoursePopup(calEvent.start, calEvent.end);
             //TODO: Open Editor?
             //TODO: Create New Class On Serverside - Send Back New UUID and Save it Client Side
         },
@@ -216,11 +216,11 @@ function changeWeek(newDate) {
 
 }
 
-function newCoursePopup(startTime) {
+function newCoursePopup(startTime, endTime) {
 
     var newDate = returnDateStr(startTime);
     var newHour = returnTimeStr(startTime);
-
+    alert(endTime - startTime);
 
     $.magnificPopup.open({
         type:'ajax',

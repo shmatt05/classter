@@ -463,19 +463,23 @@ class SignUpPopUp(BaseRequestHandler):
         # check if user is registered. if not redirect to registration
 
         #user = session.get('cur_user_id'))
-        user_viewer = UserView(3213908, "a6dc76ac-73c2-4add-8630-84a7cdb1705d", 2013, 12, 15)
+        user_viewer = UserView(3213908, "143e63cb-1a9b-4e87-b38d-0a2b5302ce36", 2013, 12, 15)
         course = user_viewer.get_course_by_id()
         code = user_viewer.get_view_code(course)
-
-
-        template_values = {
-            'course': {
-                'name':'Zumbalatis',
-                'studio':'Orange',
-                'class_key':'163bd5d1-e886-47bf-a4fd-23455a58deb7',
-                'time':'19:00-19:45'
+        if code == 600:
+            self.render('user-popup-nocourse.html')
+        else:
+            template_values = {
+                'course': {
+                    'name':course.name,
+                    'studio':course.studio,
+                    'class_key':course.id,
+                    'color':course.color,
+                    'free_slots': course.get_num_open_slots(),
+                    'start_time': course.milli,
+                    'duration': course.duration
+                }
             }
-        }
         #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
         #self.response.write(template.render(template_values))
         self.render('user-popup.html',template_values)
