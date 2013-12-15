@@ -892,5 +892,5 @@ def create_course_milli_from_daily_schedule_list(daily_sched_list):
 def parse_course(str):
     return  str.split('_')
 def get_end_time(start_time_in_milli, duration_in_minutes):
-    end_date_time = datetime.fromtimestamp(start_time_in_milli/1000.0) + timedelta(0, 0, 0, 0, duration_in_minutes)
+    end_date_time = datetime.fromtimestamp(start_time_in_milli/1000.0) + timedelta(0, 0, 0, 0, int(duration_in_minutes))
     return str(end_date_time.hour) + ":" + str(end_date_time.minute)
