@@ -791,7 +791,7 @@
         for (var i = 1; i <= options.daysToShow; i++) {
           calendarHeaderHtml += '<td class=\"wc-day-column-header wc-day-' + i + '\"' + colspan + '></td>';
         }
-        calendarHeaderHtml += '<td class=\"wc-scrollbar-shim\"' + rowspan + '></td></tr>';
+        calendarHeaderHtml += '<td class=\"wc-scrollbar-shim\"' + rowspan + '></td></tr>'; //</tbody></table></div>';
 
         //users row
         if (showAsSeparatedUser) {
@@ -826,7 +826,7 @@
         //close the header
         calendarHeaderHtml += '</tbody></table></div>';
 
-        $(calendarHeaderHtml).appendTo($calendarContainer);
+//        $(calendarHeaderHtml).appendTo($calendarContainer);
       },
 
       /**
@@ -836,13 +836,21 @@
         * for further explanations, see each part rendering function.
         */
       _renderCalendarBody: function($calendarContainer) {
-        var self = this, options = this.options,
-            showAsSeparatedUser = options.showAsSeparateUsers && options.users && options.users.length,
-            $calendarBody, $calendarTableTbody;
-        // create the structure
+          var self = this, options = this.options,
+              showAsSeparatedUser = options.showAsSeparateUsers && options.users && options.users.length,
+              $calendarBody, $calendarTableTbody;
+          // create the structure
           $calendarBody = '<div class=\"wc-scrollable-grid\">';
-          $calendarBody += '<table dir="rtl" class=\"wc-time-slots mytable\">';
-
+          $calendarBody += '<table dir="rtl" class=\"wc-time-slots mytable responsive\">';
+          //startweird
+          $calendarBody += '<thead class=\"ui-widget-content wc-header\">';
+          $calendarBody += '<tr><th class=\"wc-time-column-header\"></th>';
+          for (var i = 1; i <= options.daysToShow; i++) {
+              $calendarBody += '<th class=\"wc-day-column-header wc-day-' + i + '\"' + '></th>';
+          }
+          $calendarBody += '</tr></thead>'
+          //$calendarBody += '<td class=\"wc-scrollbar-shim\"' + 1 + '></td></tr>'; //</tbody></table></div>';
+          //endweird
           $calendarBody += '<tbody>';
           $calendarBody += '</tbody>';
           $calendarBody += '</table>';
@@ -1295,8 +1303,8 @@
           var currentDay = self._cloneDate(self.element.data('startDate'));
           var showAsSeparatedUser = options.showAsSeparateUsers && options.users && options.users.length;
           var todayClass = 'ui-state-active wc-today';
-
-          self.element.find('.wc-header td.wc-day-column-header').each(function(i, val) {
+            //start change to make weird good
+          self.element.find('.wc-header th.wc-day-column-header').each(function(i, val) {
             $(this).html(self._getHeaderDate(currentDay));
             if (self._isToday(currentDay)) {
                 $(this).addClass(todayClass);
