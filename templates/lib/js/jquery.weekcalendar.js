@@ -841,7 +841,7 @@
               $calendarBody, $calendarTableTbody;
           // create the structure
           $calendarBody = '<div class=\"wc-scrollable-grid\">';
-          $calendarBody += '<table dir="rtl" class=\"wc-time-slots mytable responsive\">';
+          $calendarBody += '<table dir="rtl" class=\"wc-time-slots mytable\">';
           //startweird
           $calendarBody += '<thead class=\"ui-widget-content wc-header\">';
           $calendarBody += '<tr><th class=\"wc-time-column-header\"></th>';
