@@ -463,7 +463,7 @@ class SignUpPopUp(BaseRequestHandler):
         # check if user is registered. if not redirect to registration
 
         #user = session.get('cur_user_id'))
-        user_viewer = UserView(3213908, "143e63cb-1a9b-4e87-b38d-0a2b5302ce36", 2013, 12, 15)
+        user_viewer = UserView(3213908, "edf7e54d-88c5-45e4-8415-3b89f990ead5", 2013, 12, 17)
         course = user_viewer.get_course_by_id()
         code = user_viewer.get_view_code(course)
         if code == 600:
@@ -523,7 +523,9 @@ class AddClassToSched(BaseRequestHandler):
                                           admin_man.get_day_by_date(int(date[2]), int(date[1]), int(date[0])))
 
 class EditCourseTime(BaseRequestHandler):
-    pass
+    def post(self):
+        pass
+
 class InitialHandler(BaseRequestHandler):
     def get(self):
         """initialize the db"""

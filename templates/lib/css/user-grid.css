@@ -32,3 +32,9 @@
     padding-top:10px;
 
 }
+
+.wc-grid-timeslot-header, .wc-header .wc-time-column-header {
+
+    width: 60px;
+}
+
