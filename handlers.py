@@ -136,6 +136,7 @@ class BaseRequestHandler(webapp2.RequestHandler):
         """Returns true if a user is currently logged in, false otherwise"""
         #return self.auth.get_user_by_session() is not None
         #print(self.session.get('curr_user_id'))
+
         return self.session.get('curr_logged_in') == True
 
 
@@ -636,8 +637,10 @@ class SignUpPopUp(BaseRequestHandler):
         class_key  = cgi.escape(self.request.get('class_key')) #works great!
         # check if user is registered. if not redirect to registration
 
+        if not self.logged_in:
+            self.redirect('/authenticated')
         #user = session.get('cur_user_id'))
-        user_viewer = UserView(3213908, "3e0fec3e-7f0a-4f79-b82f-8f63b34ccdb8", 2013, 12, 17)
+        user_viewer = UserView(3213908, "a93cc8fa-2267-4544-a645-fbeebce41398", 2013, 12, 19)
         course = user_viewer.get_course_by_id()
         code = user_viewer.get_view_code(course)
         if code == 600:
@@ -1186,3 +1189,4 @@ def my_logout(param_self):
     #param_self.redirect('https://www.facebook.com/logout.php?next=localhost:8080&access_token=USER_ACCESS_TOKEN')
     #param_self.redirect("http://www.facebook.com/logout.php?api_key={0}&;session_key={1}")
     #param_self.redirect('http://m.facebook.com/logout.php?confirm=1&next=http://localhost:8080.com;')
+
