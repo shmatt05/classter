@@ -1040,6 +1040,13 @@ class CreateCourse(BaseRequestHandler):
 class RegisterToClass(BaseRequestHandler):
 
     def post(self):
+        class_key  = cgi.escape(self.request.get('class_key')) #works great!
+        date_representation = cgi.escape(self.request.get('class_date'))
+        date_representation = date_representation.split('/')
+        year = date_representation[2]
+        month = date_representation[1]
+        day = date_representation[0]
+
         #full_name=cgi.escape(self.request.get('firstname'))
         ##class_key=cgi.escape(self.request.get('classkey'))
         ##param_list = parse_course(class_key)
@@ -1061,7 +1068,7 @@ class RegisterToClass(BaseRequestHandler):
         #template = JINJA_ENVIRONMENT.get_template('user-popup-success.html')
         #self.response.write(template.render())
         #self.response.write(result)
-          self.render('user-popup-success.html')
+        self.render('user-popup-success.html')
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table
 
@@ -1093,10 +1100,22 @@ def parse_course(str):
 def get_end_time(start_time_in_milli, duration_in_minutes):
     end_date_time = datetime.fromtimestamp(start_time_in_milli/1000.0) + timedelta(0, 0, 0, 0,
                                             int(duration_in_minutes),2)
-    if len(str(end_date_time.minute)) == 1:
-        return str(end_date_time.hour) + ":0" + str(end_date_time.minute)
+    add_zero_befor_minute = len(str(end_date_time.minute)) == 1
+    add_zero_befor_hour = len(str(end_date_time.hour)) == 1
+
+    end_time = ""
+
+    if add_zero_befor_hour:
+        end_time += "0" + str(end_date_time.hour)
     else:
-        return str(end_date_time.hour) + ":" + str(end_date_time.minute)
+        end_time += str(end_date_time.hour)
+
+    if add_zero_befor_minute:
+        end_time += ":0" + str(end_date_time.minute)
+    else:
+        end_time += ":" + str(end_date_time.minute)
+
+    return end_time
 
 
 """session functions"""
