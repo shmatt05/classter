@@ -235,8 +235,8 @@ function newCoursePopup(startTime, endTime) {
                 data: {
                     'course_date':newDate,
                     'course_hour':newHour,
-                    'course_minutes':classMinutes,
-                    'new_course':true
+                    'course_minutes':classMinutes
+
                 }
 
             }
@@ -256,7 +256,7 @@ function editCoursePopup(startTime, endTime, courseID) {
     $.magnificPopup.open({
         type:'ajax',
         items: {
-            src: '/newcoursepopup'
+            src: '/editcoursepopup'
 
         },
         ajax: {
@@ -266,7 +266,7 @@ function editCoursePopup(startTime, endTime, courseID) {
                 type:'POST',
                 data: {
 
-                    'new_course':false,
+
                     'course_id':courseID
                 }
 
@@ -285,6 +285,8 @@ function editCourseNoPopup(startTime, endTime, courseID) {
     postData['new_date'] = returnDateStr(startTime);
     postData['new_hour'] = returnTimeStr(startTime);
     postData['new_minutes'] = (endTime - startTime) / 60000;
+    postData['course_id']=courseID;
+
     $.ajax(
         {
             url : '/editcoursetime',

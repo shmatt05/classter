@@ -1,10 +1,10 @@
 $(document).ready(function() {
-    $('#classdate').val(returnDateStr(new Date(parseInt(milli))));
+
     $('#signupbutton').on('click',  function(e) {
 
         var postData = {};
         postData['class_key'] = $('#classkey').val();
-        postData['class_date']
+        postData['class_date'] = $('#classdate').text();
         var formURL = $(this).attr("action");
         $.ajax(
             {

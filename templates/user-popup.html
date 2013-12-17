@@ -1,6 +1,6 @@
 
 <div class="white-popup popup-div">
-       <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="lib/css/bootstrap-theme.css">
     <link rel="stylesheet" type="text/css" href="lib/css/user-popup.css">
     <script type='text/javascript' src='lib/js/bootstrap.min.js'></script>
@@ -11,15 +11,15 @@
     {% endif %}
     <div class="jumbotron text-center">
 
-            <h2>{{ course.name }}</h2>
+        <h2>{{ course.name }}</h2>
 
-            <h3>{{ course.studio }}</h3>
+        <h3>{{ course.studio }}</h3>
 
     </div><br>
 
     <h3>{{ course.instructor }}</h3>
 
-    <h3>{{ course.date }}</h3>
+    <h3 id="classdate">{{ course.date }}</h3>
     <h3>{{ course.start_time }} - {{ course.end_time }}</h3>
     <h3>{{ course.free_slots }}</h3>
     <h3>{{ course.is_registration_open }}</h3>
