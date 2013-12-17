@@ -709,6 +709,7 @@ class AddClassToSched(BaseRequestHandler):
 
 class EditCourseTime(BaseRequestHandler):
     def post(self):
+        #todo
         pass
 
 class InitialHandler(BaseRequestHandler):
