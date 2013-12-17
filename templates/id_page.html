@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+{% if logged_in %}
+<p>Hey there. Looks like you're logged in already.</p>
+<!--<a href="{{ url_for('profile') }}" class="btn">my profile</a>-->
+<a href="/logout" class="btn">logout</a>
+{% else %}
+
+<!--<p>Please add your ID:</p>-->
+<!--<label for="name">ID</label>-->
+<!--<input type="text" name="ID"/>-->
+<form action="/sign_up" method="POST">
+<label for="id">ID</label>
+<input type="text" name="id" />
+    <br/>
+    <br/>
+<input type="submit" value="Submit" class="btn" />
+</form>
+
+<br/>
+
+<br/>
+<br/>
+
+
+{% endif %}
+
+<h2>webapp2 auth session information</h2>
+<table>
+    <tbody>
+    {% for k, v in session.items() -%}
+    <tr>
+        <td style="padding-right: 5px">{{ k }}:</td>
+        <td>{{ v }}</td>
+    </tr>
+    {% endfor -%}
+    </tbody>
+</table>
+{% endblock %}

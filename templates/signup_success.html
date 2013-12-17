@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+
+{% block title %}Register a new user{% endblock %}
+
+{% block maincontent %}
+
+<h1>Successfully signed up!</h1>
+
+
+<h2>webapp2 auth session information</h2>
+<table>
+    <tbody>
+    {% for k, v in session.items() -%}
+    <tr>
+        <td style="padding-right: 5px">{{ k }}:</td>
+        <td>{{ v }}</td>
+    </tr>
+    {% endfor -%}
+    </tbody>
+</table>
+{% endblock %}
