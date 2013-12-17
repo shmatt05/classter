@@ -139,6 +139,9 @@ class BaseRequestHandler(webapp2.RequestHandler):
 
         return self.session.get('curr_logged_in') == True
 
+    def get_user_id(self):
+        """Returns user ID"""
+        return self.session.get('curr_user_id')
 
     def render(self, template_name, template_vars={}):
         # Preset values for the template
@@ -640,7 +643,7 @@ class SignUpPopUp(BaseRequestHandler):
         if not self.logged_in:
             self.redirect('/authenticated')
         #user = session.get('cur_user_id'))
-        user_viewer = UserView(3213908, "a93cc8fa-2267-4544-a645-fbeebce41398", 2013, 12, 19)
+        user_viewer = UserView(self.get_user_id(), "a93cc8fa-2267-4544-a645-fbeebce41398", 2013, 12, 19)
         course = user_viewer.get_course_by_id()
         code = user_viewer.get_view_code(course)
         if code == 600:

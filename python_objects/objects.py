@@ -162,6 +162,8 @@ class Course(CourseTemplate):
                                0, 0, tzinfo=pytz.timezone("Israel"))
 
     def did_registration_start(self, year, month, day):
+        if self.registration_days_before is None:
+            return False
         course_date_time = datetime(int(year), int(month), int(day))
         registration_start_date_time = course_date_time - timedelta(int(self.registration_days_before))
         registration_start_date_time = datetime(registration_start_date_time.year, registration_start_date_time.month,
