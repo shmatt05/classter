@@ -638,12 +638,15 @@ class SetPasswordHandler(BaseRequestHandler):
 class SignUpPopUp(BaseRequestHandler):
     def post(self):
         class_key  = cgi.escape(self.request.get('class_key')) #works great!
-        # check if user is registered. if not redirect to registration
-
+        date_representation = cgi.escape(self.request.get('class_date'))
+        date_representation = date_representation.split('/')
+        year = date_representation[2]
+        month = date_representation[1]
+        day = date_representation[0]
         if not self.logged_in:
             self.redirect('/authenticated')
-        #user = session.get('cur_user_id'))
-        user_viewer = UserView(self.get_user_id(), "a93cc8fa-2267-4544-a645-fbeebce41398", 2013, 12, 19)
+        #user_viewer = UserView(self.get_user_id(), "a93cc8fa-2267-4544-a645-fbeebce41398", 2013, 12, 19)
+        user_viewer = UserView(self.get_user_id(), class_key, year, month, day)
         course = user_viewer.get_course_by_id()
         code = user_viewer.get_view_code(course)
         if code == 600:

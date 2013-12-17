@@ -105,7 +105,7 @@ function openPopup(classID, classMilli) {
                 type:'POST',
                 data: {
                     class_key:classID,
-                    class_milli:returnDateStr(new Date(classMilli))
+                    class_date:returnDateStr(new Date(classMilli))
                 }
 
             }
