@@ -637,7 +637,7 @@ class SignUpPopUp(BaseRequestHandler):
         # check if user is registered. if not redirect to registration
 
         #user = session.get('cur_user_id'))
-        user_viewer = UserView(3213908, "143e63cb-1a9b-4e87-b38d-0a2b5302ce36", 2013, 12, 15)
+        user_viewer = UserView(3213908, "3e0fec3e-7f0a-4f79-b82f-8f63b34ccdb8", 2013, 12, 17)
         course = user_viewer.get_course_by_id()
         code = user_viewer.get_view_code(course)
         if code == 600:

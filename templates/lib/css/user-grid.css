@@ -38,15 +38,27 @@
     width: 60px;
 }
 
-/*@media (max-width: 900px) {*/
-   /*td.wc-day-column {*/
-       /*display:none;*/
-   /*}*/
-   /*div.wc-time-slots {*/
+@media (max-width: 900px) {
+   td.wc-day-column {
+       display:none;
+   }
+   th.wc-day-column-header {
+       display:none;
+
+   }
+   div.wc-time-slots {
        /*width:13.5%;*/
-   /*}*/
-   /*td.day-1 {*/
-       /*display: block;*/
-       /*width:100%;*/
-   /*}*/
-/*}*/
+   }
+   td.day-1 {
+       display: block;
+       width:100%;
+   }
+   th.wc-day-1 {
+       display:block;
+       width:100%
+   }
+   thead{
+       overflow: visible;
+   }
+
+}

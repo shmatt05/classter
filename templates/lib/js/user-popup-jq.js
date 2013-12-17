@@ -1,12 +1,14 @@
 $(document).ready(function() {
 
-    $('#signup').on('submit',  function(e) {
+    $('#signupbutton').on('click',  function(e) {
 
-        var postData = $(this).serializeArray();
+        var postData = {};
+        postData['class_key'] = $('#classkey').val();
+
         var formURL = $(this).attr("action");
         $.ajax(
             {
-                url : formURL,
+                url : '/register_to_class',
                 type: "POST",
                 data : postData,
                 dataType:'html',

@@ -66,8 +66,8 @@ routes = [
     Route('/sign_in_successfully', 'handlers.SignInSuccessfullyHandler'),
     Route('/signup', 'handlers.SignupHandler'),
     Route('/add_class_to_schedule', 'handlers.AddClassToSched'),
-    Route('/add_class_to_schedule', 'handlers.AddClassToSched'),
-    Route('/editcoursetime', 'handlers.EditCourseTime')
+    Route('/editcoursetime', 'handlers.EditCourseTime'),
+    Route('/register_to_class','handlers.RegisterToClass')
 
 
 
