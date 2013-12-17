@@ -91,16 +91,7 @@ $(document).ready(function() {
 });
 
 function openPopup(classID, classMilli) {
-//    $.magnificPopup.open({
-//        type:'inline',
-//        items: {
-//            src: '#test-popup'
-//
-//        },
-//
-//        closeOnContentClick: false
-//
-//    });
+
     $.magnificPopup.open({
         type:'ajax',
         items: {
@@ -114,7 +105,7 @@ function openPopup(classID, classMilli) {
                 type:'POST',
                 data: {
                     class_key:classID,
-                    class_milli:classMilli
+                    class_milli:returnDateStr(new Date(classMilli))
                 }
 
             }
@@ -174,4 +165,9 @@ function changeWeek(newDate) {
         });
 
 
+}
+function returnDateStr (someDate) {
+    return (someDate.getDate()<10?("0"+someDate.getDate()):someDate.getDate()) + "/" +
+      ((someDate.getMonth()+1)<10?("0"+(someDate.getMonth()+1)):(someDate.getMonth()+1)) + "/" +
+      someDate.getFullYear();
 }

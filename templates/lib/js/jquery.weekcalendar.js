@@ -673,7 +673,7 @@
           // nav links
         self._renderCalendarButtons($calendarContainer);
           // header
-        self._renderCalendarHeader($calendarContainer);
+       // self._renderCalendarHeader($calendarContainer);
           // body
         self._renderCalendarBody($calendarContainer);
 
@@ -771,63 +771,63 @@
 
         }
       },
-
-      /**
-        * render the calendar header, including date and user header
-        */
-      _renderCalendarHeader: function($calendarContainer) {
-        var self = this, options = this.options,
-            showAsSeparatedUser = options.showAsSeparateUsers && options.users && options.users.length,
-            rowspan = '', colspan = '', calendarHeaderHtml;
-
-        if (showAsSeparatedUser) {
-          rowspan = ' rowspan=\"2\"';
-          colspan = ' colspan=\"' + options.users.length + '\" ';
-        }
-
-        //first row
-        calendarHeaderHtml = '<div class=\"ui-widget-content wc-header\">';
-        calendarHeaderHtml += '<table dir="rtl"><tbody><tr><td class=\"wc-time-column-header\"></td>';
-        for (var i = 1; i <= options.daysToShow; i++) {
-          calendarHeaderHtml += '<td class=\"wc-day-column-header wc-day-' + i + '\"' + colspan + '></td>';
-        }
-        calendarHeaderHtml += '<td class=\"wc-scrollbar-shim\"' + rowspan + '></td></tr>'; //</tbody></table></div>';
-
-        //users row
-        if (showAsSeparatedUser) {
-          calendarHeaderHtml += '<tr><td class=\"wc-time-column-header\"></td>';
-          var uLength = options.users.length,
-              _headerClass = '';
-
-          for (var i = 1; i <= options.daysToShow; i++) {
-            for (var j = 0; j < uLength; j++) {
-              _headerClass = [];
-              if (j == 0) {
-                _headerClass.push('wc-day-column-first');
-              }
-              if (j == uLength - 1) {
-                _headerClass.push('wc-day-column-last');
-              }
-              if (!_headerClass.length) {
-                _headerClass = 'wc-day-column-middle';
-              }
-              else {
-                _headerClass = _headerClass.join(' ');
-              }
-              calendarHeaderHtml += '<td class=\"' + _headerClass + ' wc-user-header wc-day-' + i + ' wc-user-' + self._getUserIdFromIndex(j) + '\">';
-//              calendarHeaderHtml+=    "<div class=\"wc-user-header wc-day-" + i + " wc-user-" + self._getUserIdFromIndex(j) +"\" >";
-              calendarHeaderHtml += self._getUserName(j);
-//              calendarHeaderHtml+=    "</div>";
-              calendarHeaderHtml += '</td>';
-            }
-          }
-          calendarHeaderHtml += '</tr>';
-        }
-        //close the header
-        calendarHeaderHtml += '</tbody></table></div>';
-
-//        $(calendarHeaderHtml).appendTo($calendarContainer);
-      },
+//
+//      /**
+//        * render the calendar header, including date and user header
+//        */
+//      _renderCalendarHeader: function($calendarContainer) {
+//        var self = this, options = this.options,
+//            showAsSeparatedUser = options.showAsSeparateUsers && options.users && options.users.length,
+//            rowspan = '', colspan = '', calendarHeaderHtml;
+//
+//        if (showAsSeparatedUser) {
+//          rowspan = ' rowspan=\"2\"';
+//          colspan = ' colspan=\"' + options.users.length + '\" ';
+//        }
+//
+//        //first row
+//        calendarHeaderHtml = '<div class=\"ui-widget-content wc-header\">';
+//        calendarHeaderHtml += '<table dir="rtl"><tbody><tr><td class=\"wc-time-column-header\"></td>';
+//        for (var i = 1; i <= options.daysToShow; i++) {
+//          calendarHeaderHtml += '<td class=\"wc-day-column-header wc-day-' + i + '\"' + colspan + '></td>';
+//        }
+//        calendarHeaderHtml += '<td class=\"wc-scrollbar-shim\"' + rowspan + '></td></tr>'; //</tbody></table></div>';
+//
+//        //users row
+//        if (showAsSeparatedUser) {
+//          calendarHeaderHtml += '<tr><td class=\"wc-time-column-header\"></td>';
+//          var uLength = options.users.length,
+//              _headerClass = '';
+//
+//          for (var i = 1; i <= options.daysToShow; i++) {
+//            for (var j = 0; j < uLength; j++) {
+//              _headerClass = [];
+//              if (j == 0) {
+//                _headerClass.push('wc-day-column-first');
+//              }
+//              if (j == uLength - 1) {
+//                _headerClass.push('wc-day-column-last');
+//              }
+//              if (!_headerClass.length) {
+//                _headerClass = 'wc-day-column-middle';
+//              }
+//              else {
+//                _headerClass = _headerClass.join(' ');
+//              }
+//              calendarHeaderHtml += '<td class=\"' + _headerClass + ' wc-user-header wc-day-' + i + ' wc-user-' + self._getUserIdFromIndex(j) + '\">';
+////              calendarHeaderHtml+=    "<div class=\"wc-user-header wc-day-" + i + " wc-user-" + self._getUserIdFromIndex(j) +"\" >";
+//              calendarHeaderHtml += self._getUserName(j);
+////              calendarHeaderHtml+=    "</div>";
+//              calendarHeaderHtml += '</td>';
+//            }
+//          }
+//          calendarHeaderHtml += '</tr>';
+//        }
+//        //close the header
+//        calendarHeaderHtml += '</tbody></table></div>';
+//
+////        $(calendarHeaderHtml).appendTo($calendarContainer);
+//      },
 
       /**
         * render the calendar body.
@@ -842,14 +842,15 @@
           // create the structure
           $calendarBody = '<div class=\"wc-scrollable-grid\">';
           $calendarBody += '<table dir="rtl" class=\"wc-time-slots mytable\">';
-          //startweird
+          //start weird
           $calendarBody += '<thead class=\"ui-widget-content wc-header\">';
           $calendarBody += '<tr><th class=\"wc-time-column-header\"></th>';
           for (var i = 1; i <= options.daysToShow; i++) {
               $calendarBody += '<th class=\"wc-day-column-header wc-day-' + i + '\"' + '></th>';
           }
-          $calendarBody += '</tr></thead>'
-          //$calendarBody += '<td class=\"wc-scrollbar-shim\"' + 1 + '></td></tr>'; //</tbody></table></div>';
+
+          //$calendarBody += '<th class=\"wc-scrollbar-shim\"' + 0 + '></th>'; //</tbody></table></div>';
+          $calendarBody += '</tr></thead>';
           //endweird
           $calendarBody += '<tbody>';
           $calendarBody += '</tbody>';

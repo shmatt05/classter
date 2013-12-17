@@ -311,9 +311,7 @@ function returnDateStr (someDate) {
     return (someDate.getDate()<10?("0"+someDate.getDate()):someDate.getDate()) + "/" +
       ((someDate.getMonth()+1)<10?("0"+(someDate.getMonth()+1)):(someDate.getMonth()+1)) + "/" +
       someDate.getFullYear();
-
 }
-
 function returnTimeStr(someDate) {
     var someHour = (someDate.getHours() < 10? '0' : '') + someDate.getHours();
     var someMinutes = (someDate.getMinutes() < 10? '0' : '') + someDate.getMinutes();

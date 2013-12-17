@@ -83,7 +83,7 @@
 
 table.wc-time-slots {
     width: 100%;
-    table-layout: fixed;
+    /*table-layout: fixed;*/
     cursor: default;
   overflow:hidden;
 }
