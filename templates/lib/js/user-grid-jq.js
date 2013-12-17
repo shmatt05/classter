@@ -171,3 +171,4 @@ function returnDateStr (someDate) {
       ((someDate.getMonth()+1)<10?("0"+(someDate.getMonth()+1)):(someDate.getMonth()+1)) + "/" +
       someDate.getFullYear();
 }
+

@@ -5,9 +5,7 @@
     <link rel="stylesheet" type="text/css" href="lib/css/user-popup.css">
     <script type='text/javascript' src='lib/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='lib/js/user-popup-jq.js'></script>
-    <script>
-        console.log("{{ course }}")
-    </script>
+
     {% if signed_up %}
     <div class="alert alert-dismissable alert-danger text-center"><button type="button" class="btn btn-warning" id="cancel">בטל הרשמה</button></div>
     {% endif %}
@@ -18,7 +16,10 @@
             <h3>{{ course.studio }}</h3>
 
     </div><br>
+
     <h3>{{ course.instructor }}</h3>
+
+    <h3>{{ course.date }}</h3>
     <h3>{{ course.start_time }} - {{ course.end_time }}</h3>
     <h3>{{ course.free_slots }}</h3>
     <h3>{{ course.is_registration_open }}</h3>

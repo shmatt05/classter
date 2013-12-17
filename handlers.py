@@ -639,12 +639,13 @@ class SignUpPopUp(BaseRequestHandler):
     def post(self):
         class_key  = cgi.escape(self.request.get('class_key')) #works great!
         date_representation = cgi.escape(self.request.get('class_date'))
+        date_original = date_representation
         date_representation = date_representation.split('/')
         year = date_representation[2]
         month = date_representation[1]
         day = date_representation[0]
         if not self.logged_in:
-            self.redirect('/authenticated')
+            return self.redirect('/authenticated')
         #user_viewer = UserView(self.get_user_id(), "a93cc8fa-2267-4544-a645-fbeebce41398", 2013, 12, 19)
         user_viewer = UserView(self.get_user_id(), class_key, year, month, day)
         course = user_viewer.get_course_by_id()
@@ -660,7 +661,8 @@ class SignUpPopUp(BaseRequestHandler):
                     'color':course.color,
                     'free_slots': course.get_num_open_slots(),
                     'start_time': course.hour[:2] + ":" + course.hour[2:],
-                    'end_time': get_end_time(long(course.milli), course.duration)
+                    'end_time': get_end_time(long(course.milli), course.duration),
+                    'date': date_original
                 }
             }
         #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
