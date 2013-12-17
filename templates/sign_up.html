@@ -2,30 +2,40 @@
 
 {% block main %}
 
-    {% if logged_in %}
-        <p>Hey there. Looks like you're logged in already.</p>
-        <a href="{{ url_for('profile') }}" class="btn">my profile</a>
-        <a href="/logout" class="btn">logout</a>
-    {% else %}
-        <p>Please add your ID:</p>
-        <form action="demo_form.asp">
-            ID: <input type="text" name="id"><br>
-            <br/>
+{% if logged_in %}
+<p>Hey there. Looks like you're logged in already.</p>
+<!--<a href="{{ url_for('profile') }}" class="btn">my profile</a>-->
+<a href="/logout" class="btn">logout</a>
+{% else %}
 
-            <p>
-                <a href="/auth/google" class="btn">Google</a>
-                <a href="/auth/facebook" class="btn">Facebook</a>
-                <a href="signup" class="btn">Sign In</a>
+<!--<div><input type="submit" value="Sign Guestbook" class="btn"></div>-->
+
+<p>
+    <a href="/auth/google" class="btn">Google</a>
+    <a href="/auth/facebook" class="btn">Facebook</a>
+    <a href="signup" class="btn">Sign In</a>
 
 
-            </p>
+</p>
 
 
-        </form>
+</form>
 
-        <br/>
-        <br/>
+<br/>
+<br/>
 
 
-    {% endif %}
+{% endif %}
+
+<h2>webapp2 auth session information</h2>
+<table>
+    <tbody>
+    {% for k, v in session.items() -%}
+    <tr>
+        <td style="padding-right: 5px">{{ k }}:</td>
+        <td>{{ v }}</td>
+    </tr>
+    {% endfor -%}
+    </tbody>
+</table>
 {% endblock %}

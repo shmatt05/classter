@@ -43,10 +43,10 @@ routes = [
     Route('/logout', handler='handlers.AuthHandler:logout', name='logout'),
     Route('/auth/<provider>',handler='handlers.AuthHandler:_simple_auth', name='auth_login'),
     Route('/auth/<provider>/callback',handler='handlers.AuthHandler:_auth_callback', name='auth_callback'),
-    Route('/sign_up',handler='handlers.RootHandler2'),
+    Route('/sign_up',handler='handlers.CheckIdHandler'),
     Route('/<type:v|p>/<user_id:\d+>-<signup_token:.+>',handler='handlers.VerificationHandler', name='verification'),
     Route('/login', 'handlers.LoginHandler', name='login'),
-    Route('/signup', 'handlers.SignupHandler'),
+    Route('/sign_up',handler='handlers.CheckIdHandler'),
     Route('/forgot', 'handlers.ForgotPasswordHandler', name='forgot'),
     Route('/password', 'handlers.SetPasswordHandler'),
     Route('/', 'handlers.MainHandler'),
@@ -56,14 +56,20 @@ routes = [
     Route('/create_month_year', 'handlers.CreateMonthYear'),
     Route('/add_course', 'handlers.AddCourse'),
     Route('/create_course', 'handlers.CreateCourse'),
-    Route('/register_to_class', 'handlers.RegisterToClass' ),
+    Route('/register_to_class', 'handlers.RegisterToClass'),
     Route('/new_initial','handlers.InitialHandler'),
     Route('/add_user', 'handlers.AddUser'),
     Route('/signupopup', 'handlers.SignUpPopUp'),
     Route('/changeweek', 'handlers.ChangeWeek'),
     Route('/newcoursepopup', 'handlers.NewCoursePopup'),
+    Route('/id_page', 'handlers.IdPageHandler'),
+    Route('/sign_in_successfully', 'handlers.SignInSuccessfullyHandler'),
+    Route('/signup', 'handlers.SignupHandler'),
+    Route('/add_class_to_schedule', 'handlers.AddClassToSched'),
     Route('/add_class_to_schedule', 'handlers.AddClassToSched'),
     Route('/editcoursetime', 'handlers.EditCourseTime')
+
+
 
 ]
 

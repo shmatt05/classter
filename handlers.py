@@ -25,434 +25,608 @@ from users_logic.user_manager import DailyScheduleManager
 from users_logic.user_manager import UserBusinessLogic, UserView
 from admin_logic.admin_manager import AdminManager, AdminViewer
 from python_objects.objects import GymManager
+import logging
+import os
+from tempfile import template
+from webapp2_extras.auth import InvalidAuthIdError, InvalidPasswordError
+import secrets
+
+import webapp2
+from webapp2_extras import auth, sessions, jinja2
+from jinja2.runtime import TemplateNotFound
+
+from simpleauth import SimpleAuthHandler
+
+from datetime import date, datetime, time, timedelta
+import cgi
+import json
+import sys
+
+import webapp2
+from users_logic import user_manager
+
+from users_logic.user_manager import DailyScheduleManager
+from db import entities
+from users_logic.user_manager import DailyScheduleManager
+from users_logic.user_manager import UserBusinessLogic, UserView
+from admin_logic.admin_manager import AdminManager, AdminViewer
+from python_objects.objects import GymManager
+# -*- coding: utf-8 -*-
+import logging
+import os
+from tempfile import template
+from webapp2_extras.auth import InvalidAuthIdError, InvalidPasswordError
+import secrets
+
+import webapp2
+from webapp2_extras import auth, sessions, jinja2
+from jinja2.runtime import TemplateNotFound
+
+from simpleauth import SimpleAuthHandler
+
+from datetime import date, datetime, time
+import cgi
+import json
+import sys
+
+from users_logic.user_manager import DailyScheduleManager
+from db import entities
+from users_logic.user_manager import DailyScheduleManager
+#from users_logic.user_manager import UserOperation
+from admin_logic.admin_manager import AdminManager
+from python_objects.objects import GymManager
 
 def user_required(handler):
-  """
-    Decorator that checks if there's a user associated with the current session.
-    Will also fail if there's no session present.
-  """
-  def check_login(self, *args, **kwargs):
-    auth = self.auth
-    if not auth.get_user_by_session():
-      self.redirect(self.uri_for('login'), abort=True)
-    else:
-      return handler(self, *args, **kwargs)
+    """
+      Decorator that checks if there's a user associated with the current session.
+      Will also fail if there's no session present.
+    """
 
-  return check_login
+    def check_login(self, *args, **kwargs):
+        auth = self.auth
+        if not auth.get_user_by_session():
+            self.redirect(self.uri_for('login'), abort=True)
+        else:
+            return handler(self, *args, **kwargs)
+
+    return check_login
+
 
 class BaseRequestHandler(webapp2.RequestHandler):
-  def dispatch(self):
-    # Get a session store for this request.
-    self.session_store = sessions.get_store(request=self.request)
+    def dispatch(self):
+        # Get a session store for this request.
+        self.session_store = sessions.get_store(request=self.request)
 
-    try:
-      # Dispatch the request.
-      webapp2.RequestHandler.dispatch(self)
-    finally:
-      # Save all sessions.
-      self.session_store.save_sessions(self.response)
+        try:
+            # Dispatch the request.
+            webapp2.RequestHandler.dispatch(self)
+        finally:
+            # Save all sessions.
+            self.session_store.save_sessions(self.response)
 
-  @webapp2.cached_property
-  def jinja2(self):
-    """Returns a Jinja2 renderer cached in the app registry"""
-    return jinja2.get_jinja2(app=self.app)
+    @webapp2.cached_property
+    def jinja2(self):
+        """Returns a Jinja2 renderer cached in the app registry"""
+        return jinja2.get_jinja2(app=self.app)
 
-  @webapp2.cached_property
-  def session(self):
-    """Returns a session using the default cookie key"""
-    return self.session_store.get_session()
-
-  @webapp2.cached_property
-  def auth(self):
-      return auth.get_auth()
-
-  @webapp2.cached_property
-  def current_user(self):
-    """Returns currently logged in user"""
-    user_dict = self.auth.get_user_by_session()
-    return self.auth.store.user_model.get_by_id(user_dict['user_id'])
-
-  @webapp2.cached_property
-  def logged_in(self):
-    """Returns true if a user is currently logged in, false otherwise"""
-    return self.auth.get_user_by_session() is not None
+    @webapp2.cached_property
+    def session(self):
+        """Returns a session using the default cookie key"""
+        tmp_session = self.session_store.get_session()
+        if tmp_session.get('curr_logged_in') == None:
+            tmp_session['curr_logged_in'] = False
+        if tmp_session.get('on_sign_up') == None:
+            tmp_session['on_sign_up'] = False
 
 
-  def render(self, template_name, template_vars={}):
-    # Preset values for the template
-    values = {
-      'url_for': self.uri_for,
-      'logged_in': self.logged_in,
-      'flashes': self.session.get_flashes()
-    }
+        return tmp_session
 
-    # Add manually supplied template values
-    values.update(template_vars)
+    @webapp2.cached_property
+    def auth(self):
+        return auth.get_auth()
 
-    # read the template or 404.html
-    try:
-      self.response.write(self.jinja2.render_template(template_name, **values))
-    except TemplateNotFound:
-      self.abort(404)
+    @webapp2.cached_property
+    def current_user(self):
+        """Returns currently logged in user"""
+        user_dict = self.auth.get_user_by_session()
+        return self.auth.store.user_model.get_by_id(user_dict['user_id'])
 
-  def head(self, *args):
-    """Head is used by Twitter. If not there the tweet button shows 0"""
-    pass
+    @webapp2.cached_property
+    def logged_in(self):
+        """Returns true if a user is currently logged in, false otherwise"""
+        #return self.auth.get_user_by_session() is not None
+        #print(self.session.get('curr_user_id'))
+        return self.session.get('curr_logged_in') == True
 
 
-#############################################################
+    def render(self, template_name, template_vars={}):
+        # Preset values for the template
+        values = {
+            'url_for': self.uri_for,
+            'logged_in': self.logged_in,
+            'flashes': self.session.get_flashes(),
+            'session':self.session
+        }
 
-  @webapp2.cached_property
-  def user_info(self):
-    """Shortcut to access a subset of the user attributes that are stored
-    in the session.
+        # Add manually supplied template values
+        values.update(template_vars)
 
-    The list of attributes to store in the session is specified in
-      config['webapp2_extras.auth']['user_attributes'].
-    :returns
-      A dictionary with most user information
-    """
-    return self.auth.get_user_by_session()
+        # read the template or 404.html
+        try:
+            self.response.write(self.jinja2.render_template(template_name, **values))
+        except TemplateNotFound:
+            self.abort(404)
 
-  @webapp2.cached_property
-  def user(self):
-    """Shortcut to access the current logged in user.
-
-    Unlike user_info, it fetches information from the persistence layer and
-    returns an instance of the underlying model.
-
-    :returns
-      The instance of the user model associated to the logged in user.
-    """
-    u = self.user_info
-    return self.user_model.get_by_id(u['user_id']) if u else None
-
-  @webapp2.cached_property
-  def user_model(self):
-    """Returns the implementation of the user model.
-
-    It is consistent with config['webapp2_extras.auth']['user_model'], if set.
-    """
-    return self.auth.store.user_model
+    def head(self, *args):
+        """Head is used by Twitter. If not there the tweet button shows 0"""
+        pass
 
 
+    #############################################################
 
-  def display_message(self, message):
-    """Utility function to display a template with a simple message."""
-    params = {
-      'message': message
-    }
-    self.render('message.html', params)
+    @webapp2.cached_property
+    def user_info(self):
+        """Shortcut to access a subset of the user attributes that are stored
+        in the session.
+
+        The list of attributes to store in the session is specified in
+          config['webapp2_extras.auth']['user_attributes'].
+        :returns
+          A dictionary with most user information
+        """
+        return self.auth.get_user_by_session()
+
+    @webapp2.cached_property
+    def user(self):
+        """Shortcut to access the current logged in user.
+
+        Unlike user_info, it fetches information from the persistence layer and
+        returns an instance of the underlying model.
+
+        :returns
+          The instance of the user model associated to the logged in user.
+        """
+        u = self.user_info
+        return self.user_model.get_by_id(u['user_id']) if u else None
+
+    @webapp2.cached_property
+    def user_model(self):
+        """Returns the implementation of the user model.
+
+        It is consistent with config['webapp2_extras.auth']['user_model'], if set.
+        """
+        return self.auth.store.user_model
+
+
+    def display_message(self, message):
+        """Utility function to display a template with a simple message."""
+        params = {
+            'message': message
+        }
+        self.render('message.html', params)
+
 
 class RootHandler(BaseRequestHandler):
-  def get(self):
-    """Handles default langing page"""
-    self.render('home.html')
+    def get(self):
+        """Handles default langing page"""
+        self.render('home.html')
+
 
 class ProfileHandler(BaseRequestHandler):
-  def get(self):
-    """Handles GET /profile"""
-    if self.logged_in:
-      self.render('profile.html', {
-        'user': self.current_user,
-        'session': self.auth.get_user_by_session()
-      })
-    else:
-      self.redirect('/')
+    def get(self):
+        """Handles GET /profile"""
+        on_sign_up = self.session.get('on_sign_up')
+        #sing up
+        if on_sign_up == True:
+            if not user_has_session(self):
+                self.display_message('The ID: %s is not valid' % id)
+                return
+
+            if self.logged_in:
+                sign_up_success(self)
+            else:
+                self.redirect('/')
+        #sign in
+        else:
+            check_sign_in(self)
+
 
 class AuthHandler(BaseRequestHandler, SimpleAuthHandler):
-  """Authentication handler for OAuth 2.0, 1.0(a) and OpenID."""
+    """Authentication handler for OAuth 2.0, 1.0(a) and OpenID."""
 
-  # Enable optional OAuth 2.0 CSRF guard
-  OAUTH2_CSRF_STATE = True
+    # Enable optional OAuth 2.0 CSRF guard
+    OAUTH2_CSRF_STATE = True
 
-  USER_ATTRS = {
-    'facebook' : {
-      'id'     : lambda id: ('avatar_url',
-        'http://graph.facebook.com/{0}/picture?type=large'.format(id)),
-      'name'   : 'name',
-      'link'   : 'link'
-    },
-    'google'   : {
-      'picture': 'avatar_url',
-      'name'   : 'name',
-      'profile': 'link'
-    },
-    'windows_live': {
-      'avatar_url': 'avatar_url',
-      'name'      : 'name',
-      'link'      : 'link'
-    },
-    'twitter'  : {
-      'profile_image_url': 'avatar_url',
-      'screen_name'      : 'name',
-      'link'             : 'link'
-    },
-    'linkedin' : {
-      'picture-url'       : 'avatar_url',
-      'first-name'        : 'name',
-      'public-profile-url': 'link'
-    },
-    'linkedin2' : {
-      'picture-url'       : 'avatar_url',
-      'first-name'        : 'name',
-      'public-profile-url': 'link'
-    },
-    'foursquare'   : {
-      'photo'    : lambda photo: ('avatar_url', photo.get('prefix') + '100x100' + photo.get('suffix')),
-      'firstName': 'firstName',
-      'lastName' : 'lastName',
-      'contact'  : lambda contact: ('email',contact.get('email')),
-      'id'       : lambda id: ('link', 'http://foursquare.com/user/{0}'.format(id))
-    },
-    'openid'   : {
-      'id'      : lambda id: ('avatar_url', '/img/missing-avatar.png'),
-      'nickname': 'name',
-      'email'   : 'link'
+    USER_ATTRS = {
+        'facebook': {
+            'id': lambda id: ('avatar_url',
+                              'http://graph.facebook.com/{0}/picture?type=large'.format(id)),
+            'name': 'name',
+            'link': 'link'
+        },
+        'google': {
+            'picture': 'avatar_url',
+            'name': 'name',
+            'profile': 'link'
+        },
+        'windows_live': {
+            'avatar_url': 'avatar_url',
+            'name': 'name',
+            'link': 'link'
+        },
+        'twitter': {
+            'profile_image_url': 'avatar_url',
+            'screen_name': 'name',
+            'link': 'link'
+        },
+        'linkedin': {
+            'picture-url': 'avatar_url',
+            'first-name': 'name',
+            'public-profile-url': 'link'
+        },
+        'linkedin2': {
+            'picture-url': 'avatar_url',
+            'first-name': 'name',
+            'public-profile-url': 'link'
+        },
+        'foursquare': {
+            'photo': lambda photo: ('avatar_url', photo.get('prefix') + '100x100' + photo.get('suffix')),
+            'firstName': 'firstName',
+            'lastName': 'lastName',
+            'contact': lambda contact: ('email', contact.get('email')),
+            'id': lambda id: ('link', 'http://foursquare.com/user/{0}'.format(id))
+        },
+        'openid': {
+            'id': lambda id: ('avatar_url', '/img/missing-avatar.png'),
+            'nickname': 'name',
+            'email': 'link'
+        }
+
     }
 
-  }
+    def _on_signin(self, data, auth_info, provider):
+        """Callback whenever a new or existing user is logging in.
+         data is a user info dictionary.
+         auth_info contains access token or oauth token and secret.
+        """
+        #valid_id(self)
 
-  def _on_signin(self, data, auth_info, provider):
-    """Callback whenever a new or existing user is logging in.
-     data is a user info dictionary.
-     auth_info contains access token or oauth token and secret.
-    """
-    auth_id = '%s:%s' % (provider, data['id'])
-    logging.info('Looking for a user with id %s', auth_id)
 
-    user = self.auth.store.user_model.get_by_auth_id(auth_id)
-    _attrs = self._to_user_model_attrs(data, self.USER_ATTRS[provider])
+        on_sign_up = self.session.get('on_sign_up')
 
-    if user:
-      logging.info('Found existing user to log in')
-      # Existing users might've changed their profile data so we update our
-      # local model anyway. This might result in quite inefficient usage
-      # of the Datastore, but we do this anyway for demo purposes.
-      #
-      # In a real app you could compare _attrs with user's properties fetched
-      # from the datastore and update local user in case something's changed.
-      user.populate(**_attrs)
-      user.put()
-      self.auth.set_session(
-        self.auth.store.user_to_dict(user))
+        if on_sign_up == True:
+            if not user_has_session(self):
+                self.display_message('The ID: %s is not valid' % id)
+                return
 
-    else:
-      # check whether there's a user currently logged in
-      # then, create a new user if nobody's signed in,
-      # otherwise add this auth_id to currently logged in user.
+        #signed_in = self.session.get('curr_logged_in')
+        #if not signed_in:
 
-      if self.logged_in:
-        logging.info('Updating currently logged in user')
 
-        u = self.current_user
-        u.populate(**_attrs)
-        # The following will also do u.put(). Though, in a real app
-        # you might want to check the result, which is
-        # (boolean, info) tuple where boolean == True indicates success
-        # See webapp2_extras.appengine.auth.models.User for details.
-        u.add_auth_id(auth_id)
+        auth_id = '%s:%s' % (provider, data['id'])
+        logging.info('Looking for a user with id %s', auth_id)
+        self.session['connection'] = provider
+        self.session['fb_g_o'] = data['id']
+        ############################################################
 
-      else:
-        logging.info('Creating a brand new user')
-        ok, user = self.auth.store.user_model.create_user(auth_id, **_attrs)
-        if ok:
-          self.auth.set_session(self.auth.store.user_to_dict(user))
+        user = self.auth.store.user_model.get_by_auth_id(auth_id)
+        _attrs = self._to_user_model_attrs(data, self.USER_ATTRS[provider])
 
-    # Remember auth data during redirect, just for this demo. You wouldn't
-    # normally do this.
-    self.session.add_flash(data, 'data - from _on_signin(...)')
-    self.session.add_flash(auth_info, 'auth_info - from _on_signin(...)')
+        if user:
+            logging.info('Found existing user to log in')
+            # Existing users might've changed their profile data so we update our
+            # local model anyway. This might result in quite inefficient usage
+            # of the Datastore, but we do this anyway for demo purposes.
+            #
+            # In a real app you could compare _attrs with user's properties fetched
+            # from the datastore and update local user in case something's changed.
+            user.populate(**_attrs)
+            user.put()
+            self.auth.set_session(
+                self.auth.store.user_to_dict(user))
 
-    # Go to the profile page
-    self.redirect('/profile')
+        else:
+            # check whether there's a user currently logged in
+            # then, create a new user if nobody's signed in,
+            # otherwise add this auth_id to currently logged in user.
 
-  def logout(self):
-    self.auth.unset_session()
-    self.redirect('/')
+            if self.logged_in:
+                logging.info('Updating currently logged in user')
 
-  def handle_exception(self, exception, debug):
-    logging.error(exception)
-    self.render('error.html', {'exception': exception})
+                u = self.current_user
+                u.populate(**_attrs)
+                # The following will also do u.put(). Though, in a real app
+                # you might want to check the result, which is
+                # (boolean, info) tuple where boolean == True indicates success
+                # See webapp2_extras.appengine.auth.models.User for details.
+                u.add_auth_id(auth_id)
 
-  def _callback_uri_for(self, provider):
-    return self.uri_for('auth_callback', provider=provider, _full=True)
+            else:
+                logging.info('Creating a brand new user')
+                ok, user = self.auth.store.user_model.create_user(auth_id, **_attrs)
+                if ok:
+                    self.auth.set_session(self.auth.store.user_to_dict(user))
 
-  def _get_consumer_info_for(self, provider):
-    """Returns a tuple (key, secret) for auth init requests."""
-    return secrets.AUTH_CONFIG[provider]
+        # Remember auth data during redirect, just for this demo. You wouldn't
+        # normally do this.
+        self.session.add_flash(data, 'data - from _on_signin(...)')
+        self.session.add_flash(auth_info, 'auth_info - from _on_signin(...)')
 
-  def _to_user_model_attrs(self, data, attrs_map):
-    """Get the needed information from the provider dataset."""
-    user_attrs = {}
-    for k, v in attrs_map.iteritems():
-      attr = (v, data.get(k)) if isinstance(v, str) else v(data.get(k))
-      user_attrs.setdefault(*attr)
+        if on_sign_up:
+            sign_up_success(self)
+        else:
+            check_sign_in(self)
+            # Go to the profile page
+            #self.redirect('/profile')
 
-    return user_attrs
+    def logout(self):
+        my_logout(self)
 
-class RootHandler2(BaseRequestHandler):
-  def get(self):
-    """Handles default langing page"""
-    self.render('sign_up.html')
+        self.auth.unset_session()
 
+        self.redirect('/authenticated')
+
+    def handle_exception(self, exception, debug):
+        logging.error(exception)
+        self.render('error.html', {'exception': exception})
+
+    def _callback_uri_for(self, provider):
+        return self.uri_for('auth_callback', provider=provider, _full=True)
+
+    def _get_consumer_info_for(self, provider):
+        """Returns a tuple (key, secret) for auth init requests."""
+        return secrets.AUTH_CONFIG[provider]
+
+    def _to_user_model_attrs(self, data, attrs_map):
+        """Get the needed information from the provider dataset."""
+        user_attrs = {}
+        for k, v in attrs_map.iteritems():
+            attr = (v, data.get(k)) if isinstance(v, str) else v(data.get(k))
+            user_attrs.setdefault(*attr)
+
+        return user_attrs
+
+
+class CheckIdHandler(BaseRequestHandler):
+    def post(self):
+
+        id = self.request.get('id')
+
+        if not valid_id(id):
+            self.display_message('The ID: %s is not valid' % id)
+            return
+        else:
+            self.session['on_sign_up'] = True
+            self.session['curr_user_id'] = id
+            self.render('sign_up.html')
+
+            #def get(self):
+            #    id = self.session.get('curr_user_id')
+            #    if id is None:
+            #        self.display_message('The ID: %s is not valid' % id)
+            #        return
+            #
+            #    self.render('sign_up.html')
+
+
+class IdPageHandler(BaseRequestHandler):
+    def get(self):
+        """Handles default langing page"""
+        self.render('id_page.html')
+
+
+class SignInSuccessfullyHandler(BaseRequestHandler):
+    def get(self):
+        """Handles default langing page"""
+        #template_values = {
+        #        'session': {
+        #            'name': course.name,
+        #            'studio': course.studio,
+        #            'class_key': course.id,
+        #            'color': course.color,
+        #            'free_slots': course.get_num_open_slots(),
+        #            'start_time': course.hour[:2] + ":" + course.hour[2:],
+        #            'end_time': get_end_time(long(course.milli), course.duration)
+        #        }
+        self.render('sign_in_successfully.html')
 ##########################
 
 class LoginHandler(BaseRequestHandler):
-  def get(self):
-    self._serve_page()
+    def get(self):
+        self._serve_page()
 
-  def post(self):
-    username = self.request.get('username')
-    password = self.request.get('password')
-    try:
-      u = self.auth.get_user_by_password(username, password, remember=True,
-        save_session=True)
-      self.redirect(self.uri_for('profile'))
-    except (InvalidAuthIdError, InvalidPasswordError) as e:
-      logging.info('Login failed for user %s because of %s', username, type(e))
-      self._serve_page(True)
+    def post(self):
 
-  def _serve_page(self, failed=False):
-    username = self.request.get('username')
-    params = {
-      'username': username,
-      'failed': failed
-    }
-    self.render('login.html', params)
+        username = self.request.get('username')
+        password = self.request.get('password')
+        #on_sign_up = self.session.get('on_sign_up')
+        ##sing up
+        #if on_sign_up == True:
+        #    id = self.session.get('curr_user_id')
+        #    if id is None:
+        #        self.display_message('The ID: %s is not valid' % id)
+        #        return
+
+        try:
+            u = self.auth.get_user_by_password(username, password, remember=True,
+                                               save_session=True)
+
+            self.session['connection'] = 'self'
+            self.session['fb_g_o'] = username
+            check_sign_in(self)
+            #self.redirect(self.uri_for('profile'))
+        except (InvalidAuthIdError, InvalidPasswordError) as e:
+            logging.info('Login failed for user %s because of %s', username, type(e))
+            self._serve_page(True)
+
+    def _serve_page(self, failed=False):
+        username = self.request.get('username')
+        params = {
+            'username': username,
+            'failed': failed
+        }
+        self.render('login.html', params)
+
 
 class VerificationHandler(BaseRequestHandler):
-  def get(self, *args, **kwargs):
-    user = None
-    user_id = kwargs['user_id']
-    signup_token = kwargs['signup_token']
-    verification_type = kwargs['type']
+    def get(self, *args, **kwargs):
+        if not user_has_session(self):
+            self.display_message('The ID: %s is not valid' % id)
+            return
 
-    # it should be something more concise like
-    # self.auth.get_user_by_token(user_id, signup_token)
-    # unfortunately the auth interface does not (yet) allow to manipulate
-    # signup tokens concisely
-    user, ts = self.user_model.get_by_auth_token(int(user_id), signup_token, 'signup')
+        user = None
+        user_id = kwargs['user_id']
+        signup_token = kwargs['signup_token']
+        verification_type = kwargs['type']
+        #email = kwargs['email']
 
-    if not user:
-      logging.info('Could not find any user with id "%s" signup token "%s"',
-        user_id, signup_token)
-      self.abort(404)
+        # it should be something more concise like
+        # self.auth.get_user_by_token(user_id, signup_token)
+        # unfortunately the auth interface does not (yet) allow to manipulate
+        # signup tokens concisely
+        user, ts = self.user_model.get_by_auth_token(int(user_id), signup_token, 'signup')
 
-    # store user data in the session
-    self.auth.set_session(self.auth.store.user_to_dict(user), remember=True)
+        if not user:
+            logging.info('Could not find any user with id "%s" signup token "%s"',
+                         user_id, signup_token)
+            self.abort(404)
 
-    if verification_type == 'v':
-      # remove signup token, we don't want users to come back with an old link
-      self.user_model.delete_signup_token(user.get_id(), signup_token)
+        # store user data in the session
+        self.auth.set_session(self.auth.store.user_to_dict(user), remember=True)
 
-      if not user.verified:
-        user.verified = True
-        user.put()
+        if verification_type == 'v':
+            # remove signup token, we don't want users to come back with an old link
+            self.user_model.delete_signup_token(user.get_id(), signup_token)
 
-      self.display_message('User email address has been verified.')
-      return
-    elif verification_type == 'p':
-      # supply user to the page
-      params = {
-        'user': user,
-        'token': signup_token
-      }
-      self.render('resetpassword.html', params)
-    else:
-      logging.info('verification type not supported')
-      self.abort(404)
+            if not user.verified:
+                user.verified = True
+                user.put()
+
+            sign_up_success(self)
+            return
+        elif verification_type == 'p':
+            # supply user to the page
+            params = {
+                'user': user,
+                'token': signup_token
+            }
+            self.render('resetpassword.html', params)
+        else:
+            logging.info('verification type not supported')
+            self.abort(404)
+
 
 class SignupHandler(BaseRequestHandler):
-  def get(self):
-    self.render('signup.html')
+    def get(self):
+        #valid_id(self)
+        #id = self.request.get('ID')
+        #print id + "iddddddddddddd"
+        #if not cheak_id():
+        #     self.display_message('The ID: %s is not valid' % id)
+        #     return
 
-  def post(self):
-    user_name = self.request.get('username')
-    email = self.request.get('email')
-    name = self.request.get('name')
-    password = self.request.get('password')
-    last_name = self.request.get('lastname')
+        if not user_has_session(self):
+            self.display_message('The ID: %s is not valid' % id)
+            return
 
-    unique_properties = ['email_address']
-    user_data = self.user_model.create_user(user_name,
-      unique_properties,
-      email_address=email, name=name, password_raw=password,
-      last_name=last_name, verified=False)
-    if not user_data[0]: #user_data is a tuple
-      self.display_message('Unable to create user for email %s because of \
+        self.render('signup.html')
+
+    def post(self):
+        if not user_has_session(self):
+            self.display_message('The ID: %s is not valid' % id)
+            return
+
+        user_name = self.request.get('username')
+        email = self.request.get('email')
+        name = self.request.get('name')
+        password = self.request.get('password')
+        last_name = self.request.get('lastname')
+
+        unique_properties = ['email_address']
+        user_data = self.user_model.create_user(user_name,
+                                                unique_properties,
+                                                email_address=email, name=name, password_raw=password,
+                                                last_name=last_name, verified=False)
+        if not user_data[0]: #user_data is a tuple
+            self.display_message('Unable to create user for email %s because of \
         duplicate keys %s' % (user_name, user_data[1]))
-      return
+            return
 
-    user = user_data[1]
-    user_id = user.get_id()
+        user = user_data[1]
+        user_id = user.get_id()
 
-    token = self.user_model.create_signup_token(user_id)
+        token = self.user_model.create_signup_token(user_id)
+        #store the id + connecttion way
+        self.session['fb_g_o'] = email #####################################################3
+        self.session['connection'] = "self"
+        self.session['curr_logged_in'] = True
 
-    verification_url = self.uri_for('verification', type='v', user_id=user_id,
-      signup_token=token, _full=True)
+        verification_url = self.uri_for('verification', type='v', user_id=user_id, email=email,
+                                        signup_token=token, _full=True)
 
-    msg = 'Send an email to user in order to verify their address. \
+        msg = 'Send an email to user in order to verify their address. \
           They will be able to do so by visiting <a href="{url}">{url}</a>'
 
-    self.display_message(msg.format(url=verification_url))
+        self.display_message(msg.format(url=verification_url))
+
 
 class AuthenticatedHandler(BaseRequestHandler):
-  @user_required
-  def get(self):
-    self.render('authenticated.html')
+    @user_required
+    def get(self):
+        self.render('authenticated.html')
+
 
 class ForgotPasswordHandler(BaseRequestHandler):
-  def get(self):
-    self._serve_page()
+    def get(self):
+        self._serve_page()
 
-  def post(self):
-    username = self.request.get('username')
+    def post(self):
+        username = self.request.get('username')
 
-    user = self.user_model.get_by_auth_id(username)
-    if not user:
-      logging.info('Could not find any user entry for username %s', username)
-      self._serve_page(not_found=True)
-      return
+        user = self.user_model.get_by_auth_id(username)
+        if not user:
+            logging.info('Could not find any user entry for username %s', username)
+            self._serve_page(not_found=True)
+            return
 
-    user_id = user.get_id()
-    token = self.user_model.create_signup_token(user_id)
+        user_id = user.get_id()
+        token = self.user_model.create_signup_token(user_id)
 
-    verification_url = self.uri_for('verification', type='p', user_id=user_id,
-      signup_token=token, _full=True)
+        verification_url = self.uri_for('verification', type='p', user_id=user_id,
+                                        signup_token=token, _full=True)
 
-    msg = 'Send an email to user in order to reset their password. \
+        msg = 'Send an email to user in order to reset their password. \
           They will be able to do so by visiting <a href="{url}">{url}</a>'
 
-    self.display_message(msg.format(url=verification_url))
+        self.display_message(msg.format(url=verification_url))
 
-  def _serve_page(self, not_found=False):
-    username = self.request.get('username')
-    params = {
-      'username': username,
-      'not_found': not_found
-    }
-    self.render('forgot.html', params)
+    def _serve_page(self, not_found=False):
+        username = self.request.get('username')
+        params = {
+            'username': username,
+            'not_found': not_found
+        }
+        self.render('forgot.html', params)
+
 
 class SetPasswordHandler(BaseRequestHandler):
+    @user_required
+    def post(self):
+        password = self.request.get('password')
+        old_token = self.request.get('t')
 
-  @user_required
-  def post(self):
-    password = self.request.get('password')
-    old_token = self.request.get('t')
+        if not password or password != self.request.get('confirm_password'):
+            self.display_message('passwords do not match')
+            return
 
-    if not password or password != self.request.get('confirm_password'):
-      self.display_message('passwords do not match')
-      return
+        user = self.user
+        user.set_password(password)
+        user.put()
 
-    user = self.user
-    user.set_password(password)
-    user.put()
+        # remove signup token, we don't want users to come back with an old link
+        self.user_model.delete_signup_token(user.get_id(), old_token)
 
-    # remove signup token, we don't want users to come back with an old link
-    self.user_model.delete_signup_token(user.get_id(), old_token)
-
-    self.display_message('Password updated')
+        self.display_message('Password updated')
 
 ##############################
 
@@ -463,7 +637,7 @@ class SignUpPopUp(BaseRequestHandler):
         # check if user is registered. if not redirect to registration
 
         #user = session.get('cur_user_id'))
-        user_viewer = UserView(3213908, "edf7e54d-88c5-45e4-8415-3b89f990ead5", 2013, 12, 17)
+        user_viewer = UserView(3213908, "143e63cb-1a9b-4e87-b38d-0a2b5302ce36", 2013, 12, 15)
         course = user_viewer.get_course_by_id()
         code = user_viewer.get_view_code(course)
         if code == 600:
@@ -901,3 +1075,114 @@ def get_end_time(start_time_in_milli, duration_in_minutes):
         return str(end_date_time.hour) + ":0" + str(end_date_time.minute)
     else:
         return str(end_date_time.hour) + ":" + str(end_date_time.minute)
+
+
+"""session functions"""
+
+
+def valid_id(id):
+    user = entities.UserCredentials.get_user_entity(id)
+
+    if user is None:
+        #arg.display_message('The ID: %s is not valid' % id)
+        return False
+    else:
+        return True
+
+
+def sign_up_success(param_self):
+    #connect user id with fb_g_o id in tables UserCredentials
+    user_id = param_self.session.get('curr_user_id')
+    fb_g_o = param_self.session.get('fb_g_o')
+    user_from_db = entities.UserCredentials.get_user_entity(user_id)
+    connection = param_self.session.get('connection')
+    #connect id with fb\google\self id
+
+    if connection == 'facebook':
+        user_from_db.facebook_id = fb_g_o
+        facebook_user_from_db = entities.FacebookCredentials()
+        facebook_user_from_db.user_id = user_id
+        facebook_user_from_db.facebook_id = fb_g_o
+        facebook_user_from_db.set_key()
+        facebook_user_from_db.put()
+    elif connection == 'google':
+        user_from_db.google_id = fb_g_o
+        google_user_from_db = entities.GoogleCredentials()
+        google_user_from_db.user_id = user_id
+        google_user_from_db.google_id = fb_g_o
+        google_user_from_db.set_key()
+        google_user_from_db.put()
+    elif connection == 'self':
+        user_from_db.email_id = fb_g_o
+        email_user_from_db = entities.EmailCredentials()
+        email_user_from_db.user_id = user_id
+        email_user_from_db.email_id = fb_g_o
+        email_user_from_db.set_key()
+        email_user_from_db.put()
+
+    user_from_db.put()
+    param_self.session['on_sign_up'] = False
+    param_self.render('signup_success.html', {
+        'user': param_self.current_user,
+        'session': param_self.auth.get_user_by_session()})
+
+
+def user_has_session(param_self):
+    try:
+        user_id = param_self.session['curr_user_id']
+        print user_id
+    except:
+        return False
+    return True
+
+
+def check_sign_in(self_param):
+    try:
+        connection = self_param.session.get('connection')
+        fb_g_o = self_param.session.get('fb_g_o')
+        #entities.UserCredentials.get_user_entity(fb_g_o)
+        #need to add self_credentials for email recognition
+        #self_param.session['logged_in'] = False
+        if connection == 'self':
+            email_user = entities.EmailCredentials.get_key(fb_g_o).get()
+            user_id = email_user.user_id
+            self_param.session['curr_user_id'] = user_id
+            self_param.session['curr_logged_in'] = True
+            self_param.redirect('/sign_in_successfully')
+        elif connection == 'facebook':
+            facebook_user = entities.FacebookCredentials.get_key(fb_g_o).get()
+            user_id = facebook_user.user_id
+            self_param.session['curr_user_id'] = user_id
+            self_param.session['curr_logged_in'] = True
+            self_param.redirect('/sign_in_successfully')
+        elif connection == 'google':
+            google_user = entities.GoogleCredentials.get_key(fb_g_o).get()
+            user_id = google_user.user_id
+            self_param.session['curr_user_id'] = user_id
+            self_param.session['curr_logged_in'] = True
+            self_param.redirect('/sign_in_successfully')
+        else:
+
+            self_param.display_message('The ID: %s is not valid' % id)
+            return
+    except:
+
+        self_param.display_message('The ID: %s is not valid' % id)
+        return
+
+
+def my_logout(param_self):
+    param_self.session['curr_user_id'] = None
+    param_self.session['fb_g_o'] = None
+    param_self.session['curr_logged_in'] = False
+    param_self.session['connection'] = None
+    #param_self.session_store.set_secure_cookie('_simpleauth_sess', None)
+    #param_self.session.cookie_name.maxAge = 0
+    #param_self.response.unset_cookie('auth')
+    #auth.default_config['max_age'] = 0
+    #delete_cookie(key, path=’/’, domain=None)
+    param_self.response.headers.add_header('Set-Cookie',
+                                           'name=_simpleauth_sess; expires="Fri, 31-Dec-1954 23:59:59 GMT"')
+    #param_self.redirect('https://www.facebook.com/logout.php?next=localhost:8080&access_token=USER_ACCESS_TOKEN')
+    #param_self.redirect("http://www.facebook.com/logout.php?api_key={0}&;session_key={1}")
+    #param_self.redirect('http://m.facebook.com/logout.php?confirm=1&next=http://localhost:8080.com;')

@@ -68,6 +68,7 @@ class UserCredentials(ndb.Model):
     gym_branch = ndb.StringProperty()
     google_id = ndb.StringProperty()
     facebook_id = ndb.StringProperty()
+    email_id = ndb.StringProperty()
 
     def set_key(self):
         self.key = UserCredentials.__generate_key(self.id)
@@ -128,6 +129,29 @@ class FacebookCredentials(ndb.Model):
     @classmethod
     def __generate_key(cls, facebook_id):
         return ndb.Key(FacebookCredentials, facebook_id)
+
+    def get_user_gym_entity(self):
+        self.get_user_entity().get_gym_entity()
+
+    def get_user_entity(self):
+        UserCredentials.get_key(self.user_id).get()
+
+
+
+class EmailCredentials(ndb.Model):
+    email_id = ndb.StringProperty()
+    user_id = ndb.StringProperty()
+
+    def set_key(self):
+        self.key = EmailCredentials.__generate_key(self.email_id)
+
+    @classmethod
+    def get_key(cls, email_id):
+        return cls.__generate_key(email_id)
+
+    @classmethod
+    def __generate_key(cls, email_id):
+        return ndb.Key(EmailCredentials, email_id)
 
     def get_user_gym_entity(self):
         self.get_user_entity().get_gym_entity()
