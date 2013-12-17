@@ -752,6 +752,19 @@ class InitialHandler(BaseRequestHandler):
         admin_manager.create_course_for_month("Yoga","1800", 90, 10,
                       "Moished", "Park","blue", {}, {},"1" ,"1000", 2013, 12, 4) #December 3rd 18:00 1386086400000
 
+        user_credential = entities.UserCredentials()
+        user_credential.id = '123'
+        user_credential.gym_branch = 'peer'
+        user_credential.gym_network = 'peer'
+        user_credential.set_key()
+        user_credential.put()
+        #user 2
+        user_credential = entities.UserCredentials()
+        user_credential.id = '555'
+        user_credential.gym_branch = 'peer'
+        user_credential.gym_network = 'peer'
+        user_credential.set_key()
+        user_credential.put()
         #self.response.write(str(daily_list[0].courses_list[0].name))
 
 class MainHandler(BaseRequestHandler):
