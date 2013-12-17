@@ -656,7 +656,7 @@ class SignUpPopUp(BaseRequestHandler):
             }
         #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
         #self.response.write(template.render(template_values))
-        self.render('user-popup.html',template_values)
+            self.render('user-popup.html',template_values)
 
 class NewCoursePopup(BaseRequestHandler):
     def post(self):
