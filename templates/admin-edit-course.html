@@ -31,20 +31,20 @@
              <div id="slider-range-min2" style="float:left; width:60%; margin-top:6px;"></div>
         </div><br><br>
 
-        <select id="classname" class="chosen-select chosen-rtl" data-placeholder="בחר שם שיעור">
+        <select id="classname" class="chosen-select chosen-rtl" data-placeholder="שם שיעור">
             <option value=""></option>
             {% for class in class_names %}
             <option value="{{class}}">{{class}}</option>
             {% endfor %}
         </select><br><br>
 
-        <select id="studio" class="chosen-select chosen-rtl" data-placeholder="בחר סטודיו">
+        <select id="studio" class="chosen-select chosen-rtl" data-placeholder="סטודיו">
             <option value=""></option>
             {% for studio in studio_names %}
             <option value="{{studio}}">{{studio}}</option>
             {% endfor %}
         </select><br><br>
-        <select id="instructor" class="chosen-select chosen-rtl" data-placeholder="בחר מדריך">
+        <select id="instructor" class="chosen-select chosen-rtl" data-placeholder="מדריך">
             <option value=""></option>
              {% for instructor in instructor_names %}
             <option value="{{instructor}}">{{instructor}}</option>
@@ -52,7 +52,15 @@
         </select><br><hr>
         <fieldset>
         <legend align="right"> מועד פתיחת הרשמה </legend>
-           <div id="opendate" dir="rtl" class="bfh-datepicker" data-format="d/m/y" data-date="{{class_date}}"></div><br>
+            <select id="opendate" class="chosen-select chosen-rtl" data-placeholder="יום פתיחת ההרשמה">
+                <option value=""></option>
+                <option value="100">ללא הגבלה</option>
+                <option value="0">באותו היום</option>
+                {% for n in range(14) %}
+                <option value="{{ loop.index }}">{{loop.index}} ימים לפני</option>
+                {% endfor %}
+
+            </select><br>
             <div id="opentime" dir="rtl" class="bfh-timepicker" data-time="{{class_time}}"></div><br>
             </fieldset>
         <div style="float:right;">

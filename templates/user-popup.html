@@ -25,7 +25,7 @@
 
     <form id="signup" action="register_to_class" method="post">
 
-        <input type="text" id="classkey" value="{{course.class_key}}"/>
+        <input type="hidden" id="classkey" value="{{course.class_key}}"/>
 
         {% if not signed_up %}
 
