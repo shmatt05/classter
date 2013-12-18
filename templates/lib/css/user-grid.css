@@ -46,6 +46,8 @@
     text-align: center;
 }
 
+
+
 @media (max-width: 900px) {
 
    td.wc-day-column {
@@ -71,3 +73,4 @@
    }
 
 }
+

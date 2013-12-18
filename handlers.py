@@ -1059,11 +1059,13 @@ class RegisterToClass(BaseRequestHandler):
             user_view = UserView(self.get_user_id(), class_key, year,month, day)
             new_num_slots_in_course = user_view.get_num_open_slots()
             template_values = {
-                'open_slots' : new_num_slots_in_course
+                'open_slots' : new_num_slots_in_course,
+                'class_key' : class_key
             }
-            print new_num_slots_in_course
 
-            self.render('user-popup-success.html')
+            self.render('user-popup-success.html', template_values)
+
+
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table
 
