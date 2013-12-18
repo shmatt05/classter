@@ -729,11 +729,12 @@ class ManageCoursePopup(BaseRequestHandler):
 
 class EditCourseTime(BaseRequestHandler):
     def post(self):
-        date = cgi.escape(self.request.get('new_date'))
+        date = cgi.escape(self.request.get('new_date')).split('/')
         start_hour = cgi.escape(self.request.get('new_hour'))
         duration = cgi.escape(self.request.get('new_minutes'))
         course_id = cgi.escape(self.request.get('course_id'))
-
+        admin_manager = AdminManager("peer", "peer") #todo: gym not hard coded
+        admin_manager.edit_course_time(course_id, date[2], date[1], date[0], start_hour, duration)
 
 
 class InitialHandler(BaseRequestHandler):

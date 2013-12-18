@@ -96,7 +96,14 @@ class AdminManager:
         gym_entity.put()
         return gym_entity
 
-    def edit_course_time(self):
+    def edit_course_time(self, course_id,year, month, day_in_month, start_hour, duration):
+        # get the right month schedule
+
+        #get the right daily schedule
+
+        #get the course from that daily schedule
+
+        #call the edit course function
         pass
 
     """ creates a new MonthSchedule entity for the given month and year with the current gym as its parent
