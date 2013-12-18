@@ -16,6 +16,7 @@
 .wc-time {
     visibility:hidden;
 }
+
 /*.wc-full-height-column.day-4 {*/
     /*display:none;*/
 /*}*/
@@ -46,7 +47,23 @@
     text-align: center;
 }
 
+.wc-toolbar {
+    background-color: #FFE0FF;
+}
+.wc-time-column-header, .wc-day-column-header {
 
+    background-color: #e0fff0;
+}
+
+th.wc-today {
+    background:none;
+    background-color: #f0ffe0;
+
+}
+
+.wc-day-column-first{
+    border: 1px solid #d3d3d3;
+}
 
 @media (max-width: 900px) {
 

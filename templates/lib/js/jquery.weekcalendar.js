@@ -81,7 +81,7 @@
         resizable: function(calEvent, element) {
           return true;
         },
-        eventClick: function(calEvent, element, dayFreeBusyManager, 
+        eventClick: function(calEvent, element, dayFreeBusyManager,
                                                       calendar, clickEvent) {
         },
         eventRender: function(calEvent, element) {
@@ -99,14 +99,14 @@
         },
         eventResize: function(calEvent, element) {
         },
-        eventNew: function(calEvent, element, dayFreeBusyManager, 
+        eventNew: function(calEvent, element, dayFreeBusyManager,
                                                     calendar, mouseupEvent) {
         },
         eventMouseover: function(calEvent, $event) {
         },
         eventMouseout: function(calEvent, $event) {
         },
-        eventDelete: function(calEvent, element, dayFreeBusyManager, 
+        eventDelete: function(calEvent, element, dayFreeBusyManager,
                                                       calendar, clickEvent) {
             calendar.weekCalendar('removeEvent',calEvent.id);
 	},
@@ -563,8 +563,8 @@
         var options = this.options;
         if (options && $.isFunction(options.height)) {
           var calendarHeight = options.height(this.element);
-          var headerHeight = this.element.find('.wc-header').outerHeight();
-          var navHeight = this.element.find('.wc-toolbar').outerHeight();
+          var headerHeight = 0;//this.element.find('.wc-header').outerHeight();
+          var navHeight = this.element.find('.wc-toolbar').outerHeight();//0;
           var scrollContainerHeight = Math.max(calendarHeight - navHeight - headerHeight, options.minBodyHeight);
           var timeslotHeight = this.element.find('.wc-time-slots').outerHeight();
           this.element.find('.wc-scrollable-grid').height(scrollContainerHeight);
@@ -697,7 +697,7 @@
         if (options.buttons) {
             var calendarNavHtml = '';
 
-            calendarNavHtml += '<div  class=\"ui-widget-header wc-toolbar\">';
+            calendarNavHtml += '<div  class=\"wc-toolbar\">';
               calendarNavHtml += '<div  class=\"wc-display\"></div>';
               calendarNavHtml += '<div class=\"wc-nav\" style="float:right;">';
              calendarNavHtml += '<button class=\"wc-next\">' + options.buttonText.nextWeek + '</button>';
@@ -706,7 +706,7 @@
 
 
               calendarNavHtml += '</div>';
-              calendarNavHtml += '<h1 class=\"wc-title\"></h1>';
+              calendarNavHtml += '<h2 class=\"wc-title\"></h1>';
             calendarNavHtml += '</div>';
 
             $(calendarNavHtml).appendTo($calendarContainer);
@@ -1303,7 +1303,7 @@
           var options = this.options;
           var currentDay = self._cloneDate(self.element.data('startDate'));
           var showAsSeparatedUser = options.showAsSeparateUsers && options.users && options.users.length;
-          var todayClass = 'ui-state-active wc-today';
+          var todayClass = 'wc-today';
             //start change to make weird good
           self.element.find('.wc-header th.wc-day-column-header').each(function(i, val) {
             $(this).html(self._getHeaderDate(currentDay));

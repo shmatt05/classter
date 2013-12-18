@@ -650,8 +650,11 @@ class SignUpPopUp(BaseRequestHandler):
         user_viewer = UserView(self.get_user_id(), class_key, year, month, day)
         course = user_viewer.get_course_by_id()
         code = user_viewer.get_view_code(course)
+        signed_up = (code==300)
+        registration_open =(code != 500)
+        print signed_up
         if code == 600:
-            self.render('user-popup-nocourse.html')
+            pass #self.render('user-popup-fail.html')
         else:
             template_values = {
                 'course': {
@@ -662,7 +665,10 @@ class SignUpPopUp(BaseRequestHandler):
                     'free_slots': course.get_num_open_slots(),
                     'start_time': course.hour[:2] + ":" + course.hour[2:],
                     'end_time': get_end_time(long(course.milli), course.duration),
-                    'date': date_original
+                    'date': date_original,
+                    'signed_up': signed_up,
+                    'is_registration_open':registration_open,
+                    'instructor':course.instructor
                 }
             }
         #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
@@ -1063,6 +1069,7 @@ class RegisterToClass(BaseRequestHandler):
     def post(self):
         class_key = cgi.escape(self.request.get('class_key')) #works great!
         date_representation = cgi.escape(self.request.get('class_date'))
+
         date_representation = date_representation.split('/')
         year = date_representation[2]
         month = date_representation[1]
@@ -1082,7 +1089,11 @@ class RegisterToClass(BaseRequestHandler):
             }
 
             self.render('user-popup-success.html', template_values)
-
+        else:
+            template_values = {
+                'error_code': code
+            }
+            self.render('user-popup-fail.html', template_values)
 
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table

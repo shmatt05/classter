@@ -6,8 +6,11 @@
     <script type='text/javascript' src='lib/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='lib/js/user-popup-jq.js'></script>
 
-    {% if signed_up %}
-    <div class="alert alert-dismissable alert-danger text-center"><button type="button" class="btn btn-warning" id="cancel">בטל הרשמה</button></div>
+    {% if course.signed_up %}
+    <div class="alert alert-dismissable alert-danger text-center">
+        <input type="button" id="cancelreg" value="בטל" />
+        הרשמה לשיעור זה כבר בוצעה
+    </div>
     {% endif %}
     <div class="jumbotron text-center">
 
@@ -21,21 +24,25 @@
 
     <h3 id="classdate">{{ course.date }}</h3>
     <h3>{{ course.start_time }} - {{ course.end_time }}</h3>
-    <h3>{{ course.free_slots }}</h3>
-    <h3>{{ course.is_registration_open }}</h3>
-
+    <h3 dir="rtl"> {{course.free_slots}} מקומות פנויים </h3>
     <form id="signup" action="register_to_class" method="post">
 
         <input type="hidden" id="classkey" value="{{course.class_key}}"/>
-
-        {% if not signed_up %}
-
-        {% if not course_full %}
-        <input type="button" value="הרשם" id="signupbutton">
+        {% if course.registration_open %}
+        {% if not course.signed_up %}
+        <h2>{{signed_up}}</h2><br>
+        {% if course.free_slots == "0" %}
+         <div class="alert alert-dismissable alert-danger text-center">הקורס מלא</div>
         {% else %}
-        <div class="alert alert-dismissable alert-danger text-center">הקורס מלא</div>
+        <input type="button" value="הרשם" id="signupbutton">
         {% endif %}
-
+        {% endif %}
+        {% else %}
+        <div class="alert alert-dismissable alert-info text-center">
+            ההרשמה טרם נפתחה
+            <br>
+            ההרשמה תפתח ב
+        </div>
         {% endif %}
 
     </form>
