@@ -698,14 +698,14 @@ class AddClassToSched(BaseRequestHandler):
         class_name  = cgi.escape(self.request.get('class'))
         studio  = cgi.escape(self.request.get('studio'))
         instructor  = cgi.escape(self.request.get('instructor'))
-        open_date  = cgi.escape(self.request.get('open_date'))
-        open_time  = cgi.escape(self.request.get('open_time'))
+        registration_days_before  = int(cgi.escape(self.request.get('open_date')))
+        registratio_start_time  = cgi.escape(self.request.get('open_time'))
         all_month  = cgi.escape(self.request.get('all_month'))
-        print all_month
-        admin_man = AdminManager("peer", "peer")
+        admin_man = AdminManager("peer", "peer") # todo: gym not hard coded
         admin_man.create_course_for_month(class_name, time.replace(":",""),length, participants, instructor, studio,
-                                          "blue", {}, {}, None, None, date[2], date[1],
-                                          admin_man.get_day_by_date(int(date[2]), int(date[1]), int(date[0])))
+                                          "blue", {}, {}, registration_days_before,
+                                          registratio_start_time.replace(":",""), date[2],
+                                          date[1],admin_man.get_day_by_date(int(date[2]), int(date[1]), int(date[0])))
 
 class EditCourseTime(BaseRequestHandler):
     def post(self):
