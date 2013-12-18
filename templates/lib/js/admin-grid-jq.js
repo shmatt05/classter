@@ -145,7 +145,7 @@ $(document).ready(function () {
             editCourseNoPopup(calEvent.start,calEvent.end, calEvent.id);
         },
         eventClick: function(calEvent, $event) { // Clicked classBox
-            //editCoursePopup(calEvent.id);
+            manageCoursePopup(calEvent.id);
         },
         eventMouseover: function(calEvent, $event) {
             //TODO: Slightly Zoom / Add Tooltip?
@@ -214,7 +214,7 @@ function changeWeek(newDate) {
 
 
 }
-
+//Popup for creating new course
 function newCoursePopup(startTime, endTime) {
 
     var newDate = returnDateStr(startTime);
@@ -249,7 +249,7 @@ function newCoursePopup(startTime, endTime) {
         }
     });
 }
-
+//Popup that lets admin change actual course info (time,participants,intructor, etc)
 function editCoursePopup(startTime, endTime, courseID) {
 
 
@@ -275,6 +275,36 @@ function editCoursePopup(startTime, endTime, courseID) {
         closeOnContentClick: false,
         callbacks: {
 
+        }
+    });
+}
+
+
+//Popup that shows who is signed up to course, lets admin change list
+function manageCoursePopup(courseID) {
+
+    $.magnificPopup.open({
+        type:'ajax',
+        items: {
+            src: '/managecoursepopup'
+
+        },
+        ajax: {
+            settings: {
+                cache:false,
+
+                type:'POST',
+                data: {
+                    'course_id':courseID
+                }
+
+            }
+        },
+        closeOnContentClick: false,
+        callbacks: {
+            close:function() {
+               //todo: maybe refresh grid after edit?
+            }
         }
     });
 }
@@ -309,6 +339,8 @@ function editCourseNoPopup(startTime, endTime, courseID) {
 
 
 }
+
+
 function returnDateStr (someDate) {
     return (someDate.getDate()<10?("0"+someDate.getDate()):someDate.getDate()) + "/" +
       ((someDate.getMonth()+1)<10?("0"+(someDate.getMonth()+1)):(someDate.getMonth()+1)) + "/" +

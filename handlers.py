@@ -707,6 +707,14 @@ class AddClassToSched(BaseRequestHandler):
                                           registratio_start_time.replace(":",""), date[2],
                                           date[1],admin_man.get_day_by_date(int(date[2]), int(date[1]), int(date[0])))
 
+class EditCoursePopup(BaseRequestHandler):
+    pass
+    #todo
+
+class ManageCoursePopup(BaseRequestHandler):
+    pass
+    #todo
+
 class EditCourseTime(BaseRequestHandler):
     def post(self):
         #todo
