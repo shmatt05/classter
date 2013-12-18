@@ -15,8 +15,13 @@ $(document).ready(function() {
 
     $('#calendar').weekCalendar({
         data: function (start, end, callback) {
-                    callback(classesTableArr);
-                },
+            callback(classesTableArr);
+            for (var i=0; i<classesTableArr.length; i++) {
+                $('#'+classesTableArr[i].id + ' .lblInstructor').text(classesTableArr[i].instructor);
+                $('#'+classesTableArr[i].id + ' .lblStudio').text(classesTableArr[i].studio);
+                $('#'+classesTableArr[i].id + ' .lblOpenSlots').text(classesTableArr[i].openSlots);
+            }
+        },
         buttonText: {
             today:'היום',
             lastWeek:'קודם',
@@ -88,6 +93,8 @@ $(document).ready(function() {
 
     //$('<div id="message" class="ui-corner-all"></div>').prependTo($('body'));
 
+
+
 });
 
 function openPopup(classID, classMilli) {
@@ -145,6 +152,11 @@ function changeWeek(newDate) {
                             oneClass.start=newClass.milli;
                             oneClass.end = oneClass.start + +(parseInt(newClass.duration)*60000);
                             oneClass.title = newClass.name;
+                            oneClass.isReg = newClass.is_registration_open;
+                            oneClass.openSlots = newClass.max_capacity - Object.keys(newClass.users_table).length;
+                            oneClass.instructor = newClass.instructor;
+                            oneClass.studio = newClass.studio;
+
                             //$('#calendar').weekCalendar('updateEvent', newClass);
                             classesTableArr.push(oneClass);
 

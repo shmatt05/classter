@@ -1515,9 +1515,12 @@
           eventHtml = '<div id='+ calEvent.id +' class=\"' + eventClass + ' ui-corner-all classBox\">';
 
           eventHtml += '<div class=\"wc-time ui-corner-top\"></div>'; // TIME ON TOP OF THE BOX FIX!!!!
-          eventHtml += '<div class=\"wc-title\"></div>';
-          eventHtml += '<label id=lbl' + calEvent.id+' class="counterLabel">Testing</label>';
-          eventHtml += '</div>'; // END OF CLASS BOX IS HERE
+          eventHtml += '<div id=internal' + calEvent.id+' class="internaldiv">';
+          eventHtml += '<div class=\"wc-title\"></div><br>';
+          eventHtml += '<label class=\"lblInstructor\"></label><br>'
+          eventHtml += '<label class=\"lblStudio\"></label><br>'
+          eventHtml += '<label class=\"lblOpenSlots\"></label>'
+          eventHtml += '</div></div>'; // END OF CLASS BOX IS HERE
 
           $weekDay.each(function() {
             var $calEvent = $(eventHtml);

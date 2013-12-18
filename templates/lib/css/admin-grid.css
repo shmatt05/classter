@@ -46,3 +46,14 @@
 
     width: 60px;
 }
+.wc-title { /* title of ClassBox */
+
+}
+
+.internaldiv { /* div inside each ClassBox */
+    text-align: center;
+}
+
+.wc-time { /* time on top of ClassBox*/
+
+}

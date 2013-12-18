@@ -38,13 +38,25 @@
     width: 60px;
 }
 
+.wc-title { /* title of ClassBox */
+
+}
+
+.internaldiv { /* div inside each ClassBox */
+    text-align: center;
+}
+
 @media (max-width: 900px) {
+
    td.wc-day-column {
        display:none;
    }
    th.wc-day-column-header {
        display:none;
 
+   }
+   .ui-widget-header {
+       display:none;
    }
    div.wc-time-slots {
        /*width:13.5%;*/
