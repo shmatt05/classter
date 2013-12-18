@@ -93,6 +93,15 @@ class MonthScheduleManager(object):
             self.month_schedule.daily_schedule_table[str(i)].courses_list.append(new_course)
         self.month_schedule.put()
 
+    def add_course_instance(self, course, day_in_month):
+        year = self.month_schedule.year
+        month = self.month_schedule.month
+        new_course = Course(course.name, course.description, course.hour, course.duration, course.max_capacity,
+                    course.instructor, course.studio, course.color, course.users_table,
+                    course.waiting_list_table, course.registration_days_before,
+                    course.registration_start_time, str(uuid.uuid4()), course.to_mili(year, month, day_in_month))
+        self.month_schedule.daily_schedule_table[str(day_in_month)].courses_list.append(new_course)
+        self.month_schedule.put()
 
 class CourseTemplate(object):
     def __init__(self, name, description):
