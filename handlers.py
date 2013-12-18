@@ -1050,28 +1050,13 @@ class RegisterToClass(BaseRequestHandler):
         month = date_representation[1]
         day = date_representation[0]
 
-        #full_name=cgi.escape(self.request.get('firstname'))
-        ##class_key=cgi.escape(self.request.get('classkey'))
-        ##param_list = parse_course(class_key)
-        ##year = param_list[0]
-        ##month = param_list[1]
-        ##day = param_list[2]
-        #course_name = param_list[3]
-        ##hour = param_list[4]
-        ##studio = param_list[5]
-        ##schedule_man = DailyScheduleManager("peer", "peer")
-        #user_exists = DailyScheduleManager.is_user_subscribed(full_name, course_name)
-        ##result = schedule_man.add_user_to_course(full_name, year, month, day, hour, course_name)
-        #if not user_exists:
-        #    if schedule_man.add_user_to_course(full_name, year, month, day, hour, course_name) == True:
-        #        result = 100 # success
-        #    else:
-        #        result = 200 # class full
-        #result = 300 # user exists
-        #template = JINJA_ENVIRONMENT.get_template('user-popup-success.html')
-        #self.response.write(template.render())
-        #self.response.write(result)
-        self.render('user-popup-success.html')
+        if not self.logged_in:
+            return self.redirect('/authenticated')
+
+        user_course_manager = UserBusinessLogic(self.get_user_id(), class_key, year,month, day)
+        code = user_course_manager.register_to_course()
+        if code == user_manager.USER_REGISTRATION_SUCCEEDED:
+            self.render('user-popup-success.html')
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table
 

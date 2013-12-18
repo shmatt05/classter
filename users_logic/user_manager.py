@@ -160,9 +160,9 @@ class UserBusinessLogic:
                     else:
                         return REGISTRATION_DID_NOT_START
                 else:
-                    return NO_SUCH_COURSE
+                    return COURSE_TIME_PASSED
             else:
-                return COURSE_TIME_PASSED
+                return NO_SUCH_COURSE
 
     def cancel_course_registration(self):
         if self.user_entity is None:

@@ -188,7 +188,7 @@ class Course(CourseTemplate):
             return False
 
     def add_user_to_course(self, user_entity):
-        self.users_table[user_entity.id] = user_entity
+        self.users_table[user_entity.id] = user_entity.id
 
     def remove_user_from_course(self, user_entity):
         del self.users_table[user_entity.id]
