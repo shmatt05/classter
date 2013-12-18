@@ -96,6 +96,7 @@ class AdminManager:
         gym_entity.put()
         return gym_entity
 
+    def edit_course_time(self, ):
 
     """ creates a new MonthSchedule entity for the given month and year with the current gym as its parent
         doesn't change the DB if the MonthSchedule already exists
@@ -186,11 +187,6 @@ class AdminManager:
         #return gym_manager.get_daily_schedule_list(sunday, saturday)
         return daily_sched_lst
 
-    #def __get_sunday_of_week_containing_datetime(date_time, day_num):
-    #    return date_time + datetime.timedelta(1 - day_num)
-    #
-    #def __get_saturday_of_week_containing_datetime(date_time, day_num):
-    #    return date_time + datetime.timedelta(7 - day_num)
 
     """ returns the number of the day in range (1,7) by the given date """
     def get_day_by_date(self, year, month, day):

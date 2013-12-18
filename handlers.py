@@ -723,8 +723,12 @@ class ManageCoursePopup(BaseRequestHandler):
 
 class EditCourseTime(BaseRequestHandler):
     def post(self):
-        #todo
-        pass
+        date = cgi.escape(self.request.get('new_date'))
+        start_hour = cgi.escape(self.request.get('new_hour'))
+        duration = cgi.escape(self.request.get('new_minutes'))
+        course_id = cgi.escape(self.request.get('course_id'))
+
+
 
 class InitialHandler(BaseRequestHandler):
     def get(self):

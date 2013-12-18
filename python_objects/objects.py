@@ -238,6 +238,11 @@ class DailySchedule(object):
         return time.mktime(datetime(int(self.year), int(self.month), int(self.day_in_month), int(course.hour[:2]),
                                     int(course.hour[2:4])).timetuple())*1000
 
+    def get_course_by_id(self, course_id):
+        for course in self.courses_list:
+            if str(course.id) == course_id:
+                return course
+        return None
 
 class User(object):
     def __init__(self, id, first_name, last_name, email, phone):
