@@ -1043,7 +1043,7 @@ class CreateCourse(BaseRequestHandler):
 class RegisterToClass(BaseRequestHandler):
 
     def post(self):
-        class_key  = cgi.escape(self.request.get('class_key')) #works great!
+        class_key = cgi.escape(self.request.get('class_key')) #works great!
         date_representation = cgi.escape(self.request.get('class_date'))
         date_representation = date_representation.split('/')
         year = date_representation[2]
@@ -1056,6 +1056,13 @@ class RegisterToClass(BaseRequestHandler):
         user_course_manager = UserBusinessLogic(self.get_user_id(), class_key, year,month, day)
         code = user_course_manager.register_to_course()
         if code == user_manager.USER_REGISTRATION_SUCCEEDED:
+            user_view = UserView(self.get_user_id(), class_key, year,month, day)
+            new_num_slots_in_course = user_view.get_num_open_slots()
+            template_values = {
+                'open_slots' : new_num_slots_in_course
+            }
+            print new_num_slots_in_course
+
             self.render('user-popup-success.html')
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table

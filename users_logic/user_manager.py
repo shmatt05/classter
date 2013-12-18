@@ -162,7 +162,8 @@ class UserBusinessLogic:
                 else:
                     return COURSE_TIME_PASSED
             else:
-                return NO_SUCH_COURSE
+                continue
+        return NO_SUCH_COURSE
 
     def cancel_course_registration(self):
         if self.user_entity is None:
@@ -220,7 +221,12 @@ class UserView:
         else:
             return COURSE_TIME_PASSED
 
-
+    def get_num_open_slots(self):
+        course = self.get_course_by_id()
+        if not course is None:
+            return course.get_num_open_slots()
+        else:
+            return None
 
 def get_daily_schedule_from_gym(gym_network, gym_branch, year, month, day):
     daily_schedule_manager = DailyScheduleManager(gym_network,gym_branch)
