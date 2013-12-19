@@ -1064,6 +1064,29 @@ class CreateCourse(BaseRequestHandler):
             result.extend(daily.courses_list)
         return result
 
+class RemoveUserFromClass(BaseRequestHandler):
+
+    def post(self):
+        class_key = cgi.escape(self.request.get('class_key')) #works great!
+        date_representation = cgi.escape(self.request.get('class_date'))
+
+        date_representation = date_representation.split('/')
+        year = date_representation[2]
+        month = date_representation[1]
+        day = date_representation[0]
+
+        if not self.logged_in:
+            return self.redirect('/authenticated')
+
+        user_course_manager = UserBusinessLogic(self.get_user_id(), class_key, year,month, day)
+        code = user_course_manager.cancel_course_registration()
+        if code == user_manager.USER_REMOVED_FROM_COURSE_SUCCEEDED:
+            user_view = UserView(self.get_user_id(), class_key, year,month, day)
+            new_num_slots_in_course = user_view.get_num_open_slots()
+            template_values = {
+                'open_slots' : new_num_slots_in_course,
+                'class_key' : class_key
+            }
 
 class RegisterToClass(BaseRequestHandler):
 

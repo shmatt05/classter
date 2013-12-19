@@ -176,6 +176,11 @@ class UserBusinessLogic:
                  if course.does_user_already_registered(self.user_id):
                     course.remove_user_from_course(self.user_entity)
                     return USER_REMOVED_FROM_COURSE_SUCCEEDED
+                 else:
+                    return USER_IS_NOT_REGISTERED
+        return NO_SUCH_COURSE
+
+
 
     def add_to_waiting_list_table(self):
         pass
