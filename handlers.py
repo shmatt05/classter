@@ -1083,10 +1083,8 @@ class RemoveUserFromClass(BaseRequestHandler):
         if code == user_manager.USER_REMOVED_FROM_COURSE_SUCCEEDED:
             user_view = UserView(self.get_user_id(), class_key, year,month, day)
             new_num_slots_in_course = user_view.get_num_open_slots()
-            template_values = {
-                'open_slots' : new_num_slots_in_course,
-                'class_key' : class_key
-            }
+
+            self.response.write(new_num_slots_in_course);
 
 class RegisterToClass(BaseRequestHandler):
 

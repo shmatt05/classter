@@ -41,12 +41,12 @@ $(document).ready(function() {
                 url : '/remove_user_from_class',
                 type: "POST",
                 data : postData,
-                dataType:'html',
+
                 async:'false',
                 success:function(data, textStatus, jqXHR)
                 {
 
-                    alert('success!');
+                   $('#'+($('#classkey').val()) + ' .lblOpenSlots').text(data);
                 },
                 error: function(jqXHR, textStatus, errorThrown)
                 {
