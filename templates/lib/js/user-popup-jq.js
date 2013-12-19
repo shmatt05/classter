@@ -47,6 +47,8 @@ $(document).ready(function() {
                 {
 
                    $('#'+($('#classkey').val()) + ' .lblOpenSlots').text(data);
+                    var magnificPopup = $.magnificPopup.instance;
+                    magnificPopup.close();
                 },
                 error: function(jqXHR, textStatus, errorThrown)
                 {

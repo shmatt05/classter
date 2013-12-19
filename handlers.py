@@ -652,7 +652,7 @@ class SignUpPopUp(BaseRequestHandler):
         code = user_viewer.get_view_code(course)
         signed_up = (code== user_manager.USER_ALREADY_REGISTERED)
         registration_open =(code != user_manager.REGISTRATION_DID_NOT_START)
-        print signed_up
+        print registration_open
         if code == user_manager.NO_SUCH_COURSE:
             pass #self.render('user-popup-fail.html')
         else:
