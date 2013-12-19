@@ -48,6 +48,18 @@ class AdminManager:
             self.gym.users_table[user_id] = user
             self.gym.put()
 
+    def add_user_to_course(self, course_id, user_id, year, month, day_in_month):
+        pass
+
+    def delete_user_to_course(self, course_id, user_id, year, month, day_in_month):
+        pass
+
+    def add_user_to_waiting_list_table(self, course_id, user_id, year, month, day_in_month):
+        pass
+
+    def delete_user_to_from_waiting_list_table(self, course_id, user_id, year, month, day_in_month):
+        pass
+
     def delete_user_from_gym(self, user_id):
         if user_id in self.gym.users_table:
             del self.gym.users_table[user_id]
@@ -228,11 +240,12 @@ class AdminManager:
         return users_list
 
     def get_waiting_list_from_course(self, class_key, year, month, day_in_month):
-        month_schedule = self.__get_month_schedule(int(month), int(year))
-        month_schedule_manager = MonthScheduleManager(month_schedule)
-        #get the right daily schedule
-        daily_schedule = month_schedule_manager.get_daily_schedule(day_in_month)
-        course = daily_schedule.get_course_by_id(class_key)
+        #month_schedule = self.__get_month_schedule(int(month), int(year))
+        #month_schedule_manager = MonthScheduleManager(month_schedule)
+        ##get the right daily schedule
+        #daily_schedule = month_schedule_manager.get_daily_schedule(day_in_month)
+        #course = daily_schedule.get_course_by_id(class_key)
+        course = self.__get_course(class_key, year, month, day_in_month)
         waiting_list = []
         for user_id in course.waiting_list_table.values():
             waiting_list.append(self.gym.users_table[user_id])
@@ -245,6 +258,14 @@ class AdminManager:
             return 7
         else:
             return (temp_day+2) % 7
+
+    def __get_course(self, course_key, year, month, day_in_month):
+        month_schedule = self.__get_month_schedule(int(month), int(year))
+        month_schedule_manager = MonthScheduleManager(month_schedule)
+        #get the right daily schedule
+        daily_schedule = month_schedule_manager.get_daily_schedule(day_in_month)
+        course = daily_schedule.get_course_by_id(course_key)
+        return course
 
 class AdminViewer:
     def __init__(self, gym_network, gym_branch):  # gym_key is <network>_<branch>
