@@ -73,8 +73,8 @@ class UserBusinessLogic:
             return NO_DAILY_SCHEDULE
         "find the correct course"
         course = self.daily_schedule_entity.get_course_by_id(self.course_id)
-        if not course in None:
-            code = course.try_register_user_to_course(self.year, self.month, self.day)
+        if not course is None:
+            code = course.try_register_user_to_course(self.user_id, self.year, self.month, self.day)
             if code == objects.USER_REGISTRATION_SUCCEEDED:
                 self.month_schedule_entity.put()
             return code

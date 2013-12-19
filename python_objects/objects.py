@@ -170,8 +170,8 @@ class Course(CourseTemplate):
         if not self.did_course_time_pass(year, month, day):
             if self.did_registration_start(year, month, day):
                 if not self.is_full():
-                    if not self.does_user_already_registered(self.user_id):
-                        self.add_user_to_course(self.user_entity)
+                    if not self.does_user_already_registered(user_id):
+                        self.add_user_to_course(user_id)
                         return USER_REGISTRATION_SUCCEEDED
                     else:
                         return USER_ALREADY_REGISTERED
