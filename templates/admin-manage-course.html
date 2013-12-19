@@ -1,14 +1,42 @@
 
 <div class="white-popup popup-div">
-    <script type='text/javascript' src='lib/js/admin-popup-jq.js'></script>
-    <ol id="selectable">
-        <li class="ui-widget-content">Item 1</li>
-        <li class="ui-widget-content">Item 2</li>
-        <li class="ui-widget-content">Item 3</li>
-        <li class="ui-widget-content">Item 4</li>
-        <li class="ui-widget-content">Item 5</li>
-        <li class="ui-widget-content">Item 6</li>
-        <li class="ui-widget-content">Item 7</li>
-    </ol>
+       <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
 
+    <style>
+         #selectable .ui-selecting { background: #FECA40; }
+  #selectable .ui-selected { background: #F39814; color: white; }
+  #selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+    </style>
+    <script>
+        $(function() {
+            $('#selectable_signedup').selectable({
+                selected: function(event, ui) {
+                    $(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");
+                }
+            });
+            $('#selectable_waiting').selectable({
+                selected: function(event, ui) {
+                    $(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");
+                }
+            });
+        });
+    </script>
+    <div id="userlist" style="height:300px; overflow: scroll; width:50%;">
+        <h3> רשומים </h3>
+        <ol id="selectable_signedup">
+            {% for user in users %}
+            <li class="ui-widget-content" value="{{user.id}}">{{user.first_name}} {{user.last_name}}</li>
+            {% endfor %}
+        </ol>
+    </div>
+
+    <div id="waitinglist" style="height:300px; overflow:scroll; width:50%; display:block;">
+         <h3> המתנה </h3>
+        <ol id="selectable_waiting">
+        {% for user in waiting_list %}
+        <li class="ui-widget-content" value="{{user.id}}">{{user.first_name}} {{user.last_name}}</li>
+        {% endfor %}
+    </ol>
+    </div>
 </div>
