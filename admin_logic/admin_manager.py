@@ -216,16 +216,27 @@ class AdminManager:
         #return gym_manager.get_daily_schedule_list(sunday, saturday)
         return daily_sched_lst
 
-    def get_registered_users_from_course(self, class_key, year, month, day_in_month):
+    def get_registered_users_list_from_course(self, class_key, year, month, day_in_month):
         month_schedule = self.__get_month_schedule(int(month), int(year))
         month_schedule_manager = MonthScheduleManager(month_schedule)
         #get the right daily schedule
         daily_schedule = month_schedule_manager.get_daily_schedule(day_in_month)
         course = daily_schedule.get_course_by_id(class_key)
         users_list = []
-        for user_id in course.users_table.value():
+        for user_id in course.users_table.values():
             users_list.append(self.gym.users_table[user_id])
         return users_list
+
+    def get_waiting_list_from_course(self, class_key, year, month, day_in_month):
+        month_schedule = self.__get_month_schedule(int(month), int(year))
+        month_schedule_manager = MonthScheduleManager(month_schedule)
+        #get the right daily schedule
+        daily_schedule = month_schedule_manager.get_daily_schedule(day_in_month)
+        course = daily_schedule.get_course_by_id(class_key)
+        waiting_list = []
+        for user_id in course.waiting_list_table.values():
+            waiting_list.append(self.gym.users_table[user_id])
+        return waiting_list
 
     """ returns the number of the day in range (1,7) by the given date """
     def get_day_by_date(self, year, month, day):

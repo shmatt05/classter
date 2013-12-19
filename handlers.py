@@ -734,7 +734,8 @@ class ManageCoursePopup(BaseRequestHandler):
         day = date_representation[0]
 
         admin_manager = AdminManager("peer", "peer") #todo gym not hardcoded
-        registered_users_list = admin_manager.get_registered_users_to_course(class_key, year, month, day)
+        registered_users_list = admin_manager.get_registered_users_list_from_course(class_key, year, month, day)
+        waiting_list =  admin_manager.get_waiting_list_from_course(class_key, year, month, day)
 
 class EditCourseTime(BaseRequestHandler):
     def post(self):
