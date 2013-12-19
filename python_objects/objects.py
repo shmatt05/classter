@@ -166,6 +166,22 @@ class Course(CourseTemplate):
             month_schedule.daily_schedule_table[str(i)].courses_list.append(new_course)
         month_schedule.put()
 
+    def try_register_user_to_course(self, user_id, year, month, day):
+        if not self.did_course_time_pass(year, month, day):
+            if self.did_registration_start(year, month, day):
+                if not self.is_full():
+                    if not self.does_user_already_registered(self.user_id):
+                        self.add_user_to_course(self.user_entity)
+                        return USER_REGISTRATION_SUCCEEDED
+                    else:
+                        return USER_ALREADY_REGISTERED
+                else:
+                    return COURSE_IS_FULL
+            else:
+                return REGISTRATION_DID_NOT_START
+        else:
+            return COURSE_TIME_PASSED
+
     def did_course_time_pass(self, year, month, day):
         now = Time('Israel').now()
         hour = self.__get_start_hour()
@@ -199,8 +215,8 @@ class Course(CourseTemplate):
         else:
             return False
 
-    def add_user_to_course(self, user_entity):
-        self.users_table[user_entity.id] = user_entity.id
+    def add_user_to_course(self, user_id):
+        self.users_table[user_id] = user_id
 
     def remove_user_from_course(self, user_entity):
         del self.users_table[user_entity.id]
@@ -317,4 +333,13 @@ def get_num_of_days_in_month(year, month):
     return monthrange(year, month)[1]
 
 
-
+NO_SUCH_USER = 100
+NO_DAILY_SCHEDULE = 200
+USER_ALREADY_REGISTERED = 300
+COURSE_IS_FULL = 400
+REGISTRATION_DID_NOT_START = 500
+NO_SUCH_COURSE = 600
+COURSE_TIME_PASSED = 700
+USER_REGISTRATION_SUCCEEDED = 800
+USER_IS_NOT_REGISTERED = 900
+USER_REMOVED_FROM_COURSE_SUCCEEDED = 1000
