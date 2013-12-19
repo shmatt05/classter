@@ -103,6 +103,9 @@ class MonthScheduleManager(object):
         self.month_schedule.daily_schedule_table[str(day_in_month)].courses_list.append(new_course)
         self.month_schedule.put()
 
+    def get_daily_schedule(self, day_in_month):
+        return self.month_schedule.daily_schedule_table[str(day_in_month)]
+
 class CourseTemplate(object):
     def __init__(self, name, description):
         self.name = name

@@ -98,13 +98,16 @@ class AdminManager:
 
     def edit_course_time(self, course_id,year, month, day_in_month, start_hour, duration):
         # get the right month schedule
-
+        month_schedule = self.__get_month_schedule(int(month), int(year))
+        month_schedule_manager = MonthScheduleManager(month_schedule)
         #get the right daily schedule
-
+        daily_schedule = month_schedule_manager.get_daily_schedule(day_in_month)
         #get the course from that daily schedule
-
+        course = daily_schedule.get_course_by_id(course_id)
+        course.hour = start_hour
+        course.duration = duration
         #call the edit course function
-        pass
+        month_schedule.put()
 
     """ creates a new MonthSchedule entity for the given month and year with the current gym as its parent
         doesn't change the DB if the MonthSchedule already exists
