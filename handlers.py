@@ -724,8 +724,17 @@ class EditCoursePopup(BaseRequestHandler):
     #todo
 
 class ManageCoursePopup(BaseRequestHandler):
-    pass
-    #todo
+    def post(self):
+        class_key = cgi.escape(self.request.get('class_key'))
+        date_representation = cgi.escape(self.request.get('class_date'))
+
+        date_representation = date_representation.split('/')
+        year = date_representation[2]
+        month = date_representation[1]
+        day = date_representation[0]
+
+        admin_manager = AdminManager("peer", "peer") #todo gym not hardcoded
+        registered_users_list = admin_manager.get_registered_users_to_course(class_key, year, month, day)
 
 class EditCourseTime(BaseRequestHandler):
     def post(self):
@@ -943,8 +952,11 @@ class AddUser(BaseRequestHandler):
         david.set_key()
         david.put()
 
+        admin_man = AdminManager("peer", "peer")
+        admin_man.add_user_to_gym(555, "Roy", "Klinger", "fadkj@fdas.fds", "05421365648")
+        admin_man.add_user_to_gym(123, "Moahe", "Babi", "ffdskj@fdas.fds", "0546855648")
 
-        user_op = UserBusinessLogic(3213908, 1111, 2013, 12, 2)
+
 
 
 class UserHandler(BaseRequestHandler):

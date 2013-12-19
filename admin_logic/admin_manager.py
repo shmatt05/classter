@@ -42,6 +42,12 @@ class AdminManager:
         new_template = CourseTemplate(name, description)
         new_template.add_to_gym(self.gym)
 
+    def add_user_to_gym(self, user_id, first_name, last_name, email, phone):
+        user = User(user_id, first_name, last_name, email, phone)
+        if not user_id in self.gym.users_table:
+            self.gym.users_table[user_id] = user
+            self.gym.put()
+
     """ edits an existing course_template object in the courses list of the specified Gym entity """
     def edit_course_template(self, previous_name, new_name, new_description):
         if self.gym is None:
@@ -89,9 +95,10 @@ class AdminManager:
                 studio.edit_gym_studio(self.gym, new_name)
     # TODO: add delete_studio method
 
-    def create_gym(self,gym_network, gym_branch, address="", courses={}, instructors={}, studios=[]):
+    def create_gym(self,gym_network, gym_branch, address="", courses={}, instructors={}, studios=[], users_table={}):
         gym_entity = entities.Gym(name=gym_branch, gym_network=gym_network, address=address,
-                                       courses=courses, instructors=instructors, studios=studios)
+                                       courses=courses, instructors=instructors, studios=studios,
+                                       users_table=users_table)
         gym_entity.set_key()
         gym_entity.put()
         return gym_entity
@@ -198,6 +205,16 @@ class AdminManager:
         #return gym_manager.get_daily_schedule_list(sunday, saturday)
         return daily_sched_lst
 
+    def get_registered_users_from_course(self, class_key, year, month, day_in_month):
+        month_schedule = self.__get_month_schedule(int(month), int(year))
+        month_schedule_manager = MonthScheduleManager(month_schedule)
+        #get the right daily schedule
+        daily_schedule = month_schedule_manager.get_daily_schedule(day_in_month)
+        course = daily_schedule.get_course_by_id(class_key)
+        users_list = []
+        for user_id in course.users_table.value():
+            users_list.append(self.gym.users_table[user_id])
+        return users_list
 
     """ returns the number of the day in range (1,7) by the given date """
     def get_day_by_date(self, year, month, day):
