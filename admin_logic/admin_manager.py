@@ -134,7 +134,9 @@ class AdminManager:
         daily_schedule = month_schedule_manager.get_daily_schedule(day_in_month)
         #get the course from that daily schedule
         course = daily_schedule.get_course_by_id(course_id)
-        course.hour = start_hour
+        if not course.hour == start_hour:
+            course.hour = start_hour
+            course.milli = course.to_mili(year, month, day_in_month)
         course.duration = duration
         #call the edit course function
         month_schedule.put()
