@@ -4,9 +4,7 @@
 
 
 $(document).ready(function() {
-    $('#addclass').on('submit',  function(e) {
 
-    });
 
     $('.chosen-select').chosen({
         no_results_text: 'לא נמצאו תוצאות',

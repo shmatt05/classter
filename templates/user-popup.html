@@ -25,13 +25,17 @@
     <h3 id="classdate">{{ course.date }}</h3>
     <h3>{{ course.start_time }} - {{ course.end_time }}</h3>
     <h3 dir="rtl"> {{course.free_slots}} מקומות פנויים </h3>
-    <h3>{{course.is_registration_open}}</h3>
+    {% if course.time_passed %}
+    <div class="alert alert-dismissable alert-info text-center"><br>
+        השיעור התקיים כבר בעבר
+    </div>
+    {% else %}
     <form id="signup" action="register_to_class" method="post">
 
         <input type="hidden" id="classkey" value="{{course.class_key}}"/>
         {% if course.is_registration_open %}
             {% if not course.signed_up %}
-                <h2>{{signed_up}}</h2><br>
+            <br>
                 {% if course.free_slots == "0" %}
                      <div class="alert alert-dismissable alert-danger text-center">הקורס מלא</div>
                 {% else %}
@@ -45,6 +49,6 @@
                 ההרשמה תפתח ב
             </div>
         {% endif %}
-
+        {% endif %}
     </form>
 </div>

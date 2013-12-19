@@ -145,7 +145,7 @@ $(document).ready(function () {
             editCourseNoPopup(calEvent.start,calEvent.end, calEvent.id);
         },
         eventClick: function(calEvent, $event) { // Clicked classBox
-            manageCoursePopup(calEvent.id);
+            manageCoursePopup(calEvent.id, calEvent.start);
         },
         eventMouseover: function(calEvent, $event) {
             //TODO: Slightly Zoom / Add Tooltip?
@@ -281,7 +281,7 @@ function editCoursePopup(startTime, endTime, courseID) {
 
 
 //Popup that shows who is signed up to course, lets admin change list
-function manageCoursePopup(courseID) {
+function manageCoursePopup(courseID, startTime) {
 
     $.magnificPopup.open({
         type:'ajax',
@@ -295,7 +295,8 @@ function manageCoursePopup(courseID) {
 
                 type:'POST',
                 data: {
-                    'course_id':courseID
+                    'class_key':courseID,
+                    'class_date':returnDateStr(startTime)
                 }
 
             }

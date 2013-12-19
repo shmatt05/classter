@@ -652,7 +652,8 @@ class SignUpPopUp(BaseRequestHandler):
         code = user_viewer.get_view_code(course)
         signed_up = (code== user_manager.USER_ALREADY_REGISTERED)
         registration_open =(code != user_manager.REGISTRATION_DID_NOT_START)
-        print registration_open
+        time_passed = (code == user_manager.COURSE_TIME_PASSED)
+        print time_passed
         if code == user_manager.NO_SUCH_COURSE:
             pass #self.render('user-popup-fail.html')
         else:
@@ -668,7 +669,8 @@ class SignUpPopUp(BaseRequestHandler):
                     'date': date_original,
                     'signed_up': signed_up,
                     'is_registration_open':registration_open,
-                    'instructor':course.instructor
+                    'instructor':course.instructor,
+                    'time_passed':time_passed
                 }
             }
         #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
@@ -736,6 +738,12 @@ class ManageCoursePopup(BaseRequestHandler):
         admin_manager = AdminManager("peer", "peer") #todo gym not hardcoded
         registered_users_list = admin_manager.get_registered_users_list_from_course(class_key, year, month, day)
         waiting_list =  admin_manager.get_waiting_list_from_course(class_key, year, month, day)
+        template_values = {
+            'users':registered_users_list,
+            'waiting_list':waiting_list
+        }
+        self.render('admin-manage-course.html',template_values)
+
 
 class EditCourseTime(BaseRequestHandler):
     def post(self):

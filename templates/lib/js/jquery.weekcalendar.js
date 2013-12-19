@@ -563,7 +563,7 @@
         var options = this.options;
         if (options && $.isFunction(options.height)) {
           var calendarHeight = options.height(this.element);
-          var headerHeight = 0;//this.element.find('.wc-header').outerHeight();
+          var headerHeight =  0;//this.element.find('.wc-header').outerHeight();//
           var navHeight = this.element.find('.wc-toolbar').outerHeight();//0;
           var scrollContainerHeight = Math.max(calendarHeight - navHeight - headerHeight, options.minBodyHeight);
           var timeslotHeight = this.element.find('.wc-time-slots').outerHeight();
@@ -849,7 +849,7 @@
               $calendarBody += '<th class=\"wc-day-column-header wc-day-' + i + '\"' + '></th>';
           }
 
-          //$calendarBody += '<th class=\"wc-scrollbar-shim\"' + 0 + '></th>'; //</tbody></table></div>';
+          //$calendarBody += '<th class=\"wc-scrollbar-shim\"></th>'; //</tbody></table></div>';
           $calendarBody += '</tr></thead>';
           //endweird
           $calendarBody += '<tbody>';
