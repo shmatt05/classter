@@ -48,6 +48,17 @@ class AdminManager:
             self.gym.users_table[user_id] = user
             self.gym.put()
 
+    def delete_user_from_gym(self, user_id):
+        if user_id in self.gym.users_table:
+            del self.gym.users_table[user_id]
+            self.gym.put()
+
+    def edit_user(self, user_id, first_name, last_name, email, phone):
+        user = User(user_id, first_name, last_name, email, phone)
+        if user_id in self.gym.users_table:
+              self.gym.users_table[user_id] = user
+              self.gym.put()
+
     """ edits an existing course_template object in the courses list of the specified Gym entity """
     def edit_course_template(self, previous_name, new_name, new_description):
         if self.gym is None:
