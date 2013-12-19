@@ -87,15 +87,32 @@ class UserBusinessLogic:
         if self.daily_schedule_entity is None:
             return NO_DAILY_SCHEDULE
         "find the correct course"
-        for course in self.daily_schedule_entity.courses_list:
-            if course.id == self.course_id:
-                 if course.does_user_already_registered(self.user_id):
-                    course.remove_user_from_course(self.user_entity)
-                    self.month_schedule_entity.put()
-                    return USER_REMOVED_FROM_COURSE_SUCCEEDED
-                 else:
-                    return USER_IS_NOT_REGISTERED
-        return NO_SUCH_COURSE
+        course = self.daily_schedule_entity.get_course_by_id(self.course_id)
+        if not course is None:
+             if course.does_user_already_registered(self.user_id):
+                course.remove_user_from_course(self.user_entity)
+                self.month_schedule_entity.put()
+                return USER_REMOVED_FROM_COURSE_SUCCEEDED
+             else:
+                return USER_IS_NOT_REGISTERED
+        else:
+            return NO_SUCH_COURSE
+
+    #def cancel_course_registration(self):
+    #    if self.user_entity is None:
+    #        return NO_SUCH_USER
+    #    if self.daily_schedule_entity is None:
+    #        return NO_DAILY_SCHEDULE
+    #    "find the correct course"
+    #    for course in self.daily_schedule_entity.courses_list:
+    #        if course.id == self.course_id:
+    #             if course.does_user_already_registered(self.user_id):
+    #                course.remove_user_from_course(self.user_entity)
+    #                self.month_schedule_entity.put()
+    #                return USER_REMOVED_FROM_COURSE_SUCCEEDED
+    #             else:
+    #                return USER_IS_NOT_REGISTERED
+    #    return NO_SUCH_COURSE
 
 
 
@@ -131,13 +148,13 @@ class UserView:
             return NO_SUCH_COURSE
         if not course.did_course_time_pass(self.year, self.month, self.day):
             if course.did_registration_start(self.year, self.month, self.day):
-                if not course.is_full():
-                    if course.does_user_already_registered(self.user_id):
-                        return USER_ALREADY_REGISTERED
+                if course.does_user_already_registered(self.user_id):
+                    return USER_ALREADY_REGISTERED
+                else:
+                    if course.is_full():
+                        return COURSE_IS_FULL
                     else:
                         return USER_IS_NOT_REGISTERED
-                else:
-                    return COURSE_IS_FULL
             else:
                 return REGISTRATION_DID_NOT_START
         else:
