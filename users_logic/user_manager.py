@@ -175,6 +175,7 @@ class UserBusinessLogic:
             if course.id == self.course_id:
                  if course.does_user_already_registered(self.user_id):
                     course.remove_user_from_course(self.user_entity)
+                    self.month_schedule_entity.put()
                     return USER_REMOVED_FROM_COURSE_SUCCEEDED
                  else:
                     return USER_IS_NOT_REGISTERED
