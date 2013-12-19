@@ -15,6 +15,8 @@
 
     <fieldset dir="rtl">
         <legend align="right">פרטי קורס</legend>
+          <div class="text-center" style="background-color:#FFFFB8; padding:10px;">
+        <input type="checkbox" name="allmonth" id="allmonth"> שמור לכל החודש </input> </div><br>
         <div id="date" dir="rtl" class="bfh-datepicker" data-format="d/m/y" data-date="{{class_date}}"></div><br>
         <div id="time" dir="rtl" class="bfh-timepicker" data-time="{{class_time}}"></div><br>
 
@@ -63,8 +65,7 @@
             </select><br>
             <div id="opentime" dir="rtl" class="bfh-timepicker" data-time="{{class_time}}"></div><br>
             </fieldset>
-        <div style="float:right;">
-        <input type="checkbox" name="allmonth" id="allmonth""> שמור לכל החודש </div>
+
         <input type="submit" value="הוסף" style="float:right; margin-right:80px;">
     </fieldset>
 

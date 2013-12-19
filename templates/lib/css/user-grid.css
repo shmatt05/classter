@@ -65,6 +65,11 @@ th.wc-today {
     border: 1px solid #d3d3d3;
 }
 
+.wc-day-column,.wc-time-header-cell, .wc-time-slots .wc-day-column.ui-state-default  {
+    background-color: #fffee0;
+}
+
+
 @media (max-width: 900px) {
 
    td.wc-day-column {

@@ -693,7 +693,7 @@ class NewCoursePopup(BaseRequestHandler):
             'class_date':class_date,
             'class_minutes':class_minutes
         }
-        self.render('admin-edit-course.html',template_values)
+        self.render('admin-new-course.html',template_values)
 
 class AddClassToSched(BaseRequestHandler):
     def post(self):

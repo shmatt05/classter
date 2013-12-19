@@ -31,6 +31,30 @@ $(document).ready(function() {
        //TODO: send ajax with user id and class key, then re-render html with $("div.popup-div").html(data);
         // TODO: that way data is always up to date!
     });
+
+    $('#cancelreg').on('click', function(e) {
+        var postData = {};
+        postData['class_key'] = $('#classkey').val();
+        postData['class_date'] = $('#classdate').text();
+        $.ajax(
+            {
+                url : '/remove_user_from_class',
+                type: "POST",
+                data : postData,
+                dataType:'html',
+                async:'false',
+                success:function(data, textStatus, jqXHR)
+                {
+
+                    alert('success!');
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    alert('בעיית תקשורת, אנא נסה שוב');
+                }
+            });
+        e.preventDefault(); //STOP default action
+    });
 });
 function returnDateStr (someDate) {
     return (someDate.getDate()<10?("0"+someDate.getDate()):someDate.getDate()) + "/" +
