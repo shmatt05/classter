@@ -63,9 +63,9 @@ class MonthSchedule(ndb.Model):
 
 
 class UserCredentials(ndb.Model):
-    id = ndb.StringProperty()
-    gym_network = ndb.StringProperty()
-    gym_branch = ndb.StringProperty()
+    id = ndb.StringProperty(required=True)
+    gym_network = ndb.StringProperty(required=True)
+    gym_branch = ndb.StringProperty(required=True)
     google_id = ndb.StringProperty()
     facebook_id = ndb.StringProperty()
     email_id = ndb.StringProperty()
