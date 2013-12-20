@@ -3,10 +3,12 @@
        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
 
     <style>
-         #selectable .ui-selecting { background: #FECA40; }
-  #selectable .ui-selected { background: #F39814; color: white; }
-  #selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-  #selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+         .selectable .ui-selecting { background: #FECA40; }
+  .selectable .ui-selected { background: #F39814; color: white; }
+  .selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  .selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+        li { width:100%; }
+        h5 {display:inline;}
     </style>
     <script>
         $(function() {
@@ -22,21 +24,38 @@
             });
         });
     </script>
-    <div id="userlist" style="height:300px; overflow: scroll; width:50%;">
-        <h3> רשומים </h3>
-        <ol id="selectable_signedup">
+    <div id="courseinfo" style="text-align: center;background-color:palegreen;">
+        <h5> Course Name </h5> <h5> Instructor </h5> <h5> Date </h5> <h5> Time </h5>
+    </div>
+    <div class="text-center" style="width:100%;">
+    <div id="userlist" style=" width:50%; float:left;text-align:center; margin: 0px auto 0px auto;">
+        <h3> רשומים </h3><div style="height:80%; min-height:200px; overflow: scroll;">
+        <ol id="selectable_signedup" class="selectable" style="text-align:center; margin: 0px auto 0px auto;">
             {% for user in users %}
             <li class="ui-widget-content" value="{{user.id}}">{{user.first_name}} {{user.last_name}}</li>
             {% endfor %}
-        </ol>
+        </ol></div><br>
+        <button type="button" id="adduserlist">
+        <span class="glyphicon glyphicon-plus"></span>
+        </button>
+        <button type="button" id="removeuserlist"">
+        <span class="glyphicon glyphicon-minus"></span>
+        </button>
     </div>
 
-    <div id="waitinglist" style="height:300px; overflow:scroll; width:50%; display:block;">
-         <h3> המתנה </h3>
-        <ol id="selectable_waiting">
+    <div id="waitinglist" style="width:50%;overflow:hidden;text-align:center; margin: 0px auto 0px auto;">
+         <h3> המתנה </h3><div style="height:80%; min-height:200px; overflow: scroll;">
+        <ol id="selectable_waiting" class="selectable" style="text-align:center; margin: 0px auto 0px auto;">
         {% for user in waiting_list %}
         <li class="ui-widget-content" value="{{user.id}}">{{user.first_name}} {{user.last_name}}</li>
         {% endfor %}
-    </ol>
+    </ol></div><br>
+        <button type="button" id="adduserwait">
+        <span class="glyphicon glyphicon-plus"></span>
+        </button>
+        <button type="button" id="removeuserwait">
+        <span class="glyphicon glyphicon-minus"></span>
+        </button>
     </div>
+        </div>
 </div>
