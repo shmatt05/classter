@@ -69,6 +69,12 @@ import cgi
 import json
 import sys
 
+## check it ##
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
+########################
+
 from users_logic.user_manager import DailyScheduleManager
 from db import entities
 from users_logic.user_manager import DailyScheduleManager
@@ -770,12 +776,12 @@ class InitialHandler(BaseRequestHandler):
         admin_manager.add_course_template("Yoga", "ugly course")
         admin_manager.add_course_template("yoga", "ugly course")
         admin_manager.add_course_template("יוגה", "stupid course")
-        #admin_manager.add_course_template("ויניאסה יוגה", "stupid course")
-        #admin_manager.add_course_template("פילאטיס", "stupid course")
-        #admin_manager.add_course_template("פילאטיס", "stupid course")
-        #admin_manager.add_course_template("התעמלות בונה עצם", "stupid course")
-        #admin_manager.add_course_template("עיצוב וחיזוק", "stupid course")
-        #admin_manager.add_course_template("זומבה", "stupid course")
+        admin_manager.add_course_template("ויניאסה יוגה", "stupid course")
+        admin_manager.add_course_template("פילאטיס", "stupid course")
+        admin_manager.add_course_template("פילאטיס", "stupid course")
+        admin_manager.add_course_template("התעמלות בונה עצם", "stupid course")
+        admin_manager.add_course_template("עיצוב וחיזוק", "stupid course")
+        admin_manager.add_course_template("זומבה", "stupid course")
 
         self.response.write(admin_manager.get_courses_templates())
 
@@ -784,6 +790,14 @@ class InitialHandler(BaseRequestHandler):
         admin_manager.add_course_template("Yoga", "ugly course")
         admin_manager.add_course_template("yoga", "ugly course") #won't succeed, because Yoga already exist
         self.response.write(admin_manager.get_courses_templates())
+
+        """add studios"""
+        admin_manager.add_studio("סטודיו 1")
+        admin_manager.add_studio("סטודיו 2")
+
+        """ add instructor """
+        admin_manager.add_instructor("1", "אבי", "דותן")
+
 
         """create courses"""
 
