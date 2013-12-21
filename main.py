@@ -70,7 +70,8 @@ routes = [
     Route('/editcoursepopup','handlers.EditCoursePopup'),
     Route('/managecoursepopup','handlers.ManageCoursePopup'),
     Route('/register_to_class','handlers.RegisterToClass'),
-    Route('/remove_user_from_class', 'handlers.RemoveUserFromClass')
+    Route('/remove_user_from_class', 'handlers.RemoveUserFromClass'),
+    Route('/get_all_users', 'handlers.GetUsersList')
 
 
 

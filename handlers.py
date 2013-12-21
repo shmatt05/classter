@@ -738,6 +738,7 @@ class ManageCoursePopup(BaseRequestHandler):
         admin_manager = AdminManager("peer", "peer") #todo gym not hardcoded
         registered_users_list = admin_manager.get_registered_users_list_from_course(class_key, year, month, day)
         waiting_list =  admin_manager.get_waiting_list_from_course(class_key, year, month, day)
+        course = admin_manager.__get_course(class_key, year,month,day)
         template_values = {
             'users':registered_users_list,
             'waiting_list':waiting_list
@@ -1154,6 +1155,11 @@ class RegisterToClass(BaseRequestHandler):
                 'error_code': code
             }
             self.render('user-popup-fail.html', template_values)
+
+class GetUsersList(BaseRequestHandler):
+    def post(self):
+        admin_manager = AdminManager("peer", "peer")
+        users_table  = admin_manager.get_users_of_gym
 
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table

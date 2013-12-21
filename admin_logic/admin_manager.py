@@ -271,6 +271,9 @@ class AdminManager:
         else:
             return (temp_day+2) % 7
 
+    def get_users_of_gym(self):
+        return self.gym.users_table
+
     def __get_course(self, course_key, year, month, day_in_month):
         month_schedule = self.__get_month_schedule(int(month), int(year))
         month_schedule_manager = MonthScheduleManager(month_schedule)
@@ -286,4 +289,6 @@ class AdminViewer:
 
     def get_gym_info_for_popup(self):
         return GymManager(self.gym_network, self.gym_branch)
+
+
 
