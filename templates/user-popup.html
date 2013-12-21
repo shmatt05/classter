@@ -1,4 +1,3 @@
-
 <div class="white-popup popup-div">
     <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="lib/css/bootstrap-theme.css">
@@ -6,40 +5,45 @@
     <script type='text/javascript' src='lib/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='lib/js/user-popup-jq.js'></script>
     <style>
-        .red-alert{
-            background-color:#FFC0C0;
-            margin:0;
-            padding-top:25px;
-            padding-bottom:25px;
+        .red-alert {
+            background-color: #FFC0C0;
+            margin: 0;
+            padding-top: 25px;
+            padding-bottom: 25px;
         }
+
         .blue-alert {
-            background-color:#A7D3FF;
-            margin:0;
-            padding-top:25px;
-            padding-bottom:25px;
+            background-color: #A7D3FF;
+            margin: 0;
+            padding-top: 25px;
+            padding-bottom: 25px;
         }
+
         .green-alert {
-            background-color:#9BCD9B;
-            margin:0;
-            padding-top:25px;
-            padding-bottom:25px;
+            background-color: #9BCD9B;
+            margin: 0;
+            padding-top: 25px;
+            padding-bottom: 25px;
         }
+
         .info-div {
-            background-color:#FFE0C2;
-            margin:0;
-            padding-top:25px;
-            padding-bottom:25px;
+            background-color: #FFE0C2;
+            margin: 0;
+            padding-top: 25px;
+            padding-bottom: 25px;
         }
+
         .jumbotron {
-            margin-bottom:0;
+            margin-bottom: 0;
         }
+
         h3 {
-            margin-top:0;
+            margin-top: 0;
         }
     </style>
     {% if course.signed_up %}
     <div class="red-alert text-center">
-        <input type="button" id="cancelreg" value="בטל" />
+        <input type="button" id="cancelreg" value="בטל"/>
         הרשמה לשיעור זה כבר בוצעה
     </div>
     {% endif %}
@@ -49,13 +53,16 @@
 
         <h3>{{ course.studio }}</h3>
 
-    </div><div class="info-div text-center">
+    </div>
+    <div class="info-div text-center">
 
-    <h3>{{ course.instructor }}</h3>
+        <h3>{{ course.instructor }}</h3>
 
-    <h3 id="classdate">{{ course.date }}</h3>
-    <h3>{{ course.start_time }} - {{ course.end_time }}</h3>
-    <h3 dir="rtl"> {{course.free_slots}} מקומות פנויים </h3></div>
+        <h3 id="classdate">{{ course.date }}</h3>
+
+        <h3>{{ course.start_time }} - {{ course.end_time }}</h3>
+
+        <h3 dir="rtl"> {{course.free_slots}} מקומות פנויים </h3></div>
     {% if course.time_passed %}
     <div class="blue-alert text-center"><br>
         השיעור התקיים כבר בעבר
@@ -65,21 +72,22 @@
 
         <input type="hidden" id="classkey" value="{{course.class_key}}"/>
         {% if course.is_registration_open %}
-            {% if not course.signed_up %}
-            <br>
-                {% if course.free_slots == "0" %}
-                     <div class="red-alert text-center">הקורס מלא</div>
-                {% else %}
-                    <input type="button" value="הרשם" id="signupbutton">
-                {% endif %}
-            {% endif %}
+        {% if not course.signed_up %}
+        <br>
+        {% if course.free_slots == "0" %}
+        <div class="red-alert text-center">הקורס מלא</div>
         {% else %}
-            <div class="green-alert text-center">
-                ההרשמה טרם נפתחה
-                <br>
-                ההרשמה תפתח ב
-            </div>
+        <input type="button" value="הרשם" id="signupbutton">
+        {% endif %}
+        {% endif %}
+        {% else %}
+        <div class="green-alert text-center">
+            ההרשמה טרם נפתחה
+            <br>
+            ההרשמה תפתח ב
+        </div>
         {% endif %}
         {% endif %}
     </form>
+    <a href="/logout" class="btn">logout</a>
 </div>

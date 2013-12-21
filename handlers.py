@@ -223,8 +223,7 @@ class ProfileHandler(BaseRequestHandler):
         #sing up
         if on_sign_up == True:
             if not user_has_session(self):
-                self.display_message('The ID: %s is not valid' % id)
-                return
+                error_message(self, 'We couldn\'t sign you up. Please try again.')
 
             if self.logged_in:
                 sign_up_success(self)
@@ -291,7 +290,7 @@ class AuthHandler(BaseRequestHandler, SimpleAuthHandler):
     def _on_signin(self, data, auth_info, provider):
         """Callback whenever a new or existing user is logging in.
          data is a user info dictionary.
-         auth_info contains access token or oauth token and secret.
+         auth_info contains access token or oauth 0 and secret.
         """
         #valid_id(self)
 
@@ -300,8 +299,7 @@ class AuthHandler(BaseRequestHandler, SimpleAuthHandler):
 
         if on_sign_up == True:
             if not user_has_session(self):
-                self.display_message('The ID: %s is not valid' % id)
-                return
+                error_message(self, 'We couldn\'t sign you up. Please try again.')
 
         #signed_in = self.session.get('curr_logged_in')
         #if not signed_in:
@@ -368,7 +366,7 @@ class AuthHandler(BaseRequestHandler, SimpleAuthHandler):
 
         self.auth.unset_session()
 
-        self.redirect('/authenticated')
+        self.redirect('/user')
 
     def handle_exception(self, exception, debug):
         logging.error(exception)
@@ -397,8 +395,7 @@ class CheckIdHandler(BaseRequestHandler):
         id = self.request.get('id')
 
         if not valid_id(id):
-            self.display_message('The ID: %s is not valid' % id)
-            return
+            error_message(self, 'We couldn\'t sign you up. Please try again.')
         else:
             self.session['on_sign_up'] = True
             self.session['curr_user_id'] = id
@@ -475,8 +472,7 @@ class LoginHandler(BaseRequestHandler):
 class VerificationHandler(BaseRequestHandler):
     def get(self, *args, **kwargs):
         if not user_has_session(self):
-            self.display_message('The ID: %s is not valid' % id)
-            return
+            error_message(self, 'We couldn\'t sign you up. Please try again.')
 
         user = None
         user_id = kwargs['user_id']
@@ -530,15 +526,13 @@ class SignupHandler(BaseRequestHandler):
         #     return
 
         if not user_has_session(self):
-            self.display_message('The ID: %s is not valid' % id)
-            return
+            error_message(self, 'We couldn\'t sign you up. Please try again.')
 
         self.render('signup.html')
 
     def post(self):
         if not user_has_session(self):
-            self.display_message('The ID: %s is not valid' % id)
-            return
+            error_message(self, 'We couldn\'t sign you up. Please try again.')
 
         user_name = self.request.get('username')
         email = self.request.get('email')
@@ -1232,6 +1226,8 @@ def sign_up_success(param_self):
 
     user_from_db.put()
     param_self.session['on_sign_up'] = False
+    param_self.session['curr_logged_in'] = True
+
     param_self.render('signup_success.html', {
         'user': param_self.current_user,
         'session': param_self.auth.get_user_by_session()})
@@ -1258,27 +1254,37 @@ def check_sign_in(self_param):
             user_id = email_user.user_id
             self_param.session['curr_user_id'] = user_id
             self_param.session['curr_logged_in'] = True
-            self_param.redirect('/sign_in_successfully')
+            self_param.redirect('/user')
         elif connection == 'facebook':
             facebook_user = entities.FacebookCredentials.get_key(fb_g_o).get()
             user_id = facebook_user.user_id
             self_param.session['curr_user_id'] = user_id
             self_param.session['curr_logged_in'] = True
-            self_param.redirect('/sign_in_successfully')
+            self_param.redirect('/user')
         elif connection == 'google':
             google_user = entities.GoogleCredentials.get_key(fb_g_o).get()
             user_id = google_user.user_id
             self_param.session['curr_user_id'] = user_id
             self_param.session['curr_logged_in'] = True
-            self_param.redirect('/sign_in_successfully')
+            self_param.redirect('/user')
         else:
 
-            self_param.display_message('The ID: %s is not valid' % id)
-            return
+
+
+            error_message(self_param, 'We couldn\'t log you in. Please check your credentials and try again.')
     except:
 
-        self_param.display_message('The ID: %s is not valid' % id)
-        return
+       error_message(self_param, 'We couldn\'t log you in. Please check your credentials and try again.')
+
+def error_message(self_param, message ):
+     self_param.session['on_sign_up'] = False
+     self_param.session['connection'] = None
+     self_param.session['fb_g_o'] = None
+     self_param.session['curr_logged_in'] = False
+
+
+     self_param.display_message(message)
+     return
 
 
 def my_logout(param_self):
