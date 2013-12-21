@@ -2,14 +2,14 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <title>Classter User View</title>
-    <link rel='stylesheet' type='text/css' href='lib/css/jquery-ui-1.8.11.custom.css' />
-    <link rel='stylesheet' type='text/css' href='lib/css/jquery.weekcalendar.css' />
+    <link rel='stylesheet' type='text/css' href='lib/css/jquery-ui-1.8.11.custom.css'/>
+    <link rel='stylesheet' type='text/css' href='lib/css/jquery.weekcalendar.css'/>
     <link rel="stylesheet" type="text/css" href="lib/css/magnific-popup.css">
     <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="lib/css/bootstrap-theme.css">
-    <link rel='stylesheet' type='text/css' href='lib/css/user-grid.css' />
+    <link rel='stylesheet' type='text/css' href='lib/css/user-grid.css'/>
     <script type="text/javascript" src="lib/js/jquery.min.js"></script>
     <script type="text/javascript" src="lib/js/jquery-ui.min.js"></script>
     <script type='text/javascript' src='lib/js/jquery.mb.browser.min.js'></script>
@@ -23,6 +23,9 @@
 </head>
 
 <body>
+{% if logged_in %}
+<a href="/logout" class="btn">logout</a>
+{% endif %}
 
 <div id="calendar"></div>
 

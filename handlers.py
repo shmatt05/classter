@@ -966,7 +966,7 @@ class UserHandler(BaseRequestHandler):
     def get(self):
 
         template_values = {
-
+            'logged_in':self.logged_in
             #'mili_times': mili_times
         }
 
@@ -1228,10 +1228,11 @@ def sign_up_success(param_self):
     param_self.session['on_sign_up'] = False
     param_self.session['curr_logged_in'] = True
 
-    param_self.render('signup_success.html', {
-        'user': param_self.current_user,
-        'session': param_self.auth.get_user_by_session()})
+    #param_self.render('signup_success.html', {
+    #    'user': param_self.current_user,
+    #    'session': param_self.auth.get_user_by_session()})
 
+    param_self.redirect('/user')
 
 def user_has_session(param_self):
     try:
