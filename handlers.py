@@ -741,7 +741,9 @@ class ManageCoursePopup(BaseRequestHandler):
         course = admin_manager.get_course(class_key, year,month,day)
         template_values = {
             'users':registered_users_list,
-            'waiting_list':waiting_list
+            'waiting_list':waiting_list,
+            'course':course
+
         }
         self.render('admin-manage-course.html',template_values)
 

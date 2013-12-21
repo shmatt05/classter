@@ -51,10 +51,22 @@
                 }
 
             });
+            $('#date').text(returnDateStr(new Date(parseInt("{{course.milli}}"))));
+            $('#time').text(returnTimeStr(new Date(parseInt("{{course.milli}}"))));
          });
+        function returnDateStr (someDate) {
+    return (someDate.getDate()<10?("0"+someDate.getDate()):someDate.getDate()) + "." +
+      ((someDate.getMonth()+1)<10?("0"+(someDate.getMonth()+1)):(someDate.getMonth()+1)) + "." +
+      someDate.getFullYear();
+}
+function returnTimeStr(someDate) {
+    var someHour = (someDate.getHours() < 10? '0' : '') + someDate.getHours();
+    var someMinutes = (someDate.getMinutes() < 10? '0' : '') + someDate.getMinutes();
+    return (someHour + ":" + someMinutes);
+}
     </script>
-    <div id="courseinfo" style="text-align: center;background-color:palegreen;">
-        <h5> Course Name </h5> <h5> Instructor </h5> <h5> Date </h5> <h5> Time </h5>
+    <div id="courseinfo" style="text-align:center;background-color:palegoldenrod;padding-top:15px;padding-bottom:15px;">
+        <h5> {{course.name}} </h5> // <h5> {{course.instructor}} </h5> // <h5 id="date"></h5> // <h5 id="time"></h5>
     </div>
     <div class="text-center" style="width:100%;">
     <div id="userlist" style=" width:50%; float:left;text-align:center; margin: 0px auto 0px auto;">
