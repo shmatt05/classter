@@ -53,12 +53,12 @@ class AdminManager:
             self.gym.put()
 
     def add_user_to_course(self, course_id, user_id, year, month, day_in_month):
-        course = self.__get_course(course_id, year, month, day_in_month)
+        course = self.get_course(course_id, year, month, day_in_month)
         code = course.try_register_user_to_course(user_id, year, month, day_in_month)
         return code
 
     def delete_user_from_course(self, course_id, user_id, year, month, day_in_month):
-        course =  self.__get_course(course_id, year, month, day_in_month)
+        course =  self.get_course(course_id, year, month, day_in_month)
         if course.does_user_already_registered(user_id):
             course.remove_user_from_course(user_id)
 
@@ -244,7 +244,7 @@ class AdminManager:
         ##get the right daily schedule
         #daily_schedule = month_schedule_manager.get_daily_schedule(day_in_month)
         #course = daily_schedule.get_course_by_id(class_key)
-        course = self.__get_course(class_key, year, month, day_in_month)
+        course = self.get_course(class_key, year, month, day_in_month)
         users_list = []
         if not course is None:
             for user_id in course.users_table.values():
@@ -257,7 +257,7 @@ class AdminManager:
         ##get the right daily schedule
         #daily_schedule = month_schedule_manager.get_daily_schedule(day_in_month)
         #course = daily_schedule.get_course_by_id(class_key)
-        course = self.__get_course(class_key, year, month, day_in_month)
+        course = self.get_course(class_key, year, month, day_in_month)
         waiting_list = []
         for user_id in course.waiting_list_table.values():
             waiting_list.append(self.gym.users_table[user_id])
@@ -274,7 +274,7 @@ class AdminManager:
     def get_users_of_gym(self):
         return self.gym.users_table
 
-    def __get_course(self, course_key, year, month, day_in_month):
+    def get_course(self, course_key, year, month, day_in_month):
         month_schedule = self.__get_month_schedule(int(month), int(year))
         month_schedule_manager = MonthScheduleManager(month_schedule)
         #get the right daily schedule
