@@ -53,10 +53,14 @@ class AdminManager:
             self.gym.put()
 
     def add_user_to_course(self, course_id, user_id, year, month, day_in_month):
-        pass
+        course = self.__get_course(course_id, year, month, day_in_month)
+        code = course.try_register_user_to_course(user_id, year, month, day_in_month)
+        return code
 
-    def delete_user_to_course(self, course_id, user_id, year, month, day_in_month):
-        pass
+    def delete_user_from_course(self, course_id, user_id, year, month, day_in_month):
+        course =  self.__get_course(course_id, year, month, day_in_month)
+        if course.does_user_already_registered(user_id):
+            course.remove_user_from_course(user_id)
 
     def add_user_to_waiting_list_table(self, course_id, user_id, year, month, day_in_month):
         pass

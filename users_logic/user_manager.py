@@ -90,7 +90,7 @@ class UserBusinessLogic:
         course = self.daily_schedule_entity.get_course_by_id(self.course_id)
         if not course is None:
              if course.does_user_already_registered(self.user_id):
-                course.remove_user_from_course(self.user_entity)
+                course.remove_user_from_course(self.user_id)
                 self.month_schedule_entity.put()
                 return USER_REMOVED_FROM_COURSE_SUCCEEDED
              else:
