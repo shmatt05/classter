@@ -769,6 +769,14 @@ class InitialHandler(BaseRequestHandler):
         admin_manager.add_course_template("Zumba", "stupid course")
         admin_manager.add_course_template("Yoga", "ugly course")
         admin_manager.add_course_template("yoga", "ugly course")
+        admin_manager.add_course_template("יוגה", "stupid course")
+        #admin_manager.add_course_template("ויניאסה יוגה", "stupid course")
+        #admin_manager.add_course_template("פילאטיס", "stupid course")
+        #admin_manager.add_course_template("פילאטיס", "stupid course")
+        #admin_manager.add_course_template("התעמלות בונה עצם", "stupid course")
+        #admin_manager.add_course_template("עיצוב וחיזוק", "stupid course")
+        #admin_manager.add_course_template("זומבה", "stupid course")
+
         self.response.write(admin_manager.get_courses_templates())
 
         """add course template"""
