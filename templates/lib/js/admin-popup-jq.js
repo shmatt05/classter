@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     $('.chosen-select').chosen({
         no_results_text: 'לא נמצאו תוצאות',
-        width: '95%'
+        width: '85%%'
     });
 
     $( "#slider-range-min" ).slider({

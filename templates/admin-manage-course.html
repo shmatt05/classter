@@ -1,6 +1,9 @@
 
-<div class="white-popup popup-div">
+<div class="white-popup popup-div" style="min-height: 400px;">
+
        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
+             <link rel="stylesheet" type="text/css" href="lib/css/chosen.css">
+
 
     <style>
          .selectable .ui-selecting { background: #FECA40; }
@@ -10,6 +13,7 @@
         li { width:100%; }
         h5 {display:inline;}
     </style>
+    <script type='text/javascript' src='lib/js/chosen.jquery.js'></script>
     <script>
         $(function() {
             $('#selectable_signedup').selectable({
@@ -22,14 +26,39 @@
                     $(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");
                 }
             });
-        });
+              $('.chosen-select').chosen({
+                  no_results_text: 'לא נמצאו תוצאות',
+                  width: '85%%'
+              });
+
+            $( '#adduserwait' ).click(function () {
+                if ( $('#addwaiting').is( ":hidden" ) ) {
+
+                    $( "#addwaiting" ).slideDown( "slow" );
+                } else {
+
+                    $( "#addwaiting" ).hide();
+                }
+
+            });
+               $( '#adduserlist' ).click(function () {
+                if ( $('#addlist').is( ":hidden" ) ) {
+
+                    $( "#addlist" ).slideDown( "slow" );
+                } else {
+
+                    $( "#addlist" ).hide();
+                }
+
+            });
+         });
     </script>
     <div id="courseinfo" style="text-align: center;background-color:palegreen;">
         <h5> Course Name </h5> <h5> Instructor </h5> <h5> Date </h5> <h5> Time </h5>
     </div>
     <div class="text-center" style="width:100%;">
     <div id="userlist" style=" width:50%; float:left;text-align:center; margin: 0px auto 0px auto;">
-        <h3> רשומים </h3><div style="height:80%; min-height:200px; overflow: scroll;">
+        <h3 style="position:relative;"> רשומים </h3><div style="height:80%; min-height:200px; overflow: scroll; ">
         <ol id="selectable_signedup" class="selectable" style="text-align:center; margin: 0px auto 0px auto;">
             {% for user in users %}
             <li class="ui-widget-content" value="{{user.id}}">{{user.first_name}} {{user.last_name}}</li>
@@ -38,13 +67,18 @@
         <button type="button" id="adduserlist">
         <span class="glyphicon glyphicon-plus"></span>
         </button>
-        <button type="button" id="removeuserlist"">
+        <button type="button" id="removeuserlist">
         <span class="glyphicon glyphicon-minus"></span>
         </button>
+        <div id="addlist" style="display:none;"><br>
+             <select id="classnamelist" class="chosen-select chosen-rtl" data-placeholder="הכנס ת.ז">
+                 <option value=""></option>
+             </select>
+        </div>
     </div>
 
-    <div id="waitinglist" style="width:50%;overflow:hidden;text-align:center; margin: 0px auto 0px auto;">
-         <h3> המתנה </h3><div style="height:80%; min-height:200px; overflow: scroll;">
+    <div id="waitinglist" style="width:50%;float:right;text-align:center; margin: 0px auto 0px auto;">
+         <h3 style="position:relative;"> המתנה </h3><div style="height:80%; min-height:200px; overflow: scroll;">
         <ol id="selectable_waiting" class="selectable" style="text-align:center; margin: 0px auto 0px auto;">
         {% for user in waiting_list %}
         <li class="ui-widget-content" value="{{user.id}}">{{user.first_name}} {{user.last_name}}</li>
@@ -56,6 +90,11 @@
         <button type="button" id="removeuserwait">
         <span class="glyphicon glyphicon-minus"></span>
         </button>
+        <div id="addwaiting" style="display:none;"><br>
+             <select id="classname" class="chosen-select chosen-rtl" data-placeholder="הכנס ת.ז">
+                 <option value=""></option>
+             </select>
+        </div>
     </div>
         </div>
 </div>
