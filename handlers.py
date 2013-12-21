@@ -974,7 +974,8 @@ class UserHandler(BaseRequestHandler):
     def get(self):
 
         template_values = {
-            'logged_in':self.logged_in
+            'logged_in' : self.logged_in,
+            'user': self.user
             #'mili_times': mili_times
         }
 

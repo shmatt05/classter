@@ -24,7 +24,10 @@
 
 <body>
 {% if logged_in %}
+<p>Welcome {{ user.name }}</p>
 <a href="/logout" class="btn">logout</a>
+
+
 {% endif %}
 
 <div id="calendar"></div>
