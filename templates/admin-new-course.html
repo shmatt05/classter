@@ -43,13 +43,13 @@
         <select id="studio" class="chosen-select chosen-rtl" data-placeholder="סטודיו">
             <option value=""></option>
             {% for studio in studio_names %}
-            <option value="{{studio}}">{{studio}}</option>
+            <option value="{{studio.name}}">{{studio.name}}</option>
             {% endfor %}
         </select><br><br>
         <select id="instructor" class="chosen-select chosen-rtl" data-placeholder="מדריך">
             <option value=""></option>
              {% for instructor in instructor_names %}
-            <option value="{{instructor}}">{{instructor}}</option>
+            <option value="{{instructor_names[instructor].first_name}} {{instructor_names[instructor].last_name}}">{{instructor_names[instructor].first_name}} {{instructor_names[instructor].last_name}}</option>
             {% endfor %}
         </select><br><hr>
         <fieldset>
