@@ -119,7 +119,7 @@
                                 //todo: update signued up counter on grid
                                 var magnificPopup = $.magnificPopup.instance;
                                  magnificPopup.close();
-                                $('#'+classID).click();
+                                $('#'+courseID).click();
 
                             },
                             error: function(jqXHR, textStatus, errorThrown)
@@ -135,9 +135,8 @@
 
             $('#removeuserlist').on('click',  function(e) {
                  postData = {};
-                postData['user_id'] = $('#classnamelist').val();
-                var classID = $('#classnamelist').val();
-                postData['class_id'] = classID;
+                postData['user_id'] = $('#selectable_signedup').val();
+\                postData['class_id'] = courseID;
                 postData['class_date'] = dateStr;
 
                 $.ajax(
@@ -153,7 +152,7 @@
                            //     $('li[value*=classID').remove();
                                  var magnificPopup = $.magnificPopup.instance;
                                  magnificPopup.close();
-                                $('#'+classID).click();
+                                $('#'+courseID).click();
 
                             },
                             error: function(jqXHR, textStatus, errorThrown)
