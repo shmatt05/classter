@@ -807,8 +807,20 @@ class InitialHandler(BaseRequestHandler):
         admin_manager.add_studio("סטודיו 1")
         admin_manager.add_studio("סטודיו 2")
 
+        instructors_list = ["קרן סגל", "טל ספורטה", "ורדי פרידמן", "מיכל גליק", "ג'ני בירגר", "לריסה ברגוב",
+                            "שיראל שלוש", "מעין דהרי", "איילת צפריר", "מיה תדהר", "חן סבן", "אדוה אופיר",
+                            "רוני קלע", "מיכל לוי", "קרן אור קיצ'ס", "ליאת קמחי", "מרחב מוהר", "גיא אלון",
+                            "גלית גל", "דין ירושלמי", "שי עובדיה", "יפעת פילוסוף", "רותם שמילוביץ", "נעמה שחר",
+                            "יעל אזולאי", "ארז אפון", "יעל לילה", "בני שוורץ"]
+
         """ add instructor """
-        admin_manager.add_instructor("1", "אבי", "דותן")
+        i = 1
+        for instuctor in instructors_list:
+            instructor_arr = instuctor.split(" ")
+            first_name = instructor_arr[0]
+            last_name = instructor_arr[1]
+            admin_manager.add_instructor(i, first_name, last_name)
+            i += 1
 
 
         """create courses"""
