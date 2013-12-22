@@ -728,30 +728,23 @@ class AddClassToSched(BaseRequestHandler):
 
 class EditCoursePopup(BaseRequestHandler):
     def post(self):
-        date = cgi.escape(self.request.get('date')).split("/")
-        time = cgi.escape(self.request.get('time'))
-        length = cgi.escape(self.request.get('length'))
-        participants = cgi.escape(self.request.get('participants'))
+        class_key = cgi.escape(self.request.get('class_key'))
+        date_representation = cgi.escape(self.request.get('class_date'))
+        date_representation = date_representation.split('/')
+        year = date_representation[2]
+        month = date_representation[1]
+        day = date_representation[0]
+        duration = cgi.escape(self.request.get('duration'))
+        max_capacity = cgi.escape(self.request.get('max_capacity'))
+        instructor = cgi.escape(self.request.get('instructor'))
         class_name = cgi.escape(self.request.get('class'))
         studio = cgi.escape(self.request.get('studio'))
-        instructor = cgi.escape(self.request.get('instructor'))
         registration_days_before = int(cgi.escape(self.request.get('open_date')))
-        registratio_start_time = cgi.escape(self.request.get('open_time'))
-        all_month = cgi.escape(self.request.get('all_month'))
+        registration_start_time = cgi.escape(self.request.get('open_time'))
+
         admin_man = AdminManager("peer", "peer") # todo: gym not hard coded
-        if str(all_month) == 'true':
-            admin_man.create_course_for_month(class_name, time.replace(":", ""), length, participants, instructor,
-                                              studio,
-                                              "blue", {}, {}, registration_days_before,
-                                              registratio_start_time.replace(":", ""), date[2],
-                                              date[1],
-                                              admin_man.get_day_by_date(int(date[2]), int(date[1]), int(date[0])))
-        else:
-            admin_man.create_course_instance(class_name, time.replace(":", ""), length, participants, instructor,
-                                             studio,
-                                             "blue", {}, {}, registration_days_before,
-                                             registratio_start_time.replace(":", ""), date[2],
-                                             date[1], date[0])
+        admin_man.edit_course(class_key, class_name, duration, max_capacity, instructor,
+                              studio,registration_days_before, registration_start_time,year,month,day)
 
 class ManageCoursePopup(BaseRequestHandler):
     def post(self):

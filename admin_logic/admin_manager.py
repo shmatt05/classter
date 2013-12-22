@@ -202,7 +202,7 @@ class AdminManager:
         month_schedule_manager.add_course_instance(new_course, day_in_month)
 
 
-    def edit_course(self,course_key, name, duration, max_capacity, instructor, studio, color,
+    def edit_course(self,course_key, name, duration, max_capacity, instructor, studio,
                                  registration_days_before, registration_start_time,
                                 year, month, day_in_month):
         month_schedule = self.__get_month_schedule(month, year)
