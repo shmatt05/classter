@@ -774,25 +774,34 @@ class InitialHandler(BaseRequestHandler):
         #daily_list = daily_sched_manager.get_daily_schedule_list_from_today(3)
         #self.response.write(str(daily_list[0].day_in_week))
 
+        courses_list = ["Core", "Yoga Flow", "האטה יוגה", "יוגילאטיס", "עיצוב דינאמי", "פלנדקרייז", "Core Fit ball",
+                        "אימון פונקציונאלי", "התעמלות בונה עצם", "מתיחות","עיצוב וחיזוק", "קיקבוקס שקים",
+                        "Fight & Burn", "אימון ריצה", "ויניאסה יוגה", "סטריפ דאנס", "פאוור יוגה", "Fight & Learn",
+                        "אשטנגה יוגה", "זומבה", "סמאש קיקבוקס", "פילאטיס", "Shape 'n' Burn", "בטן ישבן ירכיים",
+                        "יוגה אורבנית", "ספינינג", "פילאטיס מיטות"]
+
+        for course in courses_list:
+            admin_manager.add_course_template(course, "Description")
+
         """add course templates"""
-        admin_manager.add_course_template("Zumba", "stupid course")
-        admin_manager.add_course_template("Yoga", "ugly course")
-        admin_manager.add_course_template("yoga", "ugly course")
-        admin_manager.add_course_template("יוגה", "stupid course")
-        admin_manager.add_course_template("ויניאסה יוגה", "stupid course")
-        admin_manager.add_course_template("פילאטיס", "stupid course")
-        admin_manager.add_course_template("פילאטיס", "stupid course")
-        admin_manager.add_course_template("התעמלות בונה עצם", "stupid course")
-        admin_manager.add_course_template("עיצוב וחיזוק", "stupid course")
-        admin_manager.add_course_template("זומבה", "stupid course")
+        #admin_manager.add_course_template("Zumba", "stupid course")
+        #admin_manager.add_course_template("Yoga", "ugly course")
+        #admin_manager.add_course_template("yoga", "ugly course")
+        #admin_manager.add_course_template("יוגה", "stupid course")
+        #admin_manager.add_course_template("ויניאסה יוגה", "stupid course")
+        #admin_manager.add_course_template("פילאטיס", "stupid course")
+        #admin_manager.add_course_template("פילאטיס", "stupid course")
+        #admin_manager.add_course_template("התעמלות בונה עצם", "stupid course")
+        #admin_manager.add_course_template("עיצוב וחיזוק", "stupid course")
+        #admin_manager.add_course_template("זומבה", "stupid course")
 
         self.response.write(admin_manager.get_courses_templates())
 
         """add course template"""
-        admin_manager.add_course_template("Zumba", "stupid course")
-        admin_manager.add_course_template("Yoga", "ugly course")
-        admin_manager.add_course_template("yoga", "ugly course") #won't succeed, because Yoga already exist
-        self.response.write(admin_manager.get_courses_templates())
+        #admin_manager.add_course_template("Zumba", "stupid course")
+        #admin_manager.add_course_template("Yoga", "ugly course")
+        #admin_manager.add_course_template("yoga", "ugly course") #won't succeed, because Yoga already exist
+        #self.response.write(admin_manager.get_courses_templates())
 
         """add studios"""
         admin_manager.add_studio("סטודיו 1")
