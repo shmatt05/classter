@@ -819,10 +819,10 @@ class InitialHandler(BaseRequestHandler):
         #self.response.write(str(daily_list[0].day_in_week))
 
         courses_list = ["Core", "Yoga Flow", "האטה יוגה", "יוגילאטיס", "עיצוב דינאמי", "פלנדקרייז", "Core Fit ball",
-                        "אימון פונקציונאלי", "התעמלות בונה עצם", "מתיחות","עיצוב וחיזוק", "קיקבוקס שקים",
-                        "Fight & Burn", "אימון ריצה", "ויניאסה יוגה", "סטריפ דאנס", "פאוור יוגה", "Fight & Learn",
-                        "אשטנגה יוגה", "זומבה", "סמאש קיקבוקס", "פילאטיס", "Shape 'n' Burn", "בטן ישבן ירכיים",
-                        "יוגה אורבנית", "ספינינג", "פילאטיס מיטות"]
+                        "אימון פונקציונאלי", "התעמלות בונה עצם", "מתיחות", "עיצוב וחיזוק", "קיקבוקס שקים","מתיחות+ core",
+                        "Fight & Burn", "אימון ריצה", "ויניאסה יוגה", "סטריפ דאנס", "פאוור יוגה", "Fight & Learn","פילאטיס Core",
+                        "אשטנגה יוגה", "זומבה", "סמאש קיקבוקס", "פילאטיס", "Shape 'n' Burn", "בטן ישבן ירכיים","יסודות פונקציונאלי","אשטנגה ויניאסה יוגה",
+                        "יוגה אורבנית", "ספינינג", "פילאטיס מיטות","יוגה על הבוקר", "פילאטיס דינאמי","אימון שקים", "שטנגה""","סמאש", "אימון פונקציונלי","Power yoga", "Core פיטבול", "עיצוב וחיטוב","בטן + מתיחות", "Flow yoga","ויג'ננה יוגה","פלדנקרייז","Fight&burn","רקודי בטן","Core Fitball","קוויקי פונקציונלי"]
 
         for course in courses_list:
             admin_manager.add_course_template(course, "Description")
@@ -870,17 +870,194 @@ class InitialHandler(BaseRequestHandler):
         """create courses"""
 
 
-        admin_manager.create_course_for_month("זומבה", "1400", 120, 10,
-                      "Moished", "Park", "blue", {}, {}, "20", "1000", 2013, 12, 1)  # December 1st 14:00 1385899200000
 
-        admin_manager.create_course_for_month("זומבה", "0900", 40, 10,
-                      "Moished", "Park", "green", {}, {}, "1", "1000", 2013, 12, 2)  # December 2nd 09:00 1385967600000
+        admin_manager.create_course_for_month("יוגה על הבוקר", "0800", 60, 10,
+                                              "קרן סגל", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              1)
+        admin_manager.create_course_for_month("פילאטיס", "0900", 60, 20,
+                                              "מעין דהרי", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              1)
+        admin_manager.create_course_for_month("עיצוב וחיזוק", "1100", 60, 20,
+                                              "לריסה בגוב", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              1)
+        admin_manager.create_course_for_month("אשטנגה יוגה", "1100", 60, 25,
+                                              "מיכל לוי", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              1)
+        admin_manager.create_course_for_month("פילאטיס דינאמי", "1745", 60, 25,
+                                              "אדוה אופיר", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              1)
+        admin_manager.create_course_for_month("עיצוב וחיזוק", "1830", 60, 25,
+                                              "מעין דהרי", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              1)
+        admin_manager.create_course_for_month("זומבה", "1930", 60, 25,
+                                              "רותם שמילוביץ", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              1)
+        admin_manager.create_course_for_month("שטנגה", "2000", 90, 25,
+                                              "יעל אזולאי", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              1)
+        admin_manager.create_course_for_month("אימון שקים", "2030", 60, 20,
+                                              "שי עובדיה", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              1)
+        admin_manager.create_course_for_month("ויניאסה יוגה", "0800", 60, 20,
+                                              "טל ספורטה", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              2)
+        admin_manager.create_course_for_month("פילאטיס", "0800", 60, 20,
+                                              "מיכל גליק", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              2)
+        admin_manager.create_course_for_month("עיצוב דינאמי", "1000", 60, 20,
+                                              "מיה תדהר", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              2)
+        admin_manager.create_course_for_month("Core פיטבול", "1100", 60, 20,
+                                              "אדוה אופיר", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              2)
+        admin_manager.create_course_for_month("Power yoga", "1730", 60, 20,
+                                              "דין ירושלמי", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              2)
+        admin_manager.create_course_for_month("אימון פונקציונלי", "1745", 60, 20,
+                                              "גיא אלון", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              2)
+        admin_manager.create_course_for_month("סמאש", "1830", 60, 20,
+                                              "שי עובדיה", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              2)
+        admin_manager.create_course_for_month("עיצוב וחיטוב", "1930", 60, 20,
+                                              "לריסה בגוב", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              2)
+        admin_manager.create_course_for_month("פילאטיס", "2000", 60, 20,
+                                              "שיראל שלוש", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              2)
+        admin_manager.create_course_for_month("זומבה", "2030", 60, 20,
+                                              "רוני קלע", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              2)
+        admin_manager.create_course_for_month("יוגה על הבוקר", "0830", 60, 20,
+                                              "ורדי פרידמן", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              3)
 
-        admin_manager.create_course_for_month("יוגה אורבנית","0700", 90, 10,
-                      "Moished", "Park","blue", {}, {},"1" ,"1000", 2013, 12, 3) #December 3rd 07:00 1386046800000
+        admin_manager.create_course_for_month("בטן + מתיחות", "0800", 60, 20,
+                                              "ג'ני בירגר", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              3)
 
-        admin_manager.create_course_for_month("יוגה אורבנית","1800", 90, 10,
-                      "Moished", "Park","blue", {}, {},"1" ,"1000", 2013, 12, 4) #December 3rd 18:00 1386086400000
+        admin_manager.create_course_for_month("פלדנקרייז", "0900", 60, 20,
+                                              "איילת צפריר", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              3)
+        admin_manager.create_course_for_month("פילאטיס", "1000", 60, 20,
+                                              "מיכל גליק", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              3)
+        admin_manager.create_course_for_month("ויג'ננה יוגה", "1645", 60, 15,
+                                              "גלית גל", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              3)
+        admin_manager.create_course_for_month("בטן ישבן ירכיים", "1800", 60, 12,
+                                              "יפעת פילוסוף", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              3)
+        #admin_manager.create_course_for_month("Flow yoga", "1845", 60, 20,
+        #                                      "ליאת קימחי", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+        #                                      3)
+        #admin_manager.create_course_for_month("פילאטיס", "1900", 60, 20,
+        #                                      "חן סבן", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+        #                                      3)
+        #admin_manager.create_course_for_month("בטן + מתיחות", "2000", 60, 20,
+        #                                      "ארז אפון", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+        #                                      3)
+        #admin_manager.create_course_for_month("Fight&burn", "2000", 60, 15,
+        #                                      "מרחב מוהר", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+        #                                      3)
+        admin_manager.create_course_for_month("Core Fitball", "1845", 60, 15,
+                                              "לריסה בגוב", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              4)
+        admin_manager.create_course_for_month("פילאטיס", "0900", 60, 20,
+                                              "לריסה בגוב", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              4)
+        admin_manager.create_course_for_month("התעמלות בונה עצם", "1000", 60, 20,
+                                              "מיה תדהר", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              4)
+        admin_manager.create_course_for_month("אשטנגה יוגה", "1100", 60, 20,
+                                              "מיכל לוי", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              4)
+        admin_manager.create_course_for_month("Power yoga", "1745", 60, 20,
+                                              "גיא אלון", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              4)
+        #admin_manager.create_course_for_month("אימון פונקציונלי", "1830", 60, 15,
+        #                                      "מרחב מוהר", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+        #                                      4)
+        #admin_manager.create_course_for_month("סמאש", "1930", 60, 20,
+        #                                      "נעמה שחר", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+        #                                      4)
+        #admin_manager.create_course_for_month("פילאטיס", "1900", 60, 20,
+        #                                      "שיראל שלוש", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+        #                                      4)
+        admin_manager.create_course_for_month("רקודי בטן", "2000", 60, 20,
+                                              "יעל לילה", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              4)
+        admin_manager.create_course_for_month("אימון ריצה", "2000", 60, 20,
+                                              "בני שוורץ", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              4)
+        admin_manager.create_course_for_month("עיצוב וחיזוק", "2000", 60, 20,
+                                              "ארז אפון", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              4)
+        admin_manager.create_course_for_month("זומבה", "2130", 60, 20,
+                                              "רוני קלע", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              4)
+        admin_manager.create_course_for_month("ויניאסה יוגה", "0800", 60, 20,
+                                              "טל ספורטה", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              5)
+        admin_manager.create_course_for_month("פילאטיס", "0800", 60, 16,
+                                              "שיראל שלוש", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              5)
+        admin_manager.create_course_for_month("פלדנקרייז", "0900", 60, 20,
+                                              "איילת צפריר", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              5)
+        admin_manager.create_course_for_month("עיצוב דינאמי", "1000", 60, 18,
+                                              "מיה תדהר", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              5)
+        admin_manager.create_course_for_month("פילאטיס דינאמי", "1100", 60, 20,
+                                              "אדוה אופיר", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              5)
+        admin_manager.create_course_for_month("בטן ישבן ירכיים", "1800", 60, 20,
+                                              "יפעת פילוסוף", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              5)
+        admin_manager.create_course_for_month("פאוור יוגה", "1830", 60, 18,
+                                              "גיא אלון", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              5)
+        #admin_manager.create_course_for_month("עיצוב וחיזוק", "1900", 60, 20,
+        #                                      "לריסה בגוב", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+        #                                      5)
+        #admin_manager.create_course_for_month("קוויקי פונקציונלי", "1900", 60, 20,
+        #                                      "דין ירושלמי", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+        #                                      5)
+        #admin_manager.create_course_for_month("קוויקי פונקציונלי", "1930", 60, 20,
+        #                                      "דין ירושלמי", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+        #                                      5)
+
+        admin_manager.create_course_for_month("יוגה על הבוקר", "0845", 60, 25,
+                                              "ורדי פרידמן", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              6)
+        admin_manager.create_course_for_month("פילאטיס Core", "1000", 60, 25,
+                                              "חן סבן", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              6)
+        admin_manager.create_course_for_month("זומבה", "1100", 60, 20,
+                                              "רוני קלע", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              6)
+        admin_manager.create_course_for_month("אשטנגה ויניאסה יוגה", "1215", 60, 20,
+                                              "קרו אור קיצ'ס", "1", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              6)
+        admin_manager.create_course_for_month("עיצוב וחיזוק", "1200", 60, 20,
+                                              "מיה תדהר", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              6)
+        admin_manager.create_course_for_month("FIGHT&BURN", "1300", 60, 20,
+                                              "מרחב מוהר", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              6)
+        admin_manager.create_course_for_month("עיצוב וחיזוק", "1100", 60, 20,
+                                              "לריסה בגוב", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              7)
+        admin_manager.create_course_for_month("Flow yoga", "1215", 60, 20,
+                                              "ליאת קימחי", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              7)
+        admin_manager.create_course_for_month("מתיחות+ core", "1230", 60, 20,
+                                              "שיראל שלוש/לריסה בגוב", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              7)
+        admin_manager.create_course_for_month("אימון פונקציונלי", "1830", 60, 25,
+                                              "מרחב מוהר", "2", "blue", {}, {}, "5", "1000", 2013, 12,
+                                              7)
+
 
         admin_manager.add_user_to_gym("1", "David", "Franco", "Fdas", "43242")
         admin_manager.add_user_to_gym("2", "Roy", "Klinger", "Fdas", "4324fda3242")
