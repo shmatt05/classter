@@ -51,10 +51,10 @@
                 }
 
             });
-            $('#date').text(returnDateStr(new Date(parseInt("{{course.milli}}"))));
+            $('#date').text(returnDotDateStr(new Date(parseInt("{{course.milli}}"))));
             $('#time').text(returnTimeStr(new Date(parseInt("{{course.milli}}"))));
          });
-        function returnDateStr (someDate) {
+        function returnDotDateStr (someDate) {
     return (someDate.getDate()<10?("0"+someDate.getDate()):someDate.getDate()) + "." +
       ((someDate.getMonth()+1)<10?("0"+(someDate.getMonth()+1)):(someDate.getMonth()+1)) + "." +
       someDate.getFullYear();
