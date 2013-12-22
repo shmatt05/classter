@@ -887,6 +887,27 @@ class InitialHandler(BaseRequestHandler):
         admin_manager.add_user_to_gym("3", "Moshe", "Rumba", "Fdas", "4324fda")
 
         user_credential = entities.UserCredentials()
+        user_credential.id = '1'
+        user_credential.gym_branch = 'peer'
+        user_credential.gym_network = 'peer'
+        user_credential.set_key()
+        user_credential.put()
+
+        user_credential = entities.UserCredentials()
+        user_credential.id = '2'
+        user_credential.gym_branch = 'peer'
+        user_credential.gym_network = 'peer'
+        user_credential.set_key()
+        user_credential.put()
+
+        user_credential = entities.UserCredentials()
+        user_credential.id = '3'
+        user_credential.gym_branch = 'peer'
+        user_credential.gym_network = 'peer'
+        user_credential.set_key()
+        user_credential.put()
+
+        user_credential = entities.UserCredentials()
         user_credential.id = '123'
         user_credential.gym_branch = 'peer'
         user_credential.gym_network = 'peer'
@@ -1051,8 +1072,9 @@ class AddUser(BaseRequestHandler):
         admin_man = AdminManager("peer", "peer")
         admin_man.add_user_to_gym('555', "Roy", "Klinger", "fadkj@fdas.fds", "05421365648")
         admin_man.add_user_to_gym('123', "Moahe", "Babi", "ffdskj@fdas.fds", "0546855648")
-
-
+        admin_man.add_user_to_gym("1", "David", "Franco", "Fdas", "43242")
+        admin_man.add_user_to_gym("2", "Roy", "Klinger", "Fdas", "4324fda3242")
+        admin_man.add_user_to_gym("3", "Moshe", "Rumba", "Fdas", "4324fda")
 
 
 class UserHandler(BaseRequestHandler):
@@ -1267,7 +1289,7 @@ class RemoveUserFromCourse(BaseRequestHandler):
         day = date_representation[0]
 
         admin_manager.delete_user_from_course(class_key, user_id, year,month, day)
-        user_view = UserView(user_id, class_key, year. month, day)
+        user_view = UserView(user_id, class_key, year, month, day)
         new_num_slots_in_course = user_view.get_num_open_slots()
         template_values = {
             'open_slots' : new_num_slots_in_course,

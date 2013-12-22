@@ -60,7 +60,7 @@ class AdminManager:
         return code
 
     def delete_user_from_course(self, course_id, user_id, year, month, day_in_month):
-        month_sched = self.__get_month_schedule(year, month)
+        month_sched = self.__get_month_schedule(month, year)
         course =  self.get_course(course_id, year, month, day_in_month)
         if course.does_user_already_registered(user_id):
             course.remove_user_from_course(user_id)
