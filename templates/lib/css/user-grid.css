@@ -69,7 +69,12 @@ th.wc-today {
     background-color: #fffee0;
 }
 
-
+#welcomediv {
+ text-align: center;
+}
+img {
+    display:inline;
+}
 
 @media (max-width: 900px) {
 
