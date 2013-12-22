@@ -213,7 +213,6 @@ class AdminManager:
             course.max_capacity = max_capacity
             course.instructor = instructor
             course.studio = studio
-            course.color = color
             course.registration_days_before = registration_days_before
             course.registration_start_time = registration_start_time
             month_schedule.put()
