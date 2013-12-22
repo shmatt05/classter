@@ -54,6 +54,7 @@
 
                                 var result = $.parseJSON(data);
                                 for (var user in result) {
+                                     console.log(user);
                                     userObj = result[user];
                                     $('#classnamelist')
                                             .append($('<option>', { value : userObj.id })

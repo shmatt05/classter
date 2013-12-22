@@ -838,6 +838,10 @@ class InitialHandler(BaseRequestHandler):
         admin_manager.create_course_for_month("Yoga","1800", 90, 10,
                       "Moished", "Park","blue", {}, {},"1" ,"1000", 2013, 12, 4) #December 3rd 18:00 1386086400000
 
+        admin_manager.add_user_to_gym("1", "Daivd", "Franco", "Fdas", "43242")
+        admin_manager.add_user_to_gym("2", "Roy", "Klinger", "Fdas", "4324fda3242")
+        admin_manager.add_user_to_gym("3", "Moshe", "Rumba", "Fdas", "4324fda")
+
         user_credential = entities.UserCredentials()
         user_credential.id = '123'
         user_credential.gym_branch = 'peer'
@@ -1002,8 +1006,8 @@ class AddUser(BaseRequestHandler):
         david.put()
 
         admin_man = AdminManager("peer", "peer")
-        admin_man.add_user_to_gym(555, "Roy", "Klinger", "fadkj@fdas.fds", "05421365648")
-        admin_man.add_user_to_gym(123, "Moahe", "Babi", "ffdskj@fdas.fds", "0546855648")
+        admin_man.add_user_to_gym('555', "Roy", "Klinger", "fadkj@fdas.fds", "05421365648")
+        admin_man.add_user_to_gym('123', "Moahe", "Babi", "ffdskj@fdas.fds", "0546855648")
 
 
 
@@ -1182,7 +1186,7 @@ class RegisterToClass(BaseRequestHandler):
 class GetUsersList(BaseRequestHandler):
     def post(self):
         admin_manager = AdminManager("peer", "peer")
-        users_table  = admin_manager.get_users_of_gym
+        users_table  = admin_manager.get_users_of_gym()
         self.response.write(jsonpickle.encode(users_table))
 
 #todo consider make users a property in gym
