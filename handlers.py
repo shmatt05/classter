@@ -657,7 +657,7 @@ class SignUpPopUp(BaseRequestHandler):
         if code == user_manager.NO_SUCH_COURSE:
             pass #self.render('user-popup-fail.html')
         else:
-            resgistration_open = course.calculate_open_registration_date(year, month, day)
+            registration_open_date = course.calculate_open_registration_date(year, month, day)
             template_values = {
                 'course': {
                     'name':course.name,
@@ -672,9 +672,9 @@ class SignUpPopUp(BaseRequestHandler):
                     'is_registration_open':registration_open,
                     'instructor':course.instructor,
                     'time_passed':time_passed,
-                    'registration_year': registration_open.year,
-                    'registration_month': registration_open.month,
-                    'registration_day': registration_open.day,
+                    'registration_year': registration_open_date.year,
+                    'registration_month': registration_open_date.month,
+                    'registration_day': registration_open_date.day,
                     'registration_hour': course.registration_start_time
                 }
             }
