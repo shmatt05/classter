@@ -658,6 +658,15 @@ class SignUpPopUp(BaseRequestHandler):
             pass #self.render('user-popup-fail.html')
         else:
             registration_open_date = course.calculate_open_registration_date(year, month, day)
+            if registration_open_date is None:
+                year = str(0)
+                month = str(0)
+                day = str(0)
+            else:
+                year = str(registration_open_date.year)
+                month = str(registration_open_date.month)
+                day = str(registration_open_date.day)
+
             template_values = {
                 'course': {
                     'name':course.name,
@@ -671,11 +680,11 @@ class SignUpPopUp(BaseRequestHandler):
                     'signed_up': signed_up,
                     'is_registration_open':registration_open,
                     'instructor':course.instructor,
-                    'time_passed':time_passed
-                    #'registration_year': registration_open_date.year,
-                    #'registration_month': registration_open_date.month,
-                    #'registration_day': registration_open_date.day,
-                    #'registration_hour': course.registration_start_date_time
+                    'time_passed':time_passed,
+                    'registration_year': year,
+                    'registration_month': month,
+                    'registration_day': day,
+                    'registration_hour': course.registration_start_time
                 }
             }
         #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
@@ -728,23 +737,30 @@ class AddClassToSched(BaseRequestHandler):
 
 class EditCoursePopup(BaseRequestHandler):
     def post(self):
-        class_key = cgi.escape(self.request.get('class_key'))
-        date_representation = cgi.escape(self.request.get('class_date'))
-        date_representation = date_representation.split('/')
-        year = date_representation[2]
-        month = date_representation[1]
-        day = date_representation[0]
-        duration = cgi.escape(self.request.get('duration'))
-        max_capacity = cgi.escape(self.request.get('max_capacity'))
-        instructor = cgi.escape(self.request.get('instructor'))
+        date = cgi.escape(self.request.get('date')).split("/")
+        time = cgi.escape(self.request.get('time'))
+        length = cgi.escape(self.request.get('length'))
+        participants = cgi.escape(self.request.get('participants'))
         class_name = cgi.escape(self.request.get('class'))
         studio = cgi.escape(self.request.get('studio'))
+        instructor = cgi.escape(self.request.get('instructor'))
         registration_days_before = int(cgi.escape(self.request.get('open_date')))
-        registration_start_time = cgi.escape(self.request.get('open_time'))
-
+        registratio_start_time = cgi.escape(self.request.get('open_time'))
+        all_month = cgi.escape(self.request.get('all_month'))
         admin_man = AdminManager("peer", "peer") # todo: gym not hard coded
-        admin_man.edit_course(class_key, class_name, duration, max_capacity, instructor,
-                              studio,registration_days_before, registration_start_time,year,month,day)
+        if str(all_month) == 'true':
+            admin_man.create_course_for_month(class_name, time.replace(":", ""), length, participants, instructor,
+                                              studio,
+                                              "blue", {}, {}, registration_days_before,
+                                              registratio_start_time.replace(":", ""), date[2],
+                                              date[1],
+                                              admin_man.get_day_by_date(int(date[2]), int(date[1]), int(date[0])))
+        else:
+            admin_man.create_course_instance(class_name, time.replace(":", ""), length, participants, instructor,
+                                             studio,
+                                             "blue", {}, {}, registration_days_before,
+                                             registratio_start_time.replace(":", ""), date[2],
+                                             date[1], date[0])
 
 class ManageCoursePopup(BaseRequestHandler):
     def post(self):
