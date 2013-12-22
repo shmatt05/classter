@@ -16,13 +16,17 @@
     <script type='text/javascript' src='lib/js/chosen.jquery.js'></script>
     <script>
         $(function() {
+             var selectedUserID;
             $('#selectable_signedup').selectable({
                 selected: function(event, ui) {
+                    selectedUserID = ui.selected.value;
+
                     $(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");
                 }
             });
             $('#selectable_waiting').selectable({
                 selected: function(event, ui) {
+                    selectedUserID = ui.selected.value;
                     $(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");
                 }
             });
@@ -135,8 +139,9 @@
 
             $('#removeuserlist').on('click',  function(e) {
                  postData = {};
-                postData['user_id'] = $('#selectable_signedup').val();
-\                postData['class_id'] = courseID;
+                alert( selectedUserID);
+                postData['user_id'] = selectedUserID;
+                postData['class_id'] = courseID;
                 postData['class_date'] = dateStr;
 
                 $.ajax(
