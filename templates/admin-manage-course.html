@@ -28,7 +28,7 @@
             });
               $('.chosen-select').chosen({
                   no_results_text: 'לא נמצאו תוצאות',
-                  width: '85%%'
+                  width: '70%%'
               });
 
             $( '#adduserwait' ).click(function () {
@@ -41,7 +41,35 @@
                 }
 
             });
-               $( '#adduserlist' ).click(function () {
+            $( '#adduserlist' ).click(function () {
+                $('#classnamelist').empty();
+                $.ajax(
+                        {
+                            url : '/get_all_users',
+                            type: "POST",
+                            data : {},
+                            async:true,
+                            success:function(data, textStatus, jqXHR)
+                            {
+
+                                console.log(data);
+                                for (var user in result) {
+                                    userObj = result[user];
+                                    $('#classnamelist')
+                                            .append($('<option>', { value : userObj.id })
+                                                    .text(userObj.id +' '+ userObj.first_name + ' '+ userObj.last_name));
+
+
+
+                                }
+
+
+                            },
+                            error: function(jqXHR, textStatus, errorThrown)
+                            {
+                                alert('ארעה תקלה, נסה שנית');
+                            }
+                        });
                 if ( $('#addlist').is( ":hidden" ) ) {
 
                     $( "#addlist" ).slideDown( "slow" );
@@ -83,9 +111,10 @@ function returnTimeStr(someDate) {
         <span class="glyphicon glyphicon-minus"></span>
         </button>
         <div id="addlist" style="display:none;"><br>
-             <select id="classnamelist" class="chosen-select chosen-rtl" data-placeholder="הכנס ת.ז">
+             <select id="classnamelist" class="chosen-select chosen-rtl" data-placeholder="הכנס ת.ז" >
                  <option value=""></option>
              </select>
+            <input type="button" id="adduserbutton" value="הוסף" style="float:left;display: inline;"/>
         </div>
     </div>
 
@@ -106,6 +135,7 @@ function returnTimeStr(someDate) {
              <select id="classname" class="chosen-select chosen-rtl" data-placeholder="הכנס ת.ז">
                  <option value=""></option>
              </select>
+            <input type="button" id="addwaitbutton" value="הוסף" style="float:left;display: inline;"/>
         </div>
     </div>
         </div>

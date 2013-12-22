@@ -20,22 +20,43 @@
     <script type="text/javascript" src="lib/js/jquery.magnific-popup.js"></script>
     <script type='text/javascript' src='lib/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='lib/js/responsive-tables.js'></script>
+    <script type='text/javascript' src='lib/js/jquery-scrollTo.js'></script>
     <script type='text/javascript' src='lib/js/admin-grid-jq.js'></script>
 </head>
 <body>
 <ul class="nav nav-tabs" data-tabs="tabs">
     <li class="active"><a href="#caldiv" data-toggle="tab">מערכת שעות</a></li>
-    <li><a href="#users" data-toggle="tab">משתמשים</a></li>
-    <li><a href="#courses" data-toggle="tab">שיעורים</a></li>
+    <li><a href="#courses" data-toggle="tab">ניהול חד"כ</a></li>
 </ul>
 <div class="tab-content">
     <div id="caldiv" class="tab-pane active">
         <div id="calsideview">
             <div class="week-picker" id="weekpicker"> </div></div>
 
-            <div id="calendar"></div></div>
-        <div id="users" class="tab-pane"><h2>ניהול משתמשים</h2></div>
-        <div id="courses" class="tab-pane"><h2>ניהול שיעורים</h2></div>
+        <div id="calendar"></div></div>
+    <div id="courses" class="tab-pane">
+        <div class="jumbotron text-center" style="background-color:#B8DBFF;"><h2>ניהול חדר כושר</h2> </div>
+
+        <div id="content">
+            <nav id="stickynav">
+                <ul id="nav" class="clearfix">
+                    <li><a href="#mnginstructors">Homepage</a></li>
+                    <li><a href="#mngstudios">About</a></li>
+                    <li><a href="#mngusers">Photos</a></li>
+
+                </ul>
+            </nav>
+            <div id="mnginstructors" style="min-height:500px;">
+
+            </div>
+            <div id="mngstudios" style="min-height:500px;">
+
+            </div>
+            <div id="mngusers" style="min-height:500px">
+
+            </div>
+        </div>
+    </div>
     </div>
 </body>
 </html>

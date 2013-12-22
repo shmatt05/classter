@@ -57,3 +57,29 @@
 .wc-time { /* time on top of ClassBox*/
 
 }
+
+#stickynav {
+  display: block;
+  height: 35px;
+  width: 100%;
+  z-index: 9999;
+}
+
+#stickynav #nav { position: fixed; z-index: 9999; }
+#stickynav #nav li { display: inline; }
+#stickynav #nav li a {
+  display: block;
+  float: left;
+  margin-right: 8px;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 5px 7px;
+  background: #cce4c4;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+#stickynav #nav li a:hover {
+  text-decoration: none;
+  background: #d8f0d0;
+}
