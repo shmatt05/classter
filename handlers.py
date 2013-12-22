@@ -1183,7 +1183,7 @@ class GetUsersList(BaseRequestHandler):
     def post(self):
         admin_manager = AdminManager("peer", "peer")
         users_table  = admin_manager.get_users_of_gym
-        self.response.write(users_table)
+        self.response.write(jsonpickle.encode(users_table))
 
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table

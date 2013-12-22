@@ -52,7 +52,7 @@
                             success:function(data, textStatus, jqXHR)
                             {
 
-                                console.log(data);
+                                var result = $.parseJSON(data);
                                 for (var user in result) {
                                     userObj = result[user];
                                     $('#classnamelist')
