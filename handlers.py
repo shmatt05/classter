@@ -826,19 +826,19 @@ class InitialHandler(BaseRequestHandler):
         """create courses"""
 
 
-        admin_manager.create_course_for_month("Zumba","1400", 120, 10,
-                      "Moished", "Park","blue", {}, {},"20" ,"1000", 2013, 12, 1) # December 1st 14:00 1385899200000
+        admin_manager.create_course_for_month("זומבה", "1400", 120, 10,
+                      "Moished", "Park", "blue", {}, {}, "20", "1000", 2013, 12, 1)  # December 1st 14:00 1385899200000
 
-        admin_manager.create_course_for_month("Zumba","0900", 40, 10,
-                      "Moished", "Park","green", {}, {},"1" ,"1000", 2013, 12, 2) #December 2nd 09:00 1385967600000
+        admin_manager.create_course_for_month("זומבה", "0900", 40, 10,
+                      "Moished", "Park", "green", {}, {}, "1", "1000", 2013, 12, 2)  # December 2nd 09:00 1385967600000
 
-        admin_manager.create_course_for_month("Yoga","0700", 90, 10,
+        admin_manager.create_course_for_month("יוגה אורבנית","0700", 90, 10,
                       "Moished", "Park","blue", {}, {},"1" ,"1000", 2013, 12, 3) #December 3rd 07:00 1386046800000
 
-        admin_manager.create_course_for_month("Yoga","1800", 90, 10,
+        admin_manager.create_course_for_month("יוגה אורבנית","1800", 90, 10,
                       "Moished", "Park","blue", {}, {},"1" ,"1000", 2013, 12, 4) #December 3rd 18:00 1386086400000
 
-        admin_manager.add_user_to_gym("1", "Daivd", "Franco", "Fdas", "43242")
+        admin_manager.add_user_to_gym("1", "David", "Franco", "Fdas", "43242")
         admin_manager.add_user_to_gym("2", "Roy", "Klinger", "Fdas", "4324fda3242")
         admin_manager.add_user_to_gym("3", "Moshe", "Rumba", "Fdas", "4324fda")
 
