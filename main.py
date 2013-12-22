@@ -74,9 +74,6 @@ routes = [
     Route('/get_all_users', 'handlers.GetUsersList'),
     Route('/admin_register_to_course', 'handlers.AddUserToCourse'),
     Route('/admin_delete_from_course', 'handlers.RemoveUserFromCourse')
-
-
-
 ]
 
 app = WSGIApplication(routes, config=app_config, debug=True)

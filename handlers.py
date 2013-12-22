@@ -737,8 +737,31 @@ class AddClassToSched(BaseRequestHandler):
 
 
 class EditCoursePopup(BaseRequestHandler):
-    pass
-    #todo
+    def post(self):
+        date = cgi.escape(self.request.get('date')).split("/")
+        time = cgi.escape(self.request.get('time'))
+        length = cgi.escape(self.request.get('length'))
+        participants = cgi.escape(self.request.get('participants'))
+        class_name = cgi.escape(self.request.get('class'))
+        studio = cgi.escape(self.request.get('studio'))
+        instructor = cgi.escape(self.request.get('instructor'))
+        registration_days_before = int(cgi.escape(self.request.get('open_date')))
+        registratio_start_time = cgi.escape(self.request.get('open_time'))
+        all_month = cgi.escape(self.request.get('all_month'))
+        admin_man = AdminManager("peer", "peer") # todo: gym not hard coded
+        if str(all_month) == 'true':
+            admin_man.create_course_for_month(class_name, time.replace(":", ""), length, participants, instructor,
+                                              studio,
+                                              "blue", {}, {}, registration_days_before,
+                                              registratio_start_time.replace(":", ""), date[2],
+                                              date[1],
+                                              admin_man.get_day_by_date(int(date[2]), int(date[1]), int(date[0])))
+        else:
+            admin_man.create_course_instance(class_name, time.replace(":", ""), length, participants, instructor,
+                                             studio,
+                                             "blue", {}, {}, registration_days_before,
+                                             registratio_start_time.replace(":", ""), date[2],
+                                             date[1], date[0])
 
 
 class ManageCoursePopup(BaseRequestHandler):

@@ -202,23 +202,21 @@ class AdminManager:
         month_schedule_manager.add_course_instance(new_course, day_in_month)
 
 
-    def edit_course(self, old_name, new_name,  old_hour, new_hour, description, duration, max_capacity, instructor,
-                    studio, color, users_list, waiting_list, year, month, day):
+    def edit_course(self,course_key, name, duration, max_capacity, instructor, studio, color,
+                                 registration_days_before, registration_start_time,
+                                year, month, day_in_month):
         month_schedule = self.__get_month_schedule(month, year)
-        day_schedule = month_schedule.schedule_table[day].courses_list
-        for course in day_schedule:
-            if course.name.lower() == old_name.lower() and course.hour == old_hour:
-                course.name = new_name
-                course.description = description
-                course.hour = new_hour
-                course.duration = duration
-                course.max_capacity = max_capacity
-                course.instructor = instructor
-                course.studio = studio
-                course.color = color
-                course.users_list = users_list
-                course.waiting_list = waiting_list
-                month_schedule.put()
+        course = self.get_course(course_key,year,month,day_in_month)
+        if not course in None:
+            course.name = name
+            course.duration = duration
+            course.max_capacity = max_capacity
+            course.instructor = instructor
+            course.studio = studio
+            course.color = color
+            course.registration_days_before = registration_days_before
+            course.registration_start_time = registration_start_time
+            month_schedule.put()
 
     """ for a given datetime object returns the daily schedule of all the days on the same week (sunday to saturday) """
     def get_weekly_daily_schedule_list_by_date(self, date_time):
