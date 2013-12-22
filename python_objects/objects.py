@@ -200,6 +200,11 @@ class Course(CourseTemplate):
         now = Time('Israel').now()
         return now >= registration_start_date_time
 
+    def calculate_open_registration_date(self, year, month, day):
+        if not self.did_registration_start(year, month, day):
+            course_date_time = datetime(int(year), int(month), int(day))
+            return course_date_time - timedelta(int(self.registration_days_before))
+
     def is_full(self):
         return len(self.users_table) >= int(self.max_capacity)
 

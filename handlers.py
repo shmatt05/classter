@@ -657,6 +657,7 @@ class SignUpPopUp(BaseRequestHandler):
         if code == user_manager.NO_SUCH_COURSE:
             pass #self.render('user-popup-fail.html')
         else:
+            resgistration_open = course.calculate_open_registration_date(year, month, day)
             template_values = {
                 'course': {
                     'name':course.name,
@@ -670,7 +671,11 @@ class SignUpPopUp(BaseRequestHandler):
                     'signed_up': signed_up,
                     'is_registration_open':registration_open,
                     'instructor':course.instructor,
-                    'time_passed':time_passed
+                    'time_passed':time_passed,
+                    'registration_year': registration_open.year,
+                    'registration_month': registration_open.month,
+                    'registration_day': registration_open.day,
+                    'registration_hour': course.registration_start_time
                 }
             }
         #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
