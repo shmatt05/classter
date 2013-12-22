@@ -1235,7 +1235,7 @@ class GetUsersList(BaseRequestHandler):
 class AddUserToCourse(BaseRequestHandler):
     def post(self):
         admin_manager = AdminManager("peer", "peer")
-        class_key = cgi.escape(self.request.get('class_key')) #works great!
+        class_id = cgi.escape(self.request.get('class_id')) #works great!
         date_representation = cgi.escape(self.request.get('class_date'))
         user_id = cgi.escape(self.request.get('user_id'))
 
@@ -1244,20 +1244,20 @@ class AddUserToCourse(BaseRequestHandler):
         month = date_representation[1]
         day = date_representation[0]
 
-        code = admin_manager.add_user_to_course(class_key, user_id, year, month, day)
+        code = admin_manager.add_user_to_course(class_id, user_id, year, month, day)
         if code == user_manager.USER_REGISTRATION_SUCCEEDED:
-            user_view = UserView(user_id, class_key, year. month, day)
+            user_view = UserView(user_id, class_id, year, month, day)
             new_num_slots_in_course = user_view.get_num_open_slots()
             template_values = {
                 'open_slots' : new_num_slots_in_course,
-                'class_key' : class_key
+                'class_key' : class_id
             }
             self.response.write(template_values);
 
 class RemoveUserFromCourse(BaseRequestHandler):
     def post(self):
         admin_manager = AdminManager("peer", "peer")
-        class_key = cgi.escape(self.request.get('class_key')) #works great!
+        class_key = cgi.escape(self.request.get('class_id')) #works great!
         date_representation = cgi.escape(self.request.get('class_date'))
         user_id = cgi.escape(self.request.get('user_id'))
 
