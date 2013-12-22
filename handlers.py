@@ -671,11 +671,11 @@ class SignUpPopUp(BaseRequestHandler):
                     'signed_up': signed_up,
                     'is_registration_open':registration_open,
                     'instructor':course.instructor,
-                    'time_passed':time_passed,
-                    'registration_year': registration_open_date.year,
-                    'registration_month': registration_open_date.month,
-                    'registration_day': registration_open_date.day,
-                    'registration_hour': course.registration_start_time
+                    'time_passed':time_passed
+                    #'registration_year': registration_open_date.year,
+                    #'registration_month': registration_open_date.month,
+                    #'registration_day': registration_open_date.day,
+                    #'registration_hour': course.registration_start_date_time
                 }
             }
         #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
