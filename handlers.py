@@ -662,10 +662,14 @@ class SignUpPopUp(BaseRequestHandler):
                 year = str(0)
                 month = str(0)
                 day = str(0)
+                start_time = str(0)
             else:
                 year = str(registration_open_date.year)
                 month = str(registration_open_date.month)
                 day = str(registration_open_date.day)
+                hour = course.registration_start_time[:2]
+                minutes = course.registration_start_time[2:]
+                start_time = hour + ":" + minutes
 
             template_values = {
                 'course': {
@@ -684,11 +688,14 @@ class SignUpPopUp(BaseRequestHandler):
                     'registration_year': year,
                     'registration_month': month,
                     'registration_day': day,
-                    'registration_hour': course.registration_start_time
+                    'registration_hour': start_time
                 }
             }
         #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
         #self.response.write(template.render(template_values))
+            print year
+            print month
+            print day
             self.render('user-popup.html',template_values)
 
 class NewCoursePopup(BaseRequestHandler):
