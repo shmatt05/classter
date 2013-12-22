@@ -109,14 +109,17 @@
 
                 $.ajax(
                         {
-                            url : '/adminaddtocourse',
+                            url : 'admin_register_to_course',
                             type: "POST",
                             data : postData,
                             dataType:'html',
                             async:'false',
                             success:function(data, textStatus, jqXHR)
                             {
-
+                                //todo: update signued up counter on grid
+                                var magnificPopup = $.magnificPopup.instance;
+                                 magnificPopup.close();
+                                $('#'+classID).click();
 
                             },
                             error: function(jqXHR, textStatus, errorThrown)
@@ -139,14 +142,18 @@
 
                 $.ajax(
                         {
-                            url : '/adminremovefromcourse',
+                            url : '/admin_delete_from_course',
                             type: "POST",
                             data : postData,
                             dataType:'html',
                             async:'false',
                             success:function(data, textStatus, jqXHR)
                             {
-                                $('li[value*=classID').remove();
+                                //todo: update signued up counter on grid
+                           //     $('li[value*=classID').remove();
+                                 var magnificPopup = $.magnificPopup.instance;
+                                 magnificPopup.close();
+                                $('#'+classID).click();
 
                             },
                             error: function(jqXHR, textStatus, errorThrown)

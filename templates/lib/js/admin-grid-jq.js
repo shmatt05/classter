@@ -40,7 +40,7 @@ $(document).ready(function () {
             endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 6);
             //$('.week-picker').val($.datepicker.formatDate(dateFormat,date,inst.settings)); //$.datepicker.formatDate(dateFormat, startDate, inst.settings) + ' - ' + $.datepicker.formatDate(dateFormat, endDate, inst.settings)
             selectCurrentWeek();
-                        // highlight the TR
+            // highlight the TR
             $('.ui-datepicker-current-day').parent().addClass('highlight');
 
             // highlight the TD > A
@@ -85,9 +85,14 @@ $(document).ready(function () {
     // Start Calendar Instance Customization
     $('#calendar').weekCalendar({
         data: function (start, end, callback) {
-                    //changeWeek(changeWeekVar);
-                    callback(classesTableArr);
-                },
+            //changeWeek(changeWeekVar);
+            callback(classesTableArr);
+            for (var i=0; i<classesTableArr.length; i++) {
+                $('#'+classesTableArr[i].id + ' .lblInstructor').text(classesTableArr[i].instructor);
+                $('#'+classesTableArr[i].id + ' .lblStudio').text(classesTableArr[i].studio);
+                $('#'+classesTableArr[i].id + ' .lblOpenSlots').text(classesTableArr[i].openSlots);
+            }
+        },
         buttonText: {
             today:'היום',
             lastWeek:'קודם',
@@ -157,10 +162,10 @@ $(document).ready(function () {
 
     $('#tabs').tab();
 
-  $("#nav a").click(function(e){
-    e.preventDefault();
-    $('html,body').scrollTo(this.hash,this.hash);
-  });
+    $("#nav a").click(function(e){
+        e.preventDefault();
+        $('html,body').scrollTo(this.hash,this.hash);
+    });
 
 });
 
@@ -196,9 +201,10 @@ function changeWeek(newDate) {
                             oneClass.start=newClass.milli;
                             oneClass.end = oneClass.start + +(parseInt(newClass.duration)*60000);
                             oneClass.title = newClass.name;
-                            //$('#calendar').weekCalendar('updateEvent', newClass);
                             classesTableArr.push(oneClass);
-
+                            oneClass.openSlots = newClass.max_capacity - Object.keys(newClass.users_table).length;
+                            oneClass.instructor = newClass.instructor;
+                            oneClass.studio = newClass.studio;
                             //$('#calendar').weekCalendar('clear');
                             //$('#calendar').weekCalendar('refresh');
                         }
@@ -307,7 +313,7 @@ function manageCoursePopup(courseID, startTime) {
         closeOnContentClick: false,
         callbacks: {
             close:function() {
-               //todo: maybe refresh grid after edit?
+                //todo: maybe refresh grid after edit?
             }
         }
     });
@@ -347,8 +353,8 @@ function editCourseNoPopup(startTime, endTime, courseID) {
 
 function returnDateStr (someDate) {
     return (someDate.getDate()<10?("0"+someDate.getDate()):someDate.getDate()) + "/" +
-      ((someDate.getMonth()+1)<10?("0"+(someDate.getMonth()+1)):(someDate.getMonth()+1)) + "/" +
-      someDate.getFullYear();
+        ((someDate.getMonth()+1)<10?("0"+(someDate.getMonth()+1)):(someDate.getMonth()+1)) + "/" +
+        someDate.getFullYear();
 }
 function returnTimeStr(someDate) {
     var someHour = (someDate.getHours() < 10? '0' : '') + someDate.getHours();

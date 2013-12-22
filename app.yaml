@@ -11,6 +11,8 @@ handlers:
 
 - url: /lib
   static_dir: templates/lib
+- url: /img
+  static_dir: templates/img
 - url: /html
   static_dir: templates/popup
 - url: /.*
