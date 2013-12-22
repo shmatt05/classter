@@ -78,6 +78,9 @@ img {
 
 @media (max-width: 900px) {
 
+    .wc-toolbar {
+        display:none;
+    }
    td.wc-day-column {
        display:none;
    }
