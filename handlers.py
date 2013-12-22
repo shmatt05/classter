@@ -1274,7 +1274,7 @@ class AddUserToCourse(BaseRequestHandler):
                 'open_slots' : new_num_slots_in_course,
                 'class_key' : class_id
             }
-            self.response.write(template_values);
+            self.response.write(jsonpickle.encode(template_values));
 
 class RemoveUserFromCourse(BaseRequestHandler):
     def post(self):
@@ -1295,7 +1295,7 @@ class RemoveUserFromCourse(BaseRequestHandler):
             'open_slots' : new_num_slots_in_course,
             'class_key' : class_key
             }
-        self.response.write(template_values);
+        self.response.write(jsonpickle.encode(template_values));
 
 
 #todo consider make users a property in gym

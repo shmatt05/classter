@@ -120,7 +120,9 @@
                             async:'false',
                             success:function(data, textStatus, jqXHR)
                             {
-                                //todo: update signued up counter on grid
+
+                                decData = $.parseJSON(data);
+                                $('#'+decData['class_key'] + ' .lblOpenSlots').text(decData['open_slots']);
                                 var magnificPopup = $.magnificPopup.instance;
                                  magnificPopup.close();
                                 $('#'+courseID).click();
@@ -152,12 +154,12 @@
                             async:'false',
                             success:function(data, textStatus, jqXHR)
                             {
-                                //todo: update signued up counter on grid
-                           //     $('li[value*=classID').remove();
+                                decData = $.parseJSON(data);
+                                $('#'+decData['class_key'] + ' .lblOpenSlots').text(decData['open_slots']);
+
                                  var magnificPopup = $.magnificPopup.instance;
                                  magnificPopup.close();
                                 $('#'+courseID).click();
-
                             },
                             error: function(jqXHR, textStatus, errorThrown)
                             {
@@ -167,7 +169,7 @@
             });
 
             $('#removeuserwait').on('click',  function(e) {
-                //TODO: Add user to waiting list, just like #removeuserwait .click
+                //TODO: Remove user to waiting list, just like #removeuserwait .click
             });
             $('#date').text(returnDotDateStr(new Date(parseInt("{{course.milli}}"))));
             $('#time').text(returnTimeStr(new Date(parseInt("{{course.milli}}"))));
