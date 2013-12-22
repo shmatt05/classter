@@ -31,7 +31,7 @@ $(document).ready(function () {
         "closeText":"סיים",
         currentText:"היום",
         "isRTL":true,
-        dayNamesMin:["ר","ש","ש","ר","ח","ש","ש"],
+        dayNamesMin:["א","ב","ג","ד","ה","ו","ש"],
         monthNames:['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'],
         "onSelect": function (dateText, inst) {
             var date = $(this).datepicker('getDate'),

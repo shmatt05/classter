@@ -74,12 +74,19 @@
   font-size: 1.2em;
   font-weight: bold;
   padding: 5px 7px;
-  background: #cce4c4;
+  background: #cccccc;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 #stickynav #nav li a:hover {
   text-decoration: none;
-  background: #d8f0d0;
+  background: #e0e0e0;
+}
+#stickynav {
+    background-color:#CCCCCC;
+}
+
+.wc-day-column-first{
+    border: 1px solid #d3d3d3;
 }
