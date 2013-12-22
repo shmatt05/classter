@@ -395,12 +395,24 @@ class AuthHandler(BaseRequestHandler, SimpleAuthHandler):
         return user_attrs
 
 
+def already_signed_up(id):
+    user = entities.UserCredentials.get_user_entity(id)
+    print user.google_id
+    print user.facebook_id
+    print user.email_id
+    print "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
+    if user.google_id is not None or user.facebook_id is not None or user.email_id is not None:
+        return True
+    else:
+        return False
+
+
 class CheckIdHandler(BaseRequestHandler):
     def post(self):
 
         id = self.request.get('id')
 
-        if not valid_id(id):
+        if not valid_id(id) or already_signed_up(id):
             error_message(self, 'We couldn\'t sign you up. Please try again.')
         else:
             self.session['on_sign_up'] = True
@@ -637,7 +649,7 @@ class SetPasswordHandler(BaseRequestHandler):
 
 class SignUpPopUp(BaseRequestHandler):
     def post(self):
-        class_key  = cgi.escape(self.request.get('class_key')) #works great!
+        class_key = cgi.escape(self.request.get('class_key')) #works great!
         date_representation = cgi.escape(self.request.get('class_date'))
         date_original = date_representation
         date_representation = date_representation.split('/')
@@ -650,8 +662,8 @@ class SignUpPopUp(BaseRequestHandler):
         user_viewer = UserView(self.get_user_id(), class_key, year, month, day)
         course = user_viewer.get_course_by_id()
         code = user_viewer.get_view_code(course)
-        signed_up = (code== user_manager.USER_ALREADY_REGISTERED)
-        registration_open =(code != user_manager.REGISTRATION_DID_NOT_START)
+        signed_up = (code == user_manager.USER_ALREADY_REGISTERED)
+        registration_open = (code != user_manager.REGISTRATION_DID_NOT_START)
         time_passed = (code == user_manager.COURSE_TIME_PASSED)
         print time_passed
         if code == user_manager.NO_SUCH_COURSE:
@@ -660,15 +672,18 @@ class SignUpPopUp(BaseRequestHandler):
             resgistration_open = course.calculate_open_registration_date(year, month, day)
             template_values = {
                 'course': {
-                    'name':course.name,
-                    'studio':course.studio,
-                    'class_key':course.id,
-                    'color':course.color,
+                    'name': course.name,
+                    'studio': course.studio,
+                    'class_key': course.id,
+                    'color': course.color,
                     'free_slots': course.get_num_open_slots(),
                     'start_time': course.hour[:2] + ":" + course.hour[2:],
                     'end_time': get_end_time(long(course.milli), course.duration),
                     'date': date_original,
                     'signed_up': signed_up,
+                    'is_registration_open': registration_open,
+                    'instructor': course.instructor,
+                    'time_passed': time_passed
                     'is_registration_open':registration_open,
                     'instructor':course.instructor,
                     'time_passed':time_passed,
@@ -678,53 +693,57 @@ class SignUpPopUp(BaseRequestHandler):
                     'registration_hour': course.registration_start_time
                 }
             }
-        #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
-        #self.response.write(template.render(template_values))
-            self.render('user-popup.html',template_values)
+            #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
+            #self.response.write(template.render(template_values))
+            self.render('user-popup.html', template_values)
 
 class NewCoursePopup(BaseRequestHandler):
     def post(self):
-        class_date  = cgi.escape(self.request.get('course_date'))
-        class_hour  = cgi.escape(self.request.get('course_hour'))
+        class_date = cgi.escape(self.request.get('course_date'))
+        class_hour = cgi.escape(self.request.get('course_hour'))
         class_minutes = cgi.escape(self.request.get('course_minutes'))
-        admin_viewer = AdminViewer("peer","peer")
+        admin_viewer = AdminViewer("peer", "peer")
         gym_info = admin_viewer.get_gym_info_for_popup()
         class_names = gym_info.courses_template_table
         studio_names = gym_info.studios_list
         instructor_names = gym_info.instructors_table
         template_values = {
-            'class_names':class_names,
-            'studio_names':studio_names,
-            'instructor_names':instructor_names,
-            'class_time':class_hour,
-            'class_date':class_date,
-            'class_minutes':class_minutes
+            'class_names': class_names,
+            'studio_names': studio_names,
+            'instructor_names': instructor_names,
+            'class_time': class_hour,
+            'class_date': class_date,
+            'class_minutes': class_minutes
         }
-        self.render('admin-new-course.html',template_values)
+        self.render('admin-new-course.html', template_values)
+
 
 class AddClassToSched(BaseRequestHandler):
     def post(self):
-        date  = cgi.escape(self.request.get('date')).split("/")
-        time  = cgi.escape(self.request.get('time'))
-        length  = cgi.escape(self.request.get('length'))
-        participants  = cgi.escape(self.request.get('participants'))
-        class_name  = cgi.escape(self.request.get('class'))
-        studio  = cgi.escape(self.request.get('studio'))
-        instructor  = cgi.escape(self.request.get('instructor'))
-        registration_days_before  = int(cgi.escape(self.request.get('open_date')))
-        registratio_start_time  = cgi.escape(self.request.get('open_time'))
-        all_month  = cgi.escape(self.request.get('all_month'))
+        date = cgi.escape(self.request.get('date')).split("/")
+        time = cgi.escape(self.request.get('time'))
+        length = cgi.escape(self.request.get('length'))
+        participants = cgi.escape(self.request.get('participants'))
+        class_name = cgi.escape(self.request.get('class'))
+        studio = cgi.escape(self.request.get('studio'))
+        instructor = cgi.escape(self.request.get('instructor'))
+        registration_days_before = int(cgi.escape(self.request.get('open_date')))
+        registratio_start_time = cgi.escape(self.request.get('open_time'))
+        all_month = cgi.escape(self.request.get('all_month'))
         admin_man = AdminManager("peer", "peer") # todo: gym not hard coded
         if str(all_month) == 'true':
-            admin_man.create_course_for_month(class_name, time.replace(":",""),length, participants, instructor, studio,
-                                          "blue", {}, {}, registration_days_before,
-                                          registratio_start_time.replace(":",""), date[2],
-                                          date[1],admin_man.get_day_by_date(int(date[2]), int(date[1]), int(date[0])))
+            admin_man.create_course_for_month(class_name, time.replace(":", ""), length, participants, instructor,
+                                              studio,
+                                              "blue", {}, {}, registration_days_before,
+                                              registratio_start_time.replace(":", ""), date[2],
+                                              date[1],
+                                              admin_man.get_day_by_date(int(date[2]), int(date[1]), int(date[0])))
         else:
-            admin_man.create_course_instance(class_name, time.replace(":",""),length, participants, instructor, studio,
-                                          "blue", {}, {}, registration_days_before,
-                                          registratio_start_time.replace(":",""), date[2],
-                                          date[1],date[0])
+            admin_man.create_course_instance(class_name, time.replace(":", ""), length, participants, instructor,
+                                             studio,
+                                             "blue", {}, {}, registration_days_before,
+                                             registratio_start_time.replace(":", ""), date[2],
+                                             date[1], date[0])
 
 class EditCoursePopup(BaseRequestHandler):
     pass
@@ -742,21 +761,21 @@ class ManageCoursePopup(BaseRequestHandler):
 
         admin_manager = AdminManager("peer", "peer") #todo gym not hardcoded
         registered_users_list = admin_manager.get_registered_users_list_from_course(class_key, year, month, day)
-        waiting_list =  admin_manager.get_waiting_list_from_course(class_key, year, month, day)
-        course = admin_manager.get_course(class_key, year,month,day)
+        waiting_list = admin_manager.get_waiting_list_from_course(class_key, year, month, day)
+        course = admin_manager.get_course(class_key, year, month, day)
         template_values = {
-            'users':registered_users_list,
-            'waiting_list':waiting_list,
-            'course':course
+            'users': registered_users_list,
+            'waiting_list': waiting_list,
+            'course': course
 
         }
-        self.render('admin-manage-course.html',template_values)
+        self.render('admin-manage-course.html', template_values)
 
 
 class EditCourseTime(BaseRequestHandler):
     def post(self):
         date = cgi.escape(self.request.get('new_date')).split('/')
-        start_hour = cgi.escape(self.request.get('new_hour')).replace(":","")
+        start_hour = cgi.escape(self.request.get('new_hour')).replace(":", "")
         duration = cgi.escape(self.request.get('new_minutes'))
         course_id = cgi.escape(self.request.get('course_id'))
         admin_manager = AdminManager("peer", "peer") #todo: gym not hard coded
@@ -780,7 +799,7 @@ class InitialHandler(BaseRequestHandler):
         #self.response.write(str(daily_list[0].day_in_week))
 
         courses_list = ["Core", "Yoga Flow", "האטה יוגה", "יוגילאטיס", "עיצוב דינאמי", "פלנדקרייז", "Core Fit ball",
-                        "אימון פונקציונאלי", "התעמלות בונה עצם", "מתיחות","עיצוב וחיזוק", "קיקבוקס שקים",
+                        "אימון פונקציונאלי", "התעמלות בונה עצם", "מתיחות", "עיצוב וחיזוק", "קיקבוקס שקים",
                         "Fight & Burn", "אימון ריצה", "ויניאסה יוגה", "סטריפ דאנס", "פאוור יוגה", "Fight & Learn",
                         "אשטנגה יוגה", "זומבה", "סמאש קיקבוקס", "פילאטיס", "Shape 'n' Burn", "בטן ישבן ירכיים",
                         "יוגה אורבנית", "ספינינג", "פילאטיס מיטות"]
@@ -827,16 +846,27 @@ class InitialHandler(BaseRequestHandler):
             admin_manager.add_instructor(i, first_name, last_name)
             i += 1
 
-
         """create courses"""
 
+        admin_manager.create_course_for_month("Zumba", "1400", 120, 10,
+                                              "Moished", "Park", "blue", {}, {}, "20", "1000", 2013, 12,
+                                              1) # December 1st 14:00 1385899200000
 
+        admin_manager.create_course_for_month("Zumba", "0900", 40, 10,
+                                              "Moished", "Park", "green", {}, {}, "1", "1000", 2013, 12,
+                                              2) #December 2nd 09:00 1385967600000
         admin_manager.create_course_for_month("זומבה", "1400", 120, 10,
                       "Moished", "Park", "blue", {}, {}, "20", "1000", 2013, 12, 1)  # December 1st 14:00 1385899200000
 
+        admin_manager.create_course_for_month("Yoga", "0700", 90, 10,
+                                              "Moished", "Park", "blue", {}, {}, "1", "1000", 2013, 12,
+                                              3) #December 3rd 07:00 1386046800000
         admin_manager.create_course_for_month("זומבה", "0900", 40, 10,
                       "Moished", "Park", "green", {}, {}, "1", "1000", 2013, 12, 2)  # December 2nd 09:00 1385967600000
 
+        admin_manager.create_course_for_month("Yoga", "1800", 90, 10,
+                                              "Moished", "Park", "blue", {}, {}, "1", "1000", 2013, 12,
+                                              4) #December 3rd 18:00 1386086400000
         admin_manager.create_course_for_month("יוגה אורבנית","0700", 90, 10,
                       "Moished", "Park","blue", {}, {},"1" ,"1000", 2013, 12, 3) #December 3rd 07:00 1386046800000
 
@@ -864,7 +894,6 @@ class InitialHandler(BaseRequestHandler):
 
 class MainHandler(BaseRequestHandler):
     def get(self):
-
         admin_manager = AdminManager("peer", "peer")
 
 
@@ -887,118 +916,117 @@ class MainHandler(BaseRequestHandler):
         #admin_manager.create_course_for_month("PilaYoga", "Yoga the Pila", "0930", 60, 10,
         #                      "Moished", "Park","blue", [], [], 2013, 11, 5)
 
-###############################
+    ###############################
 
-        #peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses={}, instructors={}, studios=[])
-        #peer.set_key()
-        #peer.put()
+    #peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses={}, instructors={}, studios=[])
+    #peer.set_key()
+    #peer.put()
 
-        #creating course templates
-        #zumba = objects.CourseTemplate("Zumba", "Funny course")
-        #yoga = objects.CourseTemplate("Yoga", "Stupid course")
+    #creating course templates
+    #zumba = objects.CourseTemplate("Zumba", "Funny course")
+    #yoga = objects.CourseTemplate("Yoga", "Stupid course")
 
-        # creating gyms
+    # creating gyms
 
-        #goactive = entities.Gym(name = "savyonim",gym_network="Go Active")
+    #goactive = entities.Gym(name = "savyonim",gym_network="Go Active")
 
-        #goactive.set_key()
+    #goactive.set_key()
 
-        # uploading gyms to DB
-        #goactive.put()
+    # uploading gyms to DB
+    #goactive.put()
 
 
-        #
-        #admin = AdminManager("peer", "peer")
-        #admin.add_course_template("yoga", "Zubin Meta")
-        #admin.create_month_schedule(2014, 2)
-        ##admin.edit_course_template("yoga","yoga11","Kaki batachton!")
-        #admin.create_course_for_month("ZumbaLatis", "Latis the Zumbot", hour, 120, 10,
-        #                              "Moished", "Park","blue", [], [], 2014, 2, 3)
-        #day_number = admin.get_day_by_date(2013, 11, 7)
-        #
-        ## add user to zumbalatis
-        #daily_sched_man = operations.DailyScheduleManager("peer", "peer")
-        #daily_sched_man.add_user_to_course("Roy Klinger", 2014, 2, 3, hour, "ZumbaLatis")
-        #daily_sched_man.add_user_to_course("Moshico Movshi", 2014, 2, 3, hour, "ZumbaLatis")
-        #
-        #daily = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get().schedule_table[str(3)]
-        #for course in daily.courses_list:
-        #    if course.name == "ZumbaLatis":
-        #        self.response.write("before deletion: <br/>")
-        #        for user in course.users_list:
-        #            self.response.write("his name is: " + user.name + "<br/>")
-        #
-        #daily_sched_man.delete_user_from_course("Moshico Movshi", 2014, 2, 3, hour, "ZumbaLatis")
-        #
-        #daily1 = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get().schedule_table[str(3)]
-        #for course in daily1.courses_list:
-        #    if course.name == "ZumbaLatis":
-        #        self.response.write("after deletion: <br/>")
-        #        for user in course.users_list:
-        #            self.response.write("his name is: " + user.name + "<br/>")
-        #
-        #peer_gym_after = entities.Gym.get_key("peer", "peer").get()
-        #course_templates = peer_gym_after.courses
-        #schedule = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get()
-        #self.response.write(str(course_templates) + "<br/>")
-        #self.response.write(str(schedule.schedule_table.keys()) + "<br/>")
-        #self.response.write(str(schedule.schedule_table['3'].courses_list) + "<br/>")
-        #self.response.write(str(day_number) + "<br/>")
-        #
-        ## creating real courses
-        #zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 60, 20, "yaron","Katom", "#FF99FF", [],[])
-        #yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 90, 90, "yaron", "blue", "#3399FF",[], [])
-        #
-        #
-        ## creating schedule
-        #schedule_peer = entities.MonthSchedule()
-        #schedule_peer.month = 11
-        #schedule_peer.year = 2013
-        #schedule_peer.set_key("peer", "peer")
-        #first_day = objects.DailySchedule(2013, 11, 1, 3, [zumba_yaron, yoga_bar])
-        #second_day = objects.DailySchedule(2013, 11, 2, 5, [zumba_yaron, yoga_bar])
-        #schedule_peer.schedule_table = {int(first_day.day_in_month): first_day, int(second_day.day_in_month): second_day}
-        #
-        #schedule_sav = entities.MonthSchedule()
-        #schedule_sav.month = 7
-        #schedule_sav.year = 2011
-        #schedule_sav.set_key("Go Active", "savyonim")
-        #
-        #schedule_sav.put()
-        #schedule_peer.put()
-        #
-        ##create users
-        #david = objects.User(12342156, 3, 144221, "david")
-        #matan = objects.User(12323126, 2, 1321, "matan")
-        #omri = objects.User(123756456, 1, 1321, "omri")
-        #roy = objects.User(123432356, 4, 1321, "roy")
-        #
-        #users = entities.Users()
-        #users.set_key("peer", "peer")
-        #users.users_table = users.create_users_table(david, matan, omri, roy)
-        #users.put()
-        #
-        #users_manager = operations.DailyScheduleManager("peer", "peer")
-        #start_date = datetime(day=1, month=11, year=2013)
-        #end_date = datetime(day=2, month=11, year=2013)
-        #
-        #result = entities.MonthSchedule.get_key("11","2013","peer","peer").get()
-        #if type(result.schedule_table[str(first_day.day_in_month)]) == objects.DailySchedule:
-        #    self.response.write("I'm Daily Sche........!!" + "<br/>")
-        #self.response.write(str(result.schedule_table[str(first_day.day_in_month)].day_in_month) + "<br/>")
-        #self.response.write(str(users_manager.get_daily_schedule_list(start_date, end_date)[0].courses_list[0].studio))
+    #
+    #admin = AdminManager("peer", "peer")
+    #admin.add_course_template("yoga", "Zubin Meta")
+    #admin.create_month_schedule(2014, 2)
+    ##admin.edit_course_template("yoga","yoga11","Kaki batachton!")
+    #admin.create_course_for_month("ZumbaLatis", "Latis the Zumbot", hour, 120, 10,
+    #                              "Moished", "Park","blue", [], [], 2014, 2, 3)
+    #day_number = admin.get_day_by_date(2013, 11, 7)
+    #
+    ## add user to zumbalatis
+    #daily_sched_man = operations.DailyScheduleManager("peer", "peer")
+    #daily_sched_man.add_user_to_course("Roy Klinger", 2014, 2, 3, hour, "ZumbaLatis")
+    #daily_sched_man.add_user_to_course("Moshico Movshi", 2014, 2, 3, hour, "ZumbaLatis")
+    #
+    #daily = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get().schedule_table[str(3)]
+    #for course in daily.courses_list:
+    #    if course.name == "ZumbaLatis":
+    #        self.response.write("before deletion: <br/>")
+    #        for user in course.users_list:
+    #            self.response.write("his name is: " + user.name + "<br/>")
+    #
+    #daily_sched_man.delete_user_from_course("Moshico Movshi", 2014, 2, 3, hour, "ZumbaLatis")
+    #
+    #daily1 = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get().schedule_table[str(3)]
+    #for course in daily1.courses_list:
+    #    if course.name == "ZumbaLatis":
+    #        self.response.write("after deletion: <br/>")
+    #        for user in course.users_list:
+    #            self.response.write("his name is: " + user.name + "<br/>")
+    #
+    #peer_gym_after = entities.Gym.get_key("peer", "peer").get()
+    #course_templates = peer_gym_after.courses
+    #schedule = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get()
+    #self.response.write(str(course_templates) + "<br/>")
+    #self.response.write(str(schedule.schedule_table.keys()) + "<br/>")
+    #self.response.write(str(schedule.schedule_table['3'].courses_list) + "<br/>")
+    #self.response.write(str(day_number) + "<br/>")
+    #
+    ## creating real courses
+    #zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 60, 20, "yaron","Katom", "#FF99FF", [],[])
+    #yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 90, 90, "yaron", "blue", "#3399FF",[], [])
+    #
+    #
+    ## creating schedule
+    #schedule_peer = entities.MonthSchedule()
+    #schedule_peer.month = 11
+    #schedule_peer.year = 2013
+    #schedule_peer.set_key("peer", "peer")
+    #first_day = objects.DailySchedule(2013, 11, 1, 3, [zumba_yaron, yoga_bar])
+    #second_day = objects.DailySchedule(2013, 11, 2, 5, [zumba_yaron, yoga_bar])
+    #schedule_peer.schedule_table = {int(first_day.day_in_month): first_day, int(second_day.day_in_month): second_day}
+    #
+    #schedule_sav = entities.MonthSchedule()
+    #schedule_sav.month = 7
+    #schedule_sav.year = 2011
+    #schedule_sav.set_key("Go Active", "savyonim")
+    #
+    #schedule_sav.put()
+    #schedule_peer.put()
+    #
+    ##create users
+    #david = objects.User(12342156, 3, 144221, "david")
+    #matan = objects.User(12323126, 2, 1321, "matan")
+    #omri = objects.User(123756456, 1, 1321, "omri")
+    #roy = objects.User(123432356, 4, 1321, "roy")
+    #
+    #users = entities.Users()
+    #users.set_key("peer", "peer")
+    #users.users_table = users.create_users_table(david, matan, omri, roy)
+    #users.put()
+    #
+    #users_manager = operations.DailyScheduleManager("peer", "peer")
+    #start_date = datetime(day=1, month=11, year=2013)
+    #end_date = datetime(day=2, month=11, year=2013)
+    #
+    #result = entities.MonthSchedule.get_key("11","2013","peer","peer").get()
+    #if type(result.schedule_table[str(first_day.day_in_month)]) == objects.DailySchedule:
+    #    self.response.write("I'm Daily Sche........!!" + "<br/>")
+    #self.response.write(str(result.schedule_table[str(first_day.day_in_month)].day_in_month) + "<br/>")
+    #self.response.write(str(users_manager.get_daily_schedule_list(start_date, end_date)[0].courses_list[0].studio))
 
 
 class ChangeWeek(BaseRequestHandler):
     def post(self):
         users_manager = DailyScheduleManager("peer", "peer")
-        gym_manager = GymManager("peer","peer")
-        admin_manager = AdminManager("peer","peer")
+        gym_manager = GymManager("peer", "peer")
+        admin_manager = AdminManager("peer", "peer")
         client_date = float(cgi.escape(self.request.get('new_date')))
-        new_date = datetime.fromtimestamp(client_date/1e3)
+        new_date = datetime.fromtimestamp(client_date / 1e3)
         print new_date
         sched = admin_manager.get_weekly_daily_schedule_list_by_date(new_date)
-
 
         self.response.write(jsonpickle.encode(sched))
 
@@ -1012,26 +1040,27 @@ class AddUser(BaseRequestHandler):
         admin_man = AdminManager("peer", "peer")
         admin_man.add_user_to_gym('555', "Roy", "Klinger", "fadkj@fdas.fds", "05421365648")
         admin_man.add_user_to_gym('123', "Moahe", "Babi", "ffdskj@fdas.fds", "0546855648")
-
-
+        admin_man.add_user_to_gym('555', "Roy", "Klinger", "fadkj@fdas.fds", "05421365648")
+        admin_man.add_user_to_gym('123', "Moahe", "Babi", "ffdskj@fdas.fds", "0546855648")
 
 
 class UserHandler(BaseRequestHandler):
     def get(self):
-
         template_values = {
-            'logged_in' : self.logged_in,
+            'logged_in': self.logged_in,
             'user': self.user
             #'mili_times': mili_times
         }
 
-        self.render('user_grid.html',template_values)
+        self.render('user_grid.html', template_values)
+
 
 class AdminHandler(BaseRequestHandler):
     def get(self):
         #template = JINJA_ENVIRONMENT.get_template('admin_grid.html')
         #self.response.write(template.render())
         self.render('admin_grid.html')
+
 
 class CreateMonthSched(BaseRequestHandler):
     def post(self):
@@ -1040,7 +1069,7 @@ class CreateMonthSched(BaseRequestHandler):
         year = date_arr[0]
         month = date_arr[1]
         #self.response.write(date_arr)
-        admin_man = AdminManager("peer","peer")
+        admin_man = AdminManager("peer", "peer")
         admin_man.create_month_schedule(int(year), int(month))
 
         template_values = {
@@ -1054,8 +1083,8 @@ class CreateMonthSched(BaseRequestHandler):
         #self.response.write(template.render(template_values))
         self.render('create_monthly_schedule.html', template_values)
 
-class CreateMonthYear(BaseRequestHandler):
 
+class CreateMonthYear(BaseRequestHandler):
     def get(self):
         template_values = {
 
@@ -1064,8 +1093,8 @@ class CreateMonthYear(BaseRequestHandler):
         #self.response.write(template.render(template_values))
         self.render('choose_month_year.html', template_values)
 
-class AddCourse(BaseRequestHandler):
 
+class AddCourse(BaseRequestHandler):
     def post(self):
         course_name = cgi.escape(self.request.get('course_name'))
         description = cgi.escape(self.request.get('description'))
@@ -1081,7 +1110,8 @@ class AddCourse(BaseRequestHandler):
 
         #template = JINJA_ENVIRONMENT.get_template('create_monthly_schedule.html')
         #self.response.write(template.render(template_values))
-        self.render('create_monthly_schedule.html',template_values)
+        self.render('create_monthly_schedule.html', template_values)
+
 
 class CreateCourse(BaseRequestHandler):
     def post(self):
@@ -1107,12 +1137,12 @@ class CreateCourse(BaseRequestHandler):
         description = class_template.description
         # Add course
 
-        admin_man.create_course_for_month(class_name, description, start_hour, duration,capacity,instructor
-           ,studio,"lavenderblush",[],[], year,month, day)
+        admin_man.create_course_for_month(class_name, description, start_hour, duration, capacity, instructor
+            , studio, "lavenderblush", [], [], year, month, day)
         # Get signed courses
 
-        today = date(int(year), int(month),1)
-        in_a_week = date(int(year),int(month),7)
+        today = date(int(year), int(month), 1)
+        in_a_week = date(int(year), int(month), 7)
         daily_scheduale_list = schedule_man.get_daily_schedule_list(today, in_a_week)
         singed_courses = self.get_courses_list_from_daily_schedual_list(daily_scheduale_list)
         #self.response.write("year = "+year + " month= "+ month+ " class= " + str(class_name) + " studio= "+
@@ -1122,20 +1152,21 @@ class CreateCourse(BaseRequestHandler):
             'year': year,
             'month': month,
             'courses': admin_man.get_courses_templates(),
-            'singed_courses':singed_courses
+            'singed_courses': singed_courses
         }
 
         #template = JINJA_ENVIRONMENT.get_template('create_monthly_schedule.html')
         #self.response.write(template.render(template_values))
-        self.render('create_monthly_schedule.html',template_values)
+        self.render('create_monthly_schedule.html', template_values)
+
     def get_courses_list_from_daily_schedual_list(self, daily_schedual_list):
         result = []
         for daily in daily_schedual_list:
             result.extend(daily.courses_list)
         return result
 
-class RemoveUserFromClass(BaseRequestHandler):
 
+class RemoveUserFromClass(BaseRequestHandler):
     def post(self):
         class_key = cgi.escape(self.request.get('class_key')) #works great!
         date_representation = cgi.escape(self.request.get('class_date'))
@@ -1148,16 +1179,16 @@ class RemoveUserFromClass(BaseRequestHandler):
         if not self.logged_in:
             return self.redirect('/authenticated')
 
-        user_course_manager = UserBusinessLogic(self.get_user_id(), class_key, year,month, day)
+        user_course_manager = UserBusinessLogic(self.get_user_id(), class_key, year, month, day)
         code = user_course_manager.cancel_course_registration()
         if code == user_manager.USER_REMOVED_FROM_COURSE_SUCCEEDED:
-            user_view = UserView(self.get_user_id(), class_key, year,month, day)
+            user_view = UserView(self.get_user_id(), class_key, year, month, day)
             new_num_slots_in_course = user_view.get_num_open_slots()
 
             self.response.write(new_num_slots_in_course);
 
-class RegisterToClass(BaseRequestHandler):
 
+class RegisterToClass(BaseRequestHandler):
     def post(self):
         class_key = cgi.escape(self.request.get('class_key')) #works great!
         date_representation = cgi.escape(self.request.get('class_date'))
@@ -1170,14 +1201,14 @@ class RegisterToClass(BaseRequestHandler):
         if not self.logged_in:
             return self.redirect('/authenticated')
 
-        user_course_manager = UserBusinessLogic(self.get_user_id(), class_key, year,month, day)
+        user_course_manager = UserBusinessLogic(self.get_user_id(), class_key, year, month, day)
         code = user_course_manager.register_to_course()
         if code == user_manager.USER_REGISTRATION_SUCCEEDED:
-            user_view = UserView(self.get_user_id(), class_key, year,month, day)
+            user_view = UserView(self.get_user_id(), class_key, year, month, day)
             new_num_slots_in_course = user_view.get_num_open_slots()
             template_values = {
-                'open_slots' : new_num_slots_in_course,
-                'class_key' : class_key
+                'open_slots': new_num_slots_in_course,
+                'class_key': class_key
             }
 
             self.render('user-popup-success.html', template_values)
@@ -1187,9 +1218,12 @@ class RegisterToClass(BaseRequestHandler):
             }
             self.render('user-popup-fail.html', template_values)
 
+
 class GetUsersList(BaseRequestHandler):
     def post(self):
         admin_manager = AdminManager("peer", "peer")
+        users_table = admin_manager.get_users_of_gym
+        self.response.write(users_table)
         users_table  = admin_manager.get_users_of_gym()
         self.response.write(jsonpickle.encode(users_table))
 
@@ -1253,20 +1287,27 @@ import jsonpickle
 DEFAULT_GYM_NAME = "default_gym"
 DEFAULT_MONTH_YEAR = "01-2001"
 
+
 def to_mili(day, course):
     return time.mktime(datetime(int(day.year), int(day.month), int(day.day_in_month), int(course.hour[:2]),
-                                int(course.hour[2:4])))*1000
+                                int(course.hour[2:4]))) * 1000
+
+
 def create_course_milli_from_daily_schedule_list(daily_sched_list):
     dict = {}
     for daily_sched in daily_sched_list:
         for course in daily_sched.courses_list:
             dict[str(course.id)] = daily_sched.javascript_course_start_datetime(course)
     return dict
+
+
 def parse_course(str):
-    return  str.split('_')
+    return str.split('_')
+
+
 def get_end_time(start_time_in_milli, duration_in_minutes):
-    end_date_time = datetime.fromtimestamp(start_time_in_milli/1000.0) + timedelta(0, 0, 0, 0,
-                                            int(duration_in_minutes),2)
+    end_date_time = datetime.fromtimestamp(start_time_in_milli / 1000.0) + timedelta(0, 0, 0, 0,
+                                                                                     int(duration_in_minutes), 2)
     add_zero_befor_minute = len(str(end_date_time.minute)) == 1
     add_zero_befor_hour = len(str(end_date_time.hour)) == 1
 
@@ -1375,21 +1416,20 @@ def check_sign_in(self_param):
         else:
 
 
-
             error_message(self_param, 'We couldn\'t log you in. Please check your credentials and try again.')
     except:
 
-       error_message(self_param, 'We couldn\'t log you in. Please check your credentials and try again.')
-
-def error_message(self_param, message ):
-     self_param.session['on_sign_up'] = False
-     self_param.session['connection'] = None
-     self_param.session['fb_g_o'] = None
-     self_param.session['curr_logged_in'] = False
+        error_message(self_param, 'We couldn\'t log you in. Please check your credentials and try again.')
 
 
-     self_param.display_message(message)
-     return
+def error_message(self_param, message):
+    self_param.session['on_sign_up'] = False
+    self_param.session['connection'] = None
+    self_param.session['fb_g_o'] = None
+    self_param.session['curr_logged_in'] = False
+
+    self_param.display_message(message)
+    return
 
 
 def my_logout(param_self):
