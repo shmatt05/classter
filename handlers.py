@@ -82,6 +82,7 @@ from users_logic.user_manager import DailyScheduleManager
 from admin_logic.admin_manager import AdminManager
 from python_objects.objects import GymManager
 
+
 def user_required(handler):
     """
       Decorator that checks if there's a user associated with the current session.
@@ -124,7 +125,6 @@ class BaseRequestHandler(webapp2.RequestHandler):
         if tmp_session.get('on_sign_up') == None:
             tmp_session['on_sign_up'] = False
 
-
         return tmp_session
 
     @webapp2.cached_property
@@ -155,7 +155,7 @@ class BaseRequestHandler(webapp2.RequestHandler):
             'url_for': self.uri_for,
             'logged_in': self.logged_in,
             'flashes': self.session.get_flashes(),
-            'session':self.session
+            'session': self.session
         }
 
         # Add manually supplied template values
@@ -397,10 +397,6 @@ class AuthHandler(BaseRequestHandler, SimpleAuthHandler):
 
 def already_signed_up(id):
     user = entities.UserCredentials.get_user_entity(id)
-    print user.google_id
-    print user.facebook_id
-    print user.email_id
-    print "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
     if user.google_id is not None or user.facebook_id is not None or user.email_id is not None:
         return True
     else:
@@ -448,7 +444,8 @@ class SignInSuccessfullyHandler(BaseRequestHandler):
         #            'end_time': get_end_time(long(course.milli), course.duration)
         #        }
         self.render('sign_in_successfully.html')
-##########################
+
+    ##########################
 
 class LoginHandler(BaseRequestHandler):
     def get(self):
@@ -658,7 +655,7 @@ class SignUpPopUp(BaseRequestHandler):
         day = date_representation[0]
         if not self.logged_in:
             return self.redirect('/authenticated')
-        #user_viewer = UserView(self.get_user_id(), "a93cc8fa-2267-4544-a645-fbeebce41398", 2013, 12, 19)
+            #user_viewer = UserView(self.get_user_id(), "a93cc8fa-2267-4544-a645-fbeebce41398", 2013, 12, 19)
         user_viewer = UserView(self.get_user_id(), class_key, year, month, day)
         course = user_viewer.get_course_by_id()
         code = user_viewer.get_view_code(course)
@@ -669,7 +666,6 @@ class SignUpPopUp(BaseRequestHandler):
         if code == user_manager.NO_SUCH_COURSE:
             pass #self.render('user-popup-fail.html')
         else:
-            resgistration_open = course.calculate_open_registration_date(year, month, day)
             template_values = {
                 'course': {
                     'name': course.name,
@@ -684,18 +680,12 @@ class SignUpPopUp(BaseRequestHandler):
                     'is_registration_open': registration_open,
                     'instructor': course.instructor,
                     'time_passed': time_passed
-                    'is_registration_open':registration_open,
-                    'instructor':course.instructor,
-                    'time_passed':time_passed,
-                    'registration_year': registration_open.year,
-                    'registration_month': registration_open.month,
-                    'registration_day': registration_open.day,
-                    'registration_hour': course.registration_start_time
                 }
             }
             #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
             #self.response.write(template.render(template_values))
             self.render('user-popup.html', template_values)
+
 
 class NewCoursePopup(BaseRequestHandler):
     def post(self):
@@ -745,9 +735,11 @@ class AddClassToSched(BaseRequestHandler):
                                              registratio_start_time.replace(":", ""), date[2],
                                              date[1], date[0])
 
+
 class EditCoursePopup(BaseRequestHandler):
     pass
     #todo
+
 
 class ManageCoursePopup(BaseRequestHandler):
     def post(self):
@@ -848,34 +840,21 @@ class InitialHandler(BaseRequestHandler):
 
         """create courses"""
 
-        admin_manager.create_course_for_month("Zumba", "1400", 120, 10,
+        admin_manager.create_course_for_month("זומבה", "1400", 120, 10,
                                               "Moished", "Park", "blue", {}, {}, "20", "1000", 2013, 12,
                                               1) # December 1st 14:00 1385899200000
 
-        admin_manager.create_course_for_month("Zumba", "0900", 40, 10,
+        admin_manager.create_course_for_month("זומבה", "0900", 40, 10,
                                               "Moished", "Park", "green", {}, {}, "1", "1000", 2013, 12,
                                               2) #December 2nd 09:00 1385967600000
-        admin_manager.create_course_for_month("זומבה", "1400", 120, 10,
-                      "Moished", "Park", "blue", {}, {}, "20", "1000", 2013, 12, 1)  # December 1st 14:00 1385899200000
 
-        admin_manager.create_course_for_month("Yoga", "0700", 90, 10,
+        admin_manager.create_course_for_month("יוגה אורבנית", "0700", 90, 10,
                                               "Moished", "Park", "blue", {}, {}, "1", "1000", 2013, 12,
                                               3) #December 3rd 07:00 1386046800000
-        admin_manager.create_course_for_month("זומבה", "0900", 40, 10,
-                      "Moished", "Park", "green", {}, {}, "1", "1000", 2013, 12, 2)  # December 2nd 09:00 1385967600000
 
-        admin_manager.create_course_for_month("Yoga", "1800", 90, 10,
+        admin_manager.create_course_for_month("יוגה אורבנית", "1800", 90, 10,
                                               "Moished", "Park", "blue", {}, {}, "1", "1000", 2013, 12,
                                               4) #December 3rd 18:00 1386086400000
-        admin_manager.create_course_for_month("יוגה אורבנית","0700", 90, 10,
-                      "Moished", "Park","blue", {}, {},"1" ,"1000", 2013, 12, 3) #December 3rd 07:00 1386046800000
-
-        admin_manager.create_course_for_month("יוגה אורבנית","1800", 90, 10,
-                      "Moished", "Park","blue", {}, {},"1" ,"1000", 2013, 12, 4) #December 3rd 18:00 1386086400000
-
-        admin_manager.add_user_to_gym("1", "David", "Franco", "Fdas", "43242")
-        admin_manager.add_user_to_gym("2", "Roy", "Klinger", "Fdas", "4324fda3242")
-        admin_manager.add_user_to_gym("3", "Moshe", "Rumba", "Fdas", "4324fda")
 
         user_credential = entities.UserCredentials()
         user_credential.id = '123'
@@ -891,6 +870,7 @@ class InitialHandler(BaseRequestHandler):
         user_credential.set_key()
         user_credential.put()
         #self.response.write(str(daily_list[0].courses_list[0].name))
+
 
 class MainHandler(BaseRequestHandler):
     def get(self):
@@ -1038,8 +1018,6 @@ class AddUser(BaseRequestHandler):
         david.put()
 
         admin_man = AdminManager("peer", "peer")
-        admin_man.add_user_to_gym('555', "Roy", "Klinger", "fadkj@fdas.fds", "05421365648")
-        admin_man.add_user_to_gym('123', "Moahe", "Babi", "ffdskj@fdas.fds", "0546855648")
         admin_man.add_user_to_gym('555', "Roy", "Klinger", "fadkj@fdas.fds", "05421365648")
         admin_man.add_user_to_gym('123', "Moahe", "Babi", "ffdskj@fdas.fds", "0546855648")
 
@@ -1224,8 +1202,6 @@ class GetUsersList(BaseRequestHandler):
         admin_manager = AdminManager("peer", "peer")
         users_table = admin_manager.get_users_of_gym
         self.response.write(users_table)
-        users_table  = admin_manager.get_users_of_gym()
-        self.response.write(jsonpickle.encode(users_table))
 
 class AddUserToCourse(BaseRequestHandler):
     def post(self):
@@ -1378,6 +1354,7 @@ def sign_up_success(param_self):
     #    'session': param_self.auth.get_user_by_session()})
 
     param_self.redirect('/user')
+
 
 def user_has_session(param_self):
     try:
