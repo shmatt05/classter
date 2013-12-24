@@ -332,7 +332,6 @@ function editCourseNoPopup(oldStartTime,startTime, endTime, courseID) {
     postData['new_hour'] = returnTimeStr(startTime);
     postData['new_minutes'] = (endTime - startTime) / 60000;
     postData['course_id']=courseID;
-    alert(oldStartTime + ' ' + startTime);
     $.ajax(
         {
             url : '/editcoursetime',
