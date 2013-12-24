@@ -87,6 +87,11 @@ img {
 
 opacity: 0.9;
 }
+
+
+.classBox {
+    /*background-color: blue;*/
+}
 @media (max-width: 900px) {
 
     .wc-toolbar {
