@@ -93,7 +93,10 @@ $(document).ready(function() {
 
     //$('<div id="message" class="ui-corner-all"></div>').prependTo($('body'));
 
-
+// $('.internaldiv').hoverpulse({
+//        size: 10,  // number of pixels to pulse element (in each direction)
+//        speed: 100 // speed of the animation
+//    });
 
 });
 
