@@ -1499,6 +1499,18 @@ class DeleteCourse(BaseRequestHandler):
 
         admin_manager.delete_course_instance(class_key, year, month, day)
 
+class EditCourseButtonClick(BaseRequestHandler):
+    def post(self):
+        admin_manager = AdminManager("peer", "peer")
+        class_key = cgi.escape(self.request.get('class_id')) #works great!
+        date_representation = cgi.escape(self.request.get('class_date'))
+        date_representation = date_representation.split('/')
+        year = date_representation[2]
+        month = date_representation[1]
+        day = date_representation[0]
+
+        course = admin_manager.get_course(class_key, year, month, day)
+
 
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table
