@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="lib/css/bootstrap-theme.css">
     <link rel="stylesheet" type="text/css" href="lib/css/responsive-tables.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/chosen.css">
     <link rel="stylesheet" type="text/css" href="lib/css/admin-grid.css">
 
     <script type="text/javascript" src="lib/js/jquery.min.js"></script>
@@ -21,6 +22,7 @@
     <script type='text/javascript' src='lib/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='lib/js/responsive-tables.js'></script>
     <script type='text/javascript' src='lib/js/jquery-scrollTo.js'></script>
+    <script type='text/javascript' src='lib/js/chosen.jquery.js'></script>
     <script type='text/javascript' src='lib/js/admin-grid-jq.js'></script>
 </head>
 <body>
@@ -31,7 +33,7 @@
 <div class="tab-content">
     <div id="caldiv" class="tab-pane active">
         <div id="calsideview">
-             <img src="img/logo.png" height="250" width="250"/><br><br>
+            <img src="img/logo.png" height="250" width="250"/><br><br>
             <div class="week-picker" id="weekpicker"> </div>
 
 
@@ -40,27 +42,39 @@
         <div id="calendar"></div></div>
     <div id="manage" class="tab-pane">
         <div class="jumbotron text-center" style="background-color:#B8DBFF;margin-bottom:0;"><h2>ניהול חדר כושר</h2> </div>
-
         <div id="content">
-            <nav id="stickynav">
+            <nav id="stickynav" dir="rtl">
                 <ul id="nav" class="clearfix">
+                    <li><a href="#mngclasses">שיעורים</a></li>
                     <li><a href="#mnginstructors">מדריכים</a></li>
                     <li><a href="#mngstudios">חדרי סטודיו</a></li>
                     <li><a href="#mngusers">משתמשים</a></li>
                     <li><a href="#body">ראשי</a></li>
                 </ul>
             </nav>
-            <div id="mnginstructors" style="min-height:500px; background-color:#DBDBFF;">
+            <div id="mnginstructors" class="text-center" style="min-height:500px; background-color:#DBDBFF;padding-top:20px;">
+                <h1> מדריכים</h1><br><br>
+                <div class="container">
+                    <select id="classname" class="chosen-select chosen-rtl" data-placeholder="שם מדריך" style="float:right;">
+                        <option value=""></option>
+                        {% for x in y %}
+                        <option value="{{x}}">{{x}}</option>
+                        {% endfor %}
+                    </select><br>
 
+                </div>
             </div>
-            <div id="mngstudios" style="min-height:500px; background-color:#E6FFE6;">
-
+            <div id="mngstudios" class="text-center" style="min-height:500px; background-color:#E6FFE6;padding-top:20px;">
+                <h1> חדרי סטודיו</h1>
             </div>
-            <div id="mngusers" style="min-height:500px; background-color: #FFE6E6;">
-
+            <div id="mngclasses" class="text-center" style="min-height:500px; background-color:#FFEBD8;padding-top:20px;">
+                <h1> שיעורים </h1>
+            </div>
+            <div id="mngusers" class="text-center" style="min-height:500px; background-color: #FFE6E6;padding-top:20px;">
+                <h1> משתמשים</h1>
             </div>
         </div>
     </div>
-    </div>
+</div>
 </body>
 </html>

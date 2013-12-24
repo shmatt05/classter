@@ -55,8 +55,8 @@
         <fieldset>
         <legend align="right"> מועד פתיחת הרשמה </legend>
             <select id="opendate" class="chosen-select chosen-rtl" data-placeholder="יום פתיחת ההרשמה">
-                <option value=""></option>
-                <option value="100">ללא הגבלה</option>
+
+                <option value="100" selected="selected">ללא הגבלה</option>
                 <option value="0">באותו היום</option>
                 {% for n in range(14) %}
                 <option value="{{ loop.index }}">{{loop.index}} ימים לפני</option>

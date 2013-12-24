@@ -94,11 +94,11 @@ img {
    div.wc-time-slots {
        /*width:13.5%;*/
    }
-   td.day-1 {
+   td.day-2 {
        display: block;
        width:100%;
    }
-   th.wc-day-1 {
+   th.wc-day-2 {
        display:block;
        width:100%
    }

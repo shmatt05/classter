@@ -60,7 +60,6 @@
 
 #stickynav {
   display: block;
-  height: 35px;
   width: 100%;
   z-index: 9999;
 }
@@ -91,6 +90,3 @@
     border: 1px solid #d3d3d3;
 }
 
-li {
-    width:50%;
-}
