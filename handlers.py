@@ -1684,3 +1684,21 @@ def my_logout(param_self):
     #param_self.redirect("http://www.facebook.com/logout.php?api_key={0}&;session_key={1}")
     #param_self.redirect('http://m.facebook.com/logout.php?confirm=1&next=http://localhost:8080.com;')
 
+import webapp2
+from google.appengine.api import mail
+
+
+class ConfirmUserRegistrationToClass(webapp2.RequestHandler):
+    def get(self):
+        user_address = "davidfra@mail.tau.ac.il"
+
+        if not mail.is_email_valid(user_address):
+            pass
+        else:
+            #confirmation_url = createNewUserConfirmation(self.request)
+            sender_address = "classter.app@gmail.com"
+            subject = "Confirm your registration"
+            body = """Thank you for using 'Classter' frequently! You're such a knob."""
+            mail.send_mail(sender_address, user_address, subject, body)
+
+
