@@ -1258,7 +1258,7 @@ class ChangeWeek(BaseRequestHandler):
         gym_manager = GymManager("peer","peer")
         admin_manager = AdminManager("peer","peer")
         client_date = float(cgi.escape(self.request.get('new_date')))
-        new_date = datetime.fromtimestamp(client_date/1e3)
+        new_date = datetime.fromtimestamp(client_date/1e3) + timedelta(hours=2)
         print new_date
         sched = admin_manager.get_weekly_daily_schedule_list_by_date(new_date)
 
