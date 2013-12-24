@@ -143,8 +143,8 @@ $(document).ready(function () {
             newCoursePopup(calEvent.start, calEvent.end);
 
         },
-        eventDrop: function(newCalEvent, oldCalEvent, $event) { // Moved Existing Event
-            editCourseNoPopup(oldCalEvent.start,newCalEvent.start, newCalEvent.end, calEvent.id);
+        eventDrop: function(newCalEvent, calEvent, $event) { // Moved Existing Event
+            editCourseNoPopup(calEvent.start,newCalEvent.start, newCalEvent.end, calEvent.id);
         },
         eventResize: function(calEvent, $event) { // Resized Existing Event
             editCourseNoPopup(calEvent.start,calEvent.start,calEvent.end, calEvent.id);
@@ -332,7 +332,7 @@ function editCourseNoPopup(oldStartTime,startTime, endTime, courseID) {
     postData['new_hour'] = returnTimeStr(startTime);
     postData['new_minutes'] = (endTime - startTime) / 60000;
     postData['course_id']=courseID;
-
+    alert(oldStartTime + ' ' + startTime);
     $.ajax(
         {
             url : '/editcoursetime',
