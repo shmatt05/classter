@@ -1099,6 +1099,24 @@ class InitialHandler(BaseRequestHandler):
         user_credential.put()
         #self.response.write(str(daily_list[0].courses_list[0].name))
 
+
+class AddUser(BaseRequestHandler):
+    def get(self):
+        david = entities.UserCredentials(id="3213908", gym_network="peer", gym_branch="peer", google_id="3241",
+                                         facebook_id="4124321")
+        david.set_key()
+        david.put()
+
+        admin_man = AdminManager("peer", "peer")
+        admin_man.add_user_to_gym('555', "Roy", "Klinger", "fadkj@fdas.fds", "05421365648")
+        admin_man.add_user_to_gym('123', "Moahe", "Babi", "ffdskj@fdas.fds", "0546855648")
+        admin_man.add_user_to_gym("1", "David", "Franco", "Fdas", "43242")
+        admin_man.add_user_to_gym("2", "Roy", "Klinger", "Fdas", "4324fda3242")
+        admin_man.add_user_to_gym("3", "Moshe", "Rumba", "Fdas", "4324fda")
+        admin_man.add_user_to_gym("4252", "oimdas", "Rmdkam", "Fdas", "4324fda")
+
+        self.response.write("Hey")
+
 class MainHandler(BaseRequestHandler):
     def get(self):
 
@@ -1239,19 +1257,6 @@ class ChangeWeek(BaseRequestHandler):
 
         self.response.write(jsonpickle.encode(sched))
 
-class AddUser(BaseRequestHandler):
-    def get(self):
-        david = entities.UserCredentials(id="3213908", gym_network="peer", gym_branch="peer", google_id="3241",
-                                         facebook_id="4124321")
-        david.set_key()
-        david.put()
-
-        admin_man = AdminManager("peer", "peer")
-        admin_man.add_user_to_gym('555', "Roy", "Klinger", "fadkj@fdas.fds", "05421365648")
-        admin_man.add_user_to_gym('123', "Moahe", "Babi", "ffdskj@fdas.fds", "0546855648")
-        admin_man.add_user_to_gym("1", "David", "Franco", "Fdas", "43242")
-        admin_man.add_user_to_gym("2", "Roy", "Klinger", "Fdas", "4324fda3242")
-        admin_man.add_user_to_gym("3", "Moshe", "Rumba", "Fdas", "4324fda")
 
 
 class UserHandler(BaseRequestHandler):
