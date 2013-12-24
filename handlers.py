@@ -319,6 +319,7 @@ class AuthHandler(BaseRequestHandler, SimpleAuthHandler):
         logging.info('Looking for a user with id %s', auth_id)
         self.session['connection'] = provider
         self.session['fb_g_o'] = data['id']
+        self.session['user_email'] = data['email']
         ############################################################
 
         user = self.auth.store.user_model.get_by_auth_id(auth_id)
@@ -398,19 +399,13 @@ class AuthHandler(BaseRequestHandler, SimpleAuthHandler):
 
         return user_attrs
 
-def already_signup(user_id):
-    user_from_db = entities.UserCredentials.get_user_entity(user_id)
-    if(user_from_db.google_id is not None or user_from_db.facebook_id is not None or user_from_db.self_registration_id is not None):
-        return True
-    else:
-        return False
 
 class CheckIdHandler(BaseRequestHandler):
     def post(self):
 
         id = self.request.get('id')
 
-        if not valid_id(id) or already_signup(id):
+        if not valid_id(id) or self.already_signup(id):
             error_message(self, 'We couldn\'t sign you up. Please try again.')
         else:
             self.session['on_sign_up'] = True
@@ -424,6 +419,13 @@ class CheckIdHandler(BaseRequestHandler):
             #        return
             #
             #    self.render('sign_up.html')
+
+    def already_signup(self,user_id):
+        user_from_db = entities.UserCredentials.get_user_entity(user_id)
+        if(user_from_db.google_id is not None or user_from_db.facebook_id is not None or user_from_db.self_registration_id is not None):
+            return True
+        else:
+            return False
 
 
 class IdPageHandler(BaseRequestHandler):
@@ -1616,6 +1618,11 @@ def sign_up_success(param_self):
     fb_g_o = param_self.session.get('fb_g_o')
     user_from_db = entities.UserCredentials.get_user_entity(user_id)
     connection = param_self.session.get('connection')
+    user_email = param_self.session.get('user_email')
+    user_entity = entities.UserCredentials.get_user_entity(user_id)
+    user_entity.email = user_email
+    user_entity.put()
+
     #connect id with fb\google\self id
 
     if connection == 'facebook':
@@ -1644,6 +1651,7 @@ def sign_up_success(param_self):
     user_from_db.put()
     param_self.session['on_sign_up'] = False
     param_self.session['curr_logged_in'] = True
+    param_self.session['user_email'] = None
 
     #param_self.render('signup_success.html', {
     #    'user': param_self.current_user,
@@ -1706,7 +1714,11 @@ def error_message(self_param, message):
 
 
 def my_logout(param_self):
+
+
+
     param_self.session['curr_user_id'] = None
+    #param_self.session['user_id'] = None
     param_self.session['fb_g_o'] = None
     param_self.session['curr_logged_in'] = False
     param_self.session['connection'] = None
