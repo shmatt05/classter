@@ -68,7 +68,7 @@ class UserCredentials(ndb.Model):
     gym_branch = ndb.StringProperty(required=True)
     google_id = ndb.StringProperty()
     facebook_id = ndb.StringProperty()
-    email_id = ndb.StringProperty()
+    self_registration_id = ndb.StringProperty()
 
     def set_key(self):
         self.key = UserCredentials.__generate_key(self.id)
