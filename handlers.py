@@ -577,6 +577,7 @@ class SignupHandler(BaseRequestHandler):
         self.session['user_email'] = email #####################################################3
         self.session['connection'] = "self"
         self.session['curr_logged_in'] = True
+        self.session['fb_g_o'] = name
 
         verification_url = self.uri_for('verification', type='v', user_id=user_id, email=email,
                                         signup_token=token, _full=True)
@@ -1709,6 +1710,7 @@ def my_logout(param_self):
     param_self.session['fb_g_o'] = None
     param_self.session['curr_logged_in'] = False
     param_self.session['connection'] = None
+    param_self.session['user_email'] = None
     #param_self.session_store.set_secure_cookie('_simpleauth_sess', None)
     #param_self.session.cookie_name.maxAge = 0
     #param_self.response.unset_cookie('auth')
