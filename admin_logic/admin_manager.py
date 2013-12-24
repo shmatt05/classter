@@ -72,6 +72,12 @@ class AdminManager:
     def delete_user_to_from_waiting_list_table(self, course_id, user_id, year, month, day_in_month):
         pass
 
+    def delete_course_instance(self, class_key, year, month, day):
+        month_sched = self.__get_month_schedule(month, year)
+        daily_sched = month_sched.daily_schedule_table[str(day)]
+        daily_sched.delete_course(class_key)
+        month_sched.pu()
+
     def delete_user_from_gym(self, user_id):
         if user_id in self.gym.users_table:
             del self.gym.users_table[user_id]
