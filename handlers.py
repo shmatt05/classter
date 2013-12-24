@@ -803,7 +803,11 @@ class EditCourseTime(BaseRequestHandler):
         duration = cgi.escape(self.request.get('new_minutes'))
         course_id = cgi.escape(self.request.get('course_id'))
         admin_manager = AdminManager("peer", "peer") #todo: gym not hard coded
-        admin_manager.edit_course_time(course_id, new_date[2], new_date[1], new_date[0], start_hour, duration)
+        if is_same_day:
+            admin_manager.edit_course_time(course_id, new_date[2], new_date[1], new_date[0], start_hour, duration)
+        else:
+            admin_manager.edit_course_time_and_day(course_id, old_date[2], old_date[1], old_date[0],
+                                                    new_date[2], new_date[1], new_date[0], start_hour, duration)
 
 
 class InitialHandler(BaseRequestHandler):

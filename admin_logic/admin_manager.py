@@ -76,7 +76,7 @@ class AdminManager:
         month_sched = self.__get_month_schedule(month, year)
         daily_sched = month_sched.daily_schedule_table[str(day)]
         daily_sched.delete_course(class_key)
-        month_sched.pu()
+        month_sched.put()
 
     def delete_user_from_gym(self, user_id):
         if user_id in self.gym.users_table:
@@ -159,7 +159,8 @@ class AdminManager:
         #call the edit course function
         month_schedule.put()
 
-    def edit_course_time_and_day(self, course_id, old_year, old_month, old_day, new_year, new_month, new_day, duration):
+    def edit_course_time_and_day(self, course_id, old_year, old_month, old_day, new_year, new_month, new_day,
+                                 start_hour, duration):
         old_month_schedule = self.__get_month_schedule(int(old_month), int(old_year))
         new_month_schedule = old_month_schedule
         if old_month != new_month or old_year != new_year:
@@ -170,6 +171,9 @@ class AdminManager:
         daily_schedule = old_month_schedule_manager.get_daily_schedule(old_day)
         course = daily_schedule.get_course_by_id(course_id)
         daily_schedule.delete_course(course_id)
+        course.hour = start_hour
+        course.milli = course.to_mili(new_year, new_month, new_day)
+        course.duration = duration
         daily_schedule = new_month_schedule_manager.get_daily_schedule(new_day)
         daily_schedule.add_course(course)
         #get the course from that daily schedule
