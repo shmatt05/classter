@@ -271,6 +271,9 @@ class DailySchedule(object):
     def delete_course(self, course_id):
         self.courses_list = [course for course in self.courses_list if str(course.id) != str(course_id)]
 
+    def add_course(self, course):
+        self.courses_list.append(course)
+
 class User(object):
     def __init__(self, id, first_name, last_name, email, phone):
         self.id = id

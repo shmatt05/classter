@@ -159,6 +159,25 @@ class AdminManager:
         #call the edit course function
         month_schedule.put()
 
+    def edit_course_time_and_day(self, course_id, old_year, old_month, old_day, new_year, new_month, new_day, duration):
+        old_month_schedule = self.__get_month_schedule(int(old_month), int(old_year))
+        new_month_schedule = old_month_schedule
+        if old_month != new_month or old_year != new_year:
+            new_month_schedule = self.__get_month_schedule(int(new_month), int(new_year))
+        old_month_schedule_manager = MonthScheduleManager(old_month_schedule)
+        new_month_schedule_manager = MonthScheduleManager(new_month_schedule)
+
+        daily_schedule = old_month_schedule_manager.get_daily_schedule(old_day)
+        course = daily_schedule.get_course_by_id(course_id)
+        daily_schedule.delete_course(course_id)
+        daily_schedule = new_month_schedule_manager.get_daily_schedule(new_day)
+        daily_schedule.add_course(course)
+        #get the course from that daily schedule
+        old_month_schedule.put()
+        if old_month_schedule != new_month_schedule:
+            new_month_schedule.put()
+
+
     """ creates a new MonthSchedule entity for the given month and year with the current gym as its parent
         doesn't change the DB if the MonthSchedule already exists
     """
