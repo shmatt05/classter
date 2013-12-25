@@ -709,6 +709,24 @@
               calendarNavHtml += '<h2 class=\"wc-title\"></h1>';
             calendarNavHtml += '</div>';
 
+            <!--roy's test-->
+            calendarNavHtml += '<div>';
+            calendarNavHtml += '<table id="fds" class="wc-time-slots mytable" style="z-index:100;" dir="rtl">'
+
+          calendarNavHtml += '<thead class=\"ui-widget-content wc-header\">';
+          calendarNavHtml += '<tr><th class=\"wc-time-column-header\"></th>';
+          for (var i = 1; i <= options.daysToShow; i++) {
+              calendarNavHtml += '<th class=\"wc-day-column-header wc-day-' + i + '\"' + '></th>';
+          }
+
+          //$calendarBody += '<th class=\"wc-scrollbar-shim\"></th>'; //</tbody></table></div>';
+          calendarNavHtml += '</tr></thead>';
+
+           calendarNavHtml += '</div>';
+
+
+            <!--roy's test-->
+
             $(calendarNavHtml).appendTo($calendarContainer);
 
             $calendarContainer.find('.wc-nav .wc-today')
