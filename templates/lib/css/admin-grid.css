@@ -21,7 +21,9 @@
 .highlight {
     border: 1px solid red;
 }
-
+#fds {
+    width:80%;
+}
 .white {
     background: white !important;
 }
