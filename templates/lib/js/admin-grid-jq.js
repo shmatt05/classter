@@ -89,7 +89,7 @@ $(document).ready(function () {
             callback(classesTableArr);
             for (var i=0; i<classesTableArr.length; i++) {
                 $('#'+classesTableArr[i].id + ' .lblInstructor').text(classesTableArr[i].instructor);
-                $('#'+classesTableArr[i].id + ' .lblStudio').text(classesTableArr[i].studio);
+
                 $('#'+classesTableArr[i].id + ' .lblOpenSlots').text(classesTableArr[i].openSlots);
             }
         },
@@ -138,6 +138,7 @@ $(document).ready(function () {
                     border:'1px solid #888'
                 });
             }
+
         },
         eventNew: function(calEvent, $event) { // Added New Event
             newCoursePopup(calEvent.start, calEvent.end);
@@ -145,6 +146,9 @@ $(document).ready(function () {
         },
         eventDrop: function(newCalEvent, calEvent, $event) { // Moved Existing Event
             editCourseNoPopup(calEvent.start,newCalEvent.start, newCalEvent.end, calEvent.id);
+
+
+
         },
         eventResize: function(calEvent, $event) { // Resized Existing Event
             editCourseNoPopup(calEvent.start,calEvent.start,calEvent.end, calEvent.id);
@@ -153,7 +157,7 @@ $(document).ready(function () {
             manageCoursePopup(calEvent.id, calEvent.start);
         },
         eventMouseover: function(calEvent, $event) {
-            //TODO: Slightly Zoom / Add Tooltip?
+
         },
         eventMouseout: function(calEvent, $event) {
 
@@ -206,10 +210,11 @@ function changeWeek(newDate) {
                             oneClass.start=newClass.milli;
                             oneClass.end = oneClass.start + +(parseInt(newClass.duration)*60000);
                             oneClass.title = newClass.name;
-                            classesTableArr.push(oneClass);
+
                             oneClass.openSlots = newClass.max_capacity - Object.keys(newClass.users_table).length;
                             oneClass.instructor = newClass.instructor;
                             oneClass.studio = newClass.studio;
+                            classesTableArr.push(oneClass);
                             //$('#calendar').weekCalendar('clear');
                             //$('#calendar').weekCalendar('refresh');
                         }

@@ -1534,9 +1534,9 @@
 
           eventHtml += '<div class=\"wc-time ui-corner-top\"></div>'; // TIME ON TOP OF THE BOX FIX!!!!
           eventHtml += '<div id=internal' + calEvent.id+' class="internaldiv">';
-          eventHtml += '<div class=\"wc-title\"></div><br>';
+          eventHtml += '<div class=\"wc-title\"></div>';
           eventHtml += '<label class=\"lblInstructor\"></label><br>'
-          eventHtml += '<label class=\"lblStudio\"></label><br>'
+
           eventHtml += '<label class=\"lblOpenSlots\"></label>'
           eventHtml += '</div></div>'; // END OF CLASS BOX IS HERE
 
