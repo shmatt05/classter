@@ -351,8 +351,6 @@ function editCourseNoPopup(oldStartTime,startTime, endTime, courseID) {
                 $('#'+courseID + ' .lblInstructor').text(result['instructor']);
 
                 $('#'+courseID + ' .lblOpenSlots').text(result['open_slots']);
-                alert(result['open_slots']);
-                console.log(result);
             },
             error: function(jqXHR, textStatus, errorThrown)
             {
