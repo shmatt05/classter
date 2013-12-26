@@ -58,7 +58,6 @@ from tempfile import template
 from webapp2_extras.auth import InvalidAuthIdError, InvalidPasswordError
 import secrets
 
-
 import webapp2
 from google.appengine.api import mail
 
@@ -420,9 +419,10 @@ class CheckIdHandler(BaseRequestHandler):
             #
             #    self.render('sign_up.html')
 
-    def already_signup(self,user_id):
+    def already_signup(self, user_id):
         user_from_db = entities.UserCredentials.get_user_entity(user_id)
-        if(user_from_db.google_id is not None or user_from_db.facebook_id is not None or user_from_db.self_registration_id is not None):
+        if (
+                    user_from_db.google_id is not None or user_from_db.facebook_id is not None or user_from_db.self_registration_id is not None):
             return True
         else:
             return False
@@ -449,7 +449,8 @@ class SignInSuccessfullyHandler(BaseRequestHandler):
         #        }
         self.render('sign_in_successfully.html')
 
-    ##########################
+        ##########################
+
 
 class LoginHandler(BaseRequestHandler):
     def get(self):
@@ -1095,6 +1096,8 @@ class InitialHandler(BaseRequestHandler):
         admin_manager.add_user_to_gym("1", "David", "Franco", "Fdas", "43242")
         admin_manager.add_user_to_gym("2", "Roy", "Klinger", "Fdas", "4324fda3242")
         admin_manager.add_user_to_gym("3", "Moshe", "Rumba", "Fdas", "4324fda")
+        admin_manager.add_user_to_gym("123", "Moshe", "Rumba", "Fdas", "4324fda")
+        admin_manager.add_user_to_gym("555", "Moshe", "Rumba", "Fdas", "4324fda")
 
         user_credential = entities.UserCredentials()
         user_credential.id = '1'
@@ -1175,106 +1178,106 @@ class MainHandler(BaseRequestHandler):
         #admin_manager.create_course_for_month("PilaYoga", "Yoga the Pila", "0930", 60, 10,
         #                      "Moished", "Park","blue", [], [], 2013, 11, 5)
 
-    ###############################
+        ###############################
 
-    #peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses={}, instructors={}, studios=[])
-    #peer.set_key()
-    #peer.put()
+        #peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses={}, instructors={}, studios=[])
+        #peer.set_key()
+        #peer.put()
 
-    #creating course templates
-    #zumba = objects.CourseTemplate("Zumba", "Funny course")
-    #yoga = objects.CourseTemplate("Yoga", "Stupid course")
+        #creating course templates
+        #zumba = objects.CourseTemplate("Zumba", "Funny course")
+        #yoga = objects.CourseTemplate("Yoga", "Stupid course")
 
-    # creating gyms
+        # creating gyms
 
-    #goactive = entities.Gym(name = "savyonim",gym_network="Go Active")
+        #goactive = entities.Gym(name = "savyonim",gym_network="Go Active")
 
-    #goactive.set_key()
+        #goactive.set_key()
 
-    # uploading gyms to DB
-    #goactive.put()
+        # uploading gyms to DB
+        #goactive.put()
 
 
-    #
-    #admin = AdminManager("peer", "peer")
-    #admin.add_course_template("yoga", "Zubin Meta")
-    #admin.create_month_schedule(2014, 2)
-    ##admin.edit_course_template("yoga","yoga11","Kaki batachton!")
-    #admin.create_course_for_month("ZumbaLatis", "Latis the Zumbot", hour, 120, 10,
-    #                              "Moished", "Park","blue", [], [], 2014, 2, 3)
-    #day_number = admin.get_day_by_date(2013, 11, 7)
-    #
-    ## add user to zumbalatis
-    #daily_sched_man = operations.DailyScheduleManager("peer", "peer")
-    #daily_sched_man.add_user_to_course("Roy Klinger", 2014, 2, 3, hour, "ZumbaLatis")
-    #daily_sched_man.add_user_to_course("Moshico Movshi", 2014, 2, 3, hour, "ZumbaLatis")
-    #
-    #daily = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get().schedule_table[str(3)]
-    #for course in daily.courses_list:
-    #    if course.name == "ZumbaLatis":
-    #        self.response.write("before deletion: <br/>")
-    #        for user in course.users_list:
-    #            self.response.write("his name is: " + user.name + "<br/>")
-    #
-    #daily_sched_man.delete_user_from_course("Moshico Movshi", 2014, 2, 3, hour, "ZumbaLatis")
-    #
-    #daily1 = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get().schedule_table[str(3)]
-    #for course in daily1.courses_list:
-    #    if course.name == "ZumbaLatis":
-    #        self.response.write("after deletion: <br/>")
-    #        for user in course.users_list:
-    #            self.response.write("his name is: " + user.name + "<br/>")
-    #
-    #peer_gym_after = entities.Gym.get_key("peer", "peer").get()
-    #course_templates = peer_gym_after.courses
-    #schedule = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get()
-    #self.response.write(str(course_templates) + "<br/>")
-    #self.response.write(str(schedule.schedule_table.keys()) + "<br/>")
-    #self.response.write(str(schedule.schedule_table['3'].courses_list) + "<br/>")
-    #self.response.write(str(day_number) + "<br/>")
-    #
-    ## creating real courses
-    #zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 60, 20, "yaron","Katom", "#FF99FF", [],[])
-    #yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 90, 90, "yaron", "blue", "#3399FF",[], [])
-    #
-    #
-    ## creating schedule
-    #schedule_peer = entities.MonthSchedule()
-    #schedule_peer.month = 11
-    #schedule_peer.year = 2013
-    #schedule_peer.set_key("peer", "peer")
-    #first_day = objects.DailySchedule(2013, 11, 1, 3, [zumba_yaron, yoga_bar])
-    #second_day = objects.DailySchedule(2013, 11, 2, 5, [zumba_yaron, yoga_bar])
-    #schedule_peer.schedule_table = {int(first_day.day_in_month): first_day, int(second_day.day_in_month): second_day}
-    #
-    #schedule_sav = entities.MonthSchedule()
-    #schedule_sav.month = 7
-    #schedule_sav.year = 2011
-    #schedule_sav.set_key("Go Active", "savyonim")
-    #
-    #schedule_sav.put()
-    #schedule_peer.put()
-    #
-    ##create users
-    #david = objects.User(12342156, 3, 144221, "david")
-    #matan = objects.User(12323126, 2, 1321, "matan")
-    #omri = objects.User(123756456, 1, 1321, "omri")
-    #roy = objects.User(123432356, 4, 1321, "roy")
-    #
-    #users = entities.Users()
-    #users.set_key("peer", "peer")
-    #users.users_table = users.create_users_table(david, matan, omri, roy)
-    #users.put()
-    #
-    #users_manager = operations.DailyScheduleManager("peer", "peer")
-    #start_date = datetime(day=1, month=11, year=2013)
-    #end_date = datetime(day=2, month=11, year=2013)
-    #
-    #result = entities.MonthSchedule.get_key("11","2013","peer","peer").get()
-    #if type(result.schedule_table[str(first_day.day_in_month)]) == objects.DailySchedule:
-    #    self.response.write("I'm Daily Sche........!!" + "<br/>")
-    #self.response.write(str(result.schedule_table[str(first_day.day_in_month)].day_in_month) + "<br/>")
-    #self.response.write(str(users_manager.get_daily_schedule_list(start_date, end_date)[0].courses_list[0].studio))
+        #
+        #admin = AdminManager("peer", "peer")
+        #admin.add_course_template("yoga", "Zubin Meta")
+        #admin.create_month_schedule(2014, 2)
+        ##admin.edit_course_template("yoga","yoga11","Kaki batachton!")
+        #admin.create_course_for_month("ZumbaLatis", "Latis the Zumbot", hour, 120, 10,
+        #                              "Moished", "Park","blue", [], [], 2014, 2, 3)
+        #day_number = admin.get_day_by_date(2013, 11, 7)
+        #
+        ## add user to zumbalatis
+        #daily_sched_man = operations.DailyScheduleManager("peer", "peer")
+        #daily_sched_man.add_user_to_course("Roy Klinger", 2014, 2, 3, hour, "ZumbaLatis")
+        #daily_sched_man.add_user_to_course("Moshico Movshi", 2014, 2, 3, hour, "ZumbaLatis")
+        #
+        #daily = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get().schedule_table[str(3)]
+        #for course in daily.courses_list:
+        #    if course.name == "ZumbaLatis":
+        #        self.response.write("before deletion: <br/>")
+        #        for user in course.users_list:
+        #            self.response.write("his name is: " + user.name + "<br/>")
+        #
+        #daily_sched_man.delete_user_from_course("Moshico Movshi", 2014, 2, 3, hour, "ZumbaLatis")
+        #
+        #daily1 = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get().schedule_table[str(3)]
+        #for course in daily1.courses_list:
+        #    if course.name == "ZumbaLatis":
+        #        self.response.write("after deletion: <br/>")
+        #        for user in course.users_list:
+        #            self.response.write("his name is: " + user.name + "<br/>")
+        #
+        #peer_gym_after = entities.Gym.get_key("peer", "peer").get()
+        #course_templates = peer_gym_after.courses
+        #schedule = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get()
+        #self.response.write(str(course_templates) + "<br/>")
+        #self.response.write(str(schedule.schedule_table.keys()) + "<br/>")
+        #self.response.write(str(schedule.schedule_table['3'].courses_list) + "<br/>")
+        #self.response.write(str(day_number) + "<br/>")
+        #
+        ## creating real courses
+        #zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 60, 20, "yaron","Katom", "#FF99FF", [],[])
+        #yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 90, 90, "yaron", "blue", "#3399FF",[], [])
+        #
+        #
+        ## creating schedule
+        #schedule_peer = entities.MonthSchedule()
+        #schedule_peer.month = 11
+        #schedule_peer.year = 2013
+        #schedule_peer.set_key("peer", "peer")
+        #first_day = objects.DailySchedule(2013, 11, 1, 3, [zumba_yaron, yoga_bar])
+        #second_day = objects.DailySchedule(2013, 11, 2, 5, [zumba_yaron, yoga_bar])
+        #schedule_peer.schedule_table = {int(first_day.day_in_month): first_day, int(second_day.day_in_month): second_day}
+        #
+        #schedule_sav = entities.MonthSchedule()
+        #schedule_sav.month = 7
+        #schedule_sav.year = 2011
+        #schedule_sav.set_key("Go Active", "savyonim")
+        #
+        #schedule_sav.put()
+        #schedule_peer.put()
+        #
+        ##create users
+        #david = objects.User(12342156, 3, 144221, "david")
+        #matan = objects.User(12323126, 2, 1321, "matan")
+        #omri = objects.User(123756456, 1, 1321, "omri")
+        #roy = objects.User(123432356, 4, 1321, "roy")
+        #
+        #users = entities.Users()
+        #users.set_key("peer", "peer")
+        #users.users_table = users.create_users_table(david, matan, omri, roy)
+        #users.put()
+        #
+        #users_manager = operations.DailyScheduleManager("peer", "peer")
+        #start_date = datetime(day=1, month=11, year=2013)
+        #end_date = datetime(day=2, month=11, year=2013)
+        #
+        #result = entities.MonthSchedule.get_key("11","2013","peer","peer").get()
+        #if type(result.schedule_table[str(first_day.day_in_month)]) == objects.DailySchedule:
+        #    self.response.write("I'm Daily Sche........!!" + "<br/>")
+        #self.response.write(str(result.schedule_table[str(first_day.day_in_month)].day_in_month) + "<br/>")
+        #self.response.write(str(users_manager.get_daily_schedule_list(start_date, end_date)[0].courses_list[0].studio))
 
 
 class ChangeWeek(BaseRequestHandler):
@@ -1616,39 +1619,50 @@ def sign_up_success(param_self):
     #connect user id with fb_g_o id in tables UserCredentials
     user_id = param_self.session.get('curr_user_id')
     fb_g_o = param_self.session.get('fb_g_o')
-    user_from_db = entities.UserCredentials.get_user_entity(user_id)
+    user_credentials_from_db = entities.UserCredentials.get_user_entity(user_id)
     connection = param_self.session.get('connection')
+    gym_network = user_credentials_from_db.gym_network
+    gym_branch = user_credentials_from_db.gym_branch
     user_email = param_self.session.get('user_email')
-    user_entity = entities.UserCredentials.get_user_entity(user_id)
-    user_entity.email = user_email
-    user_entity.put()
 
-    #connect id with fb\google\self id
 
+    #email update
+    admin_manager = AdminManager(gym_network, gym_branch)
+    users_table = admin_manager.get_users_of_gym()
+
+
+    curr_user = users_table[user_id]
+    #remove the not
+    if curr_user.email is not None:
+        curr_user.email = user_email
+
+    admin_manager.set_gym()
+
+    print admin_manager.get_users_of_gym()['555'].email
     if connection == 'facebook':
 
-        user_from_db.facebook_id = fb_g_o
+        user_credentials_from_db.facebook_id = fb_g_o
         facebook_user_from_db = entities.FacebookCredentials()
         facebook_user_from_db.user_id = user_id
         facebook_user_from_db.facebook_id = fb_g_o
         facebook_user_from_db.set_key()
         facebook_user_from_db.put()
     elif connection == 'google':
-        user_from_db.google_id = fb_g_o
+        user_credentials_from_db.google_id = fb_g_o
         google_user_from_db = entities.GoogleCredentials()
         google_user_from_db.user_id = user_id
         google_user_from_db.google_id = fb_g_o
         google_user_from_db.set_key()
         google_user_from_db.put()
     elif connection == 'self':
-        user_from_db.email_id = fb_g_o
+        user_credentials_from_db.email_id = fb_g_o
         email_user_from_db = entities.EmailCredentials()
         email_user_from_db.user_id = user_id
         email_user_from_db.email_id = fb_g_o
         email_user_from_db.set_key()
         email_user_from_db.put()
 
-    user_from_db.put()
+    user_credentials_from_db.put()
     param_self.session['on_sign_up'] = False
     param_self.session['curr_logged_in'] = True
     param_self.session['user_email'] = None
@@ -1714,9 +1728,6 @@ def error_message(self_param, message):
 
 
 def my_logout(param_self):
-
-
-
     param_self.session['curr_user_id'] = None
     #param_self.session['user_id'] = None
     param_self.session['fb_g_o'] = None

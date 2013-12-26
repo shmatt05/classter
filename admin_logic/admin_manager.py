@@ -21,6 +21,9 @@ class AdminManager:
     def __get_gym(self):
         return entities.Gym.get_key(self.gym_network, self.gym_branch).get()
 
+    def set_gym(self):
+        self.__get_gym().put()
+
     def get_courses_templates(self):
         return self.gym.courses
 
