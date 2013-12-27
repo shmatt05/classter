@@ -2,6 +2,7 @@
  * Created by matan on 12/5/13.
  */
 var classesTableArr = [];
+
 var changeWeekVar = new Date().getTime();
 
 $(document).ready(function () {
@@ -146,6 +147,7 @@ $(document).ready(function () {
         },
         eventDrop: function(newCalEvent, calEvent, $event) { // Moved Existing Event
             editCourseNoPopup(calEvent.start,newCalEvent.start, newCalEvent.end, calEvent.id);
+
 
 
 
@@ -347,10 +349,12 @@ function editCourseNoPopup(oldStartTime,startTime, endTime, courseID) {
             cache:'false',
             success:function(data, textStatus, jqXHR)
             {
-                var result = $.parseJSON(data)
-                $('#'+courseID + ' .lblInstructor').text(result['instructor']);
 
-                $('#'+courseID + ' .lblOpenSlots').text(result['open_slots']);
+                updateCalendarWeek(startTime);
+//                var result = $.parseJSON(data)
+//                $('#'+courseID + ' .lblInstructor').text(result['instructor']);
+//
+//                $('#'+courseID + ' .lblOpenSlots').text(result['open_slots']);
             },
             error: function(jqXHR, textStatus, errorThrown)
             {
