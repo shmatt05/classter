@@ -10,7 +10,6 @@ __author__ = 'rokli_000'
 
 
 class DailyScheduleManager:
-
     def __init__(self, gym_network, gym_branch):
         self.gym_network = gym_network
         self.gym_branch = gym_branch
@@ -20,12 +19,12 @@ class DailyScheduleManager:
         self.gym = gym_entity
 
     """ returns the course corresponds to course_name and start_hour from courses_list"""
+
     @classmethod
     def get_specified_course(cls, course_name, start_hour, courses_list):
         for course in courses_list:
             if course.name.lower() == course_name.lower() and course.hour == start_hour:
                 return course
-
 
 
 class UserBusinessLogic:
@@ -80,12 +79,12 @@ class UserBusinessLogic:
             if code == objects.USER_REGISTRATION_SUCCEEDED:
                 self.month_schedule_entity.put()
 
-                date =  self.day +"/"+ self.month +"/"+ self.year
+                date = self.day + "/" + self.month + "/" + self.year
                 #get user email
 
-                user_email = get_user_mail_by_id(self.user_id)
-                send_email(user_email, self.user_id, course.name, str(course.hour) ,str(date))
-                print (user_email, self.user_id, course.name, str(course.hour) ,str(date))
+                user_email = objects.get_user_mail_by_id(self.user_id)
+                send_registration_email(user_email, self.user_id, course.name, str(course.hour), str(date))
+                print (user_email, self.user_id, course.name, str(course.hour), str(date))
             return code
         else:
             return NO_SUCH_COURSE
@@ -98,11 +97,11 @@ class UserBusinessLogic:
         "find the correct course"
         course = self.daily_schedule_entity.get_course_by_id(self.course_id)
         if not course is None:
-             if course.does_user_already_registered(self.user_id):
+            if course.does_user_already_registered(self.user_id):
                 course.remove_user_from_course(self.user_id)
                 self.month_schedule_entity.put()
                 return USER_REMOVED_FROM_COURSE_SUCCEEDED
-             else:
+            else:
                 return USER_IS_NOT_REGISTERED
         else:
             return NO_SUCH_COURSE
@@ -127,6 +126,7 @@ class UserBusinessLogic:
 
     def add_to_waiting_list_table(self):
         pass
+
 
 class UserView:
     def __init__(self, user_id, course_id, year, month, day):
@@ -176,15 +176,17 @@ class UserView:
         else:
             return None
 
+
 def get_daily_schedule_from_gym(gym_network, gym_branch, year, month, day):
-    daily_schedule_manager = DailyScheduleManager(gym_network,gym_branch)
+    daily_schedule_manager = DailyScheduleManager(gym_network, gym_branch)
     return daily_schedule_manager.get_daily_schedule(year, month, day)
 
 
 def get_month_schedule_from_gym(gym_network, name, year, month):
     return entities.MonthSchedule.get_month_schedule_entity(month, year, gym_network, name)
 
-def send_email(email, user_id, course_name,course_hour, course_date):
+
+def send_registration_email(email, user_id, course_name, course_hour, course_date):
     user_address = email
 
     if not mail.is_email_valid(user_address):
@@ -196,17 +198,6 @@ def send_email(email, user_id, course_name,course_hour, course_date):
         body = """This is a confirmation email for user ID: %s.
 `You are now registered to %s at %s on %s.""" % (user_id, course_name, course_hour, course_date)
         mail.send_mail(sender_address, user_address, subject, body)
-
-
-def get_user_mail_by_id(user_id):
-    user_credentials_from_db = entities.UserCredentials.get_user_entity(user_id)
-    gym_network = user_credentials_from_db.gym_network
-    gym_branch = user_credentials_from_db.gym_branch
-    admin_manager = AdminManager(gym_network, gym_branch)
-    users_table = admin_manager.get_users_of_gym()
-    curr_user = users_table[user_id]
-    return curr_user.email
-
 
 
 NO_SUCH_USER = 100
