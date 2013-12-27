@@ -4,6 +4,7 @@ from google.appengine.api import mail
 from admin_logic.admin_manager import AdminManager
 from db import entities
 from python_objects import objects
+from python_objects.user_notifications import Email
 from users_logic.timezone import Time
 
 __author__ = 'rokli_000'
@@ -81,9 +82,9 @@ class UserBusinessLogic:
 
                 date = self.day + "/" + self.month + "/" + self.year
                 #get user email
-
+                email = Email
                 user_email = objects.get_user_mail_by_id(self.user_id)
-                send_registration_email(user_email, self.user_id, course.name, str(course.hour), str(date))
+                email.send_registration(user_email, self.user_id, course.name, str(course.hour), str(date))
                 print (user_email, self.user_id, course.name, str(course.hour), str(date))
             return code
         else:
@@ -186,18 +187,6 @@ def get_month_schedule_from_gym(gym_network, name, year, month):
     return entities.MonthSchedule.get_month_schedule_entity(month, year, gym_network, name)
 
 
-def send_registration_email(email, user_id, course_name, course_hour, course_date):
-    user_address = email
-
-    if not mail.is_email_valid(user_address):
-        pass
-    else:
-        #confirmation_url = createNewUserConfirmation(self.request)
-        sender_address = "classter.app@gmail.com"
-        subject = "Confirm your registration to course: " + course_name
-        body = """This is a confirmation email for user ID: %s.
-`You are now registered to %s at %s on %s.""" % (user_id, course_name, course_hour, course_date)
-        mail.send_mail(sender_address, user_address, subject, body)
 
 
 NO_SUCH_USER = 100
