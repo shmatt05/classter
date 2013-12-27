@@ -192,9 +192,9 @@ def send_email(email, user_id, course_name,course_hour, course_date):
     else:
         #confirmation_url = createNewUserConfirmation(self.request)
         sender_address = "classter.app@gmail.com"
-        subject = "Confirm your registration"
-        body = """This is a confirmation email for user ID:" + user_id + ". "+
-               "You are now registered to "+ course_name +" at " + course_hour +" on "+course_date+"."""
+        subject = "Confirm your registration to course: " + course_name
+        body = """This is a confirmation email for user ID: %s.
+`You are now registered to %s at %s on %s.""" % (user_id, course_name, course_hour, course_date)
         mail.send_mail(sender_address, user_address, subject, body)
 
 
