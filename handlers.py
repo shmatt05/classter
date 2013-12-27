@@ -51,7 +51,7 @@ from users_logic.user_manager import DailyScheduleManager
 from users_logic.user_manager import UserBusinessLogic, UserView
 from admin_logic.admin_manager import AdminManager, AdminViewer
 from python_objects.objects import GymManager
-# -*- coding: utf-8 -*-
+
 import logging
 import os
 from tempfile import template
@@ -72,18 +72,17 @@ import cgi
 import json
 import sys
 
+from users_logic.user_manager import DailyScheduleManager
+from db import entities
+from users_logic.user_manager import DailyScheduleManager
+from admin_logic.admin_manager import AdminManager
+from python_objects.objects import GymManager
 ## check it ##
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
 ########################
 
-from users_logic.user_manager import DailyScheduleManager
-from db import entities
-from users_logic.user_manager import DailyScheduleManager
-#from users_logic.user_manager import UserOperation
-from admin_logic.admin_manager import AdminManager
-from python_objects.objects import GymManager
 
 
 def user_required(handler):
@@ -1447,7 +1446,6 @@ class RegisterToClass(BaseRequestHandler):
     def post(self):
         class_key = cgi.escape(self.request.get('class_key')) #works great!
         date_representation = cgi.escape(self.request.get('class_date'))
-
         date_representation = date_representation.split('/')
         year = date_representation[2]
         month = date_representation[1]
@@ -1461,6 +1459,8 @@ class RegisterToClass(BaseRequestHandler):
         if code == user_manager.USER_REGISTRATION_SUCCEEDED:
             user_view = UserView(self.get_user_id(), class_key, year, month, day)
             new_num_slots_in_course = user_view.get_num_open_slots()
+
+
             template_values = {
                 'open_slots': new_num_slots_in_course,
                 'class_key': class_key
@@ -1723,12 +1723,12 @@ def check_sign_in(self_param):
         error_message(self_param, 'We couldn\'t log you in. Please check your credentials and try again.')
 
 
-def error_message(self_param, message):
+def error_message(self_param, message, param_self=None):
     self_param.session['on_sign_up'] = False
     self_param.session['connection'] = None
     self_param.session['fb_g_o'] = None
     self_param.session['curr_logged_in'] = False
-
+    self_param.session['user_email'] = None
     self_param.display_message(message)
     return
 
@@ -1750,19 +1750,5 @@ def my_logout(param_self):
     #param_self.redirect('https://www.facebook.com/logout.php?next=localhost:8080&access_token=USER_ACCESS_TOKEN')
     #param_self.redirect("http://www.facebook.com/logout.php?api_key={0}&;session_key={1}")
     #param_self.redirect('http://m.facebook.com/logout.php?confirm=1&next=http://localhost:8080.com;')
-
-
-class ConfirmUserRegistrationToClass(webapp2.RequestHandler):
-    def get(self):
-        user_address = "davidfra@mail.tau.ac.il"
-
-        if not mail.is_email_valid(user_address):
-            pass
-        else:
-            #confirmation_url = createNewUserConfirmation(self.request)
-            sender_address = "classter.app@gmail.com"
-            subject = "Confirm your registration"
-            body = """Thank you for using 'Classter' frequently! You're such a knob."""
-            mail.send_mail(sender_address, user_address, subject, body)
 
 

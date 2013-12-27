@@ -1,5 +1,7 @@
 from datetime import timedelta
 from datetime import datetime
+from google.appengine.api import mail
+from admin_logic.admin_manager import AdminManager
 from db import entities
 from python_objects import objects
 from users_logic.timezone import Time
@@ -77,6 +79,13 @@ class UserBusinessLogic:
             code = course.try_register_user_to_course(self.user_id, self.year, self.month, self.day)
             if code == objects.USER_REGISTRATION_SUCCEEDED:
                 self.month_schedule_entity.put()
+
+                date =  self.day +"/"+ self.month +"/"+ self.year
+                #get user email
+
+                user_email = get_user_mail_by_id(self.user_id)
+                send_email(user_email, self.user_id, course.name, str(course.hour) ,str(date))
+                print (user_email, self.user_id, course.name, str(course.hour) ,str(date))
             return code
         else:
             return NO_SUCH_COURSE
@@ -174,6 +183,31 @@ def get_daily_schedule_from_gym(gym_network, gym_branch, year, month, day):
 
 def get_month_schedule_from_gym(gym_network, name, year, month):
     return entities.MonthSchedule.get_month_schedule_entity(month, year, gym_network, name)
+
+def send_email(email, user_id, course_name,course_hour, course_date):
+    user_address = email
+
+    if not mail.is_email_valid(user_address):
+        pass
+    else:
+        #confirmation_url = createNewUserConfirmation(self.request)
+        sender_address = "classter.app@gmail.com"
+        subject = "Confirm your registration"
+        body = """This is a confirmation email for user ID:" + user_id + ". "+
+               "You are now registered to "+ course_name +" at " + course_hour +" on "+course_date+"."""
+        mail.send_mail(sender_address, user_address, subject, body)
+
+
+def get_user_mail_by_id(user_id):
+    user_credentials_from_db = entities.UserCredentials.get_user_entity(user_id)
+    gym_network = user_credentials_from_db.gym_network
+    gym_branch = user_credentials_from_db.gym_branch
+    admin_manager = AdminManager(gym_network, gym_branch)
+    users_table = admin_manager.get_users_of_gym()
+    curr_user = users_table[user_id]
+    return curr_user.email
+
+
 
 NO_SUCH_USER = 100
 NO_DAILY_SCHEDULE = 200
