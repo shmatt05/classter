@@ -243,7 +243,7 @@ class AdminManager:
                                 year, month, day_in_month):
         month_schedule = self.__get_month_schedule(month, year)
         course = self.get_course(course_key,year,month,day_in_month)
-        if not course in None:
+        if not course is None:
             course.name = name
             course.duration = duration
             course.max_capacity = max_capacity
