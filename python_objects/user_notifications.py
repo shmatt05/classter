@@ -26,12 +26,15 @@ class Email:
         mail_html_body = """<!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Confirm your registration to course: %s</title>
 </head>
 <body>
-<h1>Hello<h1>
+<h1>This is a confirmation email for user ID: %s.<h1>
+</br>
+<h3>You are now registered to %s at %s on %s.<h3>
+<a href="http://www.pure.co.il/pure-gym.aspx"><img src="http://www.pure.co.il/images/opto-benyehuda.jpg"></a>
 </body>
-</html>"""
+</html>""" % (course_name, user_id, course_name, course_hour, course_date)
 
         self.send_mail_gen(email, sender_address, subject, body, mail_html_body)
 
