@@ -81,9 +81,11 @@ class UserBusinessLogic:
                 self.month_schedule_entity.put()
 
                 date = self.day + "/" + self.month + "/" + self.year
+                user_email = self.gym_entity.users_table[self.user_id].email
+
                 #get user email
-                email = Email
-                user_email = objects.get_user_mail_by_id(self.user_id)
+                email = Email()
+                #user_email = objects.get_user_mail_by_id(self.user_id)
                 email.send_registration(user_email, self.user_id, course.name, str(course.hour), str(date))
                 print (user_email, self.user_id, course.name, str(course.hour), str(date))
             return code

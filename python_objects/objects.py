@@ -342,16 +342,16 @@ class Studio(object):
 
 def get_num_of_days_in_month(year, month):
     return monthrange(year, month)[1]
-
-@classmethod
-def get_user_mail_by_id(cls, user_id):
-    user_credentials_from_db = entities.UserCredentials.get_user_entity(user_id)
-    gym_network = user_credentials_from_db.gym_network
-    gym_branch = user_credentials_from_db.gym_branch
-    admin_manager = AdminManager(gym_network, gym_branch)
-    users_table = admin_manager.get_users_of_gym()
-    curr_user = users_table[user_id]
-    return curr_user.email
+#
+#@classmethod
+#def get_user_mail_by_id(cls, user_id):
+#    user_credentials_from_db = entities.UserCredentials.get_user_entity(user_id)
+#    gym_network = user_credentials_from_db.gym_network
+#    gym_branch = user_credentials_from_db.gym_branch
+#    admin_manager = AdminManager(gym_network, gym_branch)
+#    users_table = admin_manager.get_users_of_gym()
+#    curr_user = users_table[user_id]
+#    return curr_user.email
 
 
 
