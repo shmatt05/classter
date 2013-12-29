@@ -4,7 +4,8 @@
     <title></title>
 </head>
 <body>
-<div id="logon_prompter" style="background-color:#555;width:660px;height:280px;position:absolute;top:3px" align="Center">
+
+<div id="logon_prompter" style="background-color:#555;width:660px;height:280px;left:30%;top:50%;position:absolute;" align="Center">
 
     <table cellspacing="10" cellpadding="0" border="0">
 	<tbody><tr>
@@ -32,7 +33,7 @@
 		    </tr>
 		    <tr>
 			<td>
-			    <input type="button" style="width:80px;height:30px" class="purpleBtn" value="Sign In" onclick="DoLogin();">
+			    <input type="button" style="width:80px;height:30px" class="purpleBtn" value="Sign In" onclick="location.href='/login';">
 			    <!--<input type="button" style="width:80px;height:30px;border:1px #fff solid" class="Btn" value="Sign Up" onclick='top.document.location.href="http://www.spivi.com/spivi-cgi/usersignup.cgi?rf_newuser=&r=3293077014"'>-->
 
 			</td>
@@ -48,8 +49,8 @@
 			<td>
 				<div style="color:white;font-size:18px;font-weight:bold">Or Sign In With</div>
 			    <br>
-			    <div id="fb-login-button"><a href="" onclick="fbInitCon()"><img width="255px" height="55px" src="http://www.spivi.com/spivi/images/sign_in_with_facebook.png" border="0"></a></div>
-                <div id="google-login-button"><a href="" onclick="fbInitCon()"><img width="255px" height="55px" src="https://developers.google.com/accounts/images/sign-in-with-google.png" border="0"></a></div>
+			    <div id="fb-login-button"><a href="/auth/facebook" onclick=""><img width="255px" height="55px" src="http://www.spivi.com/spivi/images/sign_in_with_facebook.png" border="0"></a></div>
+                <div id="google-login-button"><a href="/auth/google" onclick=""><img width="255px" height="55px" src="https://developers.google.com/accounts/images/sign-in-with-google.png" border="0"></a></div>
 			</td>
 		    </tr>
 		</tbody></table>

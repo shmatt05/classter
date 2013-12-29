@@ -217,6 +217,9 @@ class BaseRequestHandler(webapp2.RequestHandler):
         }
         self.render('message.html', params)
 
+class UserAuth(BaseRequestHandler):
+    def get(self):
+        self.render('google_facebook_login.html')
 
 class RootHandler(BaseRequestHandler):
     def get(self):
@@ -662,7 +665,8 @@ class SignUpPopUp(BaseRequestHandler):
         day = date_representation[0]
         if not self.logged_in:
             return self.redirect('/authenticated')
-            #user_viewer = UserView(self.get_user_id(), "a93cc8fa-2267-4544-a645-fbeebce41398", 2013, 12, 19)
+            #return self.redirect('/user_auth')
+
         user_viewer = UserView(self.get_user_id(), class_key, year, month, day)
         course = user_viewer.get_course_by_id()
         code = user_viewer.get_view_code(course)
