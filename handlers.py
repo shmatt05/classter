@@ -664,8 +664,8 @@ class SignUpPopUp(BaseRequestHandler):
         month = date_representation[1]
         day = date_representation[0]
         if not self.logged_in:
-            return self.redirect('/authenticated')
-            #return self.redirect('/user_auth')
+            #return self.redirect('/authenticated')
+            return self.redirect('/user_auth')
 
         user_viewer = UserView(self.get_user_id(), class_key, year, month, day)
         course = user_viewer.get_course_by_id()

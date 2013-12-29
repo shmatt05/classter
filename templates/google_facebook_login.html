@@ -10,6 +10,7 @@
     <table cellspacing="10" cellpadding="0" border="0">
 	<tbody><tr>
 	    <td>
+        <form class="form" action= "/login" method="POST">
 		<table class="Left" style="color:#FFF" cellpadding="5" cellspacing="5" border="0">
 		    <tbody><tr>
 			<td colspan="2" class="theRulesText" style="font-size:22px;align:left">
@@ -22,23 +23,27 @@
 		    <tr>
 			<td class="Left" style="color:#FFF">
 			    E-mail<br>
-			    <input type="text" class="field_back" id="email">
+			    <input type="text" class="field_back" name="username">
 			</td>
 		    </tr>
 		    <tr>
 			<td class="Left" style="color:#FFF">
 			    Password<br>
-			    <input class="field_back" type="password" id="pwd">
+			    <input class="field_back" type="password" name="password">
 			</td>
 		    </tr>
 		    <tr>
 			<td>
-			    <input type="button" style="width:80px;height:30px" class="purpleBtn" value="Sign In" onclick="location.href='/login';">
+                <div style="padding-top:5px;padding-bottom:5px">
+				<a style="font-size:10px;color:#999" href="http://www.spivi.com/spivi-cgi/user.cgi?psfs=forgotpass&amp;c=b" class="niceLink">Forgot password?</a>
+			    </div>
+			   <button type="submit" style="width:80px;height:30px" class="purpleBtn" value="Sign In">Sign In</button>
 			    <!--<input type="button" style="width:80px;height:30px;border:1px #fff solid" class="Btn" value="Sign Up" onclick='top.document.location.href="http://www.spivi.com/spivi-cgi/usersignup.cgi?rf_newuser=&r=3293077014"'>-->
 
 			</td>
 		    </tr>
 		</tbody></table>
+        </form>
 	    </td>
 	    <td>
 		<img src="http://www.spivi.com/spivi/images/login_or.png" border="0">
