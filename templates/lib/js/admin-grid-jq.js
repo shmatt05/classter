@@ -156,7 +156,7 @@ $(document).ready(function () {
             editCourseNoPopup(calEvent.start,calEvent.start,calEvent.end, calEvent.id);
         },
         eventClick: function(calEvent, $event) { // Clicked classBox
-            manageCoursePopup(calEvent.id, calEvent.start);
+            editCoursePopup( calEvent.start,calEvent.id);
         },
         eventMouseover: function(calEvent, $event) {
 
@@ -271,13 +271,14 @@ function newCoursePopup(startTime, endTime) {
     });
 }
 //Popup that lets admin change actual course info (time,participants,intructor, etc)
-function editCoursePopup(startTime, endTime, courseID) {
-
+function editCoursePopup(startTime, courseID) {
+  var newDate = returnDateStr(startTime);
+    var newHour = returnTimeStr(startTime);
 
     $.magnificPopup.open({
         type:'ajax',
         items: {
-            src: '/editcoursepopup'
+            src: '/edit_course_button_click'
 
         },
         ajax: {
@@ -287,8 +288,9 @@ function editCoursePopup(startTime, endTime, courseID) {
                 type:'POST',
                 data: {
 
-
-                    'course_id':courseID
+                    'class_id':courseID,
+                    'class_date':newDate,
+                    'class_hour':newHour
                 }
 
             }
@@ -307,7 +309,7 @@ function manageCoursePopup(courseID, startTime) {
     $.magnificPopup.open({
         type:'ajax',
         items: {
-            src: '/managecoursepopup'
+            src: '/edit_course_button_click'//'/managecoursepopup' //CHANGED
 
         },
         ajax: {
@@ -316,7 +318,7 @@ function manageCoursePopup(courseID, startTime) {
 
                 type:'POST',
                 data: {
-                    'class_key':courseID,
+                    'class_id':courseID,
                     'class_date':returnDateStr(startTime)
                 }
 

@@ -2,60 +2,110 @@
 <div class="white-popup popup-div" dir="rtl">
     <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="lib/css/bootstrap-formhelpers.css">
-     <link rel="stylesheet" type="text/css" href="lib/css/chosen.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/chosen.css">
     <script type='text/javascript' src='lib/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='lib/js/bootstrap-formhelpers.js'></script>
     <script type='text/javascript' src='lib/js/chosen.jquery.js'></script>
     <script>
-        var classMinutes = parseInt("{{ class_minutes }}");
-    </script>
-    <script type='text/javascript' src='lib/js/admin-popup-jq.js'></script>
+        var classMinutes = parseInt("{{ course.duration }}");
+        var classCapacity = parseInt("{{course.max_capacity}}");
+        var classDate = returnDateStr(new Date(parseInt("{{course.milli}}")));
+        var classTime = returnTimeStr(new Date(parseInt("{{course.milli}}")));
+        $(document).ready(function() {
+            $('.chosen-select').chosen({
+                no_results_text: 'לא נמצאו תוצאות',
+                width: '85%%'
+            });
 
-    <br><form id="addclass"  method="post" action="add_class_to_schedule" dir="rtl">
+            $( "#slider-range-min" ).slider({
+                range: "min",
+                value: classMinutes,
+                min: 1,
+                max: 180,
+                slide: function( event, ui ) {
+                    $( "#amount" ).val(ui.value );
+                }
+            });
+            $( "#amount" ).val($( "#slider-range-min" ).slider( "value" ) );
+
+            $( "#slider-range-min2" ).slider({
+                range: "min",
+                value: classCapacity,
+                min: 1,
+                max: 50,
+                slide: function( event, ui ) {
+                    $( "#participants" ).val(ui.value );
+                }
+            });
+            $( "#participants" ).val($( "#slider-range-min2" ).slider( "value" ) );
+            $('#date').data("date", classDate);
+            $('#time').data('time', classTime);
+        });
+    </script>
+    <div id="deletediv" style="background-color: #FFC0C0; margin: 0;padding-top: 25px; padding-bottom: 25px;" class="text-center">
+        <input type="button" id="deletecourse" value="מחק שיעור" />
+    </div>
+    <form id="editclass"  method="post" action="editcoursepopup" dir="rtl">
 
     <fieldset dir="rtl">
-        <legend align="right">פרטי קורס</legend>
-          <div class="text-center" style="background-color:#FFFFB8; padding:10px;">
-        <input type="checkbox" name="allmonth" id="allmonth"> שמור לכל החודש </input> </div><br>
+        <legend align="right"> פרטי שיעור </legend>
+
+
         <div id="date" dir="rtl" class="bfh-datepicker" data-format="d/m/y" data-date="{{class_date}}"></div><br>
-        <div id="time" dir="rtl" class="bfh-timepicker" data-time="{{class_time}}"></div><br>
+        <div id="time" dir="rtl" class="bfh-timepicker" data-time="{{class_hour}}"></div><br>
 
         <div>
         <span style="float:right;"><label for="amount"> משך שיעור בדקות </label>
          <input type="text" readonly="readonly" id="amount" style="border:0; color:#f6931f; font-weight:bold; width:50px;"></span>
-             <div id="slider-range-min" style="float:left; width:60%; margin-top:6px;"></div>
+            <div id="slider-range-min" style="float:left; width:60%; margin-top:6px;"></div>
         </div><br><br>
 
 
         <div>
         <span style="float:right;"><label for="participants"> מספר משתתפים </label>
          <input type="text" readonly="readonly" id="participants" style="border:0; color:#006E00; font-weight:bold; width:50px;"></span>
-             <div id="slider-range-min2" style="float:left; width:60%; margin-top:6px;"></div>
+            <div id="slider-range-min2" style="float:left; width:60%; margin-top:6px;"></div>
         </div><br><br>
 
         <select id="classname" class="chosen-select chosen-rtl" data-placeholder="שם שיעור">
-            <option value=""></option>
+            <option value="{{course.name}}">{{course.name}}</option>
             {% for class in class_names %}
+            {% if class != course.name %}
             <option value="{{class}}">{{class}}</option>
+            {% endif %}
             {% endfor %}
         </select><br><br>
 
         <select id="studio" class="chosen-select chosen-rtl" data-placeholder="סטודיו">
-            <option value=""></option>
+            <option value="{{course.studio}}">{{course.studio}}</option>
             {% for studio in studio_names %}
+            {% if studio != course.studio %}
             <option value="{{studio.name}}">{{studio.name}}</option>
+            {% endif %}
             {% endfor %}
         </select><br><br>
         <select id="instructor" class="chosen-select chosen-rtl" data-placeholder="מדריך">
-            <option value=""></option>
-             {% for instructor in instructor_names %}
+            <option value="{{course.instructor}}">{{course.instructor}}</option>
+            {% for instructor in instructor_names %}
+            {% set current_instructor = instructor_names[instructor].first_name+' '+ instructor_names[instructor].last_name %}
+            {% if current_instructor != course.instructor %}
             <option value="{{instructor_names[instructor].first_name}} {{instructor_names[instructor].last_name}}">{{instructor_names[instructor].first_name}} {{instructor_names[instructor].last_name}}</option>
+`           {% endif %}
             {% endfor %}
+
         </select><br><hr>
         <fieldset>
-        <legend align="right"> מועד פתיחת הרשמה </legend>
+            <legend align="right"> מועד פתיחת הרשמה </legend>
             <select id="opendate" class="chosen-select chosen-rtl" data-placeholder="יום פתיחת ההרשמה">
-                <option value=""></option>
+                {% if course.registration_days_before == 100 %}
+                <option value="100">ללא הגבלה</option>
+                {% else %}
+                {% if course.registration_days_before == 0 %}
+                <option value="0">באותו היום</option>
+                {% else %}
+                <option value="{{course.registration_days_before}}"> {{course.registration_days_before}} ימים לפני</option>
+                {% endif %}
+                {% endif %}
                 <option value="100">ללא הגבלה</option>
                 <option value="0">באותו היום</option>
                 {% for n in range(14) %}
@@ -63,10 +113,10 @@
                 {% endfor %}
 
             </select><br>
-            <div id="opentime" dir="rtl" class="bfh-timepicker" data-time="{{class_time}}"></div><br>
-            </fieldset>
+            <div id="opentime" dir="rtl" class="bfh-timepicker" data-time="{{reg_start_time}}"></div><br>
+        </fieldset>
 
-        <input type="submit" value="הוסף" style="float:right; margin-right:80px;">
+        <input type="submit" value="עדכן" style="float:right; margin-right:80px;">
     </fieldset>
 
 </form>

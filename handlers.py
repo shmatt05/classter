@@ -739,6 +739,38 @@ class NewCoursePopup(BaseRequestHandler):
         }
         self.render('admin-new-course.html', template_values)
 
+class EditCourseButtonClick(BaseRequestHandler):
+    def post(self):
+        admin_manager = AdminManager("peer", "peer")
+        admin_viewer = AdminViewer("peer", "peer")
+        gym_info = admin_viewer.get_gym_info_for_popup()
+        class_names = gym_info.courses_template_table
+        studio_names = gym_info.studios_list
+        instructor_names = gym_info.instructors_table
+        class_key = cgi.escape(self.request.get('class_id')) #works great!
+        date_representation = cgi.escape(self.request.get('class_date'))
+        class_hour =  cgi.escape(self.request.get('class_hour'))
+        original_date = date_representation
+        date_representation = date_representation.split('/')
+        year = date_representation[2]
+        month = date_representation[1]
+        day = date_representation[0]
+
+        course = admin_manager.get_course(class_key, year, month, day)
+        hour = course.registration_start_time[:2]
+        minutes = course.registration_start_time[2:]
+        reg_start_time = hour + ":" + minutes
+        template_values = {
+            'course': course,
+            'class_names': class_names,
+            'studio_names': studio_names,
+            'instructor_names': instructor_names,
+            'class_date':original_date,
+            'class_hour':class_hour,
+            'reg_start_time':reg_start_time
+        }
+        self.render('admin-edit-course.html', template_values)
+
 
 class AddClassToSched(BaseRequestHandler):
     def post(self):
@@ -1542,18 +1574,6 @@ class DeleteCourse(BaseRequestHandler):
 
         admin_manager.delete_course_instance(class_key, year, month, day)
 
-
-class EditCourseButtonClick(BaseRequestHandler):
-    def post(self):
-        admin_manager = AdminManager("peer", "peer")
-        class_key = cgi.escape(self.request.get('class_id')) #works great!
-        date_representation = cgi.escape(self.request.get('class_date'))
-        date_representation = date_representation.split('/')
-        year = date_representation[2]
-        month = date_representation[1]
-        day = date_representation[0]
-
-        course = admin_manager.get_course(class_key, year, month, day)
 
 
 #todo consider make users a property in gym
