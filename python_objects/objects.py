@@ -107,9 +107,10 @@ class MonthScheduleManager(object):
         return self.month_schedule.daily_schedule_table[str(int(day_in_month))]
 
 class CourseTemplate(object):
-    def __init__(self, name, description):
+    def __init__(self, name, description, color="blue"):
         self.name = name
         self.description = description
+        self.color = color
 
     def add_to_gym(self, gym_entity):
         if self.name.lower() in [item.lower() for item in gym_entity.courses.keys()]:
@@ -128,7 +129,7 @@ class Course(CourseTemplate):
     def __init__(self, name, description, start_hour, duration, max_capacity, instructor, studio, color,
                  users_table, waiting_list_table, registration_days_before, registration_start_time, identifier,
                  start_milli, is_registration_open = False):
-        super(Course, self).__init__(name, description)
+        super(Course, self).__init__(name, description, color)
         self.id = identifier
         self.hour = start_hour
         self.milli = start_milli

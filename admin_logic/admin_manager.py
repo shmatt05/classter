@@ -39,10 +39,10 @@ class AdminManager:
     """ adds a new course_template object to the courses list of the specified Gym entity
         the method does nothing in case the course_template already exists
     """
-    def add_course_template(self, name, description):
+    def add_course_template(self, name, description, color="blue"):
         if self.gym is None:
             raise Exception("No such Gym!")
-        new_template = CourseTemplate(name, description)
+        new_template = CourseTemplate(name, description, color)
         new_template.add_to_gym(self.gym)
 
     def add_user_to_gym(self, user_id, first_name, last_name, email, phone):
@@ -215,7 +215,7 @@ class AdminManager:
         if month_schedule is None:
             raise Exception("No Month Schedule!") #may be changed in the future
         new_course = Course(str(course_template.name), str(course_template.description), hour, duration, max_capacity,
-                            instructor, studio, color, users_table, waiting_list_table,
+                            instructor, studio, str(course_template.color), users_table, waiting_list_table,
                             registration_days_before, registration_start_time, str(uuid.uuid4()), None)
         month_schedule_manager = MonthScheduleManager(month_schedule)
         month_schedule_manager.add_course_to_month(new_course, day_in_week)
@@ -232,7 +232,7 @@ class AdminManager:
         if month_schedule is None:
             raise Exception("No Month Schedule!") #may be changed in the future
         new_course = Course(str(course_template.name), str(course_template.description), hour, duration, max_capacity,
-                            instructor, studio, color, users_table, waiting_list_table,
+                            instructor, studio, str(course_template.color), users_table, waiting_list_table,
                             registration_days_before, registration_start_time, str(uuid.uuid4()), None)
         month_schedule_manager = MonthScheduleManager(month_schedule)
         month_schedule_manager.add_course_instance(new_course, day_in_month)
