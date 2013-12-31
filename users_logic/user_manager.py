@@ -38,8 +38,8 @@ class UserBusinessLogic:
         self.user_entity = entities.UserCredentials.get_user_entity(str(user_id))
         self.gym_entity = self.user_entity.get_gym_entity()# we get the gym from the user
         self.month_schedule_entity = get_month_schedule_from_gym(self.gym_entity.gym_network, self.gym_entity.name,
-                                                                 year, month)
-        self.daily_schedule_entity = self.month_schedule_entity.daily_schedule_table[str(day)]
+                                                                 year, int(month))
+        self.daily_schedule_entity = self.month_schedule_entity.daily_schedule_table[str(int(day))]
 
     #def register_to_course(self):
     #    if self.user_entity is None:
