@@ -115,14 +115,21 @@ th.wc-day-column-header {
    div.wc-time-slots {
        /*width:13.5%;*/
    }
-   td.day-2 {
-       display: block;
-       width:100%;
-   }
-   th.wc-day-2 {
-       display:block;
+   /*td.day-2 {*/
+       /*display: block;*/
+       /*width:100%;*/
+   /*}*/
+   /*th.wc-day-2 {*/
+       /*display:block;*/
+       /*width:100%*/
+   /*}*/
+    td.wc-today {
+           display:block;
        width:100%
-   }
-
+    }
+    th.wc-today {
+           display:block;
+       width:100%
+    }
 }
 

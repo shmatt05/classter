@@ -709,7 +709,7 @@
               calendarNavHtml += '<h2 class=\"wc-title\"></h1>';
             calendarNavHtml += '</div>';
 
-            <!--roy's test-->
+            <!--roy's test real-->
             calendarNavHtml += '<div>';
             calendarNavHtml += '<table id="fds" class="wc-time-slots mytable" style="z-index:100;" dir="rtl">'
 
@@ -861,14 +861,14 @@
           $calendarBody = '<div class=\"wc-scrollable-grid\">';
           $calendarBody += '<table id="classtertable" dir="rtl" class=\"wc-time-slots mytable\">';
           //start weird
-          $calendarBody += '<thead class=\"ui-widget-content wc-header\">';
-          $calendarBody += '<tr><th class=\"wc-time-column-header\"></th>';
-          for (var i = 1; i <= options.daysToShow; i++) {
-              $calendarBody += '<th class=\"wc-day-column-header wc-day-' + i + '\"' + '></th>';
-          }
-
-          //$calendarBody += '<th class=\"wc-scrollbar-shim\"></th>'; //</tbody></table></div>';
-          $calendarBody += '</tr></thead>';
+//          $calendarBody += '<thead class=\"ui-widget-content wc-header\">';
+//          $calendarBody += '<tr><th class=\"wc-time-column-header\"></th>';
+//          for (var i = 1; i <= options.daysToShow; i++) {
+//              $calendarBody += '<th class=\"wc-day-column-header wc-day-' + i + '\"' + '></th>';
+//          }
+//
+//          //$calendarBody += '<th class=\"wc-scrollbar-shim\"></th>'; //</tbody></table></div>';
+//          $calendarBody += '</tr></thead>';
           //endweird
           $calendarBody += '<tbody>';
           $calendarBody += '</tbody>';
