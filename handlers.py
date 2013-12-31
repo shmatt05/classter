@@ -867,7 +867,7 @@ class EditCourseTime(BaseRequestHandler):
         else:
             admin_manager.edit_course_time_and_day(course_id, old_date[2], old_date[1], old_date[0],
                                                    new_date[2], new_date[1], new_date[0], start_hour, duration)
-        course = admin_manager.get_course(course_id, old_date[2], old_date[1], old_date[0])
+        course = admin_manager.get_course(course_id, new_date[2], new_date[1], new_date[0])
         template_values = {
             'instructor': course.instructor,
             'open_slots': course.get_num_open_slots()
