@@ -156,7 +156,8 @@ $(document).ready(function () {
             editCourseNoPopup(calEvent.start,calEvent.start,calEvent.end, calEvent.id);
         },
         eventClick: function(calEvent, $event) { // Clicked classBox
-            editCoursePopup( calEvent.start,calEvent.id);
+          //  editCoursePopup( calEvent.start,calEvent.id);
+            manageCoursePopup(calEvent.id, calEvent.start);
         },
         eventMouseover: function(calEvent, $event) {
 
@@ -309,7 +310,7 @@ function manageCoursePopup(courseID, startTime) {
     $.magnificPopup.open({
         type:'ajax',
         items: {
-            src: '/edit_course_button_click'//'/managecoursepopup' //CHANGED
+            src: '/managecoursepopup'
 
         },
         ajax: {

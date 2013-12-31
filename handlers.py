@@ -830,7 +830,7 @@ class EditCoursePopup(BaseRequestHandler):
 
 class ManageCoursePopup(BaseRequestHandler):
     def post(self):
-        class_key = cgi.escape(self.request.get('class_key'))
+        class_key = cgi.escape(self.request.get('class_id'))
         date_representation = cgi.escape(self.request.get('class_date'))
 
         date_representation = date_representation.split('/')
