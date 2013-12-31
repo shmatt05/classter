@@ -96,6 +96,7 @@ opacity: 0.9;
 th.wc-day-column-header {
     width:13.5%;
 }
+
 @media (max-width: 900px) {
 
     .wc-toolbar {
