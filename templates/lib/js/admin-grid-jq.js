@@ -178,7 +178,12 @@ $(document).ready(function () {
         no_results_text: 'לא נמצאו תוצאות',
         width: '300px'
     });
-
+    $("#newclasscolor").spectrum({
+    color: "green"
+    });
+     $("#classcolor").spectrum({
+    color:"#FFEBD8"
+    });
 });
 
 

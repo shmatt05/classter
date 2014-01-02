@@ -92,3 +92,19 @@
     border: 1px solid #d3d3d3;
 }
 
+.chosen-container {
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+#classname, #newclassname {
+
+    margin-bottom: 10px;
+}
+
+.mngcontainer {
+    text-align: center;
+    width:700px;
+    margin-left:auto;
+    margin-right:auto;
+}

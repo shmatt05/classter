@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="lib/css/bootstrap-theme.css">
     <link rel="stylesheet" type="text/css" href="lib/css/responsive-tables.css">
     <link rel="stylesheet" type="text/css" href="lib/css/chosen.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/spectrum.css">
     <link rel="stylesheet" type="text/css" href="lib/css/admin-grid.css">
 
     <script type="text/javascript" src="lib/js/jquery.min.js"></script>
@@ -22,6 +23,7 @@
     <script type='text/javascript' src='lib/js/responsive-tables.js'></script>
     <script type='text/javascript' src='lib/js/jquery-scrollTo.js'></script>
     <script type='text/javascript' src='lib/js/chosen.jquery.js'></script>
+    <script type='text/javascript' src='lib/js/spectrum.js'></script>
     <script type='text/javascript' src='lib/js/admin-grid-jq.js'></script>
 </head>
 <body>
@@ -52,26 +54,72 @@
                 </ul>
             </nav>
             <div id="mnginstructors" class="text-center" style="min-height:500px; background-color:#DBDBFF;padding-top:20px;">
-                <h1> מדריכים</h1><br><br>
-                <div class="container">
-                    <select id="classname" class="chosen-select chosen-rtl" data-placeholder="שם מדריך" style="float:right;">
+                <h1> מדריכים</h1><br>
+                <div class="mngcontainer">
+                <div class="container" dir="rtl" style="float:right;width:300px;border:2px solid;">
+                    <select id="instructorselect" class="chosen-select chosen-rtl" data-placeholder="שם מדריך" style="float:right;">
                         <option value=""></option>
                         {% for x in y %}
                         <option value="{{x}}">{{x}}</option>
                         {% endfor %}
-                    </select><br>
+                    </select>
+                    <label for="instructorfirstname"> שם פרטי </label>
+                    <input type="text" id="instructorfirstname"/><br>
+                    <label for="instructorlastname"> שם משפחה </label>
+                    <input type="text" id="instructorlastname" /><br><br>
+                    <input type="button" id="editinstructor" value="עדכן"/>  <input type="button" id="deleteinstructor" value="מחק" style="margin-bottom: 10px;"/>
+                </div>
+                    <div class="container" dir="rtl" style="float:left;width:300px;border:2px solid;">
 
+                    <h4>הוספת מדריך חדש</h4>
+                    <label for="newinstructorfirstname"> שם פרטי </label>
+                    <input type="text" id="newinstructorfirstname"/><br>
+                    <label for="newinstructorlastname"">שם משפחה</label>
+                    <input type="text" id="newinstructorlastname"/><br><br>
+                    <input type="button" id="addinstructor" value="הוסף" style="margin-bottom: 10px;"/>
                 </div>
             </div>
+            </div>
+
             <div id="mngstudios" class="text-center" style="min-height:500px; background-color:#E6FFE6;padding-top:20px;">
                 <h1> חדרי סטודיו</h1>
             </div>
             <div id="mngclasses" class="text-center" style="min-height:500px; background-color:#FFEBD8;padding-top:20px;">
                 <h1> שיעורים </h1>
+                <div class="mngcontainer">
+                    <br><br>
+                <div class="container" dir="rtl" style="float:right;width:300px;border:2px solid;">
+
+                    <select id="classselect" class="chosen-select chosen-rtl" data-placeholder="שם שיעור" style="margin-top:10px;">
+                         <option value=""></option>
+                        {% for x in y%}
+                        <option value="{{x}}">{{x}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="classname"> שם</label>
+                    <input type="text" id="classname"/><br>
+                    <label for="classcolor"> צבע</label>
+                    <input type="text" id="classcolor" /><br><br>
+                    <input type="button" id="editclass" value="עדכן"/>  <input type="button" id="deleteclass" value="מחק" style="margin-bottom: 10px;"/>
+
+                </div>
+
+
+                <div class="container" dir="rtl" style="float:left;width:300px;border:2px solid;">
+
+                    <h4> הוספת שיעור חדש </h4>
+                    <label for="newclassname"> שם </label>
+                    <input type="text" id="newclassname"/><br>
+                    <label for="newclasscolor"> צבע</label>
+                    <input type='text' id="newclasscolor" /><br><br>
+                    <input type="button" id="addclass" value="הוסף" style="margin-bottom: 10px;"/>
+                </div>
             </div>
+                </div>
             <div id="mngusers" class="text-center" style="min-height:500px; background-color: #FFE6E6;padding-top:20px;">
                 <h1> משתמשים</h1>
             </div>
+
         </div>
     </div>
 </div>
