@@ -74,21 +74,41 @@
                     <h4>הוספת מדריך חדש</h4>
                     <label for="newinstructorfirstname"> שם פרטי </label>
                     <input type="text" id="newinstructorfirstname"/><br>
-                    <label for="newinstructorlastname"">שם משפחה</label>
+                    <label for="newinstructorlastname">שם משפחה</label>
                     <input type="text" id="newinstructorlastname"/><br><br>
                     <input type="button" id="addinstructor" value="הוסף" style="margin-bottom: 10px;"/>
                 </div>
-            </div>
+                </div>
             </div>
 
             <div id="mngstudios" class="text-center" style="min-height:500px; background-color:#E6FFE6;padding-top:20px;">
-                <h1> חדרי סטודיו</h1>
+                <h1> חדרי סטודיו</h1><br>
+                <div class="mngcontainer">
+                    <div class="container" dir="rtl" style="float:right;width:300px;border:2px solid;">
+                        <select id="studioselect" class="chosen-select chosen-rtl" data-placeholder="שם סטודיו" style="float:right;">
+                            <option value=""></option>
+                            {% for x in y %}
+                            <option value="{{x}}">{{x}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="studioname"> שם</label>
+                        <input type="text" id="studioname"/><br><br>
+                        <input type="button" id="editstudio" value="עדכן"/>  <input type="button" id="deletestudio" value="מחק" style="margin-bottom: 10px;"/>
+                    </div>
+                    <div class="container" dir="rtl" style="float:left;width:300px;border:2px solid;">
+                        <h4>הוספת סטודיו חדש</h4>
+                        <label for="newstudioname"> שם</label>
+                        <input type="text" id="newstudioname"/><br><br>
+                        <input type="button" id="addstudio" value="הוסף" style="margin-bottom: 10px;"/>
+                    </div>
+                </div>
             </div>
             <div id="mngclasses" class="text-center" style="min-height:500px; background-color:#FFEBD8;padding-top:20px;">
                 <h1> שיעורים </h1>
+
                 <div class="mngcontainer">
                     <br><br>
-                <div class="container" dir="rtl" style="float:right;width:300px;border:2px solid;">
+                    <div class="container" dir="rtl" style="float:right;width:300px;border:2px solid;">
 
                     <select id="classselect" class="chosen-select chosen-rtl" data-placeholder="שם שיעור" style="margin-top:10px;">
                          <option value=""></option>

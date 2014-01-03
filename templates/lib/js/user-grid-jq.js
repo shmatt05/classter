@@ -23,6 +23,13 @@ $(document).ready(function() {
                     //$('#'+classesTableArr[i].id).css('background-color',classesTableArr[i].color);
                     //todo: SET COLOR FROM COURSE OBJECT
                 }
+                if (classesTableArr[i].isReg) {
+                    $('#'+classesTableArr[i].id + ' .indicator').css('background-color','#33CC33');
+                }
+                else {
+                    $('#'+classesTableArr[i].id + ' .indicator').css('background-color','#990000');
+                }
+
             }
         },
         buttonText: {

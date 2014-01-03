@@ -1538,6 +1538,7 @@
           eventHtml += '<label class=\"lblInstructor\"></label><br>'
 
           eventHtml += '<label class=\"lblOpenSlots\"></label>'
+          eventHtml += '<div class=\"indicator\"></div>'
           eventHtml += '</div></div>'; // END OF CLASS BOX IS HERE
 
           $weekDay.each(function() {

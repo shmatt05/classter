@@ -97,6 +97,25 @@ th.wc-day-column-header {
     width:13.5%;
 }
 
+#logodiv {
+    bottom:0px;
+    left:0px;
+    position:fixed;
+    width:220px;
+    height:220px;
+    z-index: 1000;
+}
+/* classbox indicator for open regestration */
+div.indicator {
+    width:12px;
+    height:12px;
+    position:absolute;
+    top:20px;
+    right:5px;
+    border:1px solid;
+    border-radius:15px;
+}
+
 @media (max-width: 900px) {
 
     .wc-toolbar {
