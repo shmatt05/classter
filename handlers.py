@@ -1574,7 +1574,74 @@ class DeleteCourse(BaseRequestHandler):
 
         admin_manager.delete_course_instance(class_key, year, month, day)
 
+class AddInstructorToGym(BaseRequestHandler):
+    def post(self):
+        admin_manager = AdminManager("peer", "peer")
+        id = cgi.escape(self.request.get('id'))
+        first_name = cgi.escape(self.request.get('first_name'))
+        last_name = cgi.escape(self.request.get('last_name'))
+        admin_manager.add_instructor(id, first_name, last_name)
 
+class EditInstructorToGym(BaseRequestHandler):
+    def post(self):
+        admin_manager = AdminManager("peer", "peer")
+        id = cgi.escape(self.request.get('id'))
+        first_name = cgi.escape(self.request.get('first_name'))
+        last_name = cgi.escape(self.request.get('last_name'))
+        #todo- edit instructor
+
+class DeleteInstructorToGym(BaseRequestHandler):
+    def post(self):
+        admin_manager = AdminManager("peer", "peer")
+        id = cgi.escape(self.request.get('id'))
+        admin_manager.delete_instructor(id)
+
+class AddCourseTemplateToGym(BaseRequestHandler):
+    def post(self):
+        admin_manager = AdminManager("peer", "peer")
+        name = cgi.escape(self.request.get('name'))
+        description = cgi.escape(self.request.get('description'))
+        color = cgi.escape(self.request.get('color'))
+        admin_manager.add_course_template(name, description, color)
+
+class EditCourseTemplateToGym(BaseRequestHandler):
+    def post(self):
+        admin_manager = AdminManager("peer", "peer")
+        prev_name = cgi.escape(self.request.get('prev_name'))
+        new_name = cgi.escape(self.request.get('new_name'))
+        new_description = cgi.escape(self.request.get('new_description'))
+        admin_manager.edit_course_template(prev_name, new_name, new_description)
+
+class DeleteCourseTemplateToGym(BaseRequestHandler):
+    def post(self):
+        admin_manager = AdminManager("peer", "peer")
+        #todo - delete course template
+
+class AddUserToGym(BaseRequestHandler):
+    def post(self):
+        admin_manager = AdminManager("peer", "peer")
+        user_id = cgi.escape(self.request.get('user_id'))
+        first_name = cgi.escape(self.request.get('first_name'))
+        last_name = cgi.escape(self.request.get('last_name'))
+        email = cgi.escape(self.request.get('email'))
+        phone = cgi.escape(self.request.get('phone'))
+        admin_manager.add_user_to_gym(user_id, first_name, last_name, email, phone)
+
+class EditUserToGym(BaseRequestHandler):
+    def post(self):
+        admin_manager = AdminManager("peer", "peer")
+        user_id = cgi.escape(self.request.get('user_id'))
+        first_name = cgi.escape(self.request.get('first_name'))
+        last_name = cgi.escape(self.request.get('last_name'))
+        email = cgi.escape(self.request.get('email'))
+        phone = cgi.escape(self.request.get('phone'))
+        admin_manager.edit_user(user_id, first_name, last_name, email, phone)
+
+class DeleteUserToGym(BaseRequestHandler):
+    def post(self):
+        admin_manager = AdminManager("peer", "peer")
+        user_id = cgi.escape(self.request.get('user_id'))
+        admin_manager.delete_user_from_gym(user_id)
 
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table

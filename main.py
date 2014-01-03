@@ -77,7 +77,17 @@ routes = [
     Route('/delete_course_instance', 'handlers.DeleteCourse'),
     Route('/edit_course_button_click', 'handlers.EditCourseButtonClick'),
     Route('/send_email', 'handlers.ConfirmUserRegistrationToClass'),
-    Route('/user_auth', 'handlers.UserAuth')
+    Route('/user_auth', 'handlers.UserAuth'),
+
+    Route('/add_instructor', 'handlers.AddInstructorToGym'),
+    Route('/edit_instructor', 'handlers.EditInstructorToGym'),
+    Route('/delete_instructor', 'handlers.DeleteInstructorToGym'),
+    Route('/add_course_template', 'handlers.AddCourseTemplateToGym'),
+    Route('/edit_course_template', 'handlers.EditCourseTemplateToGym'),
+    Route('/delete_course_template', 'handlers.DeleteCourseTemplateToGym'),
+    Route('/add_user', 'handlers.AddUserToGym'),
+    Route('/edit_user', 'handlers.EditUserToGym'),
+    Route('/delete_user', 'handlers.DeleteUserToGym'),
 ]
 
 app = WSGIApplication(routes, config=app_config, debug=True)
