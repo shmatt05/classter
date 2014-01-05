@@ -145,9 +145,36 @@
                 <div class="mngcontainer">
                     <br><br>
                      <div class="container" dir="rtl" style="float:right;width:300px;border:2px solid;">
+                             <select id="userselect" class="chosen-select chosen-rtl manager" data-placeholder="משתמש " style="margin-top:10px;">
+                         <option value=""></option>
+                        {% for x in y%}
+                        <option value="{{x}}">{{x}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="id"> תעודת זהות</label>
+                    <input type="text" id="id"/><br>
+                    <label for="firstname">  שם פרטי</label>
+                    <input type="text" id="firstname"/><br>
+                    <label for="lastname">  שם משפחה</label>
+                    <input type="text" id="lastname"/><br>
+                    <label for="email">  email </label>
+                    <input type="text" id="email"/><br>
+                    <label for="phone">  מספר טלפון </label>
+                    <input type="text" id="phone"/><br>
+                    <input type="button" id="editclass" value="עדכן"/>  <input type="button" id="deleteclass" value="מחק" style="margin-bottom: 10px;"/>
                      </div>
                      <div class="container" dir="rtl" style="float:left;width:300px;border:2px solid;">
                          <h4>הוספת משתמש חדש</h4>
+                                             <label for="new_id"> תעודת זהות</label>
+                    <input type="text" id="new_id"/><br>
+                    <label for="new_firstname">  שם פרטי</label>
+                    <input type="text" id="new_firstname"/><br>
+                    <label for="new_lastname">  שם משפחה</label>
+                    <input type="text" id="new_lastname"/><br>
+                    <label for="new_email">  email </label>
+                    <input type="text" id="new_email"/><br>
+                    <label for="new_phone">  מספר טלפון </label>
+                    <input type="text" id="new_phone"/><br>
                          <br><br><input type="button" id="adduser" value="הוסף" style="margin-bottom: 10px;"/>
                     </div>
                  </div>
