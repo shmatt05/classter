@@ -59,8 +59,8 @@
                 <div class="container" dir="rtl" style="float:right;width:300px;border:2px solid;">
                     <select id="instructorselect" class="chosen-select chosen-rtl manager" data-placeholder="שם מדריך" style="float:right;">
                         <option value=""></option>
-                        {% for x in y %}
-                        <option value="{{x}}">{{x}}</option>
+                        {% for instructor in instructor_names %}
+                                <option value="{{instructor_names[instructor].first_name}} {{instructor_names[instructor].last_name}}" data-id="{{instructor_names[instructor].id_num}}">{{instructor_names[instructor].first_name}} {{instructor_names[instructor].last_name}}</option>
                         {% endfor %}
                     </select>
                     <label for="instructorid">ת.ז</label>
@@ -91,8 +91,8 @@
                     <div class="container" dir="rtl" style="float:right;width:300px;border:2px solid;">
                         <select id="studioselect" class="chosen-select chosen-rtl manager" data-placeholder="שם סטודיו" style="float:right;">
                             <option value=""></option>
-                            {% for x in y %}
-                            <option value="{{x}}">{{x}}</option>
+                            {% for studio in studios %}
+                            <option value="{{studio.name}}">{{studio.name}}</option>
                             {% endfor %}
                         </select>
                         <label for="studioname"> שם</label>
@@ -114,16 +114,16 @@
                     <br><br>
                     <div class="container" dir="rtl" style="float:right;width:300px;border:2px solid;">
 
-                    <select id="classselect" class="chosen-select chosen-rtl manager" data-placeholder="שם שיעור" style="margin-top:10px;">
-                         <option value=""></option>
-                        {% for x in y%}
-                        <option value="{{x}}">{{x}}</option>
-                        {% endfor %}
-                    </select>
-                    <label for="classname"> שם</label>
-                    <input type="text" id="classname"/><br>
-                    <label for="classcolor"> צבע</label>
-                    <input type="text" id="classcolor" /><br><br>
+                        <select id="classselect" class="chosen-select chosen-rtl manager" data-placeholder="שם שיעור" style="margin-top:10px;">
+                            <option value=""></option>
+                            {% for class in courses %}
+                            <option value="{{class}}">{{class}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="classname"> שם</label>
+                        <input type="text" id="classname"/><br>
+                        <label for="classcolor"> צבע</label>
+                        <input type="text" id="classcolor" /><br><br>
                     <input type="button" id="editclass" value="עדכן"/>  <input type="button" id="deleteclass" value="מחק" style="margin-bottom: 10px;"/>
 
                 </div>

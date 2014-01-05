@@ -1355,8 +1355,8 @@ class AdminHandler(BaseRequestHandler):
         courses_templates = admin_manager.gym.courses
         studios = admin_manager.gym.studios
         template_values = {
-            'user':gym_users,
-            'instructors':instructors,
+            'users':gym_users,
+            'instructor_names':instructors,
             'courses':courses_templates,
             'studios':studios
         }

@@ -185,7 +185,10 @@ $(document).ready(function () {
     color:"#FFEBD8"
     });
 
+$("#instructorselect").chosen().change(function() {
+    alert(+$(this).text());
 
+});
 });
 
 
