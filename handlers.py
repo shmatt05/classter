@@ -1349,6 +1349,12 @@ class AdminHandler(BaseRequestHandler):
     def get(self):
         #template = JINJA_ENVIRONMENT.get_template('admin_grid.html')
         #self.response.write(template.render())
+        admin_manager = AdminManager("peer", "peer")
+        gym_users = admin_manager.gym.users_table
+        instructors = admin_manager.gym.instructors
+        courses_templates = admin_manager.gym.courses
+        studios = admin_manager.gym.studios
+
         self.render('admin_grid.html')
 
 
