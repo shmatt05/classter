@@ -185,10 +185,39 @@ $(document).ready(function () {
     color:"#FFEBD8"
     });
 
-$("#instructorselect").chosen().change(function() {
-    alert(+$(this).text());
+    $("#instructorselect").chosen().change(function() {
+        var fullName = $(this).val().split(' ');
 
-});
+        $('#instructorid').val($('#instructorselect option:selected').data('tid'));
+        $('#instructorfirstname').val(fullName[0]);
+        $('#instructorlastname').val(fullName[1]);
+
+
+    });
+    $("#studioselect").chosen().change(function() {
+        $('#studioname').val($(this).val());
+
+    });
+    $("#classselect").chosen().change(function() {
+        $('#classname').val($(this).val());
+         $("#classcolor").spectrum("set", $('#classselect option:selected').data('color'));
+    });
+
+   $("#classselect").chosen().change(function() {
+        $('#classname').val($(this).val());
+         $("#classcolor").spectrum("set", $('#classselect option:selected').data('color'));
+    });
+
+    $("#userselect").chosen().change(function() {
+        var fullName = $(this).val().split(' ');
+        $('#userid').val(fullName[0]);
+        $('#userfirstname').val(fullName[1]);
+        $('#userlastname').val(fullName[2]);
+        $('#useremail').val($('#instructorselect option:selected').data('email'));
+        $('#userphone').val($('#instructorselect option:selected').data('phone'));
+
+    });
+    // var postData = $(this).serializeArray();
 });
 
 

@@ -1360,6 +1360,7 @@ class AdminHandler(BaseRequestHandler):
             'courses':courses_templates,
             'studios':studios
         }
+
         self.render('admin_grid.html', template_values)
 
 

@@ -60,9 +60,10 @@
                     <select id="instructorselect" class="chosen-select chosen-rtl manager" data-placeholder="שם מדריך" style="float:right;">
                         <option value=""></option>
                         {% for instructor in instructor_names %}
-                                <option value="{{instructor_names[instructor].first_name}} {{instructor_names[instructor].last_name}}" data-id="{{instructor_names[instructor].id_num}}">{{instructor_names[instructor].first_name}} {{instructor_names[instructor].last_name}}</option>
+                                <option value="{{instructor_names[instructor].first_name}} {{instructor_names[instructor].last_name}}" data-tid="{{instructor_names[instructor].id_num}}">{{instructor_names[instructor].first_name}} {{instructor_names[instructor].last_name}}</option>
                         {% endfor %}
                     </select>
+                    <form id="editinstructorform">
                     <label for="instructorid">ת.ז</label>
                     <input type="text" id="instructorid"/><br>
                     <label for="instructorfirstname"> שם פרטי </label>
@@ -70,9 +71,10 @@
                     <label for="instructorlastname"> שם משפחה </label>
                     <input type="text" id="instructorlastname" /><br><br>
                     <input type="button" id="editinstructor" value="עדכן"/>  <input type="button" id="deleteinstructor" value="מחק" style="margin-bottom: 10px;"/>
+                    </form>
                 </div>
                     <div class="container" dir="rtl" style="float:left;width:300px;border:2px solid;">
-
+                    <form id="newinstructorform">
                     <h4>הוספת מדריך חדש</h4>
                     <label for="newinstructorid">ת.ז</label>
                     <input type="text" id="newinstructorid"/><br>
@@ -81,6 +83,7 @@
                     <label for="newinstructorlastname">שם משפחה</label>
                     <input type="text" id="newinstructorlastname"/><br><br>
                     <input type="button" id="addinstructor" value="הוסף" style="margin-bottom: 10px;"/>
+                        </form>
                 </div>
                 </div>
             </div>
@@ -117,7 +120,7 @@
                         <select id="classselect" class="chosen-select chosen-rtl manager" data-placeholder="שם שיעור" style="margin-top:10px;">
                             <option value=""></option>
                             {% for class in courses %}
-                            <option value="{{class}}">{{class}}</option>
+                            <option value="{{class}}" data-color="{{courses[class].color}}">{{class}}</option>
                             {% endfor %}
                         </select>
                         <label for="classname"> שם</label>
@@ -145,36 +148,36 @@
                 <div class="mngcontainer">
                     <br><br>
                      <div class="container" dir="rtl" style="float:right;width:300px;border:2px solid;">
-                             <select id="userselect" class="chosen-select chosen-rtl manager" data-placeholder="משתמש " style="margin-top:10px;">
+                      <select id="userselect" class="chosen-select chosen-rtl manager" data-placeholder="שם מנוי" style="margin-top:10px;">
                          <option value=""></option>
-                        {% for x in y%}
-                        <option value="{{x}}">{{x}}</option>
+                        {% for user in users %}
+                        <option value="{{user}} {{users[user].first_name}} {{users[user].last_name}}" data-email="{{users[user].email}}" data-phone="{{users[user].phone}}">{{user}} {{users[user].first_name}} {{users[user].last_name}}</option>
                         {% endfor %}
                     </select>
-                    <label for="id"> תעודת זהות</label>
-                    <input type="text" id="id"/><br>
-                    <label for="firstname">  שם פרטי</label>
-                    <input type="text" id="firstname"/><br>
-                    <label for="lastname">  שם משפחה</label>
-                    <input type="text" id="lastname"/><br>
-                    <label for="email">  email </label>
-                    <input type="text" id="email"/><br>
-                    <label for="phone">  מספר טלפון </label>
-                    <input type="text" id="phone"/><br>
-                    <input type="button" id="editclass" value="עדכן"/>  <input type="button" id="deleteclass" value="מחק" style="margin-bottom: 10px;"/>
+                    <label for="userid"> תעודת זהות</label>
+                    <input type="text" id="userid"/><br>
+                    <label for="userfirstname">  שם פרטי</label>
+                    <input type="text" id="userfirstname"/><br>
+                    <label for="userlastname">  שם משפחה</label>
+                    <input type="text" id="userlastname"/><br>
+                    <label for="useremail">  email </label>
+                    <input type="text" id="useremail"/><br>
+                    <label for="userphone">  מספר טלפון </label>
+                    <input type="text" id="userphone"/><br>
+                    <input type="button" id="edituser" value="עדכן"/>  <input type="button" id="deleteuser" value="מחק" style="margin-bottom: 10px;"/>
                      </div>
                      <div class="container" dir="rtl" style="float:left;width:300px;border:2px solid;">
                          <h4>הוספת משתמש חדש</h4>
-                                             <label for="new_id"> תעודת זהות</label>
-                    <input type="text" id="new_id"/><br>
-                    <label for="new_firstname">  שם פרטי</label>
-                    <input type="text" id="new_firstname"/><br>
-                    <label for="new_lastname">  שם משפחה</label>
-                    <input type="text" id="new_lastname"/><br>
-                    <label for="new_email">  email </label>
-                    <input type="text" id="new_email"/><br>
-                    <label for="new_phone">  מספר טלפון </label>
-                    <input type="text" id="new_phone"/><br>
+                    <label for="usernew_id"> תעודת זהות</label>
+                    <input type="text" id="usernew_id"/><br>
+                    <label for="usernew_firstname">  שם פרטי</label>
+                    <input type="text" id="usernew_firstname"/><br>
+                    <label for="usernew_lastname">  שם משפחה</label>
+                    <input type="text" id="usernew_lastname"/><br>
+                    <label for="usernew_email">  email </label>
+                    <input type="text" id="usernew_email"/><br>
+                    <label for="usernew_phone">  מספר טלפון </label>
+                    <input type="text" id="usernew_phone"/><br>
                          <br><br><input type="button" id="adduser" value="הוסף" style="margin-bottom: 10px;"/>
                     </div>
                  </div>
