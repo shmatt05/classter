@@ -1506,6 +1506,10 @@ class RegisterToClass(BaseRequestHandler):
         if code == user_manager.USER_REGISTRATION_SUCCEEDED:
             user_view = UserView(self.get_user_id(), class_key, year, month, day)
             new_num_slots_in_course = user_view.get_num_open_slots()
+            course = user_course_manager.get_course_by_id()
+            course_name = course.name
+            course_start_hour = course.hour[:2] + ":" + course.hour[2:]
+            course_end_hour = get_end_time(long(course.milli), course.duration)
 
 
             template_values = {

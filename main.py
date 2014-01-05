@@ -88,6 +88,9 @@ routes = [
     Route('/add_user', 'handlers.AddUserToGym'),
     Route('/edit_user', 'handlers.EditUserToGym'),
     Route('/delete_user', 'handlers.DeleteUserToGym'),
+    Route('/add_studio', 'handlers.AddStudioTooGym'),
+    Route('/edit_studio', 'handlers.EditStudioToGym'),
+    Route('/delete_studio', 'handlers.DeleteStudioToGym'),
 ]
 
 app = WSGIApplication(routes, config=app_config, debug=True)

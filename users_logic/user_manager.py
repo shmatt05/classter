@@ -109,6 +109,16 @@ class UserBusinessLogic:
         else:
             return NO_SUCH_COURSE
 
+    def get_course_by_id(self):
+        if self.user_entity is None:
+            return NO_SUCH_USER
+        if self.daily_schedule_entity is None:
+            return NO_DAILY_SCHEDULE
+        "find the correct course"
+        for course in self.daily_schedule_entity.courses_list:
+            if str(course.id) == str(self.course_id):
+                return course
+        return None
     #def cancel_course_registration(self):
     #    if self.user_entity is None:
     #        return NO_SUCH_USER
