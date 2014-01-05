@@ -57,12 +57,14 @@
                 <h1> מדריכים</h1><br>
                 <div class="mngcontainer">
                 <div class="container" dir="rtl" style="float:right;width:300px;border:2px solid;">
-                    <select id="instructorselect" class="chosen-select chosen-rtl" data-placeholder="שם מדריך" style="float:right;">
+                    <select id="instructorselect" class="chosen-select chosen-rtl manager" data-placeholder="שם מדריך" style="float:right;">
                         <option value=""></option>
                         {% for x in y %}
                         <option value="{{x}}">{{x}}</option>
                         {% endfor %}
                     </select>
+                    <label for="instructorid">ת.ז</label>
+                    <input type="text" id="instructorid"/><br>
                     <label for="instructorfirstname"> שם פרטי </label>
                     <input type="text" id="instructorfirstname"/><br>
                     <label for="instructorlastname"> שם משפחה </label>
@@ -72,6 +74,8 @@
                     <div class="container" dir="rtl" style="float:left;width:300px;border:2px solid;">
 
                     <h4>הוספת מדריך חדש</h4>
+                    <label for="newinstructorid">ת.ז</label>
+                    <input type="text" id="newinstructorid"/><br>
                     <label for="newinstructorfirstname"> שם פרטי </label>
                     <input type="text" id="newinstructorfirstname"/><br>
                     <label for="newinstructorlastname">שם משפחה</label>
@@ -85,7 +89,7 @@
                 <h1> חדרי סטודיו</h1><br>
                 <div class="mngcontainer">
                     <div class="container" dir="rtl" style="float:right;width:300px;border:2px solid;">
-                        <select id="studioselect" class="chosen-select chosen-rtl" data-placeholder="שם סטודיו" style="float:right;">
+                        <select id="studioselect" class="chosen-select chosen-rtl manager" data-placeholder="שם סטודיו" style="float:right;">
                             <option value=""></option>
                             {% for x in y %}
                             <option value="{{x}}">{{x}}</option>
@@ -110,7 +114,7 @@
                     <br><br>
                     <div class="container" dir="rtl" style="float:right;width:300px;border:2px solid;">
 
-                    <select id="classselect" class="chosen-select chosen-rtl" data-placeholder="שם שיעור" style="margin-top:10px;">
+                    <select id="classselect" class="chosen-select chosen-rtl manager" data-placeholder="שם שיעור" style="margin-top:10px;">
                          <option value=""></option>
                         {% for x in y%}
                         <option value="{{x}}">{{x}}</option>
@@ -138,6 +142,15 @@
                 </div>
             <div id="mngusers" class="text-center" style="min-height:500px; background-color: #FFE6E6;padding-top:20px;">
                 <h1> משתמשים</h1>
+                <div class="mngcontainer">
+                    <br><br>
+                     <div class="container" dir="rtl" style="float:right;width:300px;border:2px solid;">
+                     </div>
+                     <div class="container" dir="rtl" style="float:left;width:300px;border:2px solid;">
+                         <h4>הוספת משתמש חדש</h4>
+                         <br><br><input type="button" id="adduser" value="הוסף" style="margin-bottom: 10px;"/>
+                    </div>
+                 </div>
             </div>
 
         </div>

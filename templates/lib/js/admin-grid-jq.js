@@ -184,6 +184,8 @@ $(document).ready(function () {
      $("#classcolor").spectrum({
     color:"#FFEBD8"
     });
+
+
 });
 
 

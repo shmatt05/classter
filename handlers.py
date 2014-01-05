@@ -1354,8 +1354,13 @@ class AdminHandler(BaseRequestHandler):
         instructors = admin_manager.gym.instructors
         courses_templates = admin_manager.gym.courses
         studios = admin_manager.gym.studios
-
-        self.render('admin_grid.html')
+        template_values = {
+            'user':gym_users,
+            'instructors':instructors,
+            'courses':courses_templates,
+            'studios':studios
+        }
+        self.render('admin_grid.html', template_values)
 
 
 class CreateMonthSched(BaseRequestHandler):

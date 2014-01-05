@@ -92,7 +92,7 @@
     border: 1px solid #d3d3d3;
 }
 
-.chosen-container {
+div.container .chosen-container{
     margin-top:10px;
     margin-bottom:10px;
 }
