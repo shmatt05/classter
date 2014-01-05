@@ -1654,6 +1654,29 @@ class DeleteUserToGym(BaseRequestHandler):
         user_id = cgi.escape(self.request.get('user_id'))
         admin_manager.delete_user_from_gym(user_id)
 
+class AddStudioToGym(BaseRequestHandler):
+    def pst(self):
+        admin_manager = AdminManager("peer", "peer")
+        name = cgi.escape(self.request.get('name'))
+        admin_manager.add_studio(name)
+
+
+class EditStudioToGym(BaseRequestHandler):
+    def pst(self):
+        admin_manager = AdminManager("peer", "peer")
+        old_name = cgi.escape(self.request.get('old_name'))
+        new_name = cgi.escape(self.request.get('new_name'))
+        admin_manager.edit_studio(old_name, new_name)
+
+
+class DeleteStudioToGym(BaseRequestHandler):
+    def pst(self):
+        admin_manager = AdminManager("peer", "peer")
+        name = cgi.escape(self.request.get('name'))
+        admin_manager.delete_studio(name)
+
+
+
 #todo consider make users a property in gym
 #todo consider make each user an entity instead of users_table
 

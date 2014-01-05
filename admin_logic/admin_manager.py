@@ -139,6 +139,11 @@ class AdminManager:
                 studio.edit_gym_studio(self.gym, new_name)
     # TODO: add delete_studio method
 
+    def delete_studio(self, name):
+        if self.gym is None:
+            raise Exception("No such Gym!")
+        self.gym.studios.remove(name)
+
     def create_gym(self,gym_network, gym_branch, address="", courses={}, instructors={}, studios=[], users_table={}):
         gym_entity = entities.Gym(name=gym_branch, gym_network=gym_network, address=address,
                                        courses=courses, instructors=instructors, studios=studios,
