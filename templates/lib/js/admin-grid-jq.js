@@ -156,8 +156,8 @@ $(document).ready(function () {
             editCourseNoPopup(calEvent.start,calEvent.start,calEvent.end, calEvent.id);
         },
         eventClick: function(calEvent, $event) { // Clicked classBox
-          //  editCoursePopup( calEvent.start,calEvent.id);
-            manageCoursePopup(calEvent.id, calEvent.start);
+           editCoursePopup( calEvent.start,calEvent.id);
+           // manageCoursePopup(calEvent.id, calEvent.start);
         },
         eventMouseover: function(calEvent, $event) {
 

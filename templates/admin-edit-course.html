@@ -6,42 +6,16 @@
     <script type='text/javascript' src='lib/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='lib/js/bootstrap-formhelpers.js'></script>
     <script type='text/javascript' src='lib/js/chosen.jquery.js'></script>
+
     <script>
         var classMinutes = parseInt("{{ course.duration }}");
         var classCapacity = parseInt("{{course.max_capacity}}");
         var classDate = returnDateStr(new Date(parseInt("{{course.milli}}")));
         var classTime = returnTimeStr(new Date(parseInt("{{course.milli}}")));
-        $(document).ready(function() {
-            $('.chosen-select').chosen({
-                no_results_text: 'לא נמצאו תוצאות',
-                width: '85%%'
-            });
+        var classID = "{{ course.id }}";
 
-            $( "#slider-range-min" ).slider({
-                range: "min",
-                value: classMinutes,
-                min: 1,
-                max: 180,
-                slide: function( event, ui ) {
-                    $( "#amount" ).val(ui.value );
-                }
-            });
-            $( "#amount" ).val($( "#slider-range-min" ).slider( "value" ) );
-
-            $( "#slider-range-min2" ).slider({
-                range: "min",
-                value: classCapacity,
-                min: 1,
-                max: 50,
-                slide: function( event, ui ) {
-                    $( "#participants" ).val(ui.value );
-                }
-            });
-            $( "#participants" ).val($( "#slider-range-min2" ).slider( "value" ) );
-            $('#date').data("date", classDate);
-            $('#time').data('time', classTime);
-        });
     </script>
+    <script type="text/javascript" src="lib/js/admin-edit-manage-popup-jq.js"></script>
     <div id="deletediv" style="background-color: #FFC0C0; margin: 0;padding-top: 25px; padding-bottom: 25px;" class="text-center">
         <input type="button" id="deletecourse" value="מחק שיעור" />
     </div>
