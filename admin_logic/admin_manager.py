@@ -247,7 +247,7 @@ class AdminManager:
     def edit_course(self,course_key, name, duration, max_capacity, instructor, studio,
                                  registration_days_before, registration_start_time,
                                 year, month, day_in_month):
-        month_schedule = self.__get_month_schedule(month, year)
+        month_schedule = self.__get_month_schedule(int(month), int(year))
         course = self.get_course(course_key,year,month,day_in_month)
         if not course is None:
             course.name = name
@@ -317,7 +317,7 @@ class AdminManager:
         month_schedule = self.__get_month_schedule(int(month), int(year))
         month_schedule_manager = MonthScheduleManager(month_schedule)
         #get the right daily schedule
-        daily_schedule = month_schedule_manager.get_daily_schedule(day_in_month)
+        daily_schedule = month_schedule_manager.get_daily_schedule(str(int(day_in_month)))
         course = daily_schedule.get_course_by_id(course_key)
         return course
 

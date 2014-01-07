@@ -805,6 +805,7 @@ class AddClassToSched(BaseRequestHandler):
 
 class EditCoursePopup(BaseRequestHandler):
     def post(self):
+        class_id = cgi.escape(self.request.get('class_id'))
         date = cgi.escape(self.request.get('date')).split("/")
         time = cgi.escape(self.request.get('time'))
         length = cgi.escape(self.request.get('length'))
@@ -816,19 +817,8 @@ class EditCoursePopup(BaseRequestHandler):
         registratio_start_time = cgi.escape(self.request.get('open_time'))
         all_month = cgi.escape(self.request.get('all_month'))
         admin_man = AdminManager("peer", "peer") # todo: gym not hard coded
-        if str(all_month) == 'true':
-            admin_man.create_course_for_month(class_name, time.replace(":", ""), length, participants, instructor,
-                                              studio,
-                                              "blue", {}, {}, registration_days_before,
-                                              registratio_start_time.replace(":", ""), date[2],
-                                              date[1],
-                                              admin_man.get_day_by_date(int(date[2]), int(date[1]), int(date[0])))
-        else:
-            admin_man.create_course_instance(class_name, time.replace(":", ""), length, participants, instructor,
-                                             studio,
-                                             "blue", {}, {}, registration_days_before,
-                                             registratio_start_time.replace(":", ""), date[2],
-                                             date[1], date[0])
+        admin_man.edit_course(class_id, class_name, length, participants, instructor, studio, registration_days_before,
+                              registratio_start_time, date[2], date[1], date[0])
 
 
 class ManageCoursePopup(BaseRequestHandler):
