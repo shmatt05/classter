@@ -1597,13 +1597,14 @@ class EditInstructorToGym(BaseRequestHandler):
         id = cgi.escape(self.request.get('id'))
         first_name = cgi.escape(self.request.get('first_name'))
         last_name = cgi.escape(self.request.get('last_name'))
-        #todo- edit instructor
+        admin_manager.edit_instructor(id, first_name,last_name)
 
 class DeleteInstructorToGym(BaseRequestHandler):
     def post(self):
         admin_manager = AdminManager("peer", "peer")
         id = cgi.escape(self.request.get('instructor_id'))
         admin_manager.delete_instructor(id)
+
 
 class AddCourseTemplateToGym(BaseRequestHandler):
     def post(self):

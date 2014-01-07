@@ -119,7 +119,16 @@ class AdminManager:
         if self.gym is None:
             raise Exception("No such Gym!")
         instructor = self.gym.instructors[id_num]
-        instructor.delete_from_gym(self.gym)
+        del self.gym.instructors[id_num]
+        self.gym.put()
+
+    def edit_instructor(self,id, first_name, last_name):
+        if self.gym is None:
+            raise Exception("No such Gym!")
+        instructor = self.gym.instructors[id]
+        instructor.first_name = first_name
+        instructor.last_name = last_name
+        self.gym.put()
 
     """ adds a new studio object to the studios list of the specified Gym entity
         the method does nothing in case the studio already exists
