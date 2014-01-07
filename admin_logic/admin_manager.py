@@ -76,8 +76,8 @@ class AdminManager:
         pass
 
     def delete_course_instance(self, class_key, year, month, day):
-        month_sched = self.__get_month_schedule(month, year)
-        daily_sched = month_sched.daily_schedule_table[str(day)]
+        month_sched = self.__get_month_schedule(int(month), int(year))
+        daily_sched = month_sched.daily_schedule_table[str(int(day))]
         daily_sched.delete_course(class_key)
         month_sched.put()
 
