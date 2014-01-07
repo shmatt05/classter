@@ -152,7 +152,11 @@ class AdminManager:
 
         if self.gym is None:
             raise Exception("No such Gym!")
-        self.gym.studios.remove(name)
+        for studio in self.gym.studios:
+            if studio.name == name:
+                self.gym.studios.remove(studio)
+                break
+        self.gym.put()
 
     def create_gym(self,gym_network, gym_branch, address="", courses={}, instructors={}, studios=[], users_table={}):
         gym_entity = entities.Gym(name=gym_branch, gym_network=gym_network, address=address,
