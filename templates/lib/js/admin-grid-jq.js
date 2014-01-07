@@ -156,8 +156,8 @@ $(document).ready(function () {
             editCourseNoPopup(calEvent.start,calEvent.start,calEvent.end, calEvent.id);
         },
         eventClick: function(calEvent, $event) { // Clicked classBox
-          editCoursePopup( calEvent.start,calEvent.id);
-           // manageCoursePopup(calEvent.id, calEvent.start);
+            editCoursePopup( calEvent.start,calEvent.id);
+            // manageCoursePopup(calEvent.id, calEvent.start);
         },
         eventMouseover: function(calEvent, $event) {
 
@@ -174,15 +174,15 @@ $(document).ready(function () {
         $('html,body').scrollTo(this.hash,this.hash);
     });
 
-      $('.chosen-select').chosen({
+    $('.chosen-select').chosen({
         no_results_text: 'לא נמצאו תוצאות',
         width: '300px'
     });
     $("#newclasscolor").spectrum({
-    color: "green"
+        color: "green"
     });
-     $("#classcolor").spectrum({
-    color:"#FFEBD8"
+    $("#classcolor").spectrum({
+        color:"#FFEBD8"
     });
 
     $("#instructorselect").chosen().change(function() {
@@ -200,12 +200,12 @@ $(document).ready(function () {
     });
     $("#classselect").chosen().change(function() {
         $('#classname').val($(this).val());
-         $("#classcolor").spectrum("set", $('#classselect option:selected').data('color'));
+        $("#classcolor").spectrum("set", $('#classselect option:selected').data('color'));
     });
 
-   $("#classselect").chosen().change(function() {
+    $("#classselect").chosen().change(function() {
         $('#classname').val($(this).val());
-         $("#classcolor").spectrum("set", $('#classselect option:selected').data('color'));
+        $("#classcolor").spectrum("set", $('#classselect option:selected').data('color'));
     });
 
     $("#userselect").chosen().change(function() {
@@ -217,8 +217,218 @@ $(document).ready(function () {
         $('#userphone').val($('#instructorselect option:selected').data('phone'));
 
     });
+
+    // deleteinstructor, deletestudio, deleteclass, deleteuser
+
+    // All Delete Buttons AJAX
+    $('#deleteinstructor').on('click',  function(e) {
+        var postData = {};
+        postData['instructor_id'] = $('#instructorid').val();
+        $.ajax(
+            {
+                url : '/delete_instructor',
+                type: "POST",
+                data : postData,
+                async:'false',
+                success:function(data, textStatus, jqXHR)
+                {
+                    $('#instructorselect').find('option:selected').remove();
+                    $('#instructorselect').trigger('chosen:updated');
+                    $('#instructorid').val('');
+                    $('#instructorfirstname').val('');
+                    $('#instructorlastname').val('');
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    alert('בעיית תקשורת, אנא נסה שוב');
+                }
+            });
+        e.preventDefault();
+    });
+    $('#deletestudio').on('click',  function(e) {
+        var postData = {};
+        postData['studio_name'] = $('#studioname').val();
+        $.ajax(
+            {
+                url : '/delete_studio',
+                type: "POST",
+                data : postData,
+                async:'false',
+                success:function(data, textStatus, jqXHR)
+                {
+                    $('studioselect').find('option:selected').remove();
+                    $('#studioselect').trigger('chosen:updated');
+                    $('#studioname').val('');
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    alert('בעיית תקשורת, אנא נסה שוב');
+                }
+            });
+        e.preventDefault();
+    });
+//    $('#deleteclass').on('click',  function(e) {
+//        var postData = {};
+//        postData['class_id'] = classID;
+//        postData['class_date'] = classDate;
+//        $.ajax(
+//            {
+//                url : '/delete_course_template',
+//                type: "POST",
+//                data : postData,
+//                async:'false',
+//                success:function(data, textStatus, jqXHR)
+//                {
+//
+//
+//
+//                },
+//                error: function(jqXHR, textStatus, errorThrown)
+//                {
+//                    alert('בעיית תקשורת, אנא נסה שוב');
+//                }
+//            });
+//        e.preventDefault();
+//    });
+
+    $('#deleteuser').on('click',  function(e) {
+        var postData = {};
+        postData['user_id'] = $('#userid').val();
+        $.ajax(
+            {
+                url : '/delete_user',
+                type: "POST",
+                data : postData,
+                async:'false',
+                success:function(data, textStatus, jqXHR)
+                {
+
+                    $('#userselect').find('option:selected').remove();
+                    $('#userselect').trigger('chosen:updated');
+                    $('#userid').val('');
+                    $('#userfirstname').val('');
+                    $('#userlastname').val('');
+                    $('#useremail').val('');
+                    $('#userphone').val('');
+
+
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    alert('בעיית תקשורת, אנא נסה שוב');
+                }
+            });
+        e.preventDefault();
+    });
+
+
+        // All Update Buttons AJAX
+
+//    $('#editinstructor').on('click',  function(e) {
+//        var postData = {};
+//        postData['instructor_id'] = $('#instructorid').val();
+//        $.ajax(
+//            {
+//                url : '/delete_instructor',
+//                type: "POST",
+//                data : postData,
+//                async:'false',
+//                success:function(data, textStatus, jqXHR)
+//                {
+//                    $('#instructorselect').find('option:selected').remove();
+//                    $('#instructorselect').trigger('chosen:updated');
+//                    $('#instructorid').val('');
+//                    $('#instructorfirstname').val('');
+//                    $('#instructorlastname').val('');
+//                },
+//                error: function(jqXHR, textStatus, errorThrown)
+//                {
+//                    alert('בעיית תקשורת, אנא נסה שוב');
+//                }
+//            });
+//        e.preventDefault();
+//    });
+    $('#editstudio').on('click',  function(e) {
+        var postData = {};
+        postData['old_name'] = $('#studioselect').val();
+        postData['new_name'] = $('#studioname').val();
+        $.ajax(
+            {
+                url : '/edit_studio',
+                type: "POST",
+                data : postData,
+                async:'false',
+                success:function(data, textStatus, jqXHR)
+                {
+                    $('#studioselect').find('option:selected').remove();
+                    $("#studioselect").append(new Option($('#studioname').val(),$('#studioname').val()));
+                    $('#studioselect').trigger('chosen:updated');
+                    $('#studioname').val('');
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    alert('בעיית תקשורת, אנא נסה שוב');
+                }
+            });
+        e.preventDefault();
+    });
+    $('#editclass').on('click',  function(e) { //NOT DONE
+        var postData = {};
+        postData['class_id'] = classID;
+        postData['class_date'] = classDate;
+        $.ajax(
+            {
+                url : '/delete_course_template',
+                type: "POST",
+                data : postData,
+                async:'false',
+                success:function(data, textStatus, jqXHR)
+                {
+
+
+
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    alert('בעיית תקשורת, אנא נסה שוב');
+                }
+            });
+        e.preventDefault();
+    });
+
+    $('#edituser').on('click',  function(e) { //NOT DONE
+        var postData = {};
+        postData['user_id'] = $('#userid').val();
+        $.ajax(
+            {
+                url : '/delete_user',
+                type: "POST",
+                data : postData,
+                async:'false',
+                success:function(data, textStatus, jqXHR)
+                {
+
+                    $('#userselect').find('option:selected').remove();
+                    $('#userselect').trigger('chosen:updated');
+                    $('#userid').val('');
+                    $('#userfirstname').val('');
+                    $('#userlastname').val('');
+                    $('#useremail').val('');
+                    $('#userphone').val('');
+
+
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    alert('בעיית תקשורת, אנא נסה שוב');
+                }
+            });
+        e.preventDefault();
+    });
+
     // var postData = $(this).serializeArray();
 });
+
 
 
 
@@ -312,7 +522,7 @@ function newCoursePopup(startTime, endTime) {
 }
 //Popup that lets admin change actual course info (time,participants,intructor, etc)
 function editCoursePopup(startTime, courseID) {
-  var newDate = returnDateStr(startTime);
+    var newDate = returnDateStr(startTime);
     var newHour = returnTimeStr(startTime);
 
     $.magnificPopup.open({

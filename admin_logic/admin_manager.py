@@ -140,6 +140,7 @@ class AdminManager:
     # TODO: add delete_studio method
 
     def delete_studio(self, name):
+
         if self.gym is None:
             raise Exception("No such Gym!")
         self.gym.studios.remove(name)

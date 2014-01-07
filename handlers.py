@@ -1612,7 +1612,7 @@ class EditInstructorToGym(BaseRequestHandler):
 class DeleteInstructorToGym(BaseRequestHandler):
     def post(self):
         admin_manager = AdminManager("peer", "peer")
-        id = cgi.escape(self.request.get('id'))
+        id = cgi.escape(self.request.get('instructor_id'))
         admin_manager.delete_instructor(id)
 
 class AddCourseTemplateToGym(BaseRequestHandler):
@@ -1663,14 +1663,14 @@ class DeleteUserToGym(BaseRequestHandler):
         admin_manager.delete_user_from_gym(user_id)
 
 class AddStudioToGym(BaseRequestHandler):
-    def pst(self):
+    def post(self):
         admin_manager = AdminManager("peer", "peer")
         name = cgi.escape(self.request.get('name'))
         admin_manager.add_studio(name)
 
 
 class EditStudioToGym(BaseRequestHandler):
-    def pst(self):
+    def post(self):
         admin_manager = AdminManager("peer", "peer")
         old_name = cgi.escape(self.request.get('old_name'))
         new_name = cgi.escape(self.request.get('new_name'))
@@ -1678,9 +1678,9 @@ class EditStudioToGym(BaseRequestHandler):
 
 
 class DeleteStudioToGym(BaseRequestHandler):
-    def pst(self):
+    def post(self):
         admin_manager = AdminManager("peer", "peer")
-        name = cgi.escape(self.request.get('name'))
+        name = cgi.escape(self.request.get('studio_name'))
         admin_manager.delete_studio(name)
 
 
