@@ -3,6 +3,28 @@
     <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="lib/css/bootstrap-formhelpers.css">
     <link rel="stylesheet" type="text/css" href="lib/css/chosen.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/jquery-ui.css">
+    <style>
+        .selectable .ui-selecting { background: #FECA40; }
+        .selectable .ui-selected { background: #F39814; color: white; }
+        .selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+        .selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+            /*li { width:100%; }*/
+        h4 {display:inline; font-weight:bold;}
+        .nav-tabs > li, .nav-pills > li {
+            float:none;
+            display:inline-block;
+            *display:inline; /* ie7 fix */
+            zoom:1; /* hasLayout ie7 trigger */
+        }
+        .nav-tabs, .nav-pills {
+            text-align:center;
+        }
+        .ui-selectee {
+            width:100%;
+        }
+
+    </style>
     <script type='text/javascript' src='lib/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='lib/js/bootstrap-formhelpers.js'></script>
     <script type='text/javascript' src='lib/js/chosen.jquery.js'></script>
@@ -13,87 +35,158 @@
         var classDate = returnDateStr(new Date(parseInt("{{course.milli}}")));
         var classTime = returnTimeStr(new Date(parseInt("{{course.milli}}")));
         var classID = "{{ course.id }}";
-
+        function returnDotDateStr (someDate) {
+            return (someDate.getDate()<10?("0"+someDate.getDate()):someDate.getDate()) + "." +
+                    ((someDate.getMonth()+1)<10?("0"+(someDate.getMonth()+1)):(someDate.getMonth()+1)) + "." +
+                    someDate.getFullYear();
+        }
+        function returnTimeStr(someDate) {
+            var someHour = (someDate.getHours() < 10? '0' : '') + someDate.getHours();
+            var someMinutes = (someDate.getMinutes() < 10? '0' : '') + someDate.getMinutes();
+            return (someHour + ":" + someMinutes);
+        }
+        var courseID = "{{course.id}}";
+        $('#lbldate').text(returnDotDateStr(new Date(parseInt("{{course.milli}}"))));
+        $('#lbltime').text(returnTimeStr(new Date(parseInt("{{course.milli}}"))));
+        var dateStr = returnDateStr(new Date(parseInt("{{course.milli}}"))); // for adding/deleting user request
     </script>
     <script type="text/javascript" src="lib/js/admin-edit-manage-popup-jq.js"></script>
-    <div id="deletediv" style="background-color: #FFC0C0; margin: 0;padding-top: 25px; padding-bottom: 25px;" class="text-center">
-        <input type="button" id="deletecourse" value="מחק שיעור" />
-    </div>
-    <form id="editclass"  method="post" action="editcoursepopup" dir="rtl">
 
-    <fieldset dir="rtl">
-        <legend align="right"> פרטי שיעור </legend>
+    <ul class="nav nav-pills" data-tabs="poptabs" id="popbody" style="margin-bottom:15px;">
+        <li class="active"><a href="#managediv" data-toggle="tab">ניהול</a></li>
+        <li><a href="#editdiv" data-toggle="tab">עריכה</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="managediv" class="tab-pane active" style="min-height:500px;">
+            <div id="courseinfo" style="text-align:center;background-color:palegoldenrod;padding-top:15px;padding-bottom:15px;">
+                <h4> {{course.name}} </h4> // <h4> {{course.instructor}} </h4> // <h4 id="lbldate"></h4> // <h4 id="lbltime"></h4>
+            </div>
+            <div class="text-center" style="width:100%;">
+                <div id="userlist" style=" width:50%; float:left;text-align:center; margin: 0px auto 0px auto;">
+                    <h3 style="position:relative;"> רשומים </h3><div style="height:80%; min-height:200px; overflow: scroll; ">
+                    <ol id="selectable_signedup" class="selectable" style="text-align:center; margin: 0px auto 0px auto;">
+                        {% for user in users %}
+                        <li class="ui-widget-content" value="{{user.id}}">{{user.first_name}} {{user.last_name}}</li>
+                        {% endfor %}
+                    </ol></div><br>
+                    <button type="button" id="adduserlist">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                    <button type="button" id="removeuserlist">
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                    <div id="addlist" style="display:none;"><br>
+                        <select id="classnamelist" class="chosen-select chosen-rtl chosen-manage" data-placeholder="הכנס ת.ז" >
+                            <option value=""></option>
+                        </select>
+                        <input type="button" id="adduserbutton" value="הוסף" style="float:left;display: inline;"/>
+                    </div>
+                </div>
+
+                <div id="waitinglist" style="width:50%;float:right;text-align:center; margin: 0px auto 0px auto;">
+                    <h3 style="position:relative;"> המתנה </h3><div style="height:80%; min-height:200px; overflow: scroll;">
+                    <ol id="selectable_waiting" class="selectable" style="text-align:center; margin: 0px auto 0px auto;">
+                        {% for user in waiting_list %}
+                        <li class="ui-widget-content" value="{{user.id}}">{{user.first_name}} {{user.last_name}}</li>
+                        {% endfor %}
+                    </ol></div><br>
+                    <button type="button" id="adduserwait">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                    <button type="button" id="removeuserwait">
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                    <div id="addwaiting" style="display:none;"><br>
+                        <select id="waitingnamelist" class="chosen-select chosen-rtl" data-placeholder="הכנס ת.ז">
+                            <option value=""></option>
+                        </select>
+                        <input type="button" id="addwaitbutton" value="הוסף" style="float:left;display: inline;"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="editdiv" class="tab-pane">
+            <div id="deletediv" style="background-color: #FFC0C0; margin: 0;padding-top: 25px; padding-bottom: 25px;" class="text-center">
+                <input type="button" id="deletecourse" value="מחק שיעור" />
+            </div>
+            <form id="editclass"  method="post" action="editcoursepopup" dir="rtl">
+
+                <fieldset dir="rtl">
+                    <legend align="right"> פרטי שיעור </legend>
 
 
-        <div id="date" dir="rtl" class="bfh-datepicker" data-format="d/m/y" data-date="{{class_date}}"></div><br>
-        <div id="time" dir="rtl" class="bfh-timepicker" data-time="{{class_hour}}"></div><br>
+                    <div id="date" dir="rtl" class="bfh-datepicker" data-format="d/m/y" data-date="{{class_date}}"></div><br>
+                    <div id="time" dir="rtl" class="bfh-timepicker" data-time="{{class_hour}}"></div><br>
 
-        <div>
+                    <div>
         <span style="float:right;"><label for="amount"> משך שיעור בדקות </label>
          <input type="text" readonly="readonly" id="amount" style="border:0; color:#f6931f; font-weight:bold; width:50px;"></span>
-            <div id="slider-range-min" style="float:left; width:60%; margin-top:6px;"></div>
-        </div><br><br>
+                        <div id="slider-range-min" style="float:left; width:60%; margin-top:6px;"></div>
+                    </div><br><br>
 
 
-        <div>
+                    <div>
         <span style="float:right;"><label for="participants"> מספר משתתפים </label>
          <input type="text" readonly="readonly" id="participants" style="border:0; color:#006E00; font-weight:bold; width:50px;"></span>
-            <div id="slider-range-min2" style="float:left; width:60%; margin-top:6px;"></div>
-        </div><br><br>
+                        <div id="slider-range-min2" style="float:left; width:60%; margin-top:6px;"></div>
+                    </div><br><br>
 
-        <select id="classname" class="chosen-select chosen-rtl" data-placeholder="שם שיעור">
-            <option value="{{course.name}}">{{course.name}}</option>
-            {% for class in class_names %}
-            {% if class != course.name %}
-            <option value="{{class}}">{{class}}</option>
-            {% endif %}
-            {% endfor %}
-        </select><br><br>
+                    <select id="classname" class="chosen-select chosen-rtl" data-placeholder="שם שיעור">
+                        <option value="{{course.name}}">{{course.name}}</option>
+                        {% for class in class_names %}
+                        {% if class != course.name %}
+                        <option value="{{class}}">{{class}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select><br><br>
 
-        <select id="studio" class="chosen-select chosen-rtl" data-placeholder="סטודיו">
-            <option value="{{course.studio}}">{{course.studio}}</option>
-            {% for studio in studio_names %}
-            {% if studio != course.studio %}
-            <option value="{{studio.name}}">{{studio.name}}</option>
-            {% endif %}
-            {% endfor %}
-        </select><br><br>
-        <select id="instructor" class="chosen-select chosen-rtl" data-placeholder="מדריך">
-            <option value="{{course.instructor}}">{{course.instructor}}</option>
-            {% for instructor in instructor_names %}
-            {% set current_instructor = instructor_names[instructor].first_name+' '+ instructor_names[instructor].last_name %}
-            {% if current_instructor != course.instructor %}
-            <option value="{{instructor_names[instructor].first_name}} {{instructor_names[instructor].last_name}}">{{instructor_names[instructor].first_name}} {{instructor_names[instructor].last_name}}</option>
-`           {% endif %}
-            {% endfor %}
+                    <select id="studio" class="chosen-select chosen-rtl" data-placeholder="סטודיו">
+                        <option value="{{course.studio}}">{{course.studio}}</option>
+                        {% for studio in studio_names %}
+                        {% if studio != course.studio %}
+                        <option value="{{studio.name}}">{{studio.name}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select><br><br>
+                    <select id="instructor" class="chosen-select chosen-rtl" data-placeholder="מדריך">
+                        <option value="{{course.instructor}}">{{course.instructor}}</option>
+                        {% for instructor in instructor_names %}
+                        {% set current_instructor = instructor_names[instructor].first_name+' '+ instructor_names[instructor].last_name %}
+                        {% if current_instructor != course.instructor %}
+                        <option value="{{instructor_names[instructor].first_name}} {{instructor_names[instructor].last_name}}">{{instructor_names[instructor].first_name}} {{instructor_names[instructor].last_name}}</option>
+                        `           {% endif %}
+                        {% endfor %}
 
-        </select><br><hr>
-        <fieldset>
-            <legend align="right"> מועד פתיחת הרשמה </legend>
-            <select id="opendate" class="chosen-select chosen-rtl" data-placeholder="יום פתיחת ההרשמה">
-                {% if course.registration_days_before == 100 %}
-                <option value="100">ללא הגבלה</option>
-                {% else %}
-                {% if course.registration_days_before == 0 %}
-                <option value="0">באותו היום</option>
-                {% else %}
-                <option value="{{course.registration_days_before}}"> {{course.registration_days_before}} ימים לפני</option>
-                {% endif %}
-                {% endif %}
-                <option value="100">ללא הגבלה</option>
-                <option value="0">באותו היום</option>
-                {% for n in range(14) %}
-                <option value="{{ loop.index }}">{{loop.index}} ימים לפני</option>
-                {% endfor %}
+                    </select><br><hr>
+                    <fieldset>
+                        <legend align="right"> מועד פתיחת הרשמה </legend>
+                        <select id="opendate" class="chosen-select chosen-rtl" data-placeholder="יום פתיחת ההרשמה">
+                            {% if course.registration_days_before == 100 %}
+                            <option value="100">ללא הגבלה</option>
+                            {% else %}
+                            {% if course.registration_days_before == 0 %}
+                            <option value="0">באותו היום</option>
+                            {% else %}
+                            <option value="{{course.registration_days_before}}"> {{course.registration_days_before}} ימים לפני</option>
+                            {% endif %}
+                            {% endif %}
+                            <option value="100">ללא הגבלה</option>
+                            <option value="0">באותו היום</option>
+                            {% for n in range(14) %}
+                            <option value="{{ loop.index }}">{{loop.index}} ימים לפני</option>
+                            {% endfor %}
 
-            </select><br>
-            <div id="opentime" dir="rtl" class="bfh-timepicker" data-time="{{reg_start_time}}"></div><br>
-        </fieldset>
+                        </select><br>
+                        <div id="opentime" dir="rtl" class="bfh-timepicker" data-time="{{reg_start_time}}"></div><br>
+                    </fieldset>
 
-        <input type="submit" value="עדכן" style="float:right; margin-right:80px;">
-    </fieldset>
+                    <input type="submit" value="עדכן" style="float:right; margin-right:80px;">
+                </fieldset>
 
-</form>
+            </form>
+        </div>
+    </div>
+
 
 
 </div>

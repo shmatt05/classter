@@ -755,12 +755,15 @@ class EditCourseButtonClick(BaseRequestHandler):
         year = date_representation[2]
         month = date_representation[1]
         day = date_representation[0]
-
+        registered_users_list = admin_manager.get_registered_users_list_from_course(class_key, year, month, day)
+        waiting_list = admin_manager.get_waiting_list_from_course(class_key, year, month, day)
         course = admin_manager.get_course(class_key, year, month, day)
         hour = course.registration_start_time[:2]
         minutes = course.registration_start_time[2:]
         reg_start_time = hour + ":" + minutes
         template_values = {
+            'users': registered_users_list,
+            'waiting_list': waiting_list,
             'course': course,
             'class_names': class_names,
             'studio_names': studio_names,
