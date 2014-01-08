@@ -85,10 +85,10 @@ routes = [
     Route('/add_course_template', 'handlers.AddCourseTemplateToGym'),
     Route('/edit_course_template', 'handlers.EditCourseTemplateToGym'),
     Route('/delete_course_template', 'handlers.DeleteCourseTemplateToGym'),
-    Route('/add_user', 'handlers.AddUserToGym'),
+    Route('/add_user_to_gym', 'handlers.AddUserToGym'),
     Route('/edit_user', 'handlers.EditUserToGym'),
     Route('/delete_user', 'handlers.DeleteUserToGym'),
-    Route('/add_studio', 'handlers.AddStudioTooGym'),
+    Route('/add_studio', 'handlers.AddStudioToGym'),
     Route('/edit_studio', 'handlers.EditStudioToGym'),
     Route('/delete_studio', 'handlers.DeleteStudioToGym'),
 ]

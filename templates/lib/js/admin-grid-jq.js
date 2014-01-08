@@ -211,12 +211,11 @@ $(document).ready(function () {
         $('#userid').val(fullName[0]);
         $('#userfirstname').val(fullName[1]);
         $('#userlastname').val(fullName[2]);
-        $('#useremail').val($('#instructorselect option:selected').data('email'));
-        $('#userphone').val($('#instructorselect option:selected').data('phone'));
+        $('#useremail').val($('#userselect option:selected').data('email'));
+        $('#userphone').val($('#userselect option:selected').data('phone'));
 
     });
 
-    // deleteinstructor, deletestudio, deleteclass, deleteuser
 
     // All Delete Buttons AJAX
     $('#deleteinstructor').on('click',  function(e) {
@@ -338,6 +337,7 @@ $(document).ready(function () {
                 {
                     $('#instructorselect').find('option:selected').remove();
                     $("#instructorselect").append(new Option($('#instructorfirstname').val()+' '+$('#instructorlastname').val(),$('#instructorfirstname').val()+' '+$('#instructorlastname').val()));
+                    $('#instructorselect option:last-child').data('tid',postData['id'] );
                     $('#instructorselect').trigger('chosen:updated');
                     $('#instructorid').val('');
                     $('#instructorfirstname').val('');
@@ -390,8 +390,10 @@ $(document).ready(function () {
                 success:function(data, textStatus, jqXHR)
                 {
 
-                    $('#studioselect').find('option:selected').remove();
-                    $("#studioselect").append(new Option($('#classname').val(),$('#classname').val()));
+                    $('#classselect').find('option:selected').remove();
+                    $("#classselect").append(new Option($('#classname').val(),$('#classname').val()));
+                    $('#classselect option:last-child').data('color',postData['new_color'] );
+                    $('#classselect option:last-child').data('description',postData['new_description'] );
                     $('#studioselect').trigger('chosen:updated');
                     $('#classname').val('');
                     $('#classdescription').val('');
@@ -424,6 +426,8 @@ $(document).ready(function () {
 
                     $('#userselect').find('option:selected').remove();
                     $("#userselect").append(new Option($('#userid').val()+' '+$('#userfirstname').val()+' ' +$('#userlastname').val(),$('#userid').val()+' '+$('#userfirstname').val()+' ' +$('#userlastname').val()));
+                    $('#userselect option:last-child').data('email',postData['email'] );
+                    $('#userselect option:last-child').data('phone',postData['phone'] );
                     $('#userselect').trigger('chosen:updated');
                     $('#userid').val('');
                     $('#userfirstname').val('');
@@ -444,24 +448,25 @@ $(document).ready(function () {
 
       $('#addinstructor').on('click',  function(e) {
         var postData = {};
-        postData['id'] = $('#instructorid').val();
-        postData['first_name'] = $('#instructorfirstname').val();
-        postData['last_name'] = $('#instructorlastname').val();
+        postData['id'] = $('#newinstructorid').val();
+        postData['first_name'] = $('#newinstructorfirstname').val();
+        postData['last_name'] = $('#newinstructorlastname').val();
 
         $.ajax(
             {
-                url : '/edit_instructor',
+                url : '/add_instructor',
                 type: "POST",
                 data : postData,
                 async:'false',
                 success:function(data, textStatus, jqXHR)
                 {
-                    $('#instructorselect').find('option:selected').remove();
-                    $("#instructorselect").append(new Option($('#instructorfirstname').val()+' '+$('#instructorlastname').val(),$('#instructorfirstname').val()+' '+$('#instructorlastname').val()));
+                    $("#instructorselect").append(new Option($('#newinstructorfirstname').val()+' '+$('#newinstructorlastname').val(),$('#newinstructorfirstname').val()+' '+$('#newinstructorlastname').val()));
+                    $('#instructorselect option:last-child').data('tid',postData['id'] );
                     $('#instructorselect').trigger('chosen:updated');
-                    $('#instructorid').val('');
-                    $('#instructorfirstname').val('');
-                    $('#instructorlastname').val('');
+                    $('#newinstructorid').val('');
+                    $('#newinstructorfirstname').val('');
+                    $('#newinstructorlastname').val('');
+
                 },
                 error: function(jqXHR, textStatus, errorThrown)
                 {
@@ -472,20 +477,19 @@ $(document).ready(function () {
     });
     $('#addstudio').on('click',  function(e) {
         var postData = {};
-        postData['old_name'] = $('#studioselect').val();
-        postData['new_name'] = $('#studioname').val();
+
+        postData['name'] = $('#newstudioname').val();
         $.ajax(
             {
-                url : '/edit_studio',
+                url : '/add_studio',
                 type: "POST",
                 data : postData,
                 async:'false',
                 success:function(data, textStatus, jqXHR)
                 {
-                    $('#studioselect').find('option:selected').remove();
-                    $("#studioselect").append(new Option($('#studioname').val(),$('#studioname').val()));
+                    $("#studioselect").append(new Option($('#newstudioname').val(),$('#newstudioname').val()));
                     $('#studioselect').trigger('chosen:updated');
-                    $('#studioname').val('');
+                    $('#newstudioname').val('');
                 },
                 error: function(jqXHR, textStatus, errorThrown)
                 {
@@ -494,27 +498,28 @@ $(document).ready(function () {
             });
         e.preventDefault();
     });
+
     $('#addclass').on('click',  function(e) {
         var postData = {};
-        postData['new_name'] = $('#classname').val();
-        postData['prev_name'] = $('#classselect').val();
-        postData['new_description'] = $('#classdescription').val();
-        postData['new_color'] = $("#classcolor").spectrum("get").toHexString();
+        postData['name'] = $('#newclassname').val();
+        postData['description'] = $('#newclassdescription').val();
+        postData['color'] = $("#newclasscolor").spectrum("get").toHexString();
 
         $.ajax(
             {
-                url : '/edit_course_template',
+                url : '/add_course_template',
                 type: "POST",
                 data : postData,
                 async:'false',
                 success:function(data, textStatus, jqXHR)
                 {
 
-                    $('#studioselect').find('option:selected').remove();
-                    $("#studioselect").append(new Option($('#classname').val(),$('#classname').val()));
-                    $('#studioselect').trigger('chosen:updated');
-                    $('#classname').val('');
-                    $('#classdescription').val('');
+                    $("#classselect").append(new Option($('#newclassname').val(),$('#newclassname').val()));
+                   $('#classselect option:last-child').data('color',postData['color'] );
+                    $('#classselect option:last-child').data('description',postData['description'] );
+                    $('#classselect').trigger('chosen:updated');
+                    $('#newclassname').val('');
+                    $('#newclassdescription').val('');
 
                 },
                 error: function(jqXHR, textStatus, errorThrown)
@@ -527,29 +532,31 @@ $(document).ready(function () {
 
     $('#adduser').on('click',  function(e) {
         var postData = {};
-        postData['user_id'] = $('#userid').val();
-        postData['first_name'] = $('#userfirstname').val();
-        postData['last_name'] = $('#userlastname').val();
-        postData['email'] = $('#useremail').val();
-        postData['phone'] = $('#userphone').val();
+        postData['user_id'] = $('#newuserid').val();
+        postData['first_name'] = $('#newuserfirstname').val();
+        postData['last_name'] = $('#newuserlastname').val();
+        postData['email'] = $('#newuseremail').val();
+        postData['phone'] = $('#newuserphone').val();
 
         $.ajax(
             {
-                url : '/edit_user',
+                url : '/add_user_to_gym',
                 type: "POST",
                 data : postData,
                 async:'false',
                 success:function(data, textStatus, jqXHR)
                 {
 
-                    $('#userselect').find('option:selected').remove();
-                    $("#userselect").append(new Option($('#userid').val()+' '+$('#userfirstname').val()+' ' +$('#userlastname').val(),$('#userid').val()+' '+$('#userfirstname').val()+' ' +$('#userlastname').val()));
+
+                    $("#userselect").append(new Option($('#newuserid').val()+' '+$('#newuserfirstname').val()+' ' +$('#newuserlastname').val(),$('#newuserid').val()+' '+$('#newuserfirstname').val()+' ' +$('#newuserlastname').val()));
+                    $('#userselect option:last-child').data('email',postData['email'] );
+                    $('#userselect option:last-child').data('phone',postData['phone'] );
                     $('#userselect').trigger('chosen:updated');
-                    $('#userid').val('');
-                    $('#userfirstname').val('');
-                    $('#userlastname').val('');
-                    $('#useremail').val('');
-                    $('#userphone').val('');
+                    $('#newuserid').val('');
+                    $('#newuserfirstname').val('');
+                    $('#newuserlastname').val('');
+                    $('#newuseremail').val('');
+                    $('#newuserphone').val('');
 
 
                 },
@@ -560,7 +567,7 @@ $(document).ready(function () {
             });
         e.preventDefault();
     });
-    // var postData = $(this).serializeArray();
+
 });
 
 
