@@ -201,12 +201,10 @@ $(document).ready(function () {
     $("#classselect").chosen().change(function() {
         $('#classname').val($(this).val());
         $("#classcolor").spectrum("set", $('#classselect option:selected').data('color'));
+        $('#classdescription').val($('#classselect option:selected').data('description'))
     });
 
-    $("#classselect").chosen().change(function() {
-        $('#classname').val($(this).val());
-        $("#classcolor").spectrum("set", $('#classselect option:selected').data('color'));
-    });
+
 
     $("#userselect").chosen().change(function() {
         var fullName = $(this).val().split(' ');
@@ -256,7 +254,7 @@ $(document).ready(function () {
                 async:'false',
                 success:function(data, textStatus, jqXHR)
                 {
-                    $('studioselect').find('option:selected').remove();
+                    $('#studioselect').find('option:selected').remove();
                     $('#studioselect').trigger('chosen:updated');
                     $('#studioname').val('');
                 },
@@ -324,30 +322,34 @@ $(document).ready(function () {
 
         // All Update Buttons AJAX
 
-//    $('#editinstructor').on('click',  function(e) {
-//        var postData = {};
-//        postData['instructor_id'] = $('#instructorid').val();
-//        $.ajax(
-//            {
-//                url : '/delete_instructor',
-//                type: "POST",
-//                data : postData,
-//                async:'false',
-//                success:function(data, textStatus, jqXHR)
-//                {
-//                    $('#instructorselect').find('option:selected').remove();
-//                    $('#instructorselect').trigger('chosen:updated');
-//                    $('#instructorid').val('');
-//                    $('#instructorfirstname').val('');
-//                    $('#instructorlastname').val('');
-//                },
-//                error: function(jqXHR, textStatus, errorThrown)
-//                {
-//                    alert('בעיית תקשורת, אנא נסה שוב');
-//                }
-//            });
-//        e.preventDefault();
-//    });
+    $('#editinstructor').on('click',  function(e) {
+        var postData = {};
+        postData['id'] = $('#instructorid').val();
+        postData['first_name'] = $('#instructorfirstname').val();
+        postData['last_name'] = $('#instructorlastname').val();
+
+        $.ajax(
+            {
+                url : '/edit_instructor',
+                type: "POST",
+                data : postData,
+                async:'false',
+                success:function(data, textStatus, jqXHR)
+                {
+                    $('#instructorselect').find('option:selected').remove();
+                    $("#instructorselect").append(new Option($('#instructorfirstname').val()+' '+$('#instructorlastname').val(),$('#instructorfirstname').val()+' '+$('#instructorlastname').val()));
+                    $('#instructorselect').trigger('chosen:updated');
+                    $('#instructorid').val('');
+                    $('#instructorfirstname').val('');
+                    $('#instructorlastname').val('');
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    alert('בעיית תקשורת, אנא נסה שוב');
+                }
+            });
+        e.preventDefault();
+    });
     $('#editstudio').on('click',  function(e) {
         var postData = {};
         postData['old_name'] = $('#studioselect').val();
@@ -372,20 +374,27 @@ $(document).ready(function () {
             });
         e.preventDefault();
     });
-    $('#editclass').on('click',  function(e) { //NOT DONE
+    $('#editclass').on('click',  function(e) {
         var postData = {};
-        postData['class_id'] = classID;
-        postData['class_date'] = classDate;
+        postData['new_name'] = $('#classname').val();
+        postData['prev_name'] = $('#classselect').val();
+        postData['new_description'] = $('#classdescription').val();
+        postData['new_color'] = $("#classcolor").spectrum("get").toHexString();
+
         $.ajax(
             {
-                url : '/delete_course_template',
+                url : '/edit_course_template',
                 type: "POST",
                 data : postData,
                 async:'false',
                 success:function(data, textStatus, jqXHR)
                 {
 
-
+                    $('#studioselect').find('option:selected').remove();
+                    $("#studioselect").append(new Option($('#classname').val(),$('#classname').val()));
+                    $('#studioselect').trigger('chosen:updated');
+                    $('#classname').val('');
+                    $('#classdescription').val('');
 
                 },
                 error: function(jqXHR, textStatus, errorThrown)
@@ -396,12 +405,17 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
-    $('#edituser').on('click',  function(e) { //NOT DONE
+    $('#edituser').on('click',  function(e) {
         var postData = {};
         postData['user_id'] = $('#userid').val();
+        postData['first_name'] = $('#userfirstname').val();
+        postData['last_name'] = $('#userlastname').val();
+        postData['email'] = $('#useremail').val();
+        postData['phone'] = $('#userphone').val();
+
         $.ajax(
             {
-                url : '/delete_user',
+                url : '/edit_user',
                 type: "POST",
                 data : postData,
                 async:'false',
@@ -409,6 +423,7 @@ $(document).ready(function () {
                 {
 
                     $('#userselect').find('option:selected').remove();
+                    $("#userselect").append(new Option($('#userid').val()+' '+$('#userfirstname').val()+' ' +$('#userlastname').val(),$('#userid').val()+' '+$('#userfirstname').val()+' ' +$('#userlastname').val()));
                     $('#userselect').trigger('chosen:updated');
                     $('#userid').val('');
                     $('#userfirstname').val('');
@@ -425,7 +440,126 @@ $(document).ready(function () {
             });
         e.preventDefault();
     });
+    // All Add Buttons AJAX
 
+      $('#addinstructor').on('click',  function(e) {
+        var postData = {};
+        postData['id'] = $('#instructorid').val();
+        postData['first_name'] = $('#instructorfirstname').val();
+        postData['last_name'] = $('#instructorlastname').val();
+
+        $.ajax(
+            {
+                url : '/edit_instructor',
+                type: "POST",
+                data : postData,
+                async:'false',
+                success:function(data, textStatus, jqXHR)
+                {
+                    $('#instructorselect').find('option:selected').remove();
+                    $("#instructorselect").append(new Option($('#instructorfirstname').val()+' '+$('#instructorlastname').val(),$('#instructorfirstname').val()+' '+$('#instructorlastname').val()));
+                    $('#instructorselect').trigger('chosen:updated');
+                    $('#instructorid').val('');
+                    $('#instructorfirstname').val('');
+                    $('#instructorlastname').val('');
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    alert('בעיית תקשורת, אנא נסה שוב');
+                }
+            });
+        e.preventDefault();
+    });
+    $('#addstudio').on('click',  function(e) {
+        var postData = {};
+        postData['old_name'] = $('#studioselect').val();
+        postData['new_name'] = $('#studioname').val();
+        $.ajax(
+            {
+                url : '/edit_studio',
+                type: "POST",
+                data : postData,
+                async:'false',
+                success:function(data, textStatus, jqXHR)
+                {
+                    $('#studioselect').find('option:selected').remove();
+                    $("#studioselect").append(new Option($('#studioname').val(),$('#studioname').val()));
+                    $('#studioselect').trigger('chosen:updated');
+                    $('#studioname').val('');
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    alert('בעיית תקשורת, אנא נסה שוב');
+                }
+            });
+        e.preventDefault();
+    });
+    $('#addclass').on('click',  function(e) {
+        var postData = {};
+        postData['new_name'] = $('#classname').val();
+        postData['prev_name'] = $('#classselect').val();
+        postData['new_description'] = $('#classdescription').val();
+        postData['new_color'] = $("#classcolor").spectrum("get").toHexString();
+
+        $.ajax(
+            {
+                url : '/edit_course_template',
+                type: "POST",
+                data : postData,
+                async:'false',
+                success:function(data, textStatus, jqXHR)
+                {
+
+                    $('#studioselect').find('option:selected').remove();
+                    $("#studioselect").append(new Option($('#classname').val(),$('#classname').val()));
+                    $('#studioselect').trigger('chosen:updated');
+                    $('#classname').val('');
+                    $('#classdescription').val('');
+
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    alert('בעיית תקשורת, אנא נסה שוב');
+                }
+            });
+        e.preventDefault();
+    });
+
+    $('#adduser').on('click',  function(e) {
+        var postData = {};
+        postData['user_id'] = $('#userid').val();
+        postData['first_name'] = $('#userfirstname').val();
+        postData['last_name'] = $('#userlastname').val();
+        postData['email'] = $('#useremail').val();
+        postData['phone'] = $('#userphone').val();
+
+        $.ajax(
+            {
+                url : '/edit_user',
+                type: "POST",
+                data : postData,
+                async:'false',
+                success:function(data, textStatus, jqXHR)
+                {
+
+                    $('#userselect').find('option:selected').remove();
+                    $("#userselect").append(new Option($('#userid').val()+' '+$('#userfirstname').val()+' ' +$('#userlastname').val(),$('#userid').val()+' '+$('#userfirstname').val()+' ' +$('#userlastname').val()));
+                    $('#userselect').trigger('chosen:updated');
+                    $('#userid').val('');
+                    $('#userfirstname').val('');
+                    $('#userlastname').val('');
+                    $('#useremail').val('');
+                    $('#userphone').val('');
+
+
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    alert('בעיית תקשורת, אנא נסה שוב');
+                }
+            });
+        e.preventDefault();
+    });
     // var postData = $(this).serializeArray();
 });
 

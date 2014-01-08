@@ -120,11 +120,13 @@
                         <select id="classselect" class="chosen-select chosen-rtl manager" data-placeholder="שם שיעור" style="margin-top:10px;">
                             <option value=""></option>
                             {% for class in courses %}
-                            <option value="{{class}}" data-color="{{courses[class].color}}">{{class}}</option>
+                            <option value="{{class}}" data-color="{{courses[class].color}}" data-description="{{courses[class].description}}">{{class}}</option>
                             {% endfor %}
                         </select>
                         <label for="classname"> שם</label>
                         <input type="text" id="classname"/><br>
+                        <label for="classdescription"> תיאור</label>
+                        <input type="text" id="classdescription"/><br>
                         <label for="classcolor"> צבע</label>
                         <input type="text" id="classcolor" /><br><br>
                     <input type="button" id="editclass" value="עדכן"/>  <input type="button" id="deleteclass" value="מחק" style="margin-bottom: 10px;"/>
@@ -137,6 +139,8 @@
                     <h4> הוספת שיעור חדש </h4>
                     <label for="newclassname"> שם </label>
                     <input type="text" id="newclassname"/><br>
+                    <label for="newclassdescription"> תיאור</label>
+                    <input type="text" id="newclassdescription"/><br>
                     <label for="newclasscolor"> צבע</label>
                     <input type='text' id="newclasscolor" /><br><br>
                     <input type="button" id="addclass" value="הוסף" style="margin-bottom: 10px;"/>
