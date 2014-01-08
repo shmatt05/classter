@@ -394,7 +394,7 @@ $(document).ready(function () {
                     $("#classselect").append(new Option($('#classname').val(),$('#classname').val()));
                     $('#classselect option:last-child').data('color',postData['new_color'] );
                     $('#classselect option:last-child').data('description',postData['new_description'] );
-                    $('#studioselect').trigger('chosen:updated');
+                    $('#classselect').trigger('chosen:updated');
                     $('#classname').val('');
                     $('#classdescription').val('');
 
