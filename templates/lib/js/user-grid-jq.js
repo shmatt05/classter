@@ -5,7 +5,12 @@ var classesTableArr = [];
 var changeWeekVar = new Date().getTime();
 
 $(document).ready(function() {
-   changeWeek(new Date().getTime()); //initialize first date screen
+
+    $('#welcomediv').find('img').each(function(){
+        var imgClass = (this.width/this.height > 1) ? 'wide' : 'tall';
+        $(this).addClass(imgClass);
+    })
+    changeWeek(new Date().getTime()); //initialize first date screen
 
     // Calendar Date Limitations (Back / Forward)
     var past = new Date();
@@ -190,7 +195,7 @@ function changeWeek(newDate) {
 }
 function returnDateStr (someDate) {
     return (someDate.getDate()<10?("0"+someDate.getDate()):someDate.getDate()) + "/" +
-      ((someDate.getMonth()+1)<10?("0"+(someDate.getMonth()+1)):(someDate.getMonth()+1)) + "/" +
-      someDate.getFullYear();
+        ((someDate.getMonth()+1)<10?("0"+(someDate.getMonth()+1)):(someDate.getMonth()+1)) + "/" +
+        someDate.getFullYear();
 }
 
