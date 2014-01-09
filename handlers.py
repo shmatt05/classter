@@ -1620,7 +1620,8 @@ class EditCourseTemplateToGym(BaseRequestHandler):
         prev_name = cgi.escape(self.request.get('prev_name'))
         new_name = cgi.escape(self.request.get('new_name'))
         new_description = cgi.escape(self.request.get('new_description'))
-        admin_manager.edit_course_template(prev_name, new_name, new_description)
+        new_color = cgi.escape(self.request.get('new_color'))
+        admin_manager.edit_course_template(prev_name, new_name, new_description, new_color)
 
 class DeleteCourseTemplateToGym(BaseRequestHandler):
     def post(self):

@@ -93,15 +93,17 @@ class AdminManager:
               self.gym.put()
 
     """ edits an existing course_template object in the courses list of the specified Gym entity """
-    def edit_course_template(self, previous_name, new_name, new_description):
+    def edit_course_template(self, previous_name, new_name, new_description, new_color):
         if self.gym is None:
             raise Exception("No such Gym!")
-        for template in self.gym.courses:
-            if previous_name.lower() == template.name.lower():
-                if template.name != new_name or template.description != new_description:
-                    template.name = new_name
-                    template.description = new_description
-                    self.gym.put()
+        template = self.gym.courses[previous_name]
+        if previous_name.lower() == template.name.lower():
+            if template.name.lower() != new_name.lower() or template.description != new_description or\
+                            template.color != new_color:
+                template.name = new_name
+                template.description = new_description
+                template.color == new_color
+                self.gym.put()
     # TODO: the method above is not updated, courses in Gym is a dictionary, and we should implement an object method
     # TODO: add delete_course_template method
 
