@@ -1626,7 +1626,8 @@ class EditCourseTemplateToGym(BaseRequestHandler):
 class DeleteCourseTemplateToGym(BaseRequestHandler):
     def post(self):
         admin_manager = AdminManager("peer", "peer")
-        #todo - delete course template
+        name = cgi.escape(self.request.get('name'))
+        admin_manager.delete_course_template(name)
 
 class AddUserToGym(BaseRequestHandler):
     def post(self):

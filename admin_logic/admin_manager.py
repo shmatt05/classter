@@ -104,8 +104,12 @@ class AdminManager:
                 template.description = new_description
                 template.color == new_color
                 self.gym.put()
-    # TODO: the method above is not updated, courses in Gym is a dictionary, and we should implement an object method
-    # TODO: add delete_course_template method
+
+    def delete_course_template(self, name):
+        if self.gym is None:
+            raise Exception("No such Gym!")
+        del self.gym.courses[name]
+        self.gym.put()
 
     """ adds a new instructor object to the instructors list of the specified Gym entity
         the method does nothing in case the instructor already exists
