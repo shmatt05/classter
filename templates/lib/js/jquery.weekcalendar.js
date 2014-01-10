@@ -1534,7 +1534,7 @@
 
           eventHtml += '<div class=\"wc-time ui-corner-top\"></div>'; // TIME ON TOP OF THE BOX FIX!!!!
           eventHtml += '<div id=internal' + calEvent.id+' class="internaldiv">';
-          eventHtml += '<label class=\"wc-title\"></label>';
+          eventHtml += '<label class=\"wc-title\"></label><br>';
           eventHtml += '<label class=\"lblInstructor\"></label><br>'
 
           eventHtml += '<label dir="rtl" class=\"lblOpenSlots\"></label>'

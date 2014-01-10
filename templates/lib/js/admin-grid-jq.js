@@ -90,7 +90,7 @@ $(document).ready(function () {
             callback(classesTableArr);
             for (var i=0; i<classesTableArr.length; i++) {
                 $('#'+classesTableArr[i].id + ' .lblInstructor').text(classesTableArr[i].instructor);
-                $('#'+classesTableArr[i].id + ' .lblOpenSlots').text(classesTableArr[i].openSlots);
+                $('#'+classesTableArr[i].id + ' .lblOpenSlots').text(classesTableArr[i].openSlots+ ' מקומות');
                  $('#'+classesTableArr[i].id).css('background-color',classesTableArr[i].color);
             }
         },
