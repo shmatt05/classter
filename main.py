@@ -35,7 +35,61 @@ app_config = {
     'user_model': 'models.User',
   }
 }
-    
+
+
+# ///////////////////////////////////////////////////////////
+
+import os
+from apiclient import discovery
+from google.appengine.api import memcache
+import webapp2
+import jinja2
+from oauth2client import appengine
+import httplib2
+
+
+
+#
+#JINJA_ENVIRONMENT = jinja2.Environment(
+#    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+#    autoescape=True,
+#    extensions=['jinja2.ext.autoescape'])
+#
+## CLIENT_SECRETS, name of a file containing the OAuth 2.0 information for this
+## application, including client_id and client_secret, which are found
+## on the API Access tab on the Google APIs
+## Console <http://code.google.com/apis/console>
+CLIENT_SECRETS = os.path.join(os.path.dirname(__file__), 'python_objects/client_secrets.json')
+
+# Helpful message to display in the browser if the CLIENT_SECRETS file
+# is missing.
+MISSING_CLIENT_SECRETS_MESSAGE = """
+<h1>Warning: Please configure OAuth 2.0</h1>
+<p>
+To make this sample run you will need to populate the client_secrets.json file
+found at:
+</p>
+<p>
+<code>%s</code>.
+</p>
+<p>with information found on the <a
+href="https://code.google.com/apis/console">APIs Console</a>.
+</p>
+""" % CLIENT_SECRETS
+
+http = httplib2.Http(memcache)
+service = discovery.build('calendar', 'v3', http=http)
+decorator = appengine.oauth2decorator_from_clientsecrets(
+    CLIENT_SECRETS,
+    scope=[
+        'https://www.googleapis.com/auth/calendar',
+        'https://www.googleapis.com/auth/calendar.readonly',
+    ],
+    message=MISSING_CLIENT_SECRETS_MESSAGE)
+
+
+#///////////////////////////////
+
 # Map URLs to handlers
 routes = [
     Route('/authenticated', handler='handlers.RootHandler'),
@@ -91,6 +145,8 @@ routes = [
     Route('/add_studio', 'handlers.AddStudioToGym'),
     Route('/edit_studio', 'handlers.EditStudioToGym'),
     Route('/delete_studio', 'handlers.DeleteStudioToGym'),
+    Route('/create_event', 'handlers.CreateEventHandler'),
+    Route(decorator.callback_path, decorator.callback_handler()),
 ]
 
 app = WSGIApplication(routes, config=app_config, debug=True)

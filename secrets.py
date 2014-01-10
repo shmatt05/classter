@@ -36,7 +36,7 @@ FOURSQUARE_CLIENT_SECRET = 'client secret'
 AUTH_CONFIG = {
   # OAuth 2.0 providers
   'google'      : (GOOGLE_APP_ID, GOOGLE_APP_SECRET,
-                  'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+                  'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar'
                   ),
   'linkedin2'   : (LINKEDIN_KEY, LINKEDIN_SECRET,
                   'r_basicprofile'),

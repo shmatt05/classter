@@ -77,6 +77,7 @@ from db import entities
 from users_logic.user_manager import DailyScheduleManager
 from admin_logic.admin_manager import AdminManager
 from python_objects.objects import GymManager
+from python_objects.user_notifications import MyCalendar
 ## check it ##
 reload(sys)
 sys.setdefaultencoding("utf-8")
@@ -1878,3 +1879,12 @@ def my_logout(param_self):
     #param_self.redirect('http://m.facebook.com/logout.php?confirm=1&next=http://localhost:8080.com;')
 
 
+
+#//////////////////////////////////////////////////////////
+
+class CreateEventHandler(MyCalendar):
+
+    def get(self):
+        self.update_calendar("Pure Gym" , "Zoombalatis", "10","1","2014","17:00", "18:00")
+        #self.update_calendar(self.gym_name , self.course_name, self.day,self.month,self.year,self.start_time, self.end_time)
+        print "omrormoemrwoermwoermwoermoermwoermwoermwoer"
