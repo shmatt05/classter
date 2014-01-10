@@ -127,6 +127,6 @@ class MyCalendar(webapp2.RequestHandler):
         # Call the service using the authorized Http object.
         response = self.service.events().insert(calendarId='primary', body=event).execute(http=http_page)
         if response['created'] is not None:
-            self.response.write("Created event successfully")
-
+            #self.response.write("Created event successfully")
+             self.redirect('/user')
 
