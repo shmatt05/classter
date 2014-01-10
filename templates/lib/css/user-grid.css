@@ -95,11 +95,19 @@ opacity: 0.9;
 
 
 .classBox {
-    /*background-color: blue;*/
+    background-color: blue;
 }
 
 th.wc-day-column-header {
     width:13.5%;
+}
+
+.internaldiv {
+    background-color:#495c85;
+    width:80%;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 #logodiv {
@@ -131,6 +139,11 @@ div.indicator {
     max-width: 100%;
     width: auto;
 }​
+.wc-day-column .wc-full-height-column{
+    background-color:green;
+}
+
+
 @media (max-width: 900px) {
 
     .wc-toolbar {

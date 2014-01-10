@@ -90,8 +90,8 @@ $(document).ready(function () {
             callback(classesTableArr);
             for (var i=0; i<classesTableArr.length; i++) {
                 $('#'+classesTableArr[i].id + ' .lblInstructor').text(classesTableArr[i].instructor);
-
                 $('#'+classesTableArr[i].id + ' .lblOpenSlots').text(classesTableArr[i].openSlots);
+                 $('#'+classesTableArr[i].id).css('background-color',classesTableArr[i].color);
             }
         },
         buttonText: {
@@ -133,11 +133,9 @@ $(document).ready(function () {
         },
         eventRender: function(calEvent, $event) {
             if (calEvent.end.getTime() < new Date().getTime()) {
-                $event.css('backgroundColor', '#aaa');
-                $event.find('.time').css({
-                    backgroundColor: '#999',
-                    border:'1px solid #888'
-                });
+              //  $event.css('backgroundColor', '#aaa');
+                $event.css('opacity', '0.5');
+
             }
 
         },
@@ -264,29 +262,29 @@ $(document).ready(function () {
             });
         e.preventDefault();
     });
-//    $('#deleteclass').on('click',  function(e) {
-//        var postData = {};
-//        postData['class_id'] = classID;
-//        postData['class_date'] = classDate;
-//        $.ajax(
-//            {
-//                url : '/delete_course_template',
-//                type: "POST",
-//                data : postData,
-//                async:'false',
-//                success:function(data, textStatus, jqXHR)
-//                {
-//
-//
-//
-//                },
-//                error: function(jqXHR, textStatus, errorThrown)
-//                {
-//                    alert('בעיית תקשורת, אנא נסה שוב');
-//                }
-//            });
-//        e.preventDefault();
-//    });
+    $('#deleteclass').on('click',  function(e) {
+        var postData = {};
+        postData['name'] = $('#classname').val();
+        $.ajax(
+            {
+                url : '/delete_course_template',
+                type: "POST",
+                data : postData,
+                async:'false',
+                success:function(data, textStatus, jqXHR)
+                {
+                    $('#classselect').find('option:selected').remove();
+                    $('#classselect').trigger('chosen:updated');
+                    $('#classname').val('');
+                    $('#classdescription').val('');
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    alert('בעיית תקשורת, אנא נסה שוב');
+                }
+            });
+        e.preventDefault();
+    });
 
     $('#deleteuser').on('click',  function(e) {
         var postData = {};
@@ -607,6 +605,7 @@ function changeWeek(newDate) {
                             oneClass.openSlots = newClass.max_capacity - Object.keys(newClass.users_table).length;
                             oneClass.instructor = newClass.instructor;
                             oneClass.studio = newClass.studio;
+                            oneClass.color = newClass.color;
                             classesTableArr.push(oneClass);
                             //$('#calendar').weekCalendar('clear');
                             //$('#calendar').weekCalendar('refresh');

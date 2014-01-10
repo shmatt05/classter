@@ -25,7 +25,7 @@
   var _v = $.fn.jquery.split('.'),
       _jQuery14OrLower = (10 * _v[0] + _v[1]) < 15;
 
-  $.widget('ui.weekCalendar', (function() {
+  $.widget('ui.weekCalendar',(function() {
     var _currentAjaxCall, _hourLineTimeout;
 
     return {
@@ -1534,10 +1534,10 @@
 
           eventHtml += '<div class=\"wc-time ui-corner-top\"></div>'; // TIME ON TOP OF THE BOX FIX!!!!
           eventHtml += '<div id=internal' + calEvent.id+' class="internaldiv">';
-          eventHtml += '<div class=\"wc-title\"></div>';
+          eventHtml += '<label class=\"wc-title\"></label>';
           eventHtml += '<label class=\"lblInstructor\"></label><br>'
 
-          eventHtml += '<label class=\"lblOpenSlots\"></label>'
+          eventHtml += '<label dir="rtl" class=\"lblOpenSlots\"></label>'
           eventHtml += '<div class=\"indicator\"></div>'
           eventHtml += '</div></div>'; // END OF CLASS BOX IS HERE
 

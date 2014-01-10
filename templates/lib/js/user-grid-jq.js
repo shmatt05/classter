@@ -23,11 +23,10 @@ $(document).ready(function() {
             callback(classesTableArr);
             for (var i=0; i<classesTableArr.length; i++) {
                 $('#'+classesTableArr[i].id + ' .lblInstructor').text(classesTableArr[i].instructor);
-                $('#'+classesTableArr[i].id + ' .lblOpenSlots').text(classesTableArr[i].openSlots);
-                if ($('#'+classesTableArr[i].id).css('background-color') != 'rgb(170, 170, 170)') {
-                    //$('#'+classesTableArr[i].id).css('background-color',classesTableArr[i].color);
-                    //todo: SET COLOR FROM COURSE OBJECT
-                }
+                $('#'+classesTableArr[i].id + ' .lblOpenSlots').text(classesTableArr[i].openSlots+ ' מקומות');
+               // if ($('#'+classesTableArr[i].id).css('background-color') != 'rgb(170, 170, 170)') {
+                    $('#'+classesTableArr[i].id).css('background-color',classesTableArr[i].color);
+              //  }
                 if (classesTableArr[i].isReg) {
                     $('#'+classesTableArr[i].id + ' .indicator').css('background-color','#33CC33');
                 }
@@ -70,11 +69,9 @@ $(document).ready(function() {
         },
         eventRender: function(calEvent, $event) {
             if (calEvent.end.getTime() < new Date().getTime()) {
-                $event.css('backgroundColor', '#aaa');
-//                $event.find('.time').css({
-//                    backgroundColor: '#999',
-//                    border:'1px solid #888'
-//                });
+                //$event.css('backgroundColor', '#aaa');
+                $event.css('opacity', '0.3');
+
             }
         },
         eventNew: function(calEvent, $event) {
@@ -171,6 +168,7 @@ function changeWeek(newDate) {
                             oneClass.openSlots = newClass.max_capacity - Object.keys(newClass.users_table).length;
                             oneClass.instructor = newClass.instructor;
                             oneClass.studio = newClass.studio;
+                            oneClass.color = newClass.color;
 
                             //$('#calendar').weekCalendar('updateEvent', newClass);
                             classesTableArr.push(oneClass);
