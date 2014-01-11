@@ -14,7 +14,7 @@ $(document).ready(function() {
         $.ajax(
             {
                 url : '/create_event',
-                type: "GET",
+                type: "POST",
                 data : getData,
 
                 async:'false',
