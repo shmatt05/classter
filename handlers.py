@@ -1488,6 +1488,7 @@ class RegisterToClass(BaseRequestHandler):
     def post(self):
         class_key = cgi.escape(self.request.get('class_key')) #works great!
         date_representation = cgi.escape(self.request.get('class_date'))
+        date_original = date_representation
         date_representation = date_representation.split('/')
         year = date_representation[2]
         month = date_representation[1]
@@ -1509,7 +1510,12 @@ class RegisterToClass(BaseRequestHandler):
 
             template_values = {
                 'open_slots': new_num_slots_in_course,
-                'class_key': class_key
+                'class_key': class_key,
+                'date': date_original,
+                'name':course_name,
+                'start_hour':course_start_hour,
+                'end_hour':course_end_hour
+
             }
 
             self.render('user-popup-success.html', template_values)
@@ -1887,9 +1893,11 @@ class CreateEventHandler(MyCalendar):
     def get(self):
         gym_name = "Pure Gym"
         course_name = cgi.escape(self.request.get('course_name'))
-        day = cgi.escape(self.request.get('day'))
-        month = cgi.escape(self.request.get('month'))
-        year = cgi.escape(self.request.get('year'))
+        date_representation = cgi.escape(self.request.get('course_date'))
+        date_representation = date_representation.split('/')
+        year = date_representation[2]
+        month = date_representation[1]
+        day = date_representation[0]
         start_hour = cgi.escape(self.request.get('start_hour'))
         end_hour = cgi.escape(self.request.get('end_hour'))
 
