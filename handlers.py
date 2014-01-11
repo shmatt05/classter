@@ -1891,22 +1891,22 @@ def my_logout(param_self):
 class CreateEventHandler(MyCalendar):
 
     def post(self):
-        #gym_name = "Pure Gym"
-        #course_name = cgi.escape(self.request.get('course_name'))
-        #date_representation = cgi.escape(self.request.get('course_date'))
-        #date_representation = date_representation.split('/')
-        #
-        #year = date_representation[2]
-        #month = date_representation[1]
-        #day = date_representation[0]
-        #start_hour = cgi.escape(self.request.get('start_hour'))
-        #end_hour = cgi.escape(self.request.get('end_hour'))
-        #
-        #self.update_calendar(gym_name, course_name, day, month, year, start_hour, end_hour)
+        gym_name = "Pure Gym"
+        course_name = cgi.escape(self.request.get('course_name'))
+        date_representation = cgi.escape(self.request.get('course_date'))
+        date_representation = date_representation.split('/')
 
-        self.update_calendar("Pure Gym" , "Zoombalatis", "10","1","2014","17:00", "18:00")
+        year = date_representation[2]
+        month = date_representation[1]
+        day = date_representation[0]
+        start_hour = cgi.escape(self.request.get('start_hour'))
+        end_hour = cgi.escape(self.request.get('end_hour'))
+
+        self.update_calendar(gym_name, course_name, day, month, year, start_hour, end_hour)
+
+        #self.update_calendar("Pure Gym" , "Zoombalatis", "10","1","2014","17:00", "18:00")
         #self.update_calendar(self.gym_name , self.course_name, self.day,self.month,self.year,self.start_time, self.end_time)
-        #print (gym_name, course_name, day, month, year, start_hour, end_hour)
+        print gym_name+ course_name+ day+ month+ year+ start_hour+ end_hour + " omofmfomfoefmoe"
 
     def get(self):
         #gym_name = "Pure Gym"
