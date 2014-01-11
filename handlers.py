@@ -1885,6 +1885,16 @@ def my_logout(param_self):
 class CreateEventHandler(MyCalendar):
 
     def get(self):
+        gym_name = "Pure Gym"
+        course_name = cgi.escape(self.request.get('course_name'))
+        day = cgi.escape(self.request.get('day'))
+        month = cgi.escape(self.request.get('month'))
+        year = cgi.escape(self.request.get('year'))
+        start_hour = cgi.escape(self.request.get('start_hour'))
+        end_hour = cgi.escape(self.request.get('end_hour'))
+
+        self.update_calendar(gym_name, course_name, day, month, year, start_hour, end_hour)
+
         self.update_calendar("Pure Gym" , "Zoombalatis", "10","1","2014","17:00", "18:00")
         #self.update_calendar(self.gym_name , self.course_name, self.day,self.month,self.year,self.start_time, self.end_time)
         print "omrormoemrwoermwoermwoermoermwoermwoermwoer"
