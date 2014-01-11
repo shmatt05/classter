@@ -70,7 +70,7 @@ class MyCalendar(webapp2.RequestHandler):
     # application, including client_id and client_secret, which are found
     # on the API Access tab on the Google APIs
     # Console <http://code.google.com/apis/console>
-    CLIENT_SECRETS = os.path.join(os.path.dirname(__file__), '../../../Projects/google-workshop/python_objects/client_secrets.json')
+    CLIENT_SECRETS = os.path.join(os.path.dirname(__file__), 'client_secrets.json')
 
     # Helpful message to display in the browser if the CLIENT_SECRETS file
     # is missing.
