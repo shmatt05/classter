@@ -17,6 +17,7 @@
     visibility:hidden;
 }
 
+
 /*.wc-full-height-column.day-4 {*/
     /*display:none;*/
 /*}*/
@@ -143,7 +144,22 @@ div.indicator {
     background-color:green;
 }
 
+#footer{
+    height:40px;
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background-color:#E9D8E9;
+    opacity: 0.7;
+    text-align: center;
+}
 
+#calendar {
+    padding-bottom:40px;
+}
+#about, #feedback {
+    opacity:1;
+}
 @media (max-width: 900px) {
 
     .wc-toolbar {
