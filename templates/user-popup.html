@@ -43,7 +43,7 @@
     </style>
     {% if course.signed_up %}
     <div class="red-alert text-center">
-        <input type="button" id="cancelreg" value="בטל"/>
+        <input type="button" class="button button-border-caution button-rounded" id="cancelreg" value="בטל"/>
         הרשמה לשיעור זה כבר בוצעה
     </div>
     {% endif %}
@@ -77,7 +77,7 @@
         {% if course.free_slots == "0" %}
         <div class="red-alert text-center">הקורס מלא</div>
         {% else %}
-        <input type="button" value="הרשם" id="signupbutton">
+        <div class="text-center"><input type="button" class="button button-rounded button-flat-royal" value="הרשם" id="signupbutton"></div>
         {% endif %}
         {% endif %}
         {% else %}

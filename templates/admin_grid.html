@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="lib/css/responsive-tables.css">
     <link rel="stylesheet" type="text/css" href="lib/css/chosen.css">
     <link rel="stylesheet" type="text/css" href="lib/css/spectrum.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/buttons.css">
     <link rel="stylesheet" type="text/css" href="lib/css/admin-grid.css">
 
     <script type="text/javascript" src="lib/js/jquery.min.js"></script>
@@ -70,7 +71,7 @@
                     <input type="text" id="instructorfirstname"/><br>
                     <label for="instructorlastname"> שם משפחה </label>
                     <input type="text" id="instructorlastname" /><br><br>
-                    <input type="button" id="editinstructor" value="עדכן"/>  <input type="button" id="deleteinstructor" value="מחק" style="margin-bottom: 10px;"/>
+                    <input type="button" class="button button-rounded button-flat-action" style="margin-bottom:10px;" id="editinstructor" value="עדכן"/>  <input type="button" class="button button-rounded button-flat-caution" id="deleteinstructor" value="מחק" style="margin-bottom: 10px;"/>
                     </form>
                 </div>
                     <div class="container" dir="rtl" style="float:left;width:300px;border:2px solid;">
@@ -82,7 +83,7 @@
                     <input type="text" id="newinstructorfirstname"/><br>
                     <label for="newinstructorlastname">שם משפחה</label>
                     <input type="text" id="newinstructorlastname"/><br><br>
-                    <input type="button" id="addinstructor" value="הוסף" style="margin-bottom: 10px;"/>
+                    <input type="button" id="addinstructor" class="button button-rounded button-flat-primary" value="הוסף" style="margin-bottom: 10px;"/>
                         </form>
                 </div>
                 </div>
@@ -100,13 +101,13 @@
                         </select>
                         <label for="studioname"> שם</label>
                         <input type="text" id="studioname"/><br><br>
-                        <input type="button" id="editstudio" value="עדכן"/>  <input type="button" id="deletestudio" value="מחק" style="margin-bottom: 10px;"/>
+                        <input type="button" class="button button-rounded button-flat-action" id="editstudio" style="margin-bottom:10px;" value="עדכן"/>  <input type="button" class="button button-rounded button-flat-caution" id="deletestudio" value="מחק" style="margin-bottom: 10px;"/>
                     </div>
                     <div class="container" dir="rtl" style="float:left;width:300px;border:2px solid;">
                         <h4>הוספת סטודיו חדש</h4>
                         <label for="newstudioname"> שם</label>
                         <input type="text" id="newstudioname"/><br><br>
-                        <input type="button" id="addstudio" value="הוסף" style="margin-bottom: 10px;"/>
+                        <input type="button" id="addstudio" class="button button-rounded button-flat-primary" value="הוסף" style="margin-bottom: 10px;"/>
                     </div>
                 </div>
             </div>
@@ -129,7 +130,7 @@
                         <input type="text" id="classdescription"/><br>
                         <label for="classcolor"> צבע</label>
                         <input type="text" id="classcolor" /><br><br>
-                    <input type="button" id="editclass" value="עדכן"/>  <input type="button" id="deleteclass" value="מחק" style="margin-bottom: 10px;"/>
+                    <input type="button" id="editclass" class="button button-rounded button-flat-action" style="margin-bottom:10px;" value="עדכן"/>  <input type="button" class="button button-rounded button-flat-caution" id="deleteclass" value="מחק" style="margin-bottom: 10px;"/>
 
                 </div>
 
@@ -143,7 +144,7 @@
                     <input type="text" id="newclassdescription"/><br>
                     <label for="newclasscolor"> צבע</label>
                     <input type='text' id="newclasscolor" /><br><br>
-                    <input type="button" id="addclass" value="הוסף" style="margin-bottom: 10px;"/>
+                    <input type="button" class="button button-rounded button-flat-primary" id="addclass" value="הוסף" style="margin-bottom: 10px;"/>
                 </div>
             </div>
                 </div>
@@ -168,7 +169,7 @@
                     <input type="text" id="useremail"/><br>
                     <label for="userphone">  מספר טלפון </label>
                     <input type="text" id="userphone"/><br>
-                    <input type="button" id="edituser" value="עדכן"/>  <input type="button" id="deleteuser" value="מחק" style="margin-bottom: 10px;"/>
+                    <input type="button" id="edituser" class="button button-rounded button-flat-action" style="margin-bottom:10px;" value="עדכן"/>  <input type="button" class="button button-rounded button-flat-caution" id="deleteuser" value="מחק" style="margin-bottom: 10px;"/>
                      </div>
                      <div class="container" dir="rtl" style="float:left;width:300px;border:2px solid;">
                          <h4>הוספת משתמש חדש</h4>s
@@ -182,7 +183,7 @@
                     <input type="text" id="newuseremail"/><br>
                     <label for="newuserphone">  מספר טלפון </label>
                     <input type="text" id="newuserphone"/><br>
-                         <br><br><input type="button" id="adduser" value="הוסף" style="margin-bottom: 10px;"/>
+                         <br><input type="button" class="button button-rounded button-flat-primary" id="adduser" value="הוסף" style="margin-bottom: 10px;"/>
                     </div>
                  </div>
             </div>

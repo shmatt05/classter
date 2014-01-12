@@ -72,17 +72,17 @@
                         <li class="ui-widget-content" value="{{user.id}}">{{user.first_name}} {{user.last_name}}</li>
                         {% endfor %}
                     </ol></div><br>
-                    <button type="button" id="adduserlist">
+                    <button type="button" id="adduserlist" class="button button-flat-action">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
-                    <button type="button" id="removeuserlist">
+                    <button type="button" id="removeuserlist" class="button button-flat-caution">
                         <span class="glyphicon glyphicon-minus"></span>
                     </button>
                     <div id="addlist" style="display:none;"><br>
                         <select id="classnamelist" class="chosen-select chosen-rtl chosen-manage" data-placeholder="הכנס ת.ז" >
                             <option value=""></option>
                         </select>
-                        <input type="button" id="adduserbutton" value="הוסף" style="float:left;display: inline;"/>
+                        <input type="button"  class="button button-rounded button-flat-primary" id="adduserbutton" value="הוסף" style="float:left;display: inline;"/>
                     </div>
                 </div>
 
@@ -93,24 +93,24 @@
                         <li class="ui-widget-content" value="{{user.id}}">{{user.first_name}} {{user.last_name}}</li>
                         {% endfor %}
                     </ol></div><br>
-                    <button type="button" id="adduserwait">
+                    <button type="button" id="adduserwait" class="button button-flat-action">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
-                    <button type="button" id="removeuserwait">
+                    <button type="button" id="removeuserwait" class="button button-flat-caution">
                         <span class="glyphicon glyphicon-minus"></span>
                     </button>
                     <div id="addwaiting" style="display:none;"><br>
                         <select id="waitingnamelist" class="chosen-select chosen-rtl" data-placeholder="הכנס ת.ז">
                             <option value=""></option>
                         </select>
-                        <input type="button" id="addwaitbutton" value="הוסף" style="float:left;display: inline;"/>
+                        <input type="button" class="button button-rounded button-flat-primary" id="addwaitbutton" value="הוסף" style="float:left;display: inline;"/>
                     </div>
                 </div>
             </div>
         </div>
         <div id="editdiv" class="tab-pane">
             <div id="deletediv" style="background-color: #FFC0C0; margin: 0;padding-top: 25px; padding-bottom: 25px;" class="text-center">
-                <input type="button" id="deletecourse" value="מחק שיעור" />
+                <input type="button" id="deletecourse" class="button button-border-caution" value="מחק שיעור" />
             </div>
             <form id="editclass"  method="post" action="editcoursepopup" dir="rtl">
 
@@ -183,7 +183,7 @@
                         <div id="opentime" dir="rtl" class="bfh-timepicker" data-time="{{reg_start_time}}"></div><br>
                     </fieldset>
 
-                    <input type="submit" value="עדכן" style="float:right; margin-right:80px;">
+                    <input type="submit" class="button button-flat-highlight" value="עדכן" style="float:right; margin-right:80px;">
                 </fieldset>
 
             </form>
