@@ -8,7 +8,11 @@
     </script>
     <script type='text/javascript' src="lib/js/user-success-jq.js"></script>
     <div class="jumbotron text-center">
-        <h2> ההרשמה עברה בהצלחה </h2>
+        <h2>ההרשמה בוצעה בהצלחה</h2>
+        <h3 id="name">{{ name }}</h3>
+        <h4 id="time">{{ start_hour }} -  {{ end_hour}}</h4>
+        <h4 id="date">{{ date }}</h4>
+  
     </div>
     <input type="button" class="button button-border-action button-rounded" id="addtocalendar" value="הוסף ל Google Calendar" />
     <a href="/create_event" class="btn">Add event to Google Calendar!</a>
