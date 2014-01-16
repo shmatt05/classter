@@ -22,7 +22,8 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 ########################
 
-CURRENT_GYM = "pure"
+GYM_NETWORK = "peer"
+GYM_BRANCH = "peer"
 
 def user_required(handler):
     """
@@ -665,7 +666,7 @@ class NewCoursePopup(BaseRequestHandler):
         class_date = cgi.escape(self.request.get('course_date'))
         class_hour = cgi.escape(self.request.get('course_hour'))
         class_minutes = cgi.escape(self.request.get('course_minutes'))
-        admin_viewer = AdminViewer("peer", "peer")
+        admin_viewer = AdminViewer(GYM_NETWORK, GYM_BRANCH)
         gym_info = admin_viewer.get_gym_info_for_popup()
         class_names = gym_info.courses_template_table
         studio_names = gym_info.studios_list
@@ -683,8 +684,8 @@ class NewCoursePopup(BaseRequestHandler):
 
 class EditCourseButtonClick(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
-        admin_viewer = AdminViewer("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
+        admin_viewer = AdminViewer(GYM_NETWORK, GYM_BRANCH)
         gym_info = admin_viewer.get_gym_info_for_popup()
         class_names = gym_info.courses_template_table
         studio_names = gym_info.studios_list
@@ -729,7 +730,7 @@ class AddClassToSched(BaseRequestHandler):
         registration_days_before = int(cgi.escape(self.request.get('open_date')))
         registratio_start_time = cgi.escape(self.request.get('open_time'))
         all_month = cgi.escape(self.request.get('all_month'))
-        admin_man = AdminManager("peer", "peer") # todo: gym not hard coded
+        admin_man = AdminManager(GYM_NETWORK, GYM_BRANCH)
         if str(all_month) == 'true':
             admin_man.create_course_for_month(class_name, time.replace(":", ""), length, participants, instructor,
                                               studio,
@@ -758,7 +759,7 @@ class EditCoursePopup(BaseRequestHandler):
         registration_days_before = int(cgi.escape(self.request.get('open_date')))
         registratio_start_time = cgi.escape(self.request.get('open_time'))
         all_month = cgi.escape(self.request.get('all_month'))
-        admin_man = AdminManager("peer", "peer") # todo: gym not hard coded
+        admin_man = AdminManager(GYM_NETWORK, GYM_BRANCH)
         admin_man.edit_course(class_id, class_name, length, participants, instructor, studio, registration_days_before,
                               registratio_start_time, date[2], date[1], date[0])
 
@@ -773,7 +774,7 @@ class ManageCoursePopup(BaseRequestHandler):
         month = date_representation[1]
         day = date_representation[0]
 
-        admin_manager = AdminManager("peer", "peer") #todo gym not hardcoded
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         registered_users_list = admin_manager.get_registered_users_list_from_course(class_key, year, month, day)
         waiting_list = admin_manager.get_waiting_list_from_course(class_key, year, month, day)
         course = admin_manager.get_course(class_key, year, month, day)
@@ -796,7 +797,7 @@ class EditCourseTime(BaseRequestHandler):
         start_hour = cgi.escape(self.request.get('new_hour')).replace(":", "")
         duration = cgi.escape(self.request.get('new_minutes'))
         course_id = cgi.escape(self.request.get('course_id'))
-        admin_manager = AdminManager("peer", "peer") #todo: gym not hard coded
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         if is_same_day:
             admin_manager.edit_course_time(course_id, new_date[2], new_date[1], new_date[0], start_hour, duration)
         else:
@@ -814,7 +815,7 @@ class InitialHandler(BaseRequestHandler):
     def get(self):
         """initialize the db"""
         """create gym and put in db:"""
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         #admin_manager.create_gym("tel aviv")
 
         """add month schedule"""
@@ -1078,36 +1079,36 @@ class InitialHandler(BaseRequestHandler):
 
         user_credential = entities.UserCredentials()
         user_credential.id = '1'
-        user_credential.gym_branch = 'peer'
-        user_credential.gym_network = 'peer'
+        user_credential.gym_branch = GYM_BRANCH
+        user_credential.gym_network = GYM_NETWORK
         user_credential.set_key()
         user_credential.put()
 
         user_credential = entities.UserCredentials()
         user_credential.id = '2'
-        user_credential.gym_branch = 'peer'
-        user_credential.gym_network = 'peer'
+        user_credential.gym_branch = GYM_BRANCH
+        user_credential.gym_network = GYM_NETWORK
         user_credential.set_key()
         user_credential.put()
 
         user_credential = entities.UserCredentials()
         user_credential.id = '3'
-        user_credential.gym_branch = 'peer'
-        user_credential.gym_network = 'peer'
+        user_credential.gym_branch = GYM_BRANCH
+        user_credential.gym_network = GYM_NETWORK
         user_credential.set_key()
         user_credential.put()
 
         user_credential = entities.UserCredentials()
         user_credential.id = '123'
-        user_credential.gym_branch = 'peer'
-        user_credential.gym_network = 'peer'
+        user_credential.gym_branch = GYM_BRANCH
+        user_credential.gym_network = GYM_NETWORK
         user_credential.set_key()
         user_credential.put()
         #user 2
         user_credential = entities.UserCredentials()
         user_credential.id = '555'
-        user_credential.gym_branch = 'peer'
-        user_credential.gym_network = 'peer'
+        user_credential.gym_branch = GYM_BRANCH
+        user_credential.gym_network = GYM_NETWORK
         user_credential.set_key()
         user_credential.put()
         #self.response.write(str(daily_list[0].courses_list[0].name))
@@ -1115,12 +1116,12 @@ class InitialHandler(BaseRequestHandler):
 
 class AddUser(BaseRequestHandler):
     def get(self):
-        david = entities.UserCredentials(id="3213908", gym_network="peer", gym_branch="peer", google_id="3241",
+        david = entities.UserCredentials(id="3213908", gym_network=GYM_NETWORK, gym_branch=GYM_BRANCH, google_id="3241",
                                          facebook_id="4124321")
         david.set_key()
         david.put()
 
-        admin_man = AdminManager("peer", "peer")
+        admin_man = AdminManager(GYM_NETWORK, GYM_BRANCH)
         admin_man.add_user_to_gym('555', "Roy", "Klinger", "fadkj@fdas.fds", "05421365648")
         admin_man.add_user_to_gym('123', "Moahe", "Babi", "ffdskj@fdas.fds", "0546855648")
         admin_man.add_user_to_gym("1", "David", "Franco", "Fdas", "43242")
@@ -1133,135 +1134,11 @@ class AddUser(BaseRequestHandler):
 
 class MainHandler(BaseRequestHandler):
     def get(self):
-        admin_manager = AdminManager("peer", "peer")
-
-
-
-        ## add
-
-        #admin_manager.add_instructor("123456", "Roy", "Klinger")
-        #admin_manager.add_instructor("1234326", "Moshe", "Tuki")
-        #admin_manager.add_studio("Spinning Room")
-        #admin_manager.add_studio("Yoga Room")
-        #
-
-        #
-        #hour = datetime.now().hour
-        #
-        #admin_manager.create_course_for_month("ZumbaLatis", "Latis the Zumbot","1400", 120, 10,
-        #                      "Moished", "Park","blue", [], [], 2013, 11, 3)
-        #
-        #
-        #admin_manager.create_course_for_month("PilaYoga", "Yoga the Pila", "0930", 60, 10,
-        #                      "Moished", "Park","blue", [], [], 2013, 11, 5)
-
-        ###############################
-
-        #peer = entities.Gym(name="peer", gym_network="peer", address="TLV", courses={}, instructors={}, studios=[])
-        #peer.set_key()
-        #peer.put()
-
-        #creating course templates
-        #zumba = objects.CourseTemplate("Zumba", "Funny course")
-        #yoga = objects.CourseTemplate("Yoga", "Stupid course")
-
-        # creating gyms
-
-        #goactive = entities.Gym(name = "savyonim",gym_network="Go Active")
-
-        #goactive.set_key()
-
-        # uploading gyms to DB
-        #goactive.put()
-
-
-        #
-        #admin = AdminManager("peer", "peer")
-        #admin.add_course_template("yoga", "Zubin Meta")
-        #admin.create_month_schedule(2014, 2)
-        ##admin.edit_course_template("yoga","yoga11","Kaki batachton!")
-        #admin.create_course_for_month("ZumbaLatis", "Latis the Zumbot", hour, 120, 10,
-        #                              "Moished", "Park","blue", [], [], 2014, 2, 3)
-        #day_number = admin.get_day_by_date(2013, 11, 7)
-        #
-        ## add user to zumbalatis
-        #daily_sched_man = operations.DailyScheduleManager("peer", "peer")
-        #daily_sched_man.add_user_to_course("Roy Klinger", 2014, 2, 3, hour, "ZumbaLatis")
-        #daily_sched_man.add_user_to_course("Moshico Movshi", 2014, 2, 3, hour, "ZumbaLatis")
-        #
-        #daily = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get().schedule_table[str(3)]
-        #for course in daily.courses_list:
-        #    if course.name == "ZumbaLatis":
-        #        self.response.write("before deletion: <br/>")
-        #        for user in course.users_list:
-        #            self.response.write("his name is: " + user.name + "<br/>")
-        #
-        #daily_sched_man.delete_user_from_course("Moshico Movshi", 2014, 2, 3, hour, "ZumbaLatis")
-        #
-        #daily1 = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get().schedule_table[str(3)]
-        #for course in daily1.courses_list:
-        #    if course.name == "ZumbaLatis":
-        #        self.response.write("after deletion: <br/>")
-        #        for user in course.users_list:
-        #            self.response.write("his name is: " + user.name + "<br/>")
-        #
-        #peer_gym_after = entities.Gym.get_key("peer", "peer").get()
-        #course_templates = peer_gym_after.courses
-        #schedule = entities.MonthSchedule.get_key(2, 2014, "peer", "peer").get()
-        #self.response.write(str(course_templates) + "<br/>")
-        #self.response.write(str(schedule.schedule_table.keys()) + "<br/>")
-        #self.response.write(str(schedule.schedule_table['3'].courses_list) + "<br/>")
-        #self.response.write(str(day_number) + "<br/>")
-        #
-        ## creating real courses
-        #zumba_yaron = objects.Course("Zumba", "Funny course", 1400, 60, 20, "yaron","Katom", "#FF99FF", [],[])
-        #yoga_bar = objects.Course("Yoga", "Stupid course", 1700, 90, 90, "yaron", "blue", "#3399FF",[], [])
-        #
-        #
-        ## creating schedule
-        #schedule_peer = entities.MonthSchedule()
-        #schedule_peer.month = 11
-        #schedule_peer.year = 2013
-        #schedule_peer.set_key("peer", "peer")
-        #first_day = objects.DailySchedule(2013, 11, 1, 3, [zumba_yaron, yoga_bar])
-        #second_day = objects.DailySchedule(2013, 11, 2, 5, [zumba_yaron, yoga_bar])
-        #schedule_peer.schedule_table = {int(first_day.day_in_month): first_day, int(second_day.day_in_month): second_day}
-        #
-        #schedule_sav = entities.MonthSchedule()
-        #schedule_sav.month = 7
-        #schedule_sav.year = 2011
-        #schedule_sav.set_key("Go Active", "savyonim")
-        #
-        #schedule_sav.put()
-        #schedule_peer.put()
-        #
-        ##create users
-        #david = objects.User(12342156, 3, 144221, "david")
-        #matan = objects.User(12323126, 2, 1321, "matan")
-        #omri = objects.User(123756456, 1, 1321, "omri")
-        #roy = objects.User(123432356, 4, 1321, "roy")
-        #
-        #users = entities.Users()
-        #users.set_key("peer", "peer")
-        #users.users_table = users.create_users_table(david, matan, omri, roy)
-        #users.put()
-        #
-        #users_manager = operations.DailyScheduleManager("peer", "peer")
-        #start_date = datetime(day=1, month=11, year=2013)
-        #end_date = datetime(day=2, month=11, year=2013)
-        #
-        #result = entities.MonthSchedule.get_key("11","2013","peer","peer").get()
-        #if type(result.schedule_table[str(first_day.day_in_month)]) == objects.DailySchedule:
-        #    self.response.write("I'm Daily Sche........!!" + "<br/>")
-        #self.response.write(str(result.schedule_table[str(first_day.day_in_month)].day_in_month) + "<br/>")
-        #self.response.write(str(users_manager.get_daily_schedule_list(start_date, end_date)[0].courses_list[0].studio))
-
+        pass
 
 class ChangeWeek(BaseRequestHandler):
     def post(self):
-        users_manager = DailyScheduleManager("peer", "peer")
-        gym_manager = GymManager("peer", "peer")
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         client_date = float(cgi.escape(self.request.get('new_date')))
         new_date = datetime.fromtimestamp(client_date / 1e3) + timedelta(hours = 2)
         print new_date
@@ -1283,9 +1160,7 @@ class UserHandler(BaseRequestHandler):
 
 class AdminHandler(BaseRequestHandler):
     def get(self):
-        #template = JINJA_ENVIRONMENT.get_template('admin_grid.html')
-        #self.response.write(template.render())
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         gym_users = admin_manager.gym.users_table
         instructors = admin_manager.gym.instructors
         courses_templates = admin_manager.gym.courses
@@ -1307,7 +1182,7 @@ class CreateMonthSched(BaseRequestHandler):
         year = date_arr[0]
         month = date_arr[1]
         #self.response.write(date_arr)
-        admin_man = AdminManager("peer", "peer")
+        admin_man = AdminManager(GYM_NETWORK, GYM_BRANCH)
         admin_man.create_month_schedule(int(year), int(month))
 
         template_values = {
@@ -1337,7 +1212,7 @@ class AddCourse(BaseRequestHandler):
         course_name = cgi.escape(self.request.get('course_name'))
         description = cgi.escape(self.request.get('description'))
 
-        admin_man = AdminManager("peer", "peer")
+        admin_man = AdminManager(GYM_NETWORK, GYM_BRANCH)
         admin_man.add_course_template(course_name, description)
 
         template_values = {
@@ -1363,14 +1238,14 @@ class CreateCourse(BaseRequestHandler):
         duration = cgi.escape(self.request.get('duration'))
         capacity = cgi.escape(self.request.get('capacity'))
 
-        schedule_man = DailyScheduleManager("peer", "peer")
+        schedule_man = DailyScheduleManager(GYM_NETWORK, GYM_BRANCH)
 
         #print("year = "+year + " month= "+ month+ " class= " + str(class_name) + " studio= "+
         #             studio + " instructor= " + instructor + " start= " + start_hour +
         #                 " duration= " + duration + " capacity= " + capacity + " day= " + day)
 
         # Get description
-        admin_man = AdminManager("peer", "peer")
+        admin_man = AdminManager(GYM_NETWORK, GYM_BRANCH)
         class_template = admin_man.get_courses_templates()[str(class_name)]
         description = class_template.description
         # Add course
@@ -1470,14 +1345,14 @@ class RegisterToClass(BaseRequestHandler):
 
 class GetUsersList(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         users_table = admin_manager.get_users_of_gym()
         self.response.write(jsonpickle.encode(users_table))
 
 
 class AddUserToCourse(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         class_id = cgi.escape(self.request.get('class_id')) #works great!
         date_representation = cgi.escape(self.request.get('class_date'))
         user_id = cgi.escape(self.request.get('user_id'))
@@ -1500,7 +1375,7 @@ class AddUserToCourse(BaseRequestHandler):
 
 class RemoveUserFromCourse(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         class_key = cgi.escape(self.request.get('class_id')) #works great!
         date_representation = cgi.escape(self.request.get('class_date'))
         user_id = cgi.escape(self.request.get('user_id'))
@@ -1522,7 +1397,7 @@ class RemoveUserFromCourse(BaseRequestHandler):
 
 class DeleteCourse(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         class_key = cgi.escape(self.request.get('class_id')) #works great!
         date_representation = cgi.escape(self.request.get('class_date'))
         date_representation = date_representation.split('/')
@@ -1535,7 +1410,7 @@ class DeleteCourse(BaseRequestHandler):
 
 class AddInstructorToGym(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         id = cgi.escape(self.request.get('id'))
         first_name = cgi.escape(self.request.get('first_name'))
         last_name = cgi.escape(self.request.get('last_name'))
@@ -1544,7 +1419,7 @@ class AddInstructorToGym(BaseRequestHandler):
 
 class EditInstructorToGym(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         id = cgi.escape(self.request.get('id'))
         first_name = cgi.escape(self.request.get('first_name'))
         last_name = cgi.escape(self.request.get('last_name'))
@@ -1553,14 +1428,14 @@ class EditInstructorToGym(BaseRequestHandler):
 
 class DeleteInstructorToGym(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         id = cgi.escape(self.request.get('instructor_id'))
         admin_manager.delete_instructor(id)
 
 
 class AddCourseTemplateToGym(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         name = cgi.escape(self.request.get('name'))
         description = cgi.escape(self.request.get('description'))
         color = cgi.escape(self.request.get('color'))
@@ -1569,7 +1444,7 @@ class AddCourseTemplateToGym(BaseRequestHandler):
 
 class EditCourseTemplateToGym(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         prev_name = cgi.escape(self.request.get('prev_name'))
         new_name = cgi.escape(self.request.get('new_name'))
         new_description = cgi.escape(self.request.get('new_description'))
@@ -1579,14 +1454,14 @@ class EditCourseTemplateToGym(BaseRequestHandler):
 
 class DeleteCourseTemplateToGym(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         name = cgi.escape(self.request.get('name'))
         admin_manager.delete_course_template(name)
 
 
 class AddUserToGym(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         user_id = cgi.escape(self.request.get('user_id'))
         first_name = cgi.escape(self.request.get('first_name'))
         last_name = cgi.escape(self.request.get('last_name'))
@@ -1597,7 +1472,7 @@ class AddUserToGym(BaseRequestHandler):
 
 class EditUserToGym(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         user_id = cgi.escape(self.request.get('user_id'))
         first_name = cgi.escape(self.request.get('first_name'))
         last_name = cgi.escape(self.request.get('last_name'))
@@ -1608,21 +1483,21 @@ class EditUserToGym(BaseRequestHandler):
 
 class DeleteUserToGym(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         user_id = cgi.escape(self.request.get('user_id'))
         admin_manager.delete_user_from_gym(user_id)
 
 
 class AddStudioToGym(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         name = cgi.escape(self.request.get('name'))
         admin_manager.add_studio(name)
 
 
 class EditStudioToGym(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         old_name = cgi.escape(self.request.get('old_name'))
         new_name = cgi.escape(self.request.get('new_name'))
         admin_manager.edit_studio(old_name, new_name)
@@ -1630,7 +1505,7 @@ class EditStudioToGym(BaseRequestHandler):
 
 class DeleteStudioToGym(BaseRequestHandler):
     def post(self):
-        admin_manager = AdminManager("peer", "peer")
+        admin_manager = AdminManager(GYM_NETWORK, GYM_BRANCH)
         name = cgi.escape(self.request.get('studio_name'))
         admin_manager.delete_studio(name)
 
