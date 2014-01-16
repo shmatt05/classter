@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from random import choice
 from datetime import timedelta
 from users_logic import user_manager
@@ -14,12 +15,12 @@ from datetime import date, datetime, time
 import cgi
 import sys
 from db import entities
-from python_objects.objects import GymManager
 from python_objects.user_notifications import MyCalendar
-sys.path.insert(0, 'libs')
-import jsonpickle
 reload(sys)
 sys.setdefaultencoding("utf-8")
+
+sys.path.insert(0, 'libs')
+import jsonpickle
 ########################
 
 GYM_NETWORK = "peer"
