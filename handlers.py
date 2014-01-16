@@ -1,91 +1,28 @@
-# -*- coding: utf-8 -*-
-import logging
-import os
 from random import choice
-from tempfile import template
-from webapp2_extras.auth import InvalidAuthIdError, InvalidPasswordError
-import secrets
-
-import webapp2
-from webapp2_extras import auth, sessions, jinja2
-from jinja2.runtime import TemplateNotFound
-
-from simpleauth import SimpleAuthHandler
-
-from datetime import date, datetime, time, timedelta
-import cgi
-import json
-import sys
-
-import webapp2
+from datetime import timedelta
 from users_logic import user_manager
-
-from users_logic.user_manager import DailyScheduleManager
-from db import entities
-from users_logic.user_manager import DailyScheduleManager
-from users_logic.user_manager import UserBusinessLogic, UserView
-from admin_logic.admin_manager import AdminManager, AdminViewer
-from python_objects.objects import GymManager
+from users_logic.user_manager import UserBusinessLogic, UserView, DailyScheduleManager
+from admin_logic.admin_manager import AdminViewer, AdminManager
 import logging
-import os
-from tempfile import template
 from webapp2_extras.auth import InvalidAuthIdError, InvalidPasswordError
 import secrets
-
 import webapp2
 from webapp2_extras import auth, sessions, jinja2
 from jinja2.runtime import TemplateNotFound
-
 from simpleauth import SimpleAuthHandler
-
-from datetime import date, datetime, time, timedelta
-import cgi
-import json
-import sys
-
-import webapp2
-from users_logic import user_manager
-
-from users_logic.user_manager import DailyScheduleManager
-from db import entities
-from users_logic.user_manager import DailyScheduleManager
-from users_logic.user_manager import UserBusinessLogic, UserView
-from admin_logic.admin_manager import AdminManager, AdminViewer
-from python_objects.objects import GymManager
-
-import logging
-import os
-from tempfile import template
-from webapp2_extras.auth import InvalidAuthIdError, InvalidPasswordError
-import secrets
-
-import webapp2
-from google.appengine.api import mail
-
-import webapp2
-from webapp2_extras import auth, sessions, jinja2
-from jinja2.runtime import TemplateNotFound
-
-from simpleauth import SimpleAuthHandler
-
 from datetime import date, datetime, time
 import cgi
-import json
 import sys
-
-from users_logic.user_manager import DailyScheduleManager
 from db import entities
-from users_logic.user_manager import DailyScheduleManager
-from admin_logic.admin_manager import AdminManager
 from python_objects.objects import GymManager
 from python_objects.user_notifications import MyCalendar
-## check it ##
+sys.path.insert(0, 'libs')
+import jsonpickle
 reload(sys)
 sys.setdefaultencoding("utf-8")
-
 ########################
 
-
+CURRENT_GYM = "pure"
 
 def user_required(handler):
     """
@@ -219,9 +156,11 @@ class BaseRequestHandler(webapp2.RequestHandler):
         }
         self.render('message.html', params)
 
+
 class UserAuth(BaseRequestHandler):
     def get(self):
         self.render('google_facebook_login.html')
+
 
 class RootHandler(BaseRequestHandler):
     def get(self):
@@ -740,6 +679,7 @@ class NewCoursePopup(BaseRequestHandler):
             'class_minutes': class_minutes
         }
         self.render('admin-new-course.html', template_values)
+
 
 class EditCourseButtonClick(BaseRequestHandler):
     def post(self):
@@ -1592,6 +1532,7 @@ class DeleteCourse(BaseRequestHandler):
 
         admin_manager.delete_course_instance(class_key, year, month, day)
 
+
 class AddInstructorToGym(BaseRequestHandler):
     def post(self):
         admin_manager = AdminManager("peer", "peer")
@@ -1600,6 +1541,7 @@ class AddInstructorToGym(BaseRequestHandler):
         last_name = cgi.escape(self.request.get('last_name'))
         admin_manager.add_instructor(id, first_name, last_name)
 
+
 class EditInstructorToGym(BaseRequestHandler):
     def post(self):
         admin_manager = AdminManager("peer", "peer")
@@ -1607,6 +1549,7 @@ class EditInstructorToGym(BaseRequestHandler):
         first_name = cgi.escape(self.request.get('first_name'))
         last_name = cgi.escape(self.request.get('last_name'))
         admin_manager.edit_instructor(id, first_name,last_name)
+
 
 class DeleteInstructorToGym(BaseRequestHandler):
     def post(self):
@@ -1623,6 +1566,7 @@ class AddCourseTemplateToGym(BaseRequestHandler):
         color = cgi.escape(self.request.get('color'))
         admin_manager.add_course_template(name, description, color)
 
+
 class EditCourseTemplateToGym(BaseRequestHandler):
     def post(self):
         admin_manager = AdminManager("peer", "peer")
@@ -1632,11 +1576,13 @@ class EditCourseTemplateToGym(BaseRequestHandler):
         new_color = cgi.escape(self.request.get('new_color'))
         admin_manager.edit_course_template(prev_name, new_name, new_description, new_color)
 
+
 class DeleteCourseTemplateToGym(BaseRequestHandler):
     def post(self):
         admin_manager = AdminManager("peer", "peer")
         name = cgi.escape(self.request.get('name'))
         admin_manager.delete_course_template(name)
+
 
 class AddUserToGym(BaseRequestHandler):
     def post(self):
@@ -1648,6 +1594,7 @@ class AddUserToGym(BaseRequestHandler):
         phone = cgi.escape(self.request.get('phone'))
         admin_manager.add_user_to_gym(user_id, first_name, last_name, email, phone)
 
+
 class EditUserToGym(BaseRequestHandler):
     def post(self):
         admin_manager = AdminManager("peer", "peer")
@@ -1658,11 +1605,13 @@ class EditUserToGym(BaseRequestHandler):
         phone = cgi.escape(self.request.get('phone'))
         admin_manager.edit_user(user_id, first_name, last_name, email, phone)
 
+
 class DeleteUserToGym(BaseRequestHandler):
     def post(self):
         admin_manager = AdminManager("peer", "peer")
         user_id = cgi.escape(self.request.get('user_id'))
         admin_manager.delete_user_from_gym(user_id)
+
 
 class AddStudioToGym(BaseRequestHandler):
     def post(self):
@@ -1686,23 +1635,8 @@ class DeleteStudioToGym(BaseRequestHandler):
         admin_manager.delete_studio(name)
 
 
-
-#todo consider make users a property in gym
-#todo consider make each user an entity instead of users_table
-
-
 #Help functions
 
-sys.path.insert(0, 'libs')
-import jsonpickle
-
-#JINJA_ENVIRONMENT = jinja2.Environment(
-#    loader=jinja2.FileSystemLoader('templates'),
-#    extensions=['jinja2.ext.autoescape'],
-#    autoescape=True)
-
-DEFAULT_GYM_NAME = "default_gym"
-DEFAULT_MONTH_YEAR = "01-2001"
 
 
 def to_mili(day, course):
