@@ -146,6 +146,7 @@ routes = [
     Route('/edit_studio', 'handlers.EditStudioToGym'),
     Route('/delete_studio', 'handlers.DeleteStudioToGym'),
     Route('/create_event', 'handlers.CreateEventHandler'),
+    Route('/', 'handlers.Splash'),
     Route(decorator.callback_path, decorator.callback_handler()),
 ]
 

@@ -11,6 +11,7 @@ $(document).ready(function() {
         getData['course_date'] = classDate;
         getData['start_hour'] = startHour;
         getData['end_hour'] = endHour;
+        console.log(getData);
         $.ajax(
             {
                 url : '/create_event',

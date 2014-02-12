@@ -662,6 +662,10 @@ class SignUpPopUp(BaseRequestHandler):
             self.render('user-popup.html', template_values)
 
 
+class Splash(BaseRequestHandler):
+    def get(self):
+        self.render('welcome.html')
+
 class NewCoursePopup(BaseRequestHandler):
     def post(self):
         class_date = cgi.escape(self.request.get('course_date'))
