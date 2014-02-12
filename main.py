@@ -103,7 +103,7 @@ routes = [
     Route('/sign_up',handler='handlers.CheckIdHandler'),
     Route('/forgot', 'handlers.ForgotPasswordHandler', name='forgot'),
     Route('/password', 'handlers.SetPasswordHandler'),
-    Route('/', 'handlers.MainHandler'),
+    Route('/', 'handlers.Splash'),
     Route('/user', 'handlers.UserHandler'),
     Route('/admin', 'handlers.AdminHandler'),
     Route('/craete_monthly_schedule', 'handlers.CreateMonthSched'),
@@ -146,7 +146,7 @@ routes = [
     Route('/edit_studio', 'handlers.EditStudioToGym'),
     Route('/delete_studio', 'handlers.DeleteStudioToGym'),
     Route('/create_event', 'handlers.CreateEventHandler'),
-    Route('/', 'handlers.Splash'),
+
     Route(decorator.callback_path, decorator.callback_handler()),
 ]
 
