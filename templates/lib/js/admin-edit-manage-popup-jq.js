@@ -2,6 +2,7 @@
  * Created by Matan on 1/7/14.
  */
 $(document).ready(function() {
+
     $('.chosen-select').chosen({
         no_results_text: 'לא נמצאו תוצאות',
         width: '85%%'
@@ -61,7 +62,8 @@ $(document).ready(function() {
     $('#editclass').on('submit',  function(e) {
         var postData = {};
         postData['class_id'] = classID;
-        postData['date'] = $('#date').val();
+        postData['old_date'] = classDate; //var initiated when popup opens with original class date
+        postData['new_date'] = $('#date').val();
         postData['time'] = $('#time').val();
         postData['length'] = $('#amount').val();
         postData['participants'] = $('#participants').val();
