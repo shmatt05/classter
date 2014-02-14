@@ -237,7 +237,10 @@ class Course(CourseTemplate):
         return self.hour[:2]
 
     def __get_start_minute(self):
-        return self.hour[2:4]
+        if str(self.hour[2]) == ':':
+            return self.hour[3:5]
+        else:
+            return self.hour[2:4]
 
     def __str__(self):
         return super(Course, self).__str__() + \

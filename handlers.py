@@ -754,7 +754,8 @@ class AddClassToSched(BaseRequestHandler):
 class EditCoursePopup(BaseRequestHandler):
     def post(self):
         class_id = cgi.escape(self.request.get('class_id'))
-        date = cgi.escape(self.request.get('date')).split("/")
+        new_date = cgi.escape(self.request.get('new_date')).split("/")
+        old_date = cgi.escape(self.request.get('old_date')).split("/")
         time = cgi.escape(self.request.get('time'))
         length = cgi.escape(self.request.get('length'))
         participants = cgi.escape(self.request.get('participants'))
@@ -766,7 +767,11 @@ class EditCoursePopup(BaseRequestHandler):
         all_month = cgi.escape(self.request.get('all_month'))
         admin_man = AdminManager(GYM_NETWORK, GYM_BRANCH)
         admin_man.edit_course(class_id, class_name, length, participants, instructor, studio, registration_days_before,
-                              registratio_start_time, date[2], date[1], date[0])
+                              registratio_start_time, new_date[2], new_date[1], new_date[0])
+        admin_man.edit_course_time_and_day(class_id, old_date[2], old_date[1], old_date[0],
+                                            new_date[2], new_date[1], new_date[0], time, length)
+
+
 
 
 class ManageCoursePopup(BaseRequestHandler):
