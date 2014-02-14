@@ -193,6 +193,8 @@ class AdminManager:
         new_month_schedule = old_month_schedule
         if old_month != new_month or old_year != new_year:
             new_month_schedule = self.__get_month_schedule(int(new_month), int(new_year))
+            if new_month_schedule is None:
+                self.create_month_schedule(int(new_year), int(new_month))
         old_month_schedule_manager = MonthScheduleManager(old_month_schedule)
         new_month_schedule_manager = MonthScheduleManager(new_month_schedule)
 
