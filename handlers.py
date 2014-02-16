@@ -707,8 +707,8 @@ class EditCourseButtonClick(BaseRequestHandler):
         waiting_list = admin_manager.get_waiting_list_from_course(class_key, year, month, day)
         course = admin_manager.get_course(class_key, year, month, day)
         hour = course.registration_start_time[:2]
-        minutes = course.registration_start_time[2:]
-        reg_start_time = hour + ":" + minutes
+        minutes = course.registration_start_time[3:]
+        reg_start_time = hour +  minutes
         template_values = {
             'users': registered_users_list,
             'waiting_list': waiting_list,

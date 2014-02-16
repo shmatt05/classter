@@ -84,7 +84,7 @@ $(document).ready(function() {
                 {
                     var magnificPopup = $.magnificPopup.instance;
                     magnificPopup.close();
-                    var dt = new Date(postData['date'].replace(/(\d{2})\/(\d{2})\/(\d{4})/,'$3-$2-$1'));
+                    var dt = new Date(postData['old_date'].replace(/(\d{2})\/(\d{2})\/(\d{4})/,'$3-$2-$1'));
                     $("#calendar").weekCalendar("removeUnsavedEvents");
                     $("#calendar").weekCalendar("gotoWeek", dt);
 
