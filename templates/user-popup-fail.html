@@ -10,15 +10,9 @@
              <h2> ארעה שגיאה</h2>
              <h3>{{error_code}}</h3>
           </div>
-         {% if error_code == "400" %}
-         <div class="alert alert-dismissable alert-danger text-center"> השיעור מלא </div>
-         {% else if error_code == "500" %}
-         <div class="alert alert-dismissable alert-danger text-center"> ההרשמה טרם נפתחה </div>
-         {% else if error_code == "600" %}
-         <div class="alert alert-dismissable alert-danger text-center"> השיעור לא קיים במערכת </div>
-         {% else if error_code == "700" %}
-         <div class="alert alert-dismissable alert-danger text-center"> השיעור התקיים כבר </div>
-         {% endif %}
+
+         <div class="alert alert-dismissable alert-danger text-center"> רענן ונסה שנית</div>
+
        <input type="button" value="back" id="backbutton">
         <script>
             $(document).ready(function() {

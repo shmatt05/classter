@@ -618,7 +618,7 @@ class SignUpPopUp(BaseRequestHandler):
         time_passed = (code == user_manager.COURSE_TIME_PASSED)
         print time_passed
         if code == user_manager.NO_SUCH_COURSE:
-            pass #self.render('user-popup-fail.html')
+            self.render('user-popup-fail.html')
         else:
             registration_open_date = course.calculate_open_registration_date(year, month, day)
             if registration_open_date is None:
