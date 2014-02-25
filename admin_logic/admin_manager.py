@@ -102,7 +102,9 @@ class AdminManager:
                             template.color != new_color:
                 template.name = new_name
                 template.description = new_description
-                template.color == new_color
+                template.color = new_color
+                self.gym.courses[new_name] = template
+                del self.gym.courses[previous_name]
                 self.gym.put()
 
     def delete_course_template(self, name):
