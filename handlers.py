@@ -167,7 +167,8 @@ class UserAuth(BaseRequestHandler):
 class RootHandler(BaseRequestHandler):
     def get(self):
         """Handles default langing page"""
-        self.render('home.html')
+        #self.render('home.html')
+        self.render('google_facebook_login.html')
 
 
 class ProfileHandler(BaseRequestHandler):
