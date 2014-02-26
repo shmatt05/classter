@@ -351,7 +351,7 @@ class CheckIdHandler(BaseRequestHandler):
         id = self.request.get('id')
 
         if not valid_id(id) or self.already_signup(id):
-            error_message(self, 'We couldn\'t sign you up. Please try again.')
+            error_message(self, ' ארעה תקלה,ייתכן והינך רשום כבר במערכת')
         else:
             self.session['on_sign_up'] = True
             self.session['curr_user_id'] = id

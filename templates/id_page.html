@@ -1,41 +1,32 @@
-{% extends "layout.html" %}
+<html><body><head>
+       <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.css">
 
-{% block main %}
+      <style>
+        .centerdiv {
+    width: 500px;
+    height: 500px;
 
-{% if logged_in %}
-<p>Hey there. Looks like you're logged in already.</p>
-<!--<a href="{{ url_for('profile') }}" class="btn">my profile</a>-->
-<a href="/logout" class="btn">logout</a>
-{% else %}
+    text-align: center;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
-<!--<p>Please add your ID:</p>-->
-<!--<label for="name">ID</label>-->
-<!--<input type="text" name="ID"/>-->
+    margin: auto;
+}
+    </style>
+</head>
+<div class="centerdiv">
+    <h2>רישום משתמש חדש</h2>
+    <h4>הכנס מס׳ תעודת זהות</h4>
 <form action="/sign_up" method="POST">
-<label for="id">ID</label>
+
 <input type="text" name="id" />
     <br/>
     <br/>
-<input type="submit" value="Submit" class="btn" />
+<input type="submit" value="המשך" class="btn" />
 </form>
+</body></html>
 
-<br/>
-
-<br/>
-<br/>
-
-
-{% endif %}
-
-<h2>webapp2 auth session information</h2>
-<table>
-    <tbody>
-    {% for k, v in session.items() -%}
-    <tr>
-        <td style="padding-right: 5px">{{ k }}:</td>
-        <td>{{ v }}</td>
-    </tr>
-    {% endfor -%}
-    </tbody>
-</table>
-{% endblock %}

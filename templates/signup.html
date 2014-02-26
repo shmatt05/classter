@@ -1,34 +1,38 @@
-{% extends "main.html" %}
+<html><head>
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.css">
 
-{% block title %}Register a new user{% endblock %}
+      <style>
+        .centerdiv {
+    width: 500px;
+    height: 500px;
 
-{% block maincontent %}
+    text-align: center;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
-<h1>Register a new user</h1>
+    margin: auto;
+}
+    </style>
+</head><body>
+<div dir="rtl" class="centerdiv">
+<h1>צור משתמש מקומי</h1>
 <form action="/signup" method="POST">
-<label for="username">Username</label>
-<input type="text" name="username" />
-<label for="email">Email address</label>
-<input type="text" name="email" />
-<label for="password">Password</label>
-<input type="password" name="password" />
-<label for="name">Name</label>
-<input type="text" name="name" />
-<label for="lastname">Last Name</label>
-<input type="text" name="lastname" />
-<input type="submit" value="Create user" />
+<label for="username">שם משתמש</label>
+<input type="text" name="username" /><br>
+<label for="email">דואר אלקטרוני</label>
+<input type="text" name="email" /><br>
+<label for="password">סיסמא</label>
+<input type="password" name="password" /><br>
+<label for="name">שם פרטי</label>
+<input type="text" name="name" /><br>
+<label for="lastname">שם משפחה</label>
+<input type="text" name="lastname" /><br>
+<input type="submit" value="המשך" />
 </form>
+</div>
+</body></html>
 
-
-<h2>webapp2 auth session information</h2>
-<table>
-    <tbody>
-    {% for k, v in session.items() -%}
-    <tr>
-        <td style="padding-right: 5px">{{ k }}:</td>
-        <td>{{ v }}</td>
-    </tr>
-    {% endfor -%}
-    </tbody>
-</table>
-{% endblock %}

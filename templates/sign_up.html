@@ -1,41 +1,31 @@
-{% extends "layout.html" %}
+<html>
+<head>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.css">
 
-{% block main %}
+      <style>
+        .centerdiv {
+    width: 500px;
+    height: 500px;
 
-{% if logged_in %}
-<p>Hey there. Looks like you're logged in already.</p>
-<!--<a href="{{ url_for('profile') }}" class="btn">my profile</a>-->
-<a href="/logout" class="btn">logout</a>
-{% else %}
+    text-align: center;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
-<!--<div><input type="submit" value="Sign Guestbook" class="btn"></div>-->
+    margin: auto;
+}
+    </style>
+</head>
+<body>
+<div class="centerdiv">
+    <h2>בחר שיטת הזדהות</h2>
+    <div id="fb-login-button"><a href="/auth/facebook" onclick=""><img width="255px" height="55px" src="http://www.spivi.com/spivi/images/sign_in_with_facebook.png" border="0"></a></div>
+     <div id="google-login-button"><a href="/auth/google" onclick=""><img width="255px" height="55px" src="https://developers.google.com/accounts/images/sign-in-with-google.png" border="0"></a></div>
+    <a href="signup" class="btn">משתמש מקומי</a>
+</div>
+</body>
+</html>
 
-<p>
-    <a href="/auth/google" class="btn">Google</a>
-    <a href="/auth/facebook" class="btn">Facebook</a>
-    <a href="signup" class="btn">Sign In</a>
-
-
-</p>
-
-
-</form>
-
-<br/>
-<br/>
-
-
-{% endif %}
-
-<h2>webapp2 auth session information</h2>
-<table>
-    <tbody>
-    {% for k, v in session.items() -%}
-    <tr>
-        <td style="padding-right: 5px">{{ k }}:</td>
-        <td>{{ v }}</td>
-    </tr>
-    {% endfor -%}
-    </tbody>
-</table>
-{% endblock %}
