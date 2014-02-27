@@ -642,7 +642,8 @@ class SignUpPopUp(BaseRequestHandler):
                     'class_key': course.id,
                     'color': course.color,
                     'free_slots': course.get_num_open_slots(),
-                    'start_time': course.hour[:2] + ":" + course.hour[2:],
+                    #'start_time': course.hour[:2] + ":" + course.hour[2:],
+                    'start_time': course.hour,
                     'end_time': get_end_time(long(course.milli), course.duration),
                     'date': date_original,
                     'signed_up': signed_up,
@@ -708,8 +709,8 @@ class EditCourseButtonClick(BaseRequestHandler):
         waiting_list = admin_manager.get_waiting_list_from_course(class_key, year, month, day)
         course = admin_manager.get_course(class_key, year, month, day)
         hour = course.registration_start_time[:2]
-        minutes = course.registration_start_time[3:]
-        reg_start_time = hour +  minutes
+        minutes = course.registration_start_time[2:]
+        reg_start_time = hour + ":" +  minutes
         template_values = {
             'users': registered_users_list,
             'waiting_list': waiting_list,
@@ -768,7 +769,7 @@ class EditCoursePopup(BaseRequestHandler):
         all_month = cgi.escape(self.request.get('all_month'))
         admin_man = AdminManager(GYM_NETWORK, GYM_BRANCH)
         admin_man.edit_course(class_id, class_name, length, participants, instructor, studio, registration_days_before,
-                              registratio_start_time, old_date[2], old_date[1], old_date[0])
+                              registratio_start_time.replace(":", ""), old_date[2], old_date[1], old_date[0])
         admin_man.edit_course_time_and_day(class_id, old_date[2], old_date[1], old_date[0],
                                             new_date[2], new_date[1], new_date[0], time, length)
 
