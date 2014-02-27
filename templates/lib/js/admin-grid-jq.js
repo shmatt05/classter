@@ -324,7 +324,10 @@ $(document).ready(function () {
         postData['id'] = $('#instructorid').val();
         postData['first_name'] = $('#instructorfirstname').val();
         postData['last_name'] = $('#instructorlastname').val();
-
+        if (postData['id'] === '' || postData['first_name'] === '' || postData['last_name'] === '' ) {
+            alert('נא ודא שכל השדות מלאים');
+            return false;
+        }
         $.ajax(
             {
                 url : '/edit_instructor',
@@ -352,6 +355,10 @@ $(document).ready(function () {
         var postData = {};
         postData['old_name'] = $('#studioselect').val();
         postData['new_name'] = $('#studioname').val();
+        if (postData['new_ma,e'] === '') {
+            alert('נא ודא שכל השדות מלאים');
+            return false;
+        }
         $.ajax(
             {
                 url : '/edit_studio',
@@ -378,7 +385,10 @@ $(document).ready(function () {
         postData['prev_name'] = $('#classselect').val();
         postData['new_description'] = $('#classdescription').val();
         postData['new_color'] = $("#classcolor").spectrum("get").toHexString();
-
+        if (postData['new_name'] === '' || postData['new_description'] === '' || postData['new_color'] === '' ) {
+            alert('נא ודא שכל השדות מלאים');
+            return false;
+        }
         $.ajax(
             {
                 url : '/edit_course_template',
@@ -412,7 +422,10 @@ $(document).ready(function () {
         postData['last_name'] = $('#userlastname').val();
         postData['email'] = $('#useremail').val();
         postData['phone'] = $('#userphone').val();
-
+        if (postData['user_id'] === '' || postData['first_name'] === '' || postData['last_name'] === '' ) {
+            alert('נא ודא שכל השדות מלאים');
+            return false;
+        }
         $.ajax(
             {
                 url : '/edit_user',
@@ -445,17 +458,16 @@ $(document).ready(function () {
     // All Add Buttons AJAX
 
     $('#addinstructor').on('click',  function(e) {
-        $('input').each(function() {
-            if(!$(this).val()){
-                alert('Some fields are empty');
-                return false;
-            }
-        });
+
+
         var postData = {};
         postData['id'] = $('#newinstructorid').val();
         postData['first_name'] = $('#newinstructorfirstname').val();
         postData['last_name'] = $('#newinstructorlastname').val();
-
+        if (postData['id'] === '' || postData['first_name'] === '' || postData['last_name'] === '' ) {
+            alert('נא ודא שכל השדות מלאים');
+            return false;
+        }
         $.ajax(
             {
                 url : '/add_instructor',
@@ -483,6 +495,10 @@ $(document).ready(function () {
         var postData = {};
 
         postData['name'] = $('#newstudioname').val();
+        if (postData['name'] === '') {
+            alert('נא ודא שכל השדות מלאים');
+            return false;
+        }
         $.ajax(
             {
                 url : '/add_studio',
@@ -508,7 +524,10 @@ $(document).ready(function () {
         postData['name'] = $('#newclassname').val();
         postData['description'] = $('#newclassdescription').val();
         postData['color'] = $("#newclasscolor").spectrum("get").toHexString();
-
+        if (postData['name'] === '' || postData['description'] === '' || postData['color'] === '' ) {
+            alert('נא ודא שכל השדות מלאים');
+            return false;
+        }
         $.ajax(
             {
                 url : '/add_course_template',
@@ -542,6 +561,10 @@ $(document).ready(function () {
         postData['email'] = $('#newuseremail').val();
         postData['phone'] = $('#newuserphone').val();
 
+        if (postData['user_id'] === '' || postData['first_name'] === '' || postData['last_name'] === '' ) {
+            alert('נא ודא שכל השדות מלאים');
+            return false;
+        }
         $.ajax(
             {
                 url : '/add_user_to_gym',
