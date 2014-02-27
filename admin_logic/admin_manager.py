@@ -58,7 +58,12 @@ class AdminManager:
     def add_user_to_course(self, course_id, user_id, year, month, day_in_month):
         month_sched = self.__get_month_schedule(str(int(month)), year)
         course = self.get_course(course_id, year, str(int(month)), day_in_month)
-        code = course.try_register_user_to_course(user_id, year, str(int(month)), day_in_month)
+        if not course.does_user_already_registered(user_id):
+            course.add_user_to_course(user_id)
+            code =  USER_REGISTRATION_SUCCEEDED
+        else:
+            code =  USER_ALREADY_REGISTERED
+        #code = course.try_register_user_to_course(user_id, year, str(int(month)), day_in_month)
         month_sched.put()
         return code
 
