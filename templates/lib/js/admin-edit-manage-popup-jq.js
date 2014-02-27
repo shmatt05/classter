@@ -60,6 +60,7 @@ $(document).ready(function() {
         e.preventDefault();
     });
     $('#editclass').on('submit',  function(e) {
+
         var postData = {};
         postData['class_id'] = classID;
         postData['old_date'] = classDate; //var initiated when popup opens with original class date

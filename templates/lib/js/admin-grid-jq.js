@@ -444,7 +444,13 @@ $(document).ready(function () {
     });
     // All Add Buttons AJAX
 
-      $('#addinstructor').on('click',  function(e) {
+    $('#addinstructor').on('click',  function(e) {
+        $('input').each(function() {
+            if(!$(this).val()){
+                alert('Some fields are empty');
+                return false;
+            }
+        });
         var postData = {};
         postData['id'] = $('#newinstructorid').val();
         postData['first_name'] = $('#newinstructorfirstname').val();

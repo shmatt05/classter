@@ -30,10 +30,15 @@ $(document).ready(function() {
       slide: function( event, ui ) {
         $( "#participants" ).val(ui.value );
       }
-    });
+        });
     $( "#participants" ).val($( "#slider-range-min2" ).slider( "value" ) );
 
     $('#addclass').on('submit',  function(e) {
+
+        if ($('#classname').val() === "") {
+            alert('הזן את שם השיעור');
+            return false;
+        }
         var postData = {};
         postData['date'] = $('#date').val();
         postData['time'] = $('#time').val();
