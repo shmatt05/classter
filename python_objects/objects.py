@@ -195,9 +195,10 @@ class Course(CourseTemplate):
             return False
         course_date_time = datetime(int(year), int(month), int(day))
         registration_start_date_time = course_date_time - timedelta(int(self.registration_days_before))
-        registration_start_date_time = datetime(registration_start_date_time.year, registration_start_date_time.month,
+        tz = pytz.timezone("Israel")
+        registration_start_date_time = tz.localize(datetime(registration_start_date_time.year, registration_start_date_time.month,
                                                 registration_start_date_time.day, int(self.registration_start_time[:2]),
-                                                int(self.registration_start_time[2:4]),0,0,pytz.timezone("Israel"))
+                                                int(self.registration_start_time[2:4]),0,0))
         now = Time('Israel').now()
         return now >= registration_start_date_time
 
