@@ -631,7 +631,7 @@ function changeWeek(newDate) {
                             oneClass.end = oneClass.start + +(parseInt(newClass.duration)*60000);
                             oneClass.title = newClass.name;
 
-                            oneClass.openSlots = newClass.max_capacity - Object.keys(newClass.users_table).length;
+                            oneClass.openSlots = Math.max(newClass.max_capacity - Object.keys(newClass.users_table).length, 0);
                             oneClass.instructor = newClass.instructor;
                             oneClass.studio = newClass.studio;
                             oneClass.color = newClass.color;

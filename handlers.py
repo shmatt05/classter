@@ -658,9 +658,8 @@ class SignUpPopUp(BaseRequestHandler):
             }
             #template = JINJA_ENVIRONMENT.get_template('user-popup.html')
             #self.response.write(template.render(template_values))
-            print year
-            print month
-            print day
+
+
             self.render('user-popup.html', template_values)
 
 
