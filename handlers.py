@@ -1600,7 +1600,7 @@ def sign_up_success(param_self):
 
     admin_manager.set_gym()
 
-    print admin_manager.get_users_of_gym()['555'].email
+    #print admin_manager.get_users_of_gym()['555'].email
     if connection == 'facebook':
 
         user_credentials_from_db.facebook_id = fb_g_o
